@@ -88,10 +88,10 @@ jQuery(document).ready(function($) {
         var email = document.getElementById('woocommerce-user-email').value;
         var nonce = document.getElementById('wc_catalog_enq').value;
         var enquiry_product_type = document.getElementById('enquiry-product-type').value;
-        var subject = '';
-        var phone = '';
-        var address = '';
-        var comment = '';
+        var subject = document.getElementById('woocommerce-user-subject') ? document.getElementById('woocommerce-user-subject').value : '';
+        var phone = document.getElementById('woocommerce-user-phone') ? document.getElementById('woocommerce-user-phone').value : '';
+        var address = document.getElementById('woocommerce-user-address') ? document.getElementById('woocommerce-user-address').value : '';
+        var comment = document.getElementById('woocommerce-user-comment') ? document.getElementById('woocommerce-user-comment').value : '';
         var fd = new FormData();
         var json_arr = catalog_enquiry_front.json_arr;
         if (json_arr.indexOf("subject") != -1) {
