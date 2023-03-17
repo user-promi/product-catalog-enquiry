@@ -17,10 +17,10 @@
 }
 
 #woocommerce-catalog .modal-content{
-	background-color: #fefefe;
+	background-color: #fdfdfe;
 	margin: auto;
     padding: 0;
-    border: 1px solid #888;
+    border-radius:0.5rem;
     width: 600px;
     max-width: 90%;
 	position: absolute;
@@ -30,40 +30,32 @@
     max-height: 90vh;
     overflow: auto;
     text-align: left;
-  	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
+    border: 0.06rem solid #ece8f1;
 }
 
 /* The Close Button */
 #woocommerce-catalog .modal-header button.close {
-    padding: 3px;
     cursor: pointer;
     background: transparent;
+    padding: 0;
     border: 0;
-    min-height: auto;
     -webkit-appearance: none;
     margin: 0;
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #000000;
-    text-shadow: 0 1px 0 #ffffff;
-    opacity: 0.2;
-    filter: alpha(opacity=20);
+    font-size: 2rem;
+    color: #181718;
     position: absolute;
-    right: 10px;
+    right: 3%;
     top: 50%;
     transform: translateY(-50%);
-
 } 
 /* modla header */
 #woocommerce-catalog .modal-content .modal-header {
-    padding: 12px 25px;
-    border-bottom: 1px solid #eee;
+    padding: 2rem;
+    border-bottom: 0.06rem solid #ece8f1;
     position: relative;
 }
 #woocommerce-catalog .modal-header h2{
@@ -79,23 +71,29 @@
     max-width: 100%;
 }
 #woocommerce-catalog .modal-content .modal-body{
-    max-height: 52vh;
     overflow: auto;
     margin: 0;
     width: 100%;
-    padding: 20px 25px 0 15px;
+    padding: 1rem 2rem;
 } 
 #woocommerce-catalog .cat-form-row input, #woocommerce-catalog .cat-form-row select, #woocommerce-catalog .cat-form-row textarea{
-    padding: 6px 10px;
-    line-height: 15px;
-    font-size: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
     margin: 0;
-    border: solid 1px #dcdcdc;
+    border: 0.06rem solid #ece8f1;
     box-shadow: none;
-    color: #5d5d5d;
+    color: #8e8b91;
     width: 100%;
-    background: #fff;
-    height: 38px;
+    background: #f2eff5;
+    border-radius: 2rem;
+    height: 2.5rem;
+}
+#woocommerce-catalog .cat-form-row input:focus, #woocommerce-catalog .cat-form-row select:focus, #woocommerce-catalog .cat-form-row textarea:focus{
+    border: 0.06rem solid #e35047;
+    outline: 0;
+    background: #fdfdfb;
+    color: #181718;
+    box-shadow: 0 0 0.625rem 0 rgb(233 102 86 / 20%);
 }
 #woocommerce-catalog .cat-form-row textarea{
     height: 100px;
@@ -111,14 +109,14 @@
     position: relative;
 }
 #woocommerce-catalog .cat-form-row label{
-    margin: 0 0 6px;
-    font-size: 15px;
-    line-height: 16px;
-    font-weight: normal;
-    color: #616161;
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #181718;
+    display: inline-block;
 }
 #woocommerce-catalog .cat-form-row{
-    margin: 0 0 15px;
+    margin: 0 0 1rem;
 }
 #woocommerce-catalog p.catalog-enquiry-top-content, #woocommerce-catalog p.catalog-enquiry-bottom-content{
     margin: 0 0 20px;
@@ -145,48 +143,50 @@
 }
 /* modal footer */
 #woocommerce-catalog .modal-content .modal-footer {
-    padding: 14px 15px 15px;
-    margin-bottom: 0;
-    text-align: right;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
+    background-color: #fbfafc;
     z-index: 1;
     position: relative;
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
 }
 
 #woocommerce-catalog .modal-footer button{
-    margin: 0 0 0 15px;
-    padding: 5px 15px;
-    width: 110px;
-    height: auto;
-    min-height: auto;
-    line-height: 25px;
-    font-size: 16px;
-    border: 1px solid #555555;
-    font-weight: normal;
-    background: #fff;
-    color: #555555;
-    box-shadow: none;
-    text-transform: uppercase;
+    background-color: #e35047;
+    color: #f9f8fb;
+    border: 0;
+    transition: all 0.3s ease;
+    border-radius: 2rem;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1.27;
+    padding: 0.62rem 2rem;
 }
-#woocommerce-catalog .modal-footer button:hover{
-    background: #555;
-    color: #fff;
+#woocommerce-catalog .modal-footer button.btn.btn-primary {
+    background-color: #65438f;
 }
+#woocommerce-catalog .modal-footer button.btn.btn-default:hover {
+    background-color: #e6635b;
+    color: #f9f8fb;
+}
+#woocommerce-catalog .modal-footer button.btn.btn-primary:hover {
+    background-color: #795b9d;
+    color: #f9f8fb;
+}
+
 @media screen and (max-width:768px){
     #woocommerce-catalog .modal-content .modal-footer{
         text-align: center;
     }
     #woocommerce-catalog .modal-content .modal-footer button{
-        padding: 2px 15px;
-        width: 77px;
-        font-size: 14px;
+        padding: 0.5rem 2rem;
     }
     #woocommerce-catalog .modal-content .modal-header {
-        padding: 8px 10px;
+        padding: 1.5rem;
     }
     #woocommerce-catalog .modal-content .modal-body{
-        padding: 15px 15px 0 5px;
+        padding: 1rem 2rem;
     }
     #woocommerce-catalog .modal-header h2{
         font-size: 16px;
@@ -194,9 +194,7 @@
     #woocommerce-catalog .cat-form-row label{
         font-size: 14px;
     }
-    #woocommerce-catalog .modal-content .modal-footer {
-        padding: 10px 15px;
-    }
+
     #woocommerce-catalog .cat-form-row input, #woocommerce-catalog .cat-form-row select, #woocommerce-catalog .cat-form-row textarea{
         height: 33px;
     }
