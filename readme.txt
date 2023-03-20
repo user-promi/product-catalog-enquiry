@@ -5,7 +5,7 @@ Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 5.0.0
+Stable tag: 5.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,11 @@ Ans. Yes, you can use this plugin for shop and catalog simultaneously.You can al
 10.Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
+
+= 5.0.1 - 2023-03-20 =
+* Added: Compatibility of WooCommerce 7.5.0.
+* Fixed: Email Issue #2.
+* Updated: Language file.
 
 = 5.0.0 - 2023-03-14 =
 * Added: Compatibility of WordPress 6.1.1

@@ -324,7 +324,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         $exclusion = $Woocommerce_Catalog_Enquiry->options_exclusion_settings;
         $product_for = '';
 
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_product_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) && isset($post->ID)) {
                 if (in_array($post->ID, mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect'))) {
                     $product_for = $post->ID;
@@ -335,7 +335,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         }
         
         $category_for = '';
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_category_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect'))) {
                 if (isset($product)) {
                     $term_list = wp_get_post_terms($post->ID, 'product_cat', array('fields' => 'ids'));
@@ -375,7 +375,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         $exclusion = $Woocommerce_Catalog_Enquiry->options_exclusion_settings;
         $product_for = '';
 
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_product_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) && isset($post->ID)) {
                 if (in_array($post->ID, mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect'))) {
 
@@ -392,7 +392,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         
 
         $category_for = '';
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_category_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect'))) {
                 if (isset($product)) {
                     $term_list = wp_get_post_terms($post->ID, 'product_cat', array('fields' => 'ids'));
@@ -840,7 +840,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         global $post, $product;
         $product_for = '';
 
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_product_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) && isset($post->ID)) {
                 if (in_array($post->ID, mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect'))) {
                     $product_for = $post->ID;
@@ -852,7 +852,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
 
         $category_for = '';
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_category_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect'))) {
                 if (isset($product)) {
                     $term_list = wp_get_post_terms($post->ID, 'product_cat', array('fields' => 'ids'));
@@ -887,7 +887,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         global $post, $product;
         $product_for = '';
 
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_product_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect')) && isset($post->ID)) {
                 if (in_array($post->ID, mvx_catalog_get_settings_value($this->exclusion['woocommerce_product_list'], 'multiselect'))) {
                     $product_for = $post->ID;
@@ -899,7 +899,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         
 
         $category_for = '';
-        if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
+        if (isset($this->exclusion['woocommerce_category_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_category_list'], 'multiselect'))) {
                 if (isset($product)) {
                     $term_list = wp_get_post_terms($post->ID, 'product_cat', array('fields' => 'ids'));
