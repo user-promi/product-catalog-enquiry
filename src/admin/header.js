@@ -74,6 +74,8 @@ class Header extends Component {
 
 	render() {
 		return (
+			<>
+			{catalogappLocalizer.pro_active ?
 			<div className="mvx-sidebar">
 				<div className="mvx-banner-top">
 					<div className="mvx-logo-top">
@@ -153,6 +155,8 @@ class Header extends Component {
 					</div>
 				</div>
 			</div>
+			: ''}
+			</>
 		);
 	}
 }

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class Banner extends Component {
 	render() {
 		return (
+			<>
+			{catalogappLocalizer.pro_active ?
 			<div className="mvx-sidebar">
 				<div className="mvx-banner-right">
 					<div className="mvx-logo-right">
@@ -15,6 +17,8 @@ class Banner extends Component {
 					</div>
 				</div>
 			</div>
+			: '' }
+			</>
 		);
 	}
 }
