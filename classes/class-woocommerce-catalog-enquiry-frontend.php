@@ -923,7 +923,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         if ($product_for == $post->ID || $category_for == $post->ID) {
             add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
         } else {
-            if (mvx_catalog_get_settings_value($this->settings_button['button_type'], 'select')) {
+            if (isset($this->settings_button['button_type']) && mvx_catalog_get_settings_value($this->settings_button['button_type'], 'select')) {
                 add_filter('woocommerce_loop_add_to_cart_link', array($this, 'woocommerce_loop_add_to_cart_link'), 99, 3);
             } else {
                 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
