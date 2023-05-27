@@ -360,7 +360,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
             add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
             remove_filter('woocommerce_loop_add_to_cart_link', array($this, 'woocommerce_loop_add_to_cart_link'), 99, 3);
         } else {
-            if ($this->settings_button['button_type']) {
+            if (isset($this->settings_button['button_type'])) {
                 add_filter('woocommerce_loop_add_to_cart_link', array($this, 'woocommerce_loop_add_to_cart_link'), 99, 3);
             }else{
                 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
