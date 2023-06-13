@@ -1084,11 +1084,10 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     $custom_button_css .= ' border-color: ' . $this->settings_button['custom_border_color'] . ';' ;
                 if (isset($this->settings_button['custom_text_color']))
                     $custom_button_css .= ' color: ' . $this->settings_button['custom_text_color'] . ' !important;' ;
-                //hover changes
-                if (isset($this->settings_button['custom_button_font']))
+                if (isset($this->settings_button['custom_button_font']) && !empty($this->settings_button['custom_button_font']))
                     $custom_button_css .= ' font-family: ' . $this->settings_button['custom_button_font']['value'] . ';' ;
-                //hover changes
 
+                //hover changes
                 if (isset($this->settings_button['custom_hover_background_color']))
                     $button_hover_css .= 'background-image: none; background-color: ' . $this->settings_button['custom_hover_background_color'] . ';' ;
                 if (isset($this->settings_button['custom_hover_text_color']))
