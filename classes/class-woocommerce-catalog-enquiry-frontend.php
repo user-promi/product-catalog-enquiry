@@ -1077,13 +1077,13 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                 if (isset($this->settings_button['custom_border_radius']))
                 $custom_button_css .= ' border-radius: ' . $this->settings_button['custom_border_radius'] . 'px;';
                 if (isset($this->settings_button['custom_border_size']))
-                    $custom_button_css .= ' border-style: solid; border-width: ' . $this->settings_button['custom_border_size'] . ';' ;
+                    $custom_button_css .= ' border-style: solid; border-width: ' . $this->settings_button['custom_border_size'] . 'px;' ;
                 if (isset($this->settings_button['custom_top_gradient_color']) && isset($this->settings_button['custom_bottom_gradient_color']))
                 $custom_button_css .= ' background-image: linear-gradient('.$this->settings_button['custom_top_gradient_color'] . ',' . $this->settings_button['custom_bottom_gradient_color'] .'); ';
                 if (isset($this->settings_button['custom_border_color']))
                     $custom_button_css .= ' border-color: ' . $this->settings_button['custom_border_color'] . ';' ;
                 if (isset($this->settings_button['custom_text_color']))
-                    $custom_button_css .= ' color: ' . $this->settings_button['custom_text_color'] . ';' ;
+                    $custom_button_css .= ' color: ' . $this->settings_button['custom_text_color'] . ' !important;' ;
                 //hover changes
 
                 if (isset($this->settings_button['custom_hover_background_color']))
