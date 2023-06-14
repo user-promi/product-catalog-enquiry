@@ -2400,282 +2400,74 @@ export default class DynamicForm extends React.Component {
 				);
 			}
 
-			if ( type === 'own_button' ) {
-				var ownbutton_content_load = [];
-				if ( value ) {
-					value.map( ( ow, index ) => {
-						ownbutton_content_load[ ow[ 0 ] ] = ow[ 1 ];
-					} );
-				}
+			if ( type === 'slider' ) {
+				//console.log(this.state[target]);
+				var slider_val = parseInt(value);
 				input = (
-					<div className="mvx-settings-own-button">
-						<Box sx={ { minWidth: 120 } }>
-							<div class="editor-left side">
-								<Typography gutterBottom>
-									Button Size:
-								</Typography>
-								<Slider
-									defaultValue={ 60 }
-									aria-label="Default"
-									valueLabelDisplay="auto"
-									onChange={ ( e ) => {
-										this.handleOnChangedada(
-											target,
-											e,
-											'btn_size'
-										);
-									} }
-								/>
-								<Typography gutterBottom>Font Size:</Typography>
-								<Slider
-									defaultValue={ 60 }
-									aria-label="Default"
-									valueLabelDisplay="auto"
-									onChange={ ( e ) => {
-										this.handleOnChangedada(
-											target,
-											e,
-											'font_size'
-										);
-									} }
-								/>
-								<Typography gutterBottom>
-									Border Radius:
-								</Typography>
-								<Slider
-									defaultValue={ 60 }
-									aria-label="Default"
-									valueLabelDisplay="auto"
-									onChange={ ( e ) => {
-										this.handleOnChangedada(
-											target,
-											e,
-											'border_radious'
-										);
-									} }
-								/>
-								<Typography gutterBottom>
-									Border Size:
-								</Typography>
-								<Slider
-									defaultValue={ 60 }
-									aria-label="Default"
-									valueLabelDisplay="auto"
-									onChange={ ( e ) => {
-										this.handleOnChangedada(
-											target,
-											e,
-											'border_size'
-										);
-									} }
-								/>
-							</div>
-
-							<div class="editor-left side">
-								<div className="mvx-color-picker-wrap">
-									<Typography>Top Gradient Color</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'top_gradient_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>
-										Bottom Gradient Color
-									</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'bottom_gradient_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>Border Color</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'border_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>
-										Hover Background Color
-									</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'hover_background_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>Text Color</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'text_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>Hover Text Color</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'hover_text_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<Typography>
-										Active Background Color
-									</Typography>
-									<input
-										{ ...props }
-										className="mvx-setting-color-picker"
-										type="color"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'active_background_color'
-											);
-										} }
-									/>
-								</div>
-								<div className="mvx-color-picker-wrap">
-									<InputLabel id="demo-simple-select-label">
-										Select Font:
-									</InputLabel>
-									<Selecty
-										labelId="demo-simple-select-label"
-										id="demo-simple-select"
-										value="Georgia, Serif"
-										label="Select Font"
-										onChange={ ( e ) => {
-											this.handleOnChangedada(
-												target,
-												e,
-												'onmselect'
-											);
-										} }
-									>
-										<MenuItem value="Helvetica, Arial, Sans-Serif">
-											Helvetica
-										</MenuItem>
-										<MenuItem value="Georgia, Serif">
-											Georgia
-										</MenuItem>
-										<MenuItem value="Lucida Grande, Helvetica, Arial, Sans-Serif">
-											Lucida Grande
-										</MenuItem>
-									</Selecty>
-								</div>
-							</div>
-						</Box>
-						<Box>
-							{ m.desc ? (
-								<p
-									className="mvx-settings-metabox-description"
-									dangerouslySetInnerHTML={ {
-										__html: m.desc,
-									} }
-								></p>
-							) : (
-								''
-							) }
-							{ ownbutton_content_load ? (
-								<div
-									onMouseEnter={ this.handleOMouseEnter }
-									onMouseLeave={ this.handleOMouseLeave }
-									style={ {
-										color:
-											this.state.hover_on &&
-											ownbutton_content_load
-												? ownbutton_content_load[
-														'hover_text_color'
-												  ]
-												: ownbutton_content_load[
-														'text_color'
-												  ],
-										fontFamily:
-											ownbutton_content_load[
-												'onmselect'
-											],
-										fontSize:
-											ownbutton_content_load[
-												'font_size'
-											],
-										padding:
-											ownbutton_content_load[
-												'btn_size'
-											],
-										borderRadius:
-											ownbutton_content_load[
-												'border_radious'
-											],
-										border: `${ ownbutton_content_load[ 'border_size' ] } solid ${ ownbutton_content_load[ 'border_color' ] }`,
-										background: ownbutton_content_load[
-											'hover_on'
-										]
-											? ownbutton_content_load[
-													'hover_background_color'
-											  ]
-											: ownbutton_content_load[
-													'bottom_gradient_color'
-											  ],
-										verticalAlign: 'middle',
-										textDecoration: 'none',
-									} }
-								>
-									Example Enquiry
-								</div>
-							) : (
-								''
-							) }
-						</Box>
+					<div className="mvx-settings-color-picker-parent-class">
+						<Slider
+							//defaultValue={ 60 }
+							aria-label="Default"
+							valueLabelDisplay="auto"
+							value = { slider_val }
+							onChange={ ( e ) => {
+								this.onChange(
+									e,
+									target
+								);
+							} }
+						/>
+						{ m.desc ? (
+							<p
+								className="mvx-settings-metabox-description"
+								dangerouslySetInnerHTML={ { __html: m.desc } }
+							></p>
+						) : (
+							''
+						) }
 					</div>
 				);
+				
+			}
+
+			if ( type === 'example_button' ) {
+				input = (
+					<div className="mvx-settings-example-button-class">
+						{ <div
+							onMouseEnter={ this.handleOMouseEnter }
+							onMouseLeave={ this.handleOMouseLeave }
+							style={ {
+								color:
+									this.state.hover_on
+										? this.state['custom_hover_text_color']
+										: this.state['custom_text_color'],
+								fontFamily:
+									this.state['custom_button_font'] ? this.state['custom_button_font']['value'] : '',
+								fontSize:
+									this.state['custom_font_size'],
+								padding:
+									this.state['custom_button_size'],
+								borderRadius:
+									this.state['custom_border_radius'],
+								border: `${ this.state['custom_border_size'] }px solid ${ this.state['custom_border_color'] }`,
+								
+								background: 
+									this.state.hover_on 
+										? this.state['custom_hover_background_color']
+										: this.state['custom_top_gradient_color'] && this.state['custom_bottom_gradient_color']
+											? `linear-gradient( ${this.state['custom_top_gradient_color']}, ${this.state['custom_bottom_gradient_color']})` :
+											'',
+								verticalAlign: 'middle',
+								textDecoration: 'none',
+								width: 'fit-content',
+							} }
+						>
+							Example Enquiry
+						</div>
+						}
+					</div>
+				);
+				
 			}
 
 			if ( type === 'toggle_rectangle' ) {

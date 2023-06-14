@@ -1064,17 +1064,46 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         $frontend_style_path = $Woocommerce_Catalog_Enquiry->plugin_url . 'assets/frontend/css/';
         $frontend_style_path = str_replace(array('http:', 'https:'), '', $frontend_style_path);
         $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-
+        $custom_button_css = $button_hover_css = $button_css = '';
         // Enqueue your frontend stylesheet from here
         if (isset($this->settings['is_enable']) && mvx_catalog_get_settings_value($this->settings['is_enable'], 'checkbox') == "Enable") {
             wp_enqueue_style('wce_frontend_css', $frontend_style_path . 'frontend.css', array(), $Woocommerce_Catalog_Enquiry->version);
 
             if (isset($this->settings_button) || isset($settings)) {
-                $custom_button_css = /*isset($this->settings['custom_enquiry_buttons_css']) ? $this->settings['custom_enquiry_buttons_css'] : */'';
+                if (isset($this->settings_button['custom_button_size']))
+                $custom_button_css .= ' padding: ' . $this->settings_button['custom_button_size'] . 'px;' ;
+                if (isset($this->settings_button['custom_font_size']))
+                $custom_button_css .= ' font-size: ' . $this->settings_button['custom_font_size'] . 'px;';
+                if (isset($this->settings_button['custom_border_radius']))
+                $custom_button_css .= ' border-radius: ' . $this->settings_button['custom_border_radius'] . 'px;';
+                if (isset($this->settings_button['custom_border_size']))
+                    $custom_button_css .= ' border-style: solid; border-width: ' . $this->settings_button['custom_border_size'] . 'px;' ;
+                if (isset($this->settings_button['custom_top_gradient_color']) && isset($this->settings_button['custom_bottom_gradient_color']))
+                $custom_button_css .= ' background-image: linear-gradient('.$this->settings_button['custom_top_gradient_color'] . ',' . $this->settings_button['custom_bottom_gradient_color'] .'); ';
+                if (isset($this->settings_button['custom_border_color']))
+                    $custom_button_css .= ' border-color: ' . $this->settings_button['custom_border_color'] . ';' ;
+                if (isset($this->settings_button['custom_text_color']))
+                    $custom_button_css .= ' color: ' . $this->settings_button['custom_text_color'] . ' !important;' ;
+                if (isset($this->settings_button['custom_button_font']) && !empty($this->settings_button['custom_button_font']))
+                    $custom_button_css .= ' font-family: ' . $this->settings_button['custom_button_font']['value'] . ';' ;
+
+                //hover changes
+                if (isset($this->settings_button['custom_hover_background_color']))
+                    $button_hover_css .= 'background-image: none; background-color: ' . $this->settings_button['custom_hover_background_color'] . ';' ;
+                if (isset($this->settings_button['custom_hover_text_color']))
+                    $button_hover_css .= ' color: ' . $this->settings_button['custom_hover_text_color'] . ';' ;
+
+                if (!empty($custom_button_css)){
+                    $button_css = 'button.custom_enquiry_buttons_css_new {'. $custom_button_css . '}';
+                }
+                if (!empty($button_hover_css)){
+                    $button_css .= 'button.custom_enquiry_buttons_css_new:hover{'. $button_hover_css .'}';
+                }
+                
+                $custom_button_css = '';
                 $inline_css = "				
-				
 				/* The Modal (background) */
-                ".$custom_button_css."
+                ".$button_css."
 				#woocommerce-catalog .catalog-modal {
 				    display: none; /* Hidden by default */
 				    position: fixed; /* Stay in place */
