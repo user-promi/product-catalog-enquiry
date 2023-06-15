@@ -686,7 +686,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close">&times;</button>
-                                <?php if (mvx_catalog_get_settings_value($this->settings_form['is_override_form_heading'], 'checkbox')) { ?>
+                                <?php if (isset($this->settings_form['is_override_form_heading']) && mvx_catalog_get_settings_value($this->settings_form['is_override_form_heading'], 'checkbox')) { ?>
                                     <?php if (isset($this->settings_form['custom_static_heading'])) { ?>
                                 <h2><?php echo str_replace( "PRODUCT_NAME", $product_name, $this->settings_form['custom_static_heading'] ); ?></h2>
                                     <?php } ?>
