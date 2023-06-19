@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-14 08:02+0000\n"
+"POT-Creation-Date: 2023-06-19 08:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: templates/emails/woocommerce-catalog-enquiry-admin.php:97
+#: templates/emails/woocommerce-catalog-enquiry-admin.php:97 
 #: templates/emails/plain/woocommerce-catalog-enquiry-admin.php:61
 #, php-format
 msgid "%s - Powered by WC Catalog Enquiry"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Add more information or specific instructions here."
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:460
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:460 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:662
 msgid "Add to Cart"
 msgstr ""
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Additional Recivers Emails"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:475
+#: includes/woocommerce-catalog-enquiry-core-functions.php:600
 msgid "Additional Settings"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:628
+#: includes/woocommerce-catalog-enquiry-core-functions.php:753
 msgid "Address"
 msgstr ""
 
@@ -67,17 +67,25 @@ msgstr ""
 msgid "All Users"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:631
+#: includes/woocommerce-catalog-enquiry-core-functions.php:756
 msgid "Allows you to glance at the recent products added by seller"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:649
-#: includes/woocommerce-catalog-enquiry-core-functions.php:655
+#: includes/woocommerce-catalog-enquiry-core-functions.php:774 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:780
 msgid "Allows you to see the products put on sale by a seller"
 msgstr ""
 
 #: admin/class-woocommerce-catalog-enquiry-settings.php:134
 msgid "Attachment"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:507
+msgid "Border Radius"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:516
+msgid "Border Size"
 msgstr ""
 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:394
@@ -88,6 +96,10 @@ msgstr ""
 msgid "Button Customizer"
 msgstr ""
 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:489
+msgid "Button Size"
+msgstr ""
+
 #: includes/woocommerce-catalog-enquiry-core-functions.php:410
 msgid "Button Text"
 msgstr ""
@@ -96,7 +108,7 @@ msgstr ""
 msgid "Button Type"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:572
+#: includes/woocommerce-catalog-enquiry-core-functions.php:697
 msgid ""
 "By default it will be \"Enquiry about PRODUCT_NAME\". Enable this to set "
 "your custom title."
@@ -108,7 +120,7 @@ msgid ""
 "display the form below the product description."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:658
+#: includes/woocommerce-catalog-enquiry-core-functions.php:783
 msgid "Captcha"
 msgstr ""
 
@@ -132,7 +144,7 @@ msgstr ""
 msgid "Catalog Mode Applicable For"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:529
+#: includes/woocommerce-catalog-enquiry-core-functions.php:654
 msgid "Category Specific Exclusion"
 msgstr ""
 
@@ -166,11 +178,11 @@ msgstr ""
 msgid "Configure basic catalog settings to operate your catalog marketplace. "
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:561
+#: includes/woocommerce-catalog-enquiry-core-functions.php:686
 msgid "Content After Enquiry From"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:554
+#: includes/woocommerce-catalog-enquiry-core-functions.php:679
 msgid "Content Before Enquiry From"
 msgstr ""
 
@@ -178,11 +190,15 @@ msgstr ""
 msgid "Convert your WooCommerce store into a catalog website in a click"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:619
+#: includes/woocommerce-catalog-enquiry-core-functions.php:744
 msgid "Creates a page where the vendor registration form is available"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:483
+#: includes/woocommerce-catalog-enquiry-core-functions.php:471
+msgid "Custom Button Customizer"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:608
 msgid "Custom CSS"
 msgstr ""
 
@@ -198,7 +214,7 @@ msgstr ""
 msgid "Customer Queries"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:539
+#: includes/woocommerce-catalog-enquiry-core-functions.php:664
 msgid "Customise your product enquiry form"
 msgstr ""
 
@@ -206,7 +222,7 @@ msgstr ""
 msgid "Date Picker"
 msgstr ""
 
-#: templates/emails/woocommerce-catalog-enquiry-admin.php:13
+#: templates/emails/woocommerce-catalog-enquiry-admin.php:13 
 #: templates/emails/plain/woocommerce-catalog-enquiry-admin.php:14
 msgid "Dear Admin"
 msgstr ""
@@ -227,11 +243,11 @@ msgstr ""
 msgid "Display Options"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:637
+#: includes/woocommerce-catalog-enquiry-core-functions.php:762
 msgid "Displays the products added by seller"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:661
+#: includes/woocommerce-catalog-enquiry-core-functions.php:786
 msgid "Displays the top rated products of the seller"
 msgstr ""
 
@@ -239,8 +255,8 @@ msgstr ""
 msgid "Dropdown"
 msgstr ""
 
-#: admin/class-woocommerce-catalog-enquiry-settings.php:94
-#: includes/woocommerce-catalog-enquiry-core-functions.php:616
+#: admin/class-woocommerce-catalog-enquiry-settings.php:94 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:741 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:65
 msgid "Email"
 msgstr ""
@@ -249,7 +265,7 @@ msgstr ""
 msgid "Email is required field"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:605
+#: includes/woocommerce-catalog-enquiry-core-functions.php:730
 msgid "Enable / Disable"
 msgstr ""
 
@@ -299,25 +315,25 @@ msgid ""
 "catalog/\" target=\"_blank\">WooCommerce Catalog Enquiry Pro</a>."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:613
+#: includes/woocommerce-catalog-enquiry-core-functions.php:738
 msgid "Enables you to create a seller dashboard "
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:634
+#: includes/woocommerce-catalog-enquiry-core-functions.php:759
 msgid "Enquiry About"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:532
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:532 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:746
 msgid "Enquiry about"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:483
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:483 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:694
 msgid "Enquiry about "
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:640
+#: includes/woocommerce-catalog-enquiry-core-functions.php:765
 msgid "Enquiry Details"
 msgstr ""
 
@@ -329,15 +345,15 @@ msgstr ""
 msgid "Enquiry for {PRODUCT_NAME}"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:537
+#: includes/woocommerce-catalog-enquiry-core-functions.php:662
 msgid "Enquiry Form"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:595
+#: includes/woocommerce-catalog-enquiry-core-functions.php:720
 msgid "Enquiry Form Fields"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:601
+#: includes/woocommerce-catalog-enquiry-core-functions.php:726
 msgid "Enquiry Form Fileds"
 msgstr ""
 
@@ -351,7 +367,7 @@ msgid ""
 "mail. You can add multiple commma seperated emails. Default: Admin emails."
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:529
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:529 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:743
 msgid "Enter enquiry subject : "
 msgstr ""
@@ -360,7 +376,7 @@ msgstr ""
 msgid "Enter product external link"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:601
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:601 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:814
 msgid "Enter the security code shown above"
 msgstr ""
@@ -369,33 +385,33 @@ msgstr ""
 msgid "Enter the text for your Enquery Button."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:491
+#: includes/woocommerce-catalog-enquiry-core-functions.php:616
 msgid ""
 "Enter the users, products, and categories that should not be included in the "
 "catalog settings. "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:555
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:555 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:769
 msgid "Enter your address : "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:516
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:516 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:729
 msgid "Enter your Email Id : "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:568
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:568 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:782
 msgid "Enter your Message : "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:503
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:503 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:716
 msgid "Enter your name : "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:542
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:542 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:756
 msgid "Enter your phone no : "
 msgstr ""
@@ -408,36 +424,48 @@ msgstr ""
 msgid "Exceeded filesize limit."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:489
+#: includes/woocommerce-catalog-enquiry-core-functions.php:614
 msgid "Exclusion"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:499
+#: includes/woocommerce-catalog-enquiry-core-functions.php:624
 msgid "Exclusion Management"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:643
+#: includes/woocommerce-catalog-enquiry-core-functions.php:768
 msgid "Exhibits featured products added by the seller"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:604
+#: includes/woocommerce-catalog-enquiry-core-functions.php:729
 msgid "Field Name"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:646
+#: includes/woocommerce-catalog-enquiry-core-functions.php:771
 msgid "File Upload"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:652
+#: includes/woocommerce-catalog-enquiry-core-functions.php:777
 msgid "File Upload Size Limit ( in MB )"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:498
+msgid "Font Size"
 msgstr ""
 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:188
 msgid "General"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:547
+#: includes/woocommerce-catalog-enquiry-core-functions.php:672
 msgid "General Settings"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:580
+msgid "Georgia"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:575
+msgid "Helvetica"
 msgstr ""
 
 #. URI of the plugin
@@ -465,18 +493,18 @@ msgstr ""
 msgid "Leave this section blank or add examples of an answer here."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:625
+#: includes/woocommerce-catalog-enquiry-core-functions.php:750
 msgid ""
 "Lets you view  a brief summary of the coupons created by the seller and "
 "number of times it has been used by the customers"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:670
+#: includes/woocommerce-catalog-enquiry-core-functions.php:795
 msgid "Live Preview"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:463
-msgid "Make your own Button Style"
+#: includes/woocommerce-catalog-enquiry-core-functions.php:585
+msgid "Lucida Grande"
 msgstr ""
 
 #: admin/class-woocommerce-catalog-enquiry-settings.php:62
@@ -495,7 +523,7 @@ msgstr ""
 msgid "MultiVendorX"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:610
+#: includes/woocommerce-catalog-enquiry-core-functions.php:735 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:61
 msgid "Name"
 msgstr ""
@@ -508,14 +536,15 @@ msgstr ""
 msgid "No Link Just #"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:197
-#: includes/woocommerce-catalog-enquiry-core-functions.php:323
-#: includes/woocommerce-catalog-enquiry-core-functions.php:365
-#: includes/woocommerce-catalog-enquiry-core-functions.php:403
-#: includes/woocommerce-catalog-enquiry-core-functions.php:474
-#: includes/woocommerce-catalog-enquiry-core-functions.php:498
-#: includes/woocommerce-catalog-enquiry-core-functions.php:546
-#: includes/woocommerce-catalog-enquiry-core-functions.php:594
+#: includes/woocommerce-catalog-enquiry-core-functions.php:197 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:323 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:365 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:403 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:470 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:599 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:623 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:671 
+#: includes/woocommerce-catalog-enquiry-core-functions.php:719
 msgid "no_label"
 msgstr ""
 
@@ -527,11 +556,11 @@ msgstr ""
 msgid "Only Logged out Users"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:566
+#: includes/woocommerce-catalog-enquiry-core-functions.php:691
 msgid "Override Form Title?"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:622
+#: includes/woocommerce-catalog-enquiry-core-functions.php:747
 msgid "Phone"
 msgstr ""
 
@@ -551,7 +580,7 @@ msgstr ""
 msgid "Please Enter Valid Email Id"
 msgstr ""
 
-#: templates/emails/woocommerce-catalog-enquiry-admin.php:14
+#: templates/emails/woocommerce-catalog-enquiry-admin.php:14 
 #: templates/emails/plain/woocommerce-catalog-enquiry-admin.php:15
 msgid "Please find the product enquiry, details are given below"
 msgstr ""
@@ -588,7 +617,7 @@ msgstr ""
 msgid "Product SKU"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:521
+#: includes/woocommerce-catalog-enquiry-core-functions.php:646
 msgid "Product Specific Exclusion"
 msgstr ""
 
@@ -596,7 +625,7 @@ msgstr ""
 msgid "Product Url"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:482
+#: includes/woocommerce-catalog-enquiry-core-functions.php:607
 msgid "Put your custom css here, to customize the enquiry form."
 msgstr ""
 
@@ -604,8 +633,8 @@ msgstr ""
 msgid "Radio"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:244
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:936
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:244 
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:936 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:421
 msgid "Read More"
 msgstr ""
@@ -678,9 +707,13 @@ msgstr ""
 msgid "Section"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:597
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:597 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:810
 msgid "Security Code"
+msgstr ""
+
+#: includes/woocommerce-catalog-enquiry-core-functions.php:571
+msgid "Select Font"
 msgstr ""
 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:310
@@ -699,13 +732,13 @@ msgstr ""
 msgid "Select question type"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:530
+#: includes/woocommerce-catalog-enquiry-core-functions.php:655
 msgid ""
 "Select the Category, where should have the Add to cart button, instead of "
 "enquiry button."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:522
+#: includes/woocommerce-catalog-enquiry-core-functions.php:647
 msgid ""
 "Select the products that should have the Add to cart button, instead of "
 "enquiry button."
@@ -715,11 +748,11 @@ msgstr ""
 msgid "Select the type users where this catalog is applicable"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:506
+#: includes/woocommerce-catalog-enquiry-core-functions.php:631
 msgid "Select the user roles, who won’t be able to send enquiry."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:514
+#: includes/woocommerce-catalog-enquiry-core-functions.php:639
 msgid "Select the users, who won’t be able to send enquiry."
 msgstr ""
 
@@ -729,36 +762,36 @@ msgid ""
 "format."
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:616
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:616 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:831
 msgid "Send"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:432
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:434
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:628
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:630
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:657
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:432 
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:434 
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:628 
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:630 
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:657 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:672
 msgid "Send an enquiry"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:582
+#: includes/woocommerce-catalog-enquiry-core-functions.php:707
 #, php-format
 msgid ""
 "Set custom from title. Use this specifier to replace the product name - %% "
 "PRODUCT_NAME %%."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:583
+#: includes/woocommerce-catalog-enquiry-core-functions.php:708
 msgid "Set Form Title"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:606
+#: includes/woocommerce-catalog-enquiry-core-functions.php:731
 msgid "Set New Field Name"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:286
+#: includes/woocommerce-catalog-enquiry-core-functions.php:286 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:309
 msgid "Set Redirect Page"
 msgstr ""
@@ -783,11 +816,11 @@ msgstr ""
 msgid "Textbox"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:553
+#: includes/woocommerce-catalog-enquiry-core-functions.php:678
 msgid "This content will be displayed above your from."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:560
+#: includes/woocommerce-catalog-enquiry-core-functions.php:685
 msgid "This content will be displayed after your from."
 msgstr ""
 
@@ -815,11 +848,11 @@ msgid ""
 "venditore"
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:676
+#: includes/woocommerce-catalog-enquiry-core-functions.php:801
 msgid "Upgrade To Pro For More Features"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:582
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:582 
 #: classes/class-woocommerce-catalog-enquiry-frontend.php:796
 msgid "Upload your File : "
 msgstr ""
@@ -836,7 +869,7 @@ msgstr ""
 msgid "User Comments : "
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:513
+#: includes/woocommerce-catalog-enquiry-core-functions.php:638
 msgid "User Name Specific Exclusion"
 msgstr ""
 
@@ -844,7 +877,7 @@ msgstr ""
 msgid "User Phone : "
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:505
+#: includes/woocommerce-catalog-enquiry-core-functions.php:630
 msgid "User Role Specific Exclusion"
 msgstr ""
 
@@ -856,7 +889,7 @@ msgstr ""
 msgid "View the latest addition."
 msgstr ""
 
-#: includes/woocommerce-catalog-enquiry-core-functions.php:602
+#: includes/woocommerce-catalog-enquiry-core-functions.php:727
 msgid ""
 "Want to customise the form as per your need? To have a fully customizable "
 "form kindly upgrade to <a href=\"https://multivendorx.com/woocommerce-"
