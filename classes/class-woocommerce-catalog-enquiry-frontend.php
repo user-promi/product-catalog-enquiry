@@ -990,7 +990,8 @@ class Woocommerce_Catalog_Enquiry_Frontend {
             wp_enqueue_script('wc-add-to-cart-variation');
             $available_variations = $variable_product->get_available_variations();
             //attributes
-            include_once ($Woocommerce_Catalog_Enquiry->plugin_path . 'templates/woocommerce-catalog-enquiry-variable-product.php');
+            $Woocommerce_Catalog_Enquiry->template->get_template('woocommerce-catalog-enquiry-variable-product.php', array('available_variations' => $available_variations));
+
         } elseif ($product->is_type('simple')) {
             echo wc_get_stock_html($product);
         }

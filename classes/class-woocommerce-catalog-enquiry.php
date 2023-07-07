@@ -69,6 +69,11 @@ class Woocommerce_Catalog_Enquiry {
 	      	$this->ajax = new  Woocommerce_Catalog_Enquiry_Ajax();
 	    }
 
+	    if (!is_admin() || defined('DOING_AJAX')) {
+            $this->load_class('template');
+            $this->template = new Woocommerce_Catalog_Enquiry_Template();
+        }
+
 		if (is_admin()) {
 			$this->load_class('admin');
 			$this->admin = new Woocommerce_Catalog_Enquiry_Admin();
@@ -150,7 +155,7 @@ class Woocommerce_Catalog_Enquiry {
 		return $emails;
 	}
 	
-	/** Cache Helpers *********************************************************/
+	/************************* Cache Helpers ****************************/
 
 	/**
 	 * Sets a constant preventing some caching plugins from caching a page. Used on dynamic pages
