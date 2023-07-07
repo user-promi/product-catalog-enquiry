@@ -65,14 +65,14 @@ class Woocommerce_Catalog_Enquiry {
 
 		// Init ajax
 		if(defined('DOING_AJAX')) {
-	      	$this->load_class('ajax');
-	      	$this->ajax = new  Woocommerce_Catalog_Enquiry_Ajax();
-	    }
+			$this->load_class('ajax');
+			$this->ajax = new  Woocommerce_Catalog_Enquiry_Ajax();
+		}
 
-	    if (!is_admin() || defined('DOING_AJAX')) {
-            $this->load_class('template');
-            $this->template = new Woocommerce_Catalog_Enquiry_Template();
-        }
+		if (!is_admin() || defined('DOING_AJAX')) {
+			$this->load_class('template');
+			$this->template = new Woocommerce_Catalog_Enquiry_Template();
+		}
 
 		if (is_admin()) {
 			$this->load_class('admin');
