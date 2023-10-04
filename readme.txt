@@ -1,5 +1,5 @@
 ﻿=== Product Catalog Enquiry for WooCommerce by MultiVendorX ===
-Contributors: wcmp, rajsekharchatterjee11
+Contributors: wcmp, rajsekharchatterjee11, abhirup23
 Tags: product catalogue, Catalog marketing, Catalog manager, Product catalog template , Product list , eCommerce Product Catalog , Product Catalog Features, Product Catalog plugin , Change category prefix, eCommerce plugin, easily disable price, new catalogue, filter product display, Catalog preview mode , custom product page, product edit screen , catalog edit screen, product inquiry cart , display product catalog, product catalog plugin , Apply Catalog Mode, inquiry form, catalog mode, product online, WooCommerce plugin , Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
