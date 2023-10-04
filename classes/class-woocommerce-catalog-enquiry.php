@@ -52,7 +52,6 @@ class Woocommerce_Catalog_Enquiry {
 		add_action('init', array(&$this, 'init'), 0);
 		// Catalog Email setup
 		add_filter('woocommerce_email_classes', array(&$this, 'woocommerce_catalog_enquiry_email_setup' ));
-		add_action( 'rest_api_init', array( $this, 'catalog_rest_routes_react_module' ) );
 	}
 	
 	/**
@@ -82,6 +81,10 @@ class Woocommerce_Catalog_Enquiry {
 		if (!is_admin() || defined('DOING_AJAX')) {
 			$this->load_class('frontend');
 			$this->frontend = new Woocommerce_Catalog_Enquiry_Frontend();
+		}
+
+		if (current_user_can('manage_options')) {
+			add_action( 'rest_api_init', array( $this, 'catalog_rest_routes_react_module' ) );
 		}
 	}
 

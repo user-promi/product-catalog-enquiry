@@ -1104,7 +1104,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                 $custom_button_css = '';
                 $inline_css = "				
 				/* The Modal (background) */
-                ".$button_css."
+                " . wp_strip_all_tags($button_css) . "
 				#woocommerce-catalog .catalog-modal {
 				    display: none; /* Hidden by default */
 				    position: fixed; /* Stay in place */
