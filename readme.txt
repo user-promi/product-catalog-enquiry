@@ -1,11 +1,11 @@
 ﻿=== Product Catalog Enquiry for WooCommerce by MultiVendorX ===
-Contributors: wcmp, rajsekharchatterjee11
+Contributors: wcmp, rajsekharchatterjee11, abhirup23
 Tags: product catalogue, Catalog marketing, Catalog manager, Product catalog template , Product list , eCommerce Product Catalog , Product Catalog Features, Product Catalog plugin , Change category prefix, eCommerce plugin, easily disable price, new catalogue, filter product display, Catalog preview mode , custom product page, product edit screen , catalog edit screen, product inquiry cart , display product catalog, product catalog plugin , Apply Catalog Mode, inquiry form, catalog mode, product online, WooCommerce plugin , Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
-Tested up to: 6.2.2
+Tested up to: 6.3.2
 Requires PHP: 5.6
-Stable tag: 5.0.2
+Stable tag: 5.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,13 @@ Ans. Yes, you can use this plugin for shop and catalog simultaneously.You can al
 10.Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
+
+= 5.0.3 - 2023-11-03 =
+* Added: Compatibility of WordPress 6.3.2.
+* Added: Compatibility of WooCommerce 8.2.1.
+* Added: Variation catalog tamplate override compatibility.
+* Fixed: Vulnerability issue.
+* Updated: Language file.
 
 = 5.0.2 - 2023-06-19 =
 * Added: Compatibility of WordPress 6.2.2.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 08:03+0000\n"
+"POT-Creation-Date: 2023-11-03 05:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1029
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1030
 msgid "Email is required field"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Enquiry Form Fileds"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1054
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1055
 msgid "Enquiry sent successfully"
 msgstr ""
 
@@ -416,11 +416,11 @@ msgstr ""
 msgid "Enter your phone no : "
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1033
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1034
 msgid "Error in system please try later"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1035
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1036
 msgid "Exceeded filesize limit."
 msgstr ""
 
@@ -485,7 +485,7 @@ msgstr ""
 msgid "Introduce your marketplace or add instructions for registration"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1034
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1035
 msgid "Invalid file format."
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1028
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1029
 msgid "Name is required field"
 msgstr ""
 
@@ -568,25 +568,21 @@ msgstr ""
 msgid "Placeholder"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1031
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1032
 msgid "Please enter the security code"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1032
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1033
 msgid "Please enter the valid seurity code"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry-frontend.php:1030
+#: classes/class-woocommerce-catalog-enquiry-frontend.php:1031
 msgid "Please Enter Valid Email Id"
 msgstr ""
 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:14 
 #: templates/emails/plain/woocommerce-catalog-enquiry-admin.php:15
 msgid "Please find the product enquiry, details are given below"
-msgstr ""
-
-#: classes/class-woocommerce-catalog-enquiry.php:99
-msgid "Presenting New and Improved Product Catalog Enquiry."
 msgstr ""
 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:24
@@ -800,7 +796,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/class-woocommerce-catalog-enquiry.php:145
+#: classes/class-woocommerce-catalog-enquiry.php:118
 msgid "Settings Saved"
 msgstr ""
 
@@ -883,10 +879,6 @@ msgstr ""
 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:82
 msgid "User Subject : "
-msgstr ""
-
-#: classes/class-woocommerce-catalog-enquiry.php:101
-msgid "View the latest addition."
 msgstr ""
 
 #: includes/woocommerce-catalog-enquiry-core-functions.php:727
