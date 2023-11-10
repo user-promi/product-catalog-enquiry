@@ -137,15 +137,15 @@ Ans: Yes, you can achieve this by using the exclusion settings to exclude produc
 Answer: Simply enable the 'Product Enquiry Button When Product is Out Of Stock' option to activate the enquiry button for out-of-stock products.
    
 == Screenshots ==
-1. Single Product Enquiry Option 
-2. Enquiry Form
-3. Enquiry Cart
-4. Enquiry Form Builder
-5. Exclusion Rules
-6. Enquiry Email Templates
-7. Enquiry Button Settings
-8. Catalog General Settings
-9. Enquiry Admin Dashboard
+1. Enquiry Form Builder
+2. Exclusion Rules
+3. Enquiry Email Templates
+4. Enquiry Button Settings
+5. Catalog General Settings
+6. Enquiry Admin Dashboard
+7. Single Product Enquiry Option 
+8. Enquiry Form
+9. Enquiry Cart
 10. Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
