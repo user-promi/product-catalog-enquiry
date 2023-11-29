@@ -81,7 +81,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                         $count1 = count(mvx_catalog_get_settings_value($this->exclusion['woocommerce_userroles_list'], 'multiselect'));
                     }
                 }
-                if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect')) {
+                if (isset($this->exclusion['woocommerce_user_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect')) {
                     if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect'))) {
                         $count2 = count(mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect'));
                     }
