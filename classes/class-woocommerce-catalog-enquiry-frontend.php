@@ -81,7 +81,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                         $count1 = count(mvx_catalog_get_settings_value($this->exclusion['woocommerce_userroles_list'], 'multiselect'));
                     }
                 }
-                if (mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect')) {
+                if (isset($this->exclusion['woocommerce_user_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect')) {
                     if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect'))) {
                         $count2 = count(mvx_catalog_get_settings_value($this->exclusion['woocommerce_user_list'], 'multiselect'));
                     }
@@ -445,7 +445,6 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                 $enquiry_form_fileds[$value_e[0]] = $value_e[1];
             }
         }
-        //print_r($enquiry_form_fileds);die;
         ?>    
         <div id="woocommerce-catalog" name="woocommerce_catalog" >	
             <?php if (isset($this->settings['is_enable_out_of_stock']) && mvx_catalog_get_settings_value($this->settings['is_enable_out_of_stock'], 'checkbox') == "Enable") {
@@ -495,9 +494,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                             <?php wp_nonce_field('wc_catalog_enquiry_mail_form', 'wc_catalog_enq'); ?>
 
                     <div class="cat-form-row">
-                        <?php if (array_key_exists('name-label_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('name-label_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['name-label_checkbox']) { ?>
                         <label><?php
-                            if (array_key_exists('name-label', $enquiry_form_fileds)) {
+                            if (array_key_exists('name-label', $enquiry_form_fileds) && !empty($enquiry_form_fileds['name-label'])) {
                                 echo $enquiry_form_fileds['name-label'];
                             } else {
                                 echo __('Enter your name : ', 'woocommerce-catalog-enquiry');
@@ -508,9 +507,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('email-label_checkbox', $enquiry_form_fileds)) { ?>					
+                        <?php if (array_key_exists('email-label_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['email-label_checkbox']) { ?>					
                         <label><?php
-                        if (array_key_exists('email-label', $enquiry_form_fileds)) {
+                        if (array_key_exists('email-label', $enquiry_form_fileds) && !empty($enquiry_form_fileds['email-label'])) {
                             echo $enquiry_form_fileds['email-label'];
                         } else {
                             echo __('Enter your Email Id : ', 'woocommerce-catalog-enquiry');
@@ -521,9 +520,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('is-subject_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-subject_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-subject_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-subject', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-subject', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-subject'])) {
                                 echo $enquiry_form_fileds['is-subject'];
                             } else {
                                 echo __('Enter enquiry subject : ', 'woocommerce-catalog-enquiry');
@@ -534,9 +533,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('is-phone_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-phone_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-phone_checkbox']) { ?>
                             <label><?php
-                                if (array_key_exists('is-phone', $enquiry_form_fileds)) {
+                                if (array_key_exists('is-phone', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-phone'])) {
                                     echo $enquiry_form_fileds['is-phone'];
                                 } else {
                                     echo __('Enter your phone no : ', 'woocommerce-catalog-enquiry');
@@ -547,9 +546,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('is-address_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-address_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-address_checkbox']) { ?>
                         <label><?php
-                            if (array_key_exists('is-address', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-address', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-address'])) {
                                 echo $enquiry_form_fileds['is-address'];
                             } else {
                                 echo __('Enter your address : ', 'woocommerce-catalog-enquiry');
@@ -560,9 +559,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('is-comment_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-comment_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-comment_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-comment', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-comment', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-comment'])) {
                                 echo $enquiry_form_fileds['is-comment'];
                             } else {
                                 echo __('Enter your Message : ', 'woocommerce-catalog-enquiry');
@@ -574,9 +573,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
 
                     <div class="cat-form-row">	
-                        <?php if (array_key_exists('is-fileupload_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-fileupload_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-fileupload_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-fileupload', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-fileupload', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-fileupload'])) {
                                 echo $enquiry_form_fileds['is-fileupload'];
                             } else {
                                 echo __('Upload your File : ', 'woocommerce-catalog-enquiry');
@@ -589,9 +588,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
                     <div class="cat-form-row">							
                     <?php do_action('woocommerce_catalog_enquiry_form_extra_fileds'); ?> 
-                    <?php if (array_key_exists('is-captcha_checkbox', $enquiry_form_fileds)) { ?>
+                    <?php if (array_key_exists('is-captcha_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-captcha_checkbox']) { ?>
                         <label><?php
-                        if (array_key_exists('is-captcha', $enquiry_form_fileds)) {
+                        if (array_key_exists('is-captcha', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-captcha'])) {
                             echo $enquiry_form_fileds['is-captcha'];
                         } else {
                             echo __('Security Code', 'woocommerce-catalog-enquiry');
@@ -708,9 +707,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
 
                     <div class="cat-form-row">
-                        <?php if (array_key_exists('name-label_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('name-label_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['name-label_checkbox']) { ?>
                         <label><?php
-                            if (array_key_exists('name-label', $enquiry_form_fileds)) {
+                            if (array_key_exists('name-label', $enquiry_form_fileds) && !empty($enquiry_form_fileds['name-label'])) {
                                 echo $enquiry_form_fileds['name-label'];
                             } else {
                                 echo __('Enter your name : ', 'woocommerce-catalog-enquiry');
@@ -721,9 +720,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('email-label_checkbox', $enquiry_form_fileds)) { ?>                  
+                        <?php if (array_key_exists('email-label_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['email-label_checkbox']) { ?>                  
                         <label><?php
-                        if (array_key_exists('email-label', $enquiry_form_fileds)) {
+                        if (array_key_exists('email-label', $enquiry_form_fileds) && !empty($enquiry_form_fileds['email-label'])) {
                             echo $enquiry_form_fileds['email-label'];
                         } else {
                             echo __('Enter your Email Id : ', 'woocommerce-catalog-enquiry');
@@ -735,9 +734,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('is-subject_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-subject_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-subject_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-subject', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-subject', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-subject'])) {
                                 echo $enquiry_form_fileds['is-subject'];
                             } else {
                                 echo __('Enter enquiry subject : ', 'woocommerce-catalog-enquiry');
@@ -748,9 +747,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('is-phone_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-phone_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-phone_checkbox']) { ?>
                             <label><?php
-                                if (array_key_exists('is-phone', $enquiry_form_fileds)) {
+                                if (array_key_exists('is-phone', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-phone'])) {
                                     echo $enquiry_form_fileds['is-phone'];
                                 } else {
                                     echo __('Enter your phone no : ', 'woocommerce-catalog-enquiry');
@@ -761,9 +760,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('is-address_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-address_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-address_checkbox']) { ?>
                         <label><?php
-                            if (array_key_exists('is-address', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-address', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-address'])) {
                                 echo $enquiry_form_fileds['is-address'];
                             } else {
                                 echo __('Enter your address : ', 'woocommerce-catalog-enquiry');
@@ -774,9 +773,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                     </div>
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('is-comment_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-comment_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-comment_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-comment', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-comment', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-comment'])) {
                                 echo $enquiry_form_fileds['is-comment'];
                             } else {
                                 echo __('Enter your Message : ', 'woocommerce-catalog-enquiry');
@@ -788,9 +787,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
 
                     <div class="cat-form-row">  
-                        <?php if (array_key_exists('is-fileupload_checkbox', $enquiry_form_fileds)) { ?>
+                        <?php if (array_key_exists('is-fileupload_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-fileupload_checkbox']) { ?>
                             <label><?php
-                            if (array_key_exists('is-fileupload', $enquiry_form_fileds)) {
+                            if (array_key_exists('is-fileupload', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-fileupload'])) {
                                 echo $enquiry_form_fileds['is-fileupload'];
                             } else {
                                 echo __('Upload your File : ', 'woocommerce-catalog-enquiry');
@@ -802,9 +801,9 @@ class Woocommerce_Catalog_Enquiry_Frontend {
 
                     <div class="cat-form-row">                          
                     <?php do_action('woocommerce_catalog_enquiry_form_extra_fileds'); ?> 
-                    <?php if (array_key_exists('is-captcha_checkbox', $enquiry_form_fileds)) { ?>
+                    <?php if (array_key_exists('is-captcha_checkbox', $enquiry_form_fileds) && $enquiry_form_fileds['is-captcha_checkbox']) { ?>
                         <label><?php
-                        if (array_key_exists('is-captcha', $enquiry_form_fileds)) {
+                        if (array_key_exists('is-captcha', $enquiry_form_fileds) && !empty($enquiry_form_fileds['is-captcha'])) {
                             echo $enquiry_form_fileds['is-captcha'];
                         } else {
                             echo __('Security Code', 'woocommerce-catalog-enquiry');

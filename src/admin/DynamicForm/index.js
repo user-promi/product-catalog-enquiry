@@ -354,18 +354,20 @@ export default class DynamicForm extends React.Component {
 		}, 10 );
 	}
 
-	ontableChange( e, target, status ) {
-		const tables_value = this.state.complete_option_value
-			? this.state.complete_option_value
+	ontableChange( e, table_content_load, target, status ) {
+		const tables_value = table_content_load
+			? table_content_load
 			: [];
 		tables_value[ status ] = status.includes( '_checkbox' )
 			? e.target.checked
 			: e.target.value;
+		
 		if ( Object.entries( tables_value ) ) {
 			this.setState( {
 				[ target ]: Object.entries( tables_value ),
 			} );
 		}
+		
 		if ( this.props.submitbutton && this.props.submitbutton === 'false' ) {
 			setTimeout( () => {
 				this.onSubmit( '' );
@@ -1260,11 +1262,9 @@ export default class DynamicForm extends React.Component {
 						table_content_load[ o[ 0 ] ] = o[ 1 ];
 					} );
 				}
-
 				const inputlabels = m.label_options.map( ( ol ) => {
 					return <th className="mvx-settings-th-wrap">{ ol }</th>;
 				} );
-
 				input = m.options.map( ( o ) => {
 					return (
 						<tr className="mvx-settings-tr-wrap">
@@ -1295,6 +1295,7 @@ export default class DynamicForm extends React.Component {
 										onChange={ ( e ) => {
 											this.ontableChange(
 												e,
+												table_content_load, 
 												m.key,
 												`${ o.id }_checkbox`
 											);
@@ -1318,7 +1319,7 @@ export default class DynamicForm extends React.Component {
 											: ''
 									}
 									onChange={ ( e ) => {
-										this.ontableChange( e, target, o.id );
+										this.ontableChange( e, table_content_load, target, o.id );
 									} }
 								/>
 							</td>
