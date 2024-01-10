@@ -3,9 +3,9 @@ Contributors: wcmp, rajsekharchatterjee11, abhirup23
 Tags: catalog, enquiry, product inquiry, woocommerce, catalogue, e-commerce, Catalog marketing, Catalog manager, Product catalog template, Product list, eCommerce Product Catalog, Product Catalog Features, Product Catalog plugin, Change category prefix, easily disable price, new catalogue, filter product display, Catalog preview mode, custom product page, product edit screen, product inquiry cart, display product catalog, Apply Catalog Mode, inquiry form, product online, Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
 Donate link: https://multivendorx.com/donate
 Requires at least: 4.4
-Tested up to: 6.3.2
+Tested up to: 6.4.2
 Requires PHP: 5.6
-Stable tag: 5.0.3
+Stable tag: 5.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,13 @@ Answer: Simply enable the 'Product Enquiry Button When Product is Out Of Stock' 
 10. Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
+
+= 5.0.4 - 2024-01-10 =
+* Added: Compatibility of WordPress 6.4.2.
+* Added: Compatibility of WooCommerce 8.4.0.
+* Fixed: Enhanced PHP warning compatibility.
+* Fixed: Improved Enquiry Form security by implementing a key verification mechanism. Now, the form can only be submitted if the correct security key is provided, preventing submission with an incorrect key.
+* Updated: Language file.
 
 = 5.0.3 - 2023-11-03 =
 * Added: Compatibility of WordPress 6.3.2.
