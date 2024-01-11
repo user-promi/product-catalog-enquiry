@@ -183,7 +183,7 @@ jQuery( document ).ready( function ( $ ) {
 		}
 
 		if (catalog_enquiry_front.settings_gen.enquiry_form_fileds.find(([key]) => key === 'is-captcha_checkbox') != 'undefined') {
-			if ( captcha.value == '' || captcha.value == ' ' ) {
+			if ( captcha && (captcha.value == '' || captcha.value == ' ' ) ) {
 				document.getElementById( 'msg-for-enquiry-error' ).innerHTML =
 					catalog_enquiry_front.error_levels.captcha_required;
 				document
@@ -191,7 +191,7 @@ jQuery( document ).ready( function ( $ ) {
 					.focus();
 				return false;
 			}
-			if ( captcha.value != catalog_enquiry_front.captcha ) {
+			if ( captcha && captcha.value != catalog_enquiry_front.captcha ) {
 				document.getElementById( 'msg-for-enquiry-error' ).innerHTML =
 					catalog_enquiry_front.error_levels.captcha_valid;
 				document
