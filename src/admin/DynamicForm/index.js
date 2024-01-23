@@ -737,6 +737,7 @@ export default class DynamicForm extends React.Component {
 		axios( {
 			method: this.props.method,
 			url: catalogappLocalizer.apiUrl + '/' + this.props.url,
+			headers: { 'X-WP-Nonce' : catalogappLocalizer.nonce },
 			data: {
 				model: this.state,
 				modulename: this.props.modulename,
@@ -1060,7 +1061,7 @@ export default class DynamicForm extends React.Component {
 							key={ key }
 							id={ m.id }
 							name={ name }
-							value={ value }
+							value={ value ? value : '#000000' }
 							onChange={ ( e ) => {
 								this.onChange( e, target );
 							} }
@@ -1418,35 +1419,6 @@ export default class DynamicForm extends React.Component {
 											catalogappLocalizer
 												.settings_page_string
 												.registration_form_title_desc
-										}
-									</div>
-								</div>
-								<div className="mvx-registration-from-content-and-description">
-									<input
-										type="text"
-										placeholder={
-											catalogappLocalizer
-												.settings_page_string
-												.registration_form_desc
-										}
-										value={
-											this.state
-												.mvx_registration_fileds_list[ 0 ]
-												.description
-										}
-										onChange={ ( e ) => {
-											this.OnRegistrationSelectChange(
-												e,
-												'',
-												'parent_description'
-											);
-										} }
-									/>
-									<div className="mvx-registration-form-description">
-										{
-											catalogappLocalizer
-												.settings_page_string
-												.registration1
 										}
 									</div>
 								</div>

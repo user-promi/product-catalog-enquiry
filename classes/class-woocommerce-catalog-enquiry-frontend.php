@@ -1047,6 +1047,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
             wp_localize_script(
                     'wce_frontend_js', 'catalog_enquiry_front', apply_filters('woocommerce_catalog_enquiry_localize_script_data', array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
                 'json_arr' => json_encode($arr_field),
                 'settings' => $this->settings,
                 'settings_gen' => $this->settings_form,
