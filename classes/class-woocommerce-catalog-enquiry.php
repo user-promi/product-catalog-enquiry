@@ -121,7 +121,7 @@ class Woocommerce_Catalog_Enquiry {
 	}
 	
 	public function catalog_permission() {
-		return true;
+		return current_user_can('manage_options');
 	}
 
 	/**
