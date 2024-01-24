@@ -151,7 +151,7 @@ Answer: Simply enable the 'Product Enquiry Button When Product is Out Of Stock' 
 == Changelog ==
 
 = 5.0.6 - 2024-01-24 =
-* Fixed: Fixed Rest API related Vulnerability issue.
+* Fixed: Rest API related Vulnerability issue.
 
 = 5.0.5 - 2024-01-11 =
 * Fixed: The enquiry submit button was not working. We have added a fix for that and now the button is working accordingly.
