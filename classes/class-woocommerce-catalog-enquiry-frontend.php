@@ -26,7 +26,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
         if (isset($this->exclusion['woocommerce_userroles_list']) && mvx_catalog_get_settings_value($this->exclusion['woocommerce_userroles_list'], 'multiselect')) {
             if (is_array(mvx_catalog_get_settings_value($this->exclusion['woocommerce_userroles_list'], 'multiselect'))) {
                 foreach (mvx_catalog_get_settings_value($this->exclusion['woocommerce_userroles_list'], 'multiselect') as $user_list_key) {
-                    $user_role_list[] = array_key_exists( $user_list_key, array_keys( wp_roles()->roles ) ) ? array_keys( wp_roles()->roles )[$user_list_key] : '';
+                    $user_role_list[] = array_key_exists( $user_list_key, ( wp_roles()->roles ) ) ? $user_list_key : '';
                 }
                 if ( !empty( $current_user->roles ) && in_array($current_user->roles[0], $user_role_list ) ) {
                     $this->available_for = $current_user->ID;
