@@ -2,9 +2,9 @@
 Contributors: wcmp
 Tags: catalog, enquiry, product inquiry, woocommerce, catalogue, e-commerce, Catalog marketing, Catalog manager, Product catalog template, Product list, eCommerce Product Catalog, Product Catalog Features, Product Catalog plugin, Change category prefix, easily disable price, new catalogue, filter product display, Catalog preview mode, custom product page, product edit screen, product inquiry cart, display product catalog, Apply Catalog Mode, inquiry form, product online, Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
 Donate link: https://multivendorx.com/donate
-Requires at least: 4.4
+Requires at least: 5.0
 Tested up to: 6.4.3
-Requires PHP: 5.6
+Requires PHP: 7.4
 Stable tag: 5.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
