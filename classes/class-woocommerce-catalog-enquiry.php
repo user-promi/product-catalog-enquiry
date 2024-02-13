@@ -32,6 +32,8 @@ class Woocommerce_Catalog_Enquiry {
 	public $options_exclusion_settings ;
 	
 	public $options_button_appearence_settings;
+	public $options_general_settings ;
+	public $options_form_settings ;
 
 	public function __construct($file) {
 
