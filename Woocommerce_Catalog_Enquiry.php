@@ -4,10 +4,10 @@
  * Plugin URI: https://multivendorx.com/
  * Description: Convert your WooCommerce store into a catalog website in a click
  * Author: MultiVendorX
- * Version: 5.0.6
+ * Version: 5.0.7
  * Author URI: https://multivendorx.com/
  * WC requires at least: 4.2
- * WC tested up to: 8.5.1
+ * WC tested up to: 8.5.3
  * Text Domain: woocommerce-catalog-enquiry
  * Domain Path: /languages/
 */
