@@ -86,7 +86,7 @@ Unlock even more possibilities with WooCommerce Product Catalog Mode Pro - Quote
 
 **🚀Manage and Customise Query Mails [PRO]:** Customize Inquiry Emails with Templates and Send Queries to Customers and Vendors Automatically.
 
-**🚀Make it Marketplace Ready:** Our Multivendor plugin, [MultiVendorX](http://multivendorx.com/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry), integrates with Product Catalog Mode for WooCommerce. Vendors can view and respond to inquiries about their products from their dashboard.
+**🚀Make it Marketplace Ready:** Our Multivendor plugin, [MultiVendorX](https://multivendorx.com/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry), integrates with Product Catalog Mode for WooCommerce. Vendors can view and respond to inquiries about their products from their dashboard.
 
 👉 Learn More About Pro: [WooCommerce Product Catalog Mode Pro - Quote Request](https://multivendorx.com/woocommerce-product-catalog-mode-pro-quote-request/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry)
 
