@@ -17,6 +17,16 @@ Elevate your WooCommerce Shop with Product Catalog Mode For WooCommerce and Inte
 
 Transform your WooCommerce-powered online store into an interactive catalog with the Product Catalog Mode for WooCommerce plugin. Collect customer inquiries for each product effortlessly via email using dedicated custom inquiry forms. Tailor the form fields to your needs, and choose between a sleek inline or attention-grabbing pop-up display. With custom CSS options, you can seamlessly integrate the inquiry button into your website's theme. Elevate your online presence, drive conversions, and enhance visibility for unparalleled success.
 
+= Features =
+📔 WooCommerce Catalog Mode
+💬 Product Inquiry
+📔 Hide Add to Cart
+💰Price Visibility Management
+📝Enquiry Form Customization
+⚙️Variable Product Support
+👤Role-Based Management
+🤝[MultiVendorX](https://wordpress.org/plugin/dc-woocommerce-multi-vendor/) Compatibility
+
 [youtube https://www.youtube.com/watch?v=wuC8RhlDNKk]
 
 🌐Explore our [Documentation](https://multivendorx.com/docs/knowledgebase/product-catalog-mode-for-woocommerce/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry)
