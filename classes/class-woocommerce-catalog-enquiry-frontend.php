@@ -1053,7 +1053,7 @@ class Woocommerce_Catalog_Enquiry_Frontend {
                 'settings_gen' => $this->settings_form,
                 'error_levels' => $error_levels,
                 'ajax_success_msg' => __('Enquiry sent successfully', 'woocommerce-catalog-enquiry'),
-                'redirect_link' => isset($this->settings['redirect_page_id']) ? get_permalink(mvx_catalog_get_settings_value($this->settings['redirect_page_id'], 'select')) : '',
+                'redirect_link' => isset($this->settings['redirect_page_id']) && mvx_catalog_get_settings_value($this->settings['is_page_redirect'], 'checkbox') == 'Enable'? get_permalink(mvx_catalog_get_settings_value($this->settings['redirect_page_id'], 'select')) : '',
                 'captcha' => $captcha,
             )));
         }
