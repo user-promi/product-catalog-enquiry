@@ -702,7 +702,19 @@ const DynamicForm = (props) => {
 
         case "catalog_customizer":
           input = (
+<<<<<<< Updated upstream
             <CatalogCustomizer />
+=======
+            <CatalogCustomizer
+              setting={setting}
+              onChange={(key, value) => {
+                if (!proSettingChanged(inputField.proSetting)) {
+                  settingChanged.current = true;
+                  updateSetting(key, value);
+                }
+              }}
+            />
+>>>>>>> Stashed changes
           );
           break;
 

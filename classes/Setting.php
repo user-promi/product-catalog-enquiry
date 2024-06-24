@@ -70,7 +70,12 @@ class Setting {
             'catalog_all_settings_settings',
             'catalog_tools_settings',
             'catalog_enquiry_quote_exclusion_settings',
+<<<<<<< Updated upstream
             'catalog_enquiry_form_customization_settings'
+=======
+            'catalog_enquiry_form_customization_settings',
+            'catalog_enquiry_email_temp_settings'
+>>>>>>> Stashed changes
         ]);
 
         return $this->settings_keys;
