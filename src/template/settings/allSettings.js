@@ -59,8 +59,8 @@ export default {
         {
             key: 'display_enquiry_button_user_type',
             type: 'select',
-            label: __("Display enquiry button for", "woocommerce-catalog-enquiry"),
-            desc: __("Select the type users where this enquiry button is applicable", "woocommerce-catalog-enquiry"),
+            label: __("Enquiry viewing preferences", "woocommerce-catalog-enquiry"),
+            desc: __("Set visibility options for the inquiry button: all users, logged-in users, or logged-out users. Default setting allows all users to see the button.", "woocommerce-catalog-enquiry"),
             options: [
                 {
                     key: "logged_out",
@@ -82,11 +82,11 @@ export default {
         {
             key: 'is_enable_add_to_cart',
             type: 'checkbox',
-            label:  __( 'Enable Add-to-Cart', 'woocommerce-catalog-enquiry' ),
+            label:  __( 'Display Add-to-Cart button along with', 'woocommerce-catalog-enquiry' ),
             options: [
                 {
                     key: "is_enable_add_to_cart",
-                    label: __('Enable this if you want add to cart button along with enquiry button throughout the shop.', 'woocommerce-catalog-enquiry'),
+                    label: __('Activate to display both the "Add to Cart" and "Enquiry" buttons across the entire shop.', 'woocommerce-catalog-enquiry'),
                     value: "is_enable_add_to_cart"
                 }
             ],
@@ -95,11 +95,11 @@ export default {
         {
             key: 'is_enable_out_of_stock',
             type: 'checkbox',
-            label: __( "Enquiry Button for Out-of-Stock Products", 'woocommerce-catalog-enquiry' ),
+            label: __( "Enquiry for Out-of-Stock products only", 'woocommerce-catalog-enquiry' ),
             options: [
                 {
                     key: "is_enable_out_of_stock",
-                    label: __("Enable this to add the Enquiry button for the products which is out of stock. Use Exclusion settings to exclude specific product or category from enquiry.", 'woocommerce-catalog-enquiry'),
+                    label: __("Display Enquiry Button for Out-of-Stock Products Only. For in-stock items, Add-to-Cart button will be displayed.", 'woocommerce-catalog-enquiry'),
                     value: "is_enable_out_of_stock"
                 }
             ]
@@ -111,8 +111,8 @@ export default {
                 key: "is_enable_out_of_stock",
                 set: true
             },
-            label: __("Notify Me Button", "woocommerce-catalog-enquiry"),
-            desc: __("", "woocommerce-catalog-enquiry"),
+            label: __("In-Stock Notify Me button ", "woocommerce-catalog-enquiry"),
+            desc: __("This option allows customers to subscribe for automatic stock notifications.", "woocommerce-catalog-enquiry"),
             options: [
                 {
                     key: "notify_me_button",
@@ -130,7 +130,7 @@ export default {
         {
             key: 'display_quote_button_user_type',
             type: 'select',
-            label: __("Display quote button for", "woocommerce-catalog-enquiry"),
+            label: __("Quotation button accessibility", "woocommerce-catalog-enquiry"),
             desc: __("Select the type users where this enquiry button is applicable", "woocommerce-catalog-enquiry"),
             options: [
                 {
@@ -166,8 +166,8 @@ export default {
         {
             key: 'set_expiry_time',
             type: 'number',
-            label:  __( 'Set Expiry Time', 'woocommerce-catalog-enquiry' ),
-            desc: __( '', 'woocommerce-catalog-enquiry' ),
+            label:  __( 'Quote Validity Timer', 'woocommerce-catalog-enquiry' ),
+            desc: __( 'Enable to set an expiration time for all quotes sent. Select the number of days after which quotes will expire.', 'woocommerce-catalog-enquiry' ),
             dependent: {
                 key: "is_expiry_time_for_quote",
                 set: true
@@ -178,10 +178,11 @@ export default {
             key: 'allow_download_pdf',
             type: 'checkbox',
             label: __( "Allow quotes to be downloaded as PDF", 'woocommerce-catalog-enquiry' ),
+            desc: __( "If enabled, users can download their quote as a PDF from 'My Account'", 'woocommerce-catalog-enquiry' ),
             options: [
                 {
                     key: "allow_download_pdf",
-                    label: __('', 'woocommerce-catalog-enquiry'),
+                    label: __("", 'woocommerce-catalog-enquiry'),
                     value: "allow_download_pdf"
                 }
             ],
@@ -191,7 +192,7 @@ export default {
             key: 'attach_pdf_to_email',
             type: 'checkbox',
             label:  __( 'Attach a PDF version to the quote email', 'woocommerce-catalog-enquiry' ),
-            desc: __( '', 'woocommerce-catalog-enquiry' ),
+            desc: __( 'If enabled, users can download a PDF version of the quotes.', 'woocommerce-catalog-enquiry' ),
             options: [
                 {
                     key: "attach_pdf_to_email",
