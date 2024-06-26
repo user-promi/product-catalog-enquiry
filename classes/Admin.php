@@ -155,11 +155,7 @@ class Admin
         // Get all tab setting's database value
         $settings_databases_value = $active_modules = [];
         $active_modules = Catalog()->modules->get_active_modules();
-<<<<<<< Updated upstream
-        $tabs_names = ['enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools'];
-=======
         $tabs_names = ['enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools', 'enquiry_email_temp'];
->>>>>>> Stashed changes
         foreach ($tabs_names as $tab_name) {
             $settings_databases_value[$tab_name] = Catalog()->setting->get_option('catalog_' . $tab_name . '_settings');
         }
@@ -179,8 +175,6 @@ class Admin
                 'active_modules' => $active_modules,
                 'nonce' => wp_create_nonce('wp_rest'),
                 'banner_img'  => Catalog()->plugin_url . 'assets/images/catalog-pro-add-admin-banner.jpg',
-<<<<<<< Updated upstream
-=======
                 'template1' => Catalog()->plugin_url . 'assets/images/email/templates/default_wc_tpl.png',
                 'template2' => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_1.png',
                 'template3' => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_2.png',
@@ -188,7 +182,6 @@ class Admin
                 'template5' => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_4.png',
                 'template6' => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_5.png',
                 'template7' => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_6.png',
->>>>>>> Stashed changes
                 'pro_active'    =>  apply_filters('mvx_catalog_free_only_active', true)
             ]));
         }
