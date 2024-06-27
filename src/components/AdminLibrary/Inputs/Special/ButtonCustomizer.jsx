@@ -395,7 +395,7 @@ const ButtonCustomizer = (props) => {
   const buttonRef = useRef();
   useEffect(() => {
     document.body.addEventListener("click", (event) => {
-      if (!buttonRef?.current.contains(event.target)) {
+      if (!buttonRef?.current?.contains?.(event.target)) {
         setHoverOn(false);
       }
     })
