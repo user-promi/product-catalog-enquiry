@@ -85,6 +85,7 @@ class Admin
     public function catalog_admin_enqueue_scripts()
     {
         // global $Woocommerce_Catalog_Enquiry;
+	    
         $pages_array = $role_array = $all_users = $all_products = $all_product_cat = $all_product_tag = [];
         $pages = get_pages();
         if ($pages) {
