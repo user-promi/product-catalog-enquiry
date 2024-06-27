@@ -7,7 +7,7 @@ import { useSetting } from '../../contexts/SettingContext';
 
 const ButtonDND = (props) => {
   // Readable settings
-  const { setting } = useSetting();
+  const { setting, updateSetting } = useSetting();
   
   const possitionSetting = setting['shop_page_button_position_setting'] || [];
 
@@ -61,7 +61,12 @@ const ButtonDND = (props) => {
   }
 
   return (
-    <DragDropContext onDragEnd={onButtonDragEnd}>
+    <div
+      style={{
+        'padding': '20px',
+        'border': '1px solid black'
+    }}>
+      <DragDropContext onDragEnd={onButtonDragEnd}>
       <Droppable droppableId='buttonDroppable'>
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -87,11 +92,14 @@ const ButtonDND = (props) => {
         )}
       </Droppable>
     </DragDropContext>
+    </div>
   );
 }
 
 
 const CatalogCustomizer = (props) => {
+  const { setting, updateSetting } = useSetting();
+
   const [currentTab, setCurrentTab] = useState('');
 
   const [menu, setMenu] = useState([
@@ -102,13 +110,11 @@ const CatalogCustomizer = (props) => {
           name: 'Display Enquiry form via popup',
           id: 'is_disable_popup',
           type: 'checkbox',
-          value: 'is_disable_popup',
           description: "By default the form will be displayed via popup. Enable this, if you want to display the form below the product description."
         },
         {
           name: 'Redirect after Enquiry form Submission',
           id: 'is_page_redirect',
-          value: 'is_page_redirect',
           type: 'checkbox',
           description: "Enable this to redirect user to another page after successful enquiry submission."
         },
@@ -120,7 +126,6 @@ const CatalogCustomizer = (props) => {
         {
           name: 'Enable Multiple Enquiry Cart',
           id: 'is_enable_multiple_product_enquiry',
-          value: 'is_enable_multiple_product_enquiry',
           type: 'checkbox',
           description: "Enable this checkbox to allow multiple product enquiry via enquiry cart. Also multiple enquiry product displays on the cart"
         },
@@ -128,9 +133,9 @@ const CatalogCustomizer = (props) => {
     },
     {
       name: "Quote", link: "hi", id: 'quote', icon: 'font-payment',
-      setting: [
-        { name: 'name1', id: 2, value: 3, description: "Allow backorder subscription" },
-      ]
+      // setting: [
+      //   { name: 'name1', id: 2, value: 3, description: "Allow backorder subscription" },
+      // ]
     },
   ]);
 
@@ -290,7 +295,14 @@ const CatalogCustomizer = (props) => {
 
   return (
     <>
-      <SubTabSection menuitem={menu} currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      <SubTabSection
+        menuitem={menu}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+        setting={setting}
+        updateSetting={updateSetting}
+        onChange={props.onChange}
+      />
       <section className='catelog-customizer'>
         <div className='product-img'>
           <img src="https://rb.gy/owvfpe" alt="" />
