@@ -3,9 +3,9 @@ import './SubTabSection.scss';
 import { Link } from 'react-router-dom';
 
 const SubTabSection = (props) => {
-    const { menuitem, currentTab, SetCurrentTab } = props;
+    const { menuitem, currentTab, setCurrentTab } = props;
 
-    const [selectedMenu, setSelectedMenu] = useState(menuitem[0]);
+    const [selectedMenu, setSelectedMenu] = useState( currentTab || menuitem[0] );
     const [menuOpen, setMenuOpen] = useState(false);
 
     const [settings, setSettings] = useState(props.setting);
@@ -35,6 +35,7 @@ const SubTabSection = (props) => {
                         className={`tab-section-menu ${ menu.id === selectedMenu.id ? 'active' : '' }`}
                         onClick={(e) => {
                             setSelectedMenu(menu);
+                            setCurrentTab(menu)
                         }}
                     >
                         <span><i className={`admin-font ${menu.icon}`}></i></span>
@@ -60,7 +61,7 @@ const SubTabSection = (props) => {
                                     return (
                                         <div className='tab-menu-setting-item' key={index}>
                                             <p className='setting-title'>{setting.name} <i title={setting.description} className='admin-font font-info'></i></p>
-                                            <div className='toggle-checkbox-content-'>
+                                            <div className='toggle-checkbox-content'>
                                                 <input
                                                     type='checkbox'
                                                     checked={settings[setting.id]}
@@ -72,7 +73,7 @@ const SubTabSection = (props) => {
                                                         props.onChange(setting.id, e.target.checked);
                                                     }}
                                                 />
-                                                <label>Hellooo</label>
+                                                <label htmlFor={setting.id}></label>
                                                 {/* <input
                                                     type="checkbox"
                                                     name={setting.id}
