@@ -16571,11 +16571,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Inputs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Inputs */ "./src/components/AdminLibrary/Inputs/index.js");
 /* harmony import */ var _contexts_SettingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../contexts/SettingContext */ "./src/contexts/SettingContext.jsx");
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var _mui_material_Dialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/Dialog */ "./node_modules/@mui/material/Dialog/Dialog.js");
+/* harmony import */ var _mui_material_Dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/Dialog */ "./node_modules/@mui/material/Dialog/Dialog.js");
 /* harmony import */ var _PopupContent_PopupContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../PopupContent/PopupContent */ "./src/components/PopupContent/PopupContent.jsx");
 /* harmony import */ var _formCustomizer_formCustomizer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../formCustomizer/formCustomizer */ "./src/components/formCustomizer/formCustomizer.jsx");
 /* harmony import */ var _CatalogCustomizer_CatalogCustomizer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../CatalogCustomizer/CatalogCustomizer */ "./src/components/CatalogCustomizer/CatalogCustomizer.jsx");
 /* harmony import */ var _GridTable_GridTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GridTable/GridTable */ "./src/components/GridTable/GridTable.jsx");
+/* harmony import */ var _PopupContent_PopupPluginDependency__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../PopupContent/PopupPluginDependency */ "./src/components/PopupContent/PopupPluginDependency.jsx");
 
 
 
@@ -16585,6 +16586,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // import services function
+
 
 
 
@@ -16609,6 +16611,7 @@ const DynamicForm = props => {
   const [countryState, setCountryState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const settingChanged = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
   const [modelOpen, setModelOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [modelPluginOpen, setModelPluginOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const counter = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
   const counterId = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
 
@@ -17123,6 +17126,9 @@ const DynamicForm = props => {
             value: value,
             proSetting: isProSetting(inputField.proSetting),
             onChange: e => {
+              if (inputField.dependent) {
+                setModelPluginOpen(true);
+              }
               if (!proSettingChanged(inputField.proSetting)) {
                 handleChange(e, inputField.key, "multiple");
               }
@@ -17194,7 +17200,15 @@ const DynamicForm = props => {
           });
           break;
         case "catalog_customizer":
-          input = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CatalogCustomizer_CatalogCustomizer__WEBPACK_IMPORTED_MODULE_7__["default"], null);
+          input = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CatalogCustomizer_CatalogCustomizer__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            setting: setting,
+            onChange: (key, value) => {
+              if (!proSettingChanged(inputField.proSetting)) {
+                settingChanged.current = true;
+                updateSetting(key, value);
+              }
+            }
+          });
           break;
         case "grid_table":
           input = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_GridTable_GridTable__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -17240,9 +17254,12 @@ const DynamicForm = props => {
   const handleModelClose = () => {
     setModelOpen(false);
   };
+  const handleModelPopupClose = () => {
+    setModelPluginOpen(false);
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "dynamic-fields-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_Dialog__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_Dialog__WEBPACK_IMPORTED_MODULE_10__["default"], {
     className: "admin-module-popup",
     open: modelOpen,
     onClose: handleModelClose,
@@ -17250,7 +17267,15 @@ const DynamicForm = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "admin-font font-cross",
     onClick: handleModelClose
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PopupContent_PopupContent__WEBPACK_IMPORTED_MODULE_5__["default"], null)), successMsg && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PopupContent_PopupContent__WEBPACK_IMPORTED_MODULE_5__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_Dialog__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "admin-module-popup",
+    open: modelPluginOpen,
+    onClose: handleModelPopupClose,
+    "aria-labelledby": "form-dialog-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "admin-font font-cross",
+    onClick: handleModelPopupClose
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PopupContent_PopupPluginDependency__WEBPACK_IMPORTED_MODULE_9__["default"], null)), successMsg && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "admin-notice-display-title"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "admin-font font-icon-yes"
@@ -19319,14 +19344,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CatalogCustomizer_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CatalogCustomizer.scss */ "./src/components/CatalogCustomizer/CatalogCustomizer.scss");
 /* harmony import */ var _AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AdminLibrary/Inputs/Special/ButtonCustomizer */ "./src/components/AdminLibrary/Inputs/Special/ButtonCustomizer.jsx");
 /* harmony import */ var _SubTabSection_SubTabSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SubTabSection/SubTabSection */ "./src/components/SubTabSection/SubTabSection.jsx");
-/* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
+/* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
+/* harmony import */ var _contexts_SettingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../contexts/SettingContext */ "./src/contexts/SettingContext.jsx");
 
 
 
 
 
 
-const CatalogCustomizer = () => {
+
+const ButtonDND = props => {
+  // Readable settings
+  const {
+    setting
+  } = (0,_contexts_SettingContext__WEBPACK_IMPORTED_MODULE_4__.useSetting)();
+  const possitionSetting = setting['shop_page_button_position_setting'] || [];
+  const [buttonItems, setButtonItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    id: 'enquery_button',
+    content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      text: "enquiry"
+    })
+  }, {
+    id: 'cart_button',
+    content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      text: "Add to cart"
+    })
+  }, {
+    id: 'quote_button',
+    content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      text: "Add to quote"
+    })
+  }]);
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setButtonItems(buttonItems => {
+      buttonItems.sort((a, b) => possitionSetting.indexOf(a.id) - possitionSetting.indexOf(b.id));
+      return buttonItems;
+    });
+  }, []);
+  const onButtonDragEnd = result => {
+    if (!result.destination) {
+      return;
+    }
+    const newItems = reorder(buttonItems, result.source.index, result.destination.index);
+
+    // Calculate position for dragable items.
+    const position = newItems.map(item => item.id);
+    props.onChange('shop_page_button_position_setting', position);
+    setButtonItems(newItems);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.DragDropContext, {
+    onDragEnd: onButtonDragEnd
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Droppable, {
+    droppableId: "buttonDroppable"
+  }, provided => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...provided.droppableProps,
+    ref: provided.innerRef
+  }, buttonItems.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Draggable, {
+    key: item.id,
+    draggableId: item.id,
+    index: index
+  }, provided => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: provided.innerRef,
+    ...provided.draggableProps,
+    ...provided.dragHandleProps
+  }, item.content)))), provided.placeholder)));
+};
+const CatalogCustomizer = props => {
   const [currentTab, setCurrentTab] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [menu, setMenu] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
     name: "Enquiry",
@@ -19370,45 +19459,134 @@ const CatalogCustomizer = () => {
       description: "Allow backorder subscription"
     }]
   }]);
+
+  /**
+   * Get the index of list item by id.
+   * @param {*} list 
+   * @param {*} id 
+   * @returns 
+   */
+  const getIndex = (list, id) => {
+    let foundItemIndex = -1;
+    list.forEach((item, index) => {
+      if (item.id === id) {
+        foundItemIndex = index;
+      }
+    });
+    return foundItemIndex;
+  };
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     return result;
   };
-  const initialItems = [{
-    id: 'additional-input',
-    content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "additional-input"
+
+  // Create default dragand drop items.
+  const [dragableItems, setDragableItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    id: 'price_section',
+    content: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "price-section"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "product-price"
+    }, "\u20B915.00 \u2013 \u20B920.00")),
+    defaultPosition: 0,
+    dragable: false
+  }, {
+    id: 'product_description',
+    content: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "description-section"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "product-description"
+    }, "This is a variable product.")),
+    defaultPosition: 1,
+    dragable: false
+  }, {
+    id: 'additional_input',
+    content: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "additional-input",
+      style: {
+        padding: "10px"
+      }
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       placeholder: "Additional input(optional)",
       type: "text"
-    }))
+    })),
+    defaultPosition: 2,
+    dragable: true
   }, {
-    id: 'custom-button',
-    content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "custom-button"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: currentTab === 'enquiry' ? 'enquiry' : ''
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      text: "enquiry"
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: currentTab === 'enquiry_cart' ? 'enquiry_cart' : ''
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      text: "Add to enquiry cart"
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: currentTab === 'quote' ? 'quote' : ''
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      text: "Add to quote"
-    })))
-  }];
-  const [items, setItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialItems);
+    id: 'custom_button',
+    content: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ButtonDND, {
+      setting: props.setting,
+      onChange: props.onChange
+    }),
+    defaultPosition: 3,
+    dragable: true
+  }, {
+    id: 'sku_category',
+    content: () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "product-sku-category"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "SKU: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "WOO-ALBUM")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Category: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Music"))),
+    defaultPosition: 4,
+    dragable: false
+  }]);
+  const shopPagePossitionSetting = props.setting['shop_page_possition_setting'];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    let possitionSetting = shopPagePossitionSetting || {};
+    let items = [...dragableItems];
+    possitionSetting = Object.entries(possitionSetting);
+
+    // Check they are going in same position
+    let samePosition = true;
+    let possitionToMove = null;
+    possitionSetting.forEach(([willMove, moveAfter]) => {
+      moveAfter;
+      if (possitionToMove !== null && possitionToMove != moveAfter) {
+        samePosition = false;
+      }
+      possitionToMove = moveAfter;
+    });
+    possitionSetting.forEach(([willMove, moveAfter]) => {
+      let startIndex = getIndex(items, willMove);
+      let endIndex = getIndex(items, moveAfter) + 1;
+
+      // If they are in same position insert it to the last this maintain the sequence properly
+      if (samePosition && possitionToMove !== null) {
+        endIndex = items.length;
+      }
+      items = reorder(items, startIndex, endIndex);
+    });
+
+    // Take action when movable elements are in same position
+    if (samePosition && possitionToMove !== null) {
+      const movedElements = items.splice(items.length - 2, 2);
+
+      // Find index where the moved element get position
+      const movedIndex = getIndex(items, possitionSetting[0][1]) + 1;
+
+      // Create new sequence of items
+      items = [...items.slice(0, movedIndex), ...movedElements, ...items.slice(movedIndex)];
+    }
+    setDragableItems(items);
+  }, []);
   const onDragEnd = result => {
     if (!result.destination) {
       return;
     }
-    const newItems = reorder(items, result.source.index, result.destination.index);
-    setItems(newItems);
+    const newItems = reorder(dragableItems, result.source.index, result.destination.index);
+
+    // Calculate position for dragable items.
+    const shopPageBildersPosition = {};
+    let positionAfter = '';
+    newItems.forEach((item, index) => {
+      if (item.dragable) {
+        shopPageBildersPosition[item.id] = positionAfter;
+      } else {
+        positionAfter = item.id;
+      }
+    });
+    props.onChange('shop_page_possition_setting', shopPageBildersPosition);
+    setDragableItems(newItems);
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SubTabSection_SubTabSection__WEBPACK_IMPORTED_MODULE_3__["default"], {
     menuitem: menu,
@@ -19427,28 +19605,24 @@ const CatalogCustomizer = () => {
     className: "product-name"
   }, "V-Neck T-Shirt"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "drag-drop-component"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "product-price"
-  }, "\u20B915.00 \u2013 \u20B920.00"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "product-description"
-  }, "This is a variable product."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__.DragDropContext, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.DragDropContext, {
     onDragEnd: onDragEnd
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__.Droppable, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Droppable, {
     droppableId: "droppable"
   }, provided => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "new",
     ...provided.droppableProps,
     ref: provided.innerRef
-  }, items.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__.Draggable, {
+  }, dragableItems.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Draggable, {
     key: item.id,
     draggableId: item.id,
-    index: index
+    index: index,
+    isDragDisabled: !item.dragable
   }, provided => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: provided.innerRef,
     ...provided.draggableProps,
     ...provided.dragHandleProps
-  }, item.content))), provided.placeholder)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "product-sku-category"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "SKU: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "WOO-ALBUM")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Category: ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Music"))))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(item.content, null))))), provided.placeholder)))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CatalogCustomizer);
 
@@ -20148,8 +20322,6 @@ const EnquiryMessages = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: "https://shorturl.at/gGILQ",
     alt: ""
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "user-status online"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "chat-meta"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
@@ -20225,8 +20397,6 @@ const EnquiryNavbar = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: "https://shorturl.at/gGILQ",
     alt: ""
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "user-status online"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "chat-meta"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
@@ -20692,6 +20862,53 @@ const Propopup = () => {
 
 /***/ }),
 
+/***/ "./src/components/PopupContent/PopupPluginDependency.jsx":
+/*!***************************************************************!*\
+  !*** ./src/components/PopupContent/PopupPluginDependency.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_material_DialogContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/DialogContent */ "./node_modules/@mui/material/DialogContent/DialogContent.js");
+/* harmony import */ var _mui_material_DialogContentText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/DialogContentText */ "./node_modules/@mui/material/DialogContentText/DialogContentText.js");
+/* harmony import */ var _popupContent_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./popupContent.scss */ "./src/components/PopupContent/popupContent.scss");
+
+/* global appLocalizer */
+
+
+
+
+const PopupPluginDependency = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_DialogContent__WEBPACK_IMPORTED_MODULE_2__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_DialogContentText__WEBPACK_IMPORTED_MODULE_3__["default"], null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woo-module-dialog-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woo-image-overlay"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woo-overlay-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "banner-header"
+  }, "Stock ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "banner-pro-tag"
+  }, "Pro"), " "), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woo-banner-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Activate 30+ Pro Modules"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    id: "description"
+  }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi fugit quibusdam adipisci accusantium at aperiam minus eum laudantium tempora consequuntur.")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "woo-go-pro-btn",
+    target: "_blank",
+    href: appLocalizer.pro_url
+  }, "Upgrade to Pro")))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopupPluginDependency);
+
+/***/ }),
+
 /***/ "./src/components/QuoteRequests/quoteRequests.jsx":
 /*!********************************************************!*\
   !*** ./src/components/QuoteRequests/quoteRequests.jsx ***!
@@ -21028,8 +21245,14 @@ const Settings = () => {
       setSetting
     } = (0,_contexts_SettingContext__WEBPACK_IMPORTED_MODULE_5__.useSetting)();
     const settingModal = (0,_utiles_settingUtil__WEBPACK_IMPORTED_MODULE_8__.getSettingById)(settingsArray, currentTab);
+
+    // This will removed. 
+    let currentSetting = appLocalizer.settings_databases_value[currentTab];
+    if (!currentSetting || Array.isArray(currentSetting)) {
+      currentSetting = {};
+    }
     if (settingName != currentTab) {
-      setSetting(currentTab, appLocalizer.settings_databases_value[currentTab] || {});
+      setSetting(currentTab, currentSetting);
     }
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
       appLocalizer.settings_databases_value[settingName] = setting;
@@ -21711,7 +21934,23 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   id: 'quote',
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quote", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable quote module", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Allows customers to request an estimate for a list of desired products by adding items to a quote list, and requesting a custom price.", "woocommerce-catalog-enquiry"),
+  icon: 'font-mail',
+  doc_link: '',
+  settings_link: '',
+  pro_module: true
+}, {
+  id: 'wholesale',
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Wholesale Pricing", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Facilitates the provision of customized wholesale pricing to designated users by allowing the setup of individual wholesale prices for each product."),
+  icon: 'font-mail',
+  doc_link: '',
+  settings_link: '',
+  pro_module: true
+}, {
+  id: 'roleBased',
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Role-based Pricing", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Customize pricing for customers according to their specific role or account type."),
   icon: 'font-mail',
   doc_link: '',
   settings_link: '',
@@ -21720,10 +21959,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/template/settings/catalog.js":
-/*!******************************************!*\
-  !*** ./src/template/settings/catalog.js ***!
-  \******************************************/
+/***/ "./src/template/settings/allSettings.js":
+/*!**********************************************!*\
+  !*** ./src/template/settings/allSettings.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21735,37 +21974,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: 'catalog',
+  id: 'all_settings',
   priority: 20,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Catalog", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Modify settings to control user access, catalog design.", "woocommerce-catalog-enquiry"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quotation & Product Catalog Controller", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Setup Catalog mode with integrated enquiry and quote management.", "woocommerce-catalog-enquiry"),
   icon: 'font-settings',
   submitUrl: 'save_enquiry',
-  modal: [
-  // {
-  //     key: 'for_user_type',
-  //     type: 'radio',
-  //     label: __("Catalog mode user access", "woocommerce-catalog-enquiry"),
-  //     desc: __("Set catalog mode accessibility based on user status.", "woocommerce-catalog-enquiry"),
-  //     options: [
-  //         {
-  //             key: "logged_out",
-  //             label: __('Logged out users', 'woocommerce-catalog-enquiry'),
-  //             value: "logged_out"
-  //         },
-  //         {
-  //             key: "logged_in",
-  //             label: __('Logged in users', 'woocommerce-catalog-enquiry'),
-  //             value: "logged_in"
-  //         },
-  //         {
-  //             key: "all_users",
-  //             label: __('All users', 'woocommerce-catalog-enquiry'),
-  //             value: "all_users"
-  //         }
-  //     ]
-  // },
-  {
+  modal: [{
+    key: 'separator_content',
+    type: 'section',
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Catalog", "woocommerce-catalog-enquiry")
+    //hint: __("Modify settings to control user access, catalog design.", "woocommerce-catalog-enquiry"),
+  }, {
     key: 'is_hide_cart_checkout',
     type: 'checkbox',
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Deactivate cart and checkout page?", 'woocommerce-catalog-enquiry'),
@@ -21794,6 +22014,127 @@ __webpack_require__.r(__webpack_exports__);
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable this option to hide product price', 'woocommerce-catalog-enquiry'),
       value: "is_hide_product_price"
     }]
+  }, {
+    key: 'separator_content',
+    type: 'section',
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry", "woocommerce-catalog-enquiry")
+    //hint: __("Enquiry", "woocommerce-catalog-enquiry"),
+  }, {
+    key: 'display_enquiry_button_user_type',
+    type: 'select',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry viewing preferences", "woocommerce-catalog-enquiry"),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Set visibility options for the inquiry button: all users, logged-in users, or logged-out users. Default setting allows all users to see the button.", "woocommerce-catalog-enquiry"),
+    options: [{
+      key: "logged_out",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Only Logged out Users', 'woocommerce-catalog-enquiry'),
+      value: "logged_out"
+    }, {
+      key: "logged_in",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Only Logged in Users', 'woocommerce-catalog-enquiry'),
+      value: "logged_in"
+    }, {
+      key: "all_users",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All Users', 'woocommerce-catalog-enquiry'),
+      value: "all_users"
+    }]
+  }, {
+    key: 'is_enable_add_to_cart',
+    type: 'checkbox',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Display Add-to-Cart button along with', 'woocommerce-catalog-enquiry'),
+    options: [{
+      key: "is_enable_add_to_cart",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Activate to display both the "Add to Cart" and "Enquiry" buttons across the entire shop.', 'woocommerce-catalog-enquiry'),
+      value: "is_enable_add_to_cart"
+    }],
+    proSetting: true
+  }, {
+    key: 'is_enable_out_of_stock',
+    type: 'checkbox',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry for Out-of-Stock products only", 'woocommerce-catalog-enquiry'),
+    options: [{
+      key: "is_enable_out_of_stock",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Display Enquiry Button for Out-of-Stock Products Only. For in-stock items, Add-to-Cart button will be displayed.", 'woocommerce-catalog-enquiry'),
+      value: "is_enable_out_of_stock"
+    }]
+  }, {
+    key: 'notify_me_button',
+    type: 'checkbox',
+    dependent: {
+      key: "is_enable_out_of_stock",
+      set: true
+    },
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("In-Stock Notify Me button ", "woocommerce-catalog-enquiry"),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("This option allows customers to subscribe for automatic stock notifications.", "woocommerce-catalog-enquiry"),
+    options: [{
+      key: "notify_me_button",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("", 'woocommerce-catalog-enquiry'),
+      value: "notify_me_button"
+    }]
+  }, {
+    key: 'separator_content',
+    type: 'section',
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quote", "woocommerce-catalog-enquiry")
+    //hint: __("Quote", "woocommerce-catalog-enquiry"),
+  }, {
+    key: 'display_quote_button_user_type',
+    type: 'select',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quotation button accessibility", "woocommerce-catalog-enquiry"),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select the type users where this enquiry button is applicable", "woocommerce-catalog-enquiry"),
+    options: [{
+      key: "logged_out",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Only Logged out Users', 'woocommerce-catalog-enquiry'),
+      value: "logged_out"
+    }, {
+      key: "logged_in",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Only Logged in Users', 'woocommerce-catalog-enquiry'),
+      value: "logged_in"
+    }, {
+      key: "all_users",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All Users', 'woocommerce-catalog-enquiry'),
+      value: "all_users"
+    }]
+  }, {
+    key: 'is_expiry_time_for_quote',
+    type: 'checkbox',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Set an expiry time for quotes", 'woocommerce-catalog-enquiry'),
+    options: [{
+      key: "is_expiry_time_for_quote",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
+      value: "is_expiry_time_for_quote"
+    }],
+    proSetting: true
+  }, {
+    key: 'set_expiry_time',
+    type: 'number',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Quote Validity Timer', 'woocommerce-catalog-enquiry'),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable to set an expiration time for all quotes sent. Select the number of days after which quotes will expire.', 'woocommerce-catalog-enquiry'),
+    dependent: {
+      key: "is_expiry_time_for_quote",
+      set: true
+    },
+    proSetting: true
+  }, {
+    key: 'allow_download_pdf',
+    type: 'checkbox',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Allow quotes to be downloaded as PDF", 'woocommerce-catalog-enquiry'),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("If enabled, users can download their quote as a PDF from 'My Account'", 'woocommerce-catalog-enquiry'),
+    options: [{
+      key: "allow_download_pdf",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("", 'woocommerce-catalog-enquiry'),
+      value: "allow_download_pdf"
+    }],
+    proSetting: true
+  }, {
+    key: 'attach_pdf_to_email',
+    type: 'checkbox',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Attach a PDF version to the quote email', 'woocommerce-catalog-enquiry'),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('If enabled, users can download a PDF version of the quotes.', 'woocommerce-catalog-enquiry'),
+    options: [{
+      key: "attach_pdf_to_email",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
+      value: "attach_pdf_to_email"
+    }],
+    proSetting: true
   }]
 });
 
@@ -21831,203 +22172,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/template/settings/enquiry/formCustomization.js":
-/*!************************************************************!*\
-  !*** ./src/template/settings/enquiry/formCustomization.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: 'enquiry_form_customization',
-  priority: 40,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customization", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customization", "woocommerce-catalog-enquiry"),
-  icon: 'font-settings',
-  submitUrl: 'save_enquiry',
-  modal: [
-  // {
-  //     key: 'catalog_customizer',
-  //     type: 'catalog_customizer',
-  //     label: __("Catalog Customizer", "woocommerce-catalog-enquiry"),
-  //     desc: __("Catalog Customizer", "woocommerce-catalog-enquiry"),
-  // },
-  {
-    key: 'form_customizer',
-    type: 'form_customizer',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customizer", "woocommerce-catalog-enquiry"),
-    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customizer", "woocommerce-catalog-enquiry"),
-    classes: 'form_customizer'
-  }]
-});
-
-/***/ }),
-
-/***/ "./src/template/settings/enquiry/general.js":
-/*!**************************************************!*\
-  !*** ./src/template/settings/enquiry/general.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: 'enquiry_general',
-  priority: 35,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "woocommerce-catalog-enquiry"),
-  icon: 'font-settings',
-  submitUrl: 'save_enquiry',
-  modal: [
-  // {
-  //     key: 'display_enquiry_button_user_type',
-  //     type: 'radio',
-  //     label: __("Display enquiry button for", "woocommerce-catalog-enquiry"),
-  //     desc: __("Select the type users where this enquiry button is applicable", "woocommerce-catalog-enquiry"),
-  //     options: [
-  //         {
-  //             key: "logged_out",
-  //             label: __('Only Logged out Users', 'woocommerce-catalog-enquiry'),
-  //             value: "logged_out"
-  //         },
-  //         {
-  //             key: "logged_in",
-  //             label: __('Only Logged in Users', 'woocommerce-catalog-enquiry'),
-  //             value: "logged_in"
-  //         },
-  //         {
-  //             key: "all_users",
-  //             label: __('All Users', 'woocommerce-catalog-enquiry'),
-  //             value: "all_users"
-  //         }
-  //     ]
-  // },
-
-  // {
-  //     key: 'redirect_page_id',
-  //     dependent: {
-  //         key: "is_page_redirect",
-  //         set: true
-  //     },
-  //     type: 'select',
-  //     label:  __( 'Set Redirect Page', 'woocommerce-catalog-enquiry' ),
-  //     desc: __( 'Select page where user will be redirected after successful enquiry.', 'woocommerce-catalog-enquiry' ),
-  //     options: appLocalizer.pages_array,
-  // },
-
-  // {
-  //     key: 'is_disable_popup',
-  //     type: 'checkbox',
-  //     label: __( "Display Enquiry form via popup", 'woocommerce-catalog-enquiry' ),
-  //     options: [
-  //         {
-  //             key: "is_disable_popup",
-  //             label: __('By default the form will be displayed via popup. Enable this, if you want to display the form below the product description.', 'woocommerce-catalog-enquiry'),
-  //             value: "is_disable_popup"
-  //         }
-  //     ]
-  // },
-  {
-    key: 'is_enable_add_to_cart',
-    type: 'checkbox',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Add-to-Cart', 'woocommerce-catalog-enquiry'),
-    options: [{
-      key: "is_enable_add_to_cart",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable this if you want add to cart button along with enquiry button throughout the shop.', 'woocommerce-catalog-enquiry'),
-      value: "is_enable_add_to_cart"
-    }],
-    proSetting: true
-  },
-  // {
-  //     key: 'is_enable_multiple_product_enquiry',
-  //     type: 'checkbox',
-  //     label: __( "Enable Multiple Enquiry Cart", 'woocommerce-catalog-enquiry' ),
-  //     options: [
-  //         {
-  //             key: "is_enable_multiple_product_enquiry",
-  //             label: __(`Enable this checkbox to allow multiple product enquiry via enquiry cart. Also multiple enquiry product displays on the cart ${ appLocalizer.widget_url }`, 'woocommerce-catalog-enquiry'),
-  //             value: "is_enable_multiple_product_enquiry"
-  //         }
-  //     ],
-  //     proSetting: true,
-  // },
-
-  // {
-  //     key: 'redirect_page',
-  //     type: 'select',
-  //     label:  __( 'Set Redirect Page', 'woocommerce-catalog-enquiry' ),
-  //     desc: __( 'Select page where user will be redirected.', 'woocommerce-catalog-enquiry' ),
-  //     options: appLocalizer.pages_array,
-  //     proSetting: true,
-  // },
-  {
-    key: 'is_enable_out_of_stock',
-    type: 'checkbox',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry Button for Out-of-Stock Products", 'woocommerce-catalog-enquiry'),
-    options: [{
-      key: "is_enable_out_of_stock",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enable this to add the Enquiry button for the products which is out of stock. Use Exclusion settings to exclude specific product or category from enquiry.", 'woocommerce-catalog-enquiry'),
-      value: "is_enable_out_of_stock"
-    }]
-  }, {
-    key: 'notify_me_button',
-    type: 'checkbox',
-    dependent: {
-      key: "is_enable_out_of_stock",
-      set: true
-    },
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Notify Me Button", "woocommerce-catalog-enquiry"),
-    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("", "woocommerce-catalog-enquiry"),
-    options: [{
-      key: "notify_me_button",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("", 'woocommerce-catalog-enquiry'),
-      value: "notify_me_button"
-    }]
-  }]
-});
-
-/***/ }),
-
-/***/ "./src/template/settings/enquiry/index.js":
-/*!************************************************!*\
-  !*** ./src/template/settings/enquiry/index.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: "enquiry",
-  priority: 30,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry", 'woocommerce-catalog-enquiry'),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry", 'woocommerce-catalog-enquiry'),
-  icon: "font-settings"
-});
-
-/***/ }),
-
-/***/ "./src/template/settings/permission/allowMode.js":
+/***/ "./src/template/settings/enquiryEmailTemplate.js":
 /*!*******************************************************!*\
-  !*** ./src/template/settings/permission/allowMode.js ***!
+  !*** ./src/template/settings/enquiryEmailTemplate.js ***!
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -22040,47 +22187,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: 'role_based_permission',
+  id: 'enquiry_email_temp',
   priority: 60,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Role-Based Permission", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Role-Based Permission", "woocommerce-catalog-enquiry"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry Email Template", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry Email Template settings", "woocommerce-catalog-enquiry"),
   icon: 'font-settings',
   submitUrl: 'save_enquiry',
   modal: [{
-    key: 'grid_table',
-    type: 'grid_table',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Table", "woocommerce-catalog-enquiry"),
-    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Grid Table", "woocommerce-catalog-enquiry"),
-    classes: 'gridTable',
-    rows: [{
-      key: "logged_out",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Logged out users', 'woocommerce-catalog-enquiry')
+    key: 'separator_content',
+    type: 'section',
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Common Settings", "woocommerce-catalog-enquiry"),
+    hint: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("", "woocommerce-catalog-enquiry")
+  }, {
+    key: "selected_email_tpl",
+    type: "radio_select",
+    label: "Store Header",
+    desc: "Select store banner style",
+    options: [{
+      key: "template1",
+      label: "Outer Space",
+      color: appLocalizer.template1,
+      value: "template1"
     }, {
-      key: "logged_in",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Logged in users', 'woocommerce-catalog-enquiry')
+      key: "template2",
+      label: "Green Lagoon",
+      color: appLocalizer.template2,
+      value: "template2"
     }, {
-      key: "all_users",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All users', 'woocommerce-catalog-enquiry')
-    }],
-    columns: [{
-      key: "catalog",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Catalog", "woocommerce-catalog-enquiry")
+      key: "template3",
+      label: "Old West",
+      color: appLocalizer.template3,
+      value: "template3"
     }, {
-      key: "enquiry",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enquiry", "woocommerce-catalog-enquiry")
+      key: "template4",
+      label: "Old West",
+      color: appLocalizer.template4,
+      value: "template4"
     }, {
-      key: "quote",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quote", "woocommerce-catalog-enquiry")
+      key: "template5",
+      label: "Old West",
+      color: appLocalizer.template5,
+      value: "template5"
+    }, {
+      key: "template6",
+      label: "Old West",
+      color: appLocalizer.template6,
+      value: "template6"
+    }, {
+      key: "template7",
+      label: "Old West",
+      color: appLocalizer.template7,
+      value: "template7"
     }]
+  }, {
+    key: "custom_email_subject",
+    type: "textarea",
+    desc: "Available tags |USER_NAME|,|USER_EMAIL|,|PRODUCT_NAME|,|PRODUCT_URL|,|PRODUCT_SKU|,|PRODUCT_TYPE| ****All the product related tags are not available for multiple enquiry.",
+    label: "Custom Email Subject"
   }]
 });
 
 /***/ }),
 
-/***/ "./src/template/settings/permission/exclusion.js":
-/*!*******************************************************!*\
-  !*** ./src/template/settings/permission/exclusion.js ***!
-  \*******************************************************/
+/***/ "./src/template/settings/exclusion.js":
+/*!********************************************!*\
+  !*** ./src/template/settings/exclusion.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22093,9 +22265,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   id: 'enquiry_quote_exclusion',
-  priority: 55,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Exclusion", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Exclusion Management", "woocommerce-catalog-enquiry"),
+  priority: 40,
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Exclusion Configuration Hub", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Configure exclusions for catalog viewing, inquiry submissions, and quote requests based on user roles and product attributes.", "woocommerce-catalog-enquiry"),
   icon: 'font-settings',
   submitUrl: 'save_enquiry',
   modal: [
@@ -22159,7 +22331,7 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       key: "tag_list",
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tag', 'woocommerce-catalog-enquiry'),
-      options: appLocalizer.all_product_cat
+      options: appLocalizer.all_product_tag
     }],
     columns: [{
       key: "catalog_exclusion",
@@ -22176,10 +22348,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/template/settings/permission/index.js":
-/*!***************************************************!*\
-  !*** ./src/template/settings/permission/index.js ***!
-  \***************************************************/
+/***/ "./src/template/settings/formCustomization.js":
+/*!****************************************************!*\
+  !*** ./src/template/settings/formCustomization.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22191,77 +22363,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: "permission",
-  priority: 50,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Access Privilege", 'woocommerce-catalog-enquiry'),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Access Privilege", 'woocommerce-catalog-enquiry'),
-  icon: "font-settings"
-});
-
-/***/ }),
-
-/***/ "./src/template/settings/quoteSettings.js":
-/*!************************************************!*\
-  !*** ./src/template/settings/quoteSettings.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  id: 'quote_general',
-  priority: 40,
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quote", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Quote", "woocommerce-catalog-enquiry"),
+  id: 'enquiry_form_customization',
+  priority: 30,
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Custom Inquiry Form Builder", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Design a personalized inquiry form with built-in form builder. ", "woocommerce-catalog-enquiry"),
   icon: 'font-settings',
   submitUrl: 'save_enquiry',
-  modal: [{
-    key: 'is_expiry_time_for_quote',
-    type: 'checkbox',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Set an expiry time for quotes", 'woocommerce-catalog-enquiry'),
-    options: [{
-      key: "is_expiry_time_for_quote",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
-      value: "is_expiry_time_for_quote"
-    }],
-    proSetting: true
-  }, {
-    key: 'set_expiry_time',
-    type: 'number',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Set Expiry Time', 'woocommerce-catalog-enquiry'),
-    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
-    dependent: {
-      key: "is_expiry_time_for_quote",
-      set: true
-    },
-    proSetting: true
-  }, {
-    key: 'allow_download_pdf',
-    type: 'checkbox',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Allow quotes to be downloaded as PDF", 'woocommerce-catalog-enquiry'),
-    options: [{
-      key: "allow_download_pdf",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
-      value: "allow_download_pdf"
-    }],
-    proSetting: true
-  }, {
-    key: 'attach_pdf_to_email',
-    type: 'checkbox',
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Attach a PDF version to the quote email', 'woocommerce-catalog-enquiry'),
-    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
-    options: [{
-      key: "attach_pdf_to_email",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('', 'woocommerce-catalog-enquiry'),
-      value: "attach_pdf_to_email"
-    }],
-    proSetting: true
+  modal: [
+  // {
+  //     key: 'catalog_customizer',
+  //     type: 'catalog_customizer',
+  //     label: __("Catalog Customizer", "woocommerce-catalog-enquiry"),
+  //     desc: __("Catalog Customizer", "woocommerce-catalog-enquiry"),
+  // },
+  {
+    key: 'form_customizer',
+    type: 'form_customizer',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customizer", "woocommerce-catalog-enquiry"),
+    desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Form Customizer", "woocommerce-catalog-enquiry"),
+    classes: 'form_customizer'
   }]
 });
 
@@ -22283,9 +22403,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   id: 'tools',
-  priority: 60,
+  priority: 50,
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tools", "woocommerce-catalog-enquiry"),
-  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tools", "woocommerce-catalog-enquiry"),
+  desc: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Review all system logs and errors", "woocommerce-catalog-enquiry"),
   icon: 'font-settings',
   submitUrl: 'save_enquiry',
   modal: [{
@@ -93226,15 +93346,11 @@ var useCallback = useCallbackOne;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./catalog.js": "./src/template/settings/catalog.js",
+	"./allSettings.js": "./src/template/settings/allSettings.js",
 	"./catalogCustomization.js": "./src/template/settings/catalogCustomization.js",
-	"./enquiry/formCustomization.js": "./src/template/settings/enquiry/formCustomization.js",
-	"./enquiry/general.js": "./src/template/settings/enquiry/general.js",
-	"./enquiry/index.js": "./src/template/settings/enquiry/index.js",
-	"./permission/allowMode.js": "./src/template/settings/permission/allowMode.js",
-	"./permission/exclusion.js": "./src/template/settings/permission/exclusion.js",
-	"./permission/index.js": "./src/template/settings/permission/index.js",
-	"./quoteSettings.js": "./src/template/settings/quoteSettings.js",
+	"./enquiryEmailTemplate.js": "./src/template/settings/enquiryEmailTemplate.js",
+	"./exclusion.js": "./src/template/settings/exclusion.js",
+	"./formCustomization.js": "./src/template/settings/formCustomization.js",
 	"./tools.js": "./src/template/settings/tools.js"
 };
 

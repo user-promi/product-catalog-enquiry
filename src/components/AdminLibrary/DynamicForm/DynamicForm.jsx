@@ -702,9 +702,6 @@ const DynamicForm = (props) => {
 
         case "catalog_customizer":
           input = (
-<<<<<<< Updated upstream
-            <CatalogCustomizer />
-=======
             <CatalogCustomizer
               setting={setting}
               onChange={(key, value) => {
@@ -714,7 +711,6 @@ const DynamicForm = (props) => {
                 }
               }}
             />
->>>>>>> Stashed changes
           );
           break;
 

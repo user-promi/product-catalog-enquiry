@@ -46,6 +46,11 @@
         justify-content: flex-start;
         align-items: flex-start;
         margin-bottom: 1rem;
+        border: 1px solid red;
+
+        .new{
+          border: 2px solid black;
+        }
 
         .additional-input {
           input {

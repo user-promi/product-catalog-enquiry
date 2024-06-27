@@ -30,12 +30,6 @@ const Settings = () => {
 
         // get the setting context
         const { setting, settingName, setSetting } = useSetting();
-<<<<<<< Updated upstream
-        const settingModal = getSettingById( settingsArray, currentTab );
-
-        if ( settingName != currentTab ) {
-            setSetting( currentTab, appLocalizer.settings_databases_value[currentTab] || {} );
-=======
         const settingModal = getSettingById(settingsArray, currentTab);
         
         // This will removed. 
@@ -46,7 +40,6 @@ const Settings = () => {
 
         if ( settingName != currentTab ) {
             setSetting( currentTab, currentSetting  );
->>>>>>> Stashed changes
         }
 
         useEffect(() => {

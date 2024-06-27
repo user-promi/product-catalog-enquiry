@@ -653,6 +653,7 @@ input[type=radio] {
 .woo-image-overlay h2 {
   font-size: 1.5rem;
   margin: 1rem 0 1.5rem;
+  font-weight: 400;
 }
 .woo-image-overlay h3 {
   color: #181819;
@@ -700,6 +701,14 @@ input[type=radio] {
   font-style: italic;
   max-width: 50%;
   margin: auto;
+}
+.woo-image-overlay .woo-banner-content #description {
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.02rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 100%;
 }
 .woo-image-overlay a.woo-go-pro-btn {
   background: #e35047;
@@ -1010,6 +1019,10 @@ span.stock-manager-pro-tag {
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 1rem;
+  border: 1px solid red;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .new {
+  border: 2px solid black;
 }
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .additional-input input {
   width: 100%;
@@ -1960,7 +1973,6 @@ span.stock-manager-pro-tag {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  max-width: 900px;
   gap: 1rem;
   width: 100%;
   flex-wrap: wrap;
@@ -1968,16 +1980,22 @@ span.stock-manager-pro-tag {
 .module-container .module-option-row .module-list-item {
   border-radius: 0.25rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
-  flex: 1 0 230px;
+  flex: 1 0 300px;
   padding-top: 1.5rem;
-  width: 250px;
+  max-width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background-color: #fff;
   overflow: hidden;
+  min-height: 278px;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  .module-container .module-option-row .module-list-item {
+    max-width: 100%;
+  }
 }
 .module-container .module-option-row .module-list-item .admin-pro-tag {
   right: 1.25rem;
@@ -2007,6 +2025,7 @@ span.stock-manager-pro-tag {
 }
 .module-container .module-option-row .module-list-item .card-meta .meta-description {
   font-size: 0.875rem;
+  min-height: 84px;
 }
 .module-container .module-option-row .module-list-item .card-footer {
   width: 100%;
@@ -3444,20 +3463,6 @@ span.stock-manager-pro-tag {
   width: 2.5rem;
   vertical-align: middle;
   border-radius: 50%;
-}
-.container .chat-list .chat-list-container .chat-container-wrapper ul li .chat-item .chat-item-container .chat-img .user-status {
-  width: 10px;
-  height: 10px;
-  background-color: #adb5bd;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  position: absolute;
-  right: 0;
-  left: auto;
-  bottom: 0;
-}
-.container .chat-list .chat-list-container .chat-container-wrapper ul li .chat-item .chat-item-container .chat-img .user-status.online {
-  background-color: #06d6a0;
 }
 .container .chat-list .chat-list-container .chat-container-wrapper ul li .chat-item .chat-item-container .chat-meta {
   margin-right: 0.5rem;
