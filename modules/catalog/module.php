@@ -8,18 +8,18 @@ class Module {
         $current_user = wp_get_current_user();
         $catalog_user_role_restriction = Catalog()->setting->get_option('catalog_enquiry_quote_exclusion_settings');
 
-        foreach ($catalog_user_role_restriction['catalog_exclusion_userroles_list'] as $user_list_key) {
-            $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
-        }
-        if ( !empty( $current_user->roles ) && in_array($current_user->roles[0], $user_role_list)) {
-            $this->available_for = $current_user->ID;
-        }
+        // foreach ($catalog_user_role_restriction['catalog_exclusion_userroles_list'] as $user_list_key) {
+        //     $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
+        // }
+        // if ( !empty( $current_user->roles ) && in_array($current_user->roles[0], $user_role_list)) {
+        //     $this->available_for = $current_user->ID;
+        // }
         
-        foreach ($catalog_user_role_restriction['catalog_exclusion_user_list'] as $user_list_key) {
-            if ($current_user->ID == intval($user_list_key['key'])) {
+        // foreach ($catalog_user_role_restriction['catalog_exclusion_user_list'] as $user_list_key) {
+        //     if ($current_user->ID == intval($user_list_key['key'])) {
                 $this->available_for = $current_user->ID;                           
-            }
-        }
+        //     }
+        // }
 
         add_action('init', [$this, 'main' ], 10);
     }
