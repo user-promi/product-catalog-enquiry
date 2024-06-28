@@ -44,7 +44,8 @@ class Install{
         );
 
         $wpdb->query( "ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers` 
-            ADD COLUMN reaction varchar(20);");
+            ADD COLUMN reaction varchar(20),
+            ADD COLUMN attachment bigint(20);");
     }
 
     function catalog_data_migrate() {

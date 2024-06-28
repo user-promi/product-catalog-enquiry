@@ -4,6 +4,124 @@ import "./enquiryMessages.scss";
 import EnquiryNavbar from './enquiryNavbar.jsx';
 import EmojiPicker from 'emoji-picker-react';
 
+const MediaUploader = (props) => {
+    let frame
+    const runUploader = (event) => {
+        event.preventDefault()
+
+        // If the media frame already exists, reopen it.
+        if (frame) {
+            frame.open()
+            return
+        }
+
+        // Create a new media frame
+        frame = wp.media({
+            title: 'Select or Upload Media Of Your Chosen Persuasion',
+            button: {
+                text: 'Use this media',
+            },
+            multiple: false, // Set to true to allow multiple files to be selected
+        })
+
+        frame.on('select', function(){
+            var selection = frame.state().get('selection');
+            selection.map( function( attachment ) {
+              attachment = attachment.toJSON();
+                props.onChange(attachment);
+            });
+        });
+
+        // Finally, open the modal on click
+        frame.open()
+    }
+
+    return (
+        <React.Fragment>
+            <button type='button' onClick={runUploader}>
+                {props.children}
+            </button>
+        </React.Fragment>
+    )
+}
+
+const FileDisplay = ({ fileUrl, fileType }) => {
+    const renderFile = () => { ""
+        if (fileType.includes('image')) {
+            return <img src={fileUrl} alt="file" style={{ maxWidth: '100%' }} />;
+        }
+
+        switch (fileType) {
+            case 'pdf':
+            return (
+                <iframe
+                src={fileUrl}
+                style={{ width: '100%', height: '500px' }}
+                frameBorder="0"
+                />
+            );
+            case 'text':
+            return (
+                <iframe
+                src={fileUrl}
+                style={{ width: '100%', height: '500px' }}
+                frameBorder="0"
+                />
+            );
+            default:
+            return <p>Unsupported file type</p>;
+      }
+    };
+  
+    return <div>{renderFile()}</div>;
+};
+  
+const AtSignList = ({ message, enquery, onSelect }) => {
+
+    const pattern = /@[^!#$%^&*()_+{}|:"<>?`~\[\]\\;/\'\s]*$/;
+    const metched = pattern.test(message);
+
+    if (!metched) {
+        return;
+    }
+
+    function getCharactersAfterAt(str) {
+        const parts = str.split('@');
+        if (parts.length > 1) {
+            return parts[1];
+        }
+        return '';
+    }
+
+    function removeCharactersAfterLastAt(str) {
+        const lastIndex = str.lastIndexOf('@');
+        if (lastIndex !== -1) {
+            return str.substring(0, lastIndex + 1); // Include '@' in the result
+        }
+        return str; // Handle case where '@' is not found
+    }
+
+    return (
+        <div>
+            {/* Loop for product */}
+            {enquery.product?.map((product) => (
+                <>
+                    {
+                        product.name.toLowerCase().includes(getCharactersAfterAt(message).toLowerCase()) &&
+                            <div onClick={() => onSelect(`${removeCharactersAfterLastAt(message)}#${product.id}-${product.name}`)}>{product.name}</div>
+                    }
+                </>
+            ))}
+            {/* @ for admin */}
+            <div onClick={() => onSelect(`${message}Admin`)}>Admin</div>
+            {/* @ for vendor */}
+            <div onClick={() => onSelect(`${message}Vendor`)}>Vendor</div>
+            {/* @ for vendor */}
+            <div onClick={() => onSelect(`${message}User`)}>User</div>
+        </div>
+    );
+}
+
 const EnquiryDetails = (props) => {
     const { enquiry, onDelete } = props;
     const [enquiryDetails, setEnquiryDetails] = useState([]);
@@ -37,16 +155,23 @@ const EnquiryDetails = (props) => {
         }
     };
 
+    /**
+     * handle message send this will send message and attachments
+     */
     const handleSendMessage = () => {
+        const attachment = file?.id;
+
         axios({
             method: "post",
             url: `${appLocalizer.apiUrl}/catalog/v1/send-messages`,
             data: {
+                attachment: attachment,
                 msgReply: message,
                 enquiry: enquiry,
             },
         }).then((response) => {
             setMessage('');
+            setFile(null);
             fetchData();
             setReply(null)
         });
@@ -61,10 +186,10 @@ const EnquiryDetails = (props) => {
     //     console.log("hit again");
     // }, [enquiry])
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-        setMessage(file.name)
-    };
+    // const handleFileChange = (event) => {
+    //     console.log("hello");
+    //     setFile(event.target.files[0]);
+    // };
 
     const handleDeleteFile = () => {
         setFile(null);
@@ -211,6 +336,12 @@ const EnquiryDetails = (props) => {
                                                 </div>
                                                 <div className="chat-content-wrapper">
                                                     <div className="chat-content">
+                                                        {
+                                                            enquiryDetail.attachment &&
+                                                            <div style={{'width': '100px', 'height': '100px'}}>
+                                                                <FileDisplay fileUrl={ enquiryDetail.attachment } fileType={enquiryDetail.attachment_type} />
+                                                            </div>
+                                                        }
                                                         <div className="content">
                                                             <div dangerouslySetInnerHTML={{ __html: enquiryDetail.msg }} />
                                                             <div className="status">
@@ -251,7 +382,13 @@ const EnquiryDetails = (props) => {
                                             <div className="message-box-wrapper">
                                                 <div className="chat-content-wrapper">
                                                     <div className="chat-content">
-                                                        <div className="content">
+                                                            <div className="content">
+                                                            {
+                                                                enquiryDetail.attachment &&
+                                                                <div style={{'width': '100px', 'height': '100px'}}>
+                                                                    <FileDisplay fileUrl={ enquiryDetail.attachment } fileType={enquiryDetail.attachment_type} />
+                                                                </div>
+                                                            }
                                                             <div dangerouslySetInnerHTML={{ __html: enquiryDetail.msg }} />
                                                             <div className="status">
                                                                 <i className="admin-font font-check" />
@@ -292,16 +429,21 @@ const EnquiryDetails = (props) => {
                         </ul>
                     </div>
                 </div>
+                
+                {/* //////////////////////////////////////// Submit sections ///////////////////////////////////////// */}
                 <div className="chat-controls">
                     <div className="wrapper">
                         <div className="attachment">
                             <div className="attachment-wrapper">
-                                <button className='option-btn'>
-                                    <label htmlFor="file">
+                                <MediaUploader
+                                    onChange={(attachment) => {
+                                        setFile(attachment);
+                                    }}
+                                >
+                                    <label>
                                         <i className="admin-font font-attachment" />
                                     </label>
-                                    <input className='attachment-upload-input' type="file" name="" id="file" onChange={handleFileChange} />
-                                </button>
+                                </MediaUploader>
                                 <button onClick={toggleEmojiPicker} className='option-btn'>
                                     <i className="admin-font font-smile-o" />
                                 </button>
@@ -318,6 +460,14 @@ const EnquiryDetails = (props) => {
                             </div>
                         </div>
                         <div className="typing-section">
+                            {/* @ sections */}
+                            {
+                                <AtSignList
+                                    message={message}
+                                    enquery={enquiry}
+                                    onSelect={setMessage}
+                                />
+                            }
                             <textarea name="reply_msg" id="reply_msg" value={message}
                                 onChange={(e) => setMessage(e.target.value)} />
                             {reply && (
@@ -326,9 +476,11 @@ const EnquiryDetails = (props) => {
                                     <button><i className='admin-font font-close'></i></button>
                                 </div>
                             )}
+                            {console.log(file)}
                             {file && (
                                 <div className='attachment-details-section'>
                                     <p>{file.name}</p>
+                                    <FileDisplay fileUrl={ file.link } fileType={file.type} />
                                     <button onClick={handleDeleteFile}><i className='admin-font font-close'></i></button>
                                 </div>
                             )}
@@ -339,7 +491,6 @@ const EnquiryDetails = (props) => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }
