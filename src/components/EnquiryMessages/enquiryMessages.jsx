@@ -10,7 +10,7 @@ const EnquiryMessages = (props) => {
 
     useEffect(() => {
         axios({
-            method: "get",
+            method: "post",
             url: `${appLocalizer.apiUrl}/catalog/v1/get-enquiry-list`,
         }).then((response) => {
             setEnquiryLists(response.data);

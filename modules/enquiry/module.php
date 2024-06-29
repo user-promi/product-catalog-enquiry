@@ -10,17 +10,19 @@ class Module {
         $this->available_for = '';
         $current_user = wp_get_current_user();
         $catalog_user_role_restriction = Catalog()->setting->get_option('catalog_enquiry_quote_exclusion_settings');
-
-        foreach ($catalog_user_role_restriction['enquiry_exclusion_userroles_list'] as $user_list_key) {
-            $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
+        if (isset($settings['enquiry_exclusion_userroles_list'])) {
+            foreach ($catalog_user_role_restriction['enquiry_exclusion_userroles_list'] as $user_list_key) {
+                $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
+            }
+            if ( !empty( $current_user->roles ) && !empty( $user_role_list ) && in_array($current_user->roles[0], $user_role_list)) {
+                $this->available_for = $current_user->ID;
+            }
         }
-        if ( !empty( $current_user->roles ) && in_array($current_user->roles[0], $user_role_list)) {
-            $this->available_for = $current_user->ID;
-        }
-        
-        foreach ($catalog_user_role_restriction['enquiry_exclusion_user_list'] as $user_list_key) {
-            if ($current_user->ID == intval($user_list_key['key'])) {
-                $this->available_for = $current_user->ID;                           
+        if (isset($settings['enquiry_exclusion_user_list'])) {
+            foreach ($catalog_user_role_restriction['enquiry_exclusion_user_list'] as $user_list_key) {
+                if ($current_user->ID == intval($user_list_key['key'])) {
+                    $this->available_for = $current_user->ID;                           
+                }
             }
         }
     }
@@ -36,7 +38,9 @@ class Module {
             } else if ($display_enquiry_button == 'logged_in' && is_user_logged_in()) {
                 add_action('woocommerce_single_product_summary', [ $this, 'add_form_for_enquiry'], 10);
             }
+            
             add_action('wp_ajax_save_enquiry_send_mail', [$this, 'save_enquiry_send_mail']);
+            add_action('wp_ajax_nopriv_save_enquiry_send_mail', [$this, 'save_enquiry_send_mail']);
 
             add_action( 'woocommerce_single_product_summary', array($this, 'catalog_woocommerce_template_single'), 5 );
         }
@@ -69,35 +73,41 @@ class Module {
         $settings = Catalog()->setting->get_option('catalog_enquiry_quote_exclusion_settings');      
 
         $product_for = [];
-
-        foreach ($settings['enquiry_exclusion_product_list'] as $user_list_key) {
-            if ($post->ID == $user_list_key['key']) {
-                $product_for[] = $post->ID;
+        if (isset($settings['enquiry_exclusion_product_list'])) {
+            foreach ($settings['enquiry_exclusion_product_list'] as $user_list_key) {
+                if ($post->ID == $user_list_key['key']) {
+                    $product_for[] = $post->ID;
+                }
             }
-        }    
+        }  
 
         $category_for = [];
         $term_list = wp_get_post_terms($post->ID,'product_cat',array('fields'=>'ids'));
-        foreach ($settings['enquiry_exclusion_category_list'] as $user_list_key) {
-            if ($user_list_key['key'] == $term_list[0]) {
-                $category_for[] = $post->ID;
+        if (isset($settings['enquiry_exclusion_category_list'])) {
+            foreach ($settings['enquiry_exclusion_category_list'] as $user_list_key) {
+                if ($user_list_key['key'] == $term_list[0]) {
+                    $category_for[] = $post->ID;
+                }
             }
         }
 
         $tag_for = [];
         $tag_term_list = wp_get_post_terms($post->ID,'product_tag',array('fields'=>'ids'));
-        foreach ($settings['enquiry_exclusion_tag_list'] as $user_list_key) {
-            if ($user_list_key['key'] == $tag_term_list[0]) {
-                $tag_for[] = $post->ID;
+        if (isset($settings['enquiry_exclusion_tag_list'])) {
+            foreach ($settings['enquiry_exclusion_tag_list'] as $user_list_key) {
+                if ($user_list_key['key'] == $tag_term_list[0]) {
+                    $tag_for[] = $post->ID;
+                }
             }
         }
 
         if (in_array($post->ID, $product_for) || in_array($post->ID, $category_for) || in_array($post->ID, $tag_for)) {
             remove_action('woocommerce_single_product_summary', [ $this, 'add_form_for_enquiry'], 10);
-        } else {
-            add_action('woocommerce_single_product_summary', [ $this, 'add_form_for_enquiry'], 10);
+        } 
+        // else {
+        //     add_action('woocommerce_single_product_summary', [ $this, 'add_form_for_enquiry'], 10);
 
-        }
+        // }
     }
 
     public function add_form_for_enquiry() {

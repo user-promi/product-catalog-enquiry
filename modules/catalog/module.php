@@ -7,34 +7,49 @@ class Module {
         $this->available_for = '';
         $current_user = wp_get_current_user();
         $catalog_user_role_restriction = Catalog()->setting->get_option('catalog_enquiry_quote_exclusion_settings');
+        if (isset($settings['catalog_exclusion_userroles_list'])) {
+            foreach ($catalog_user_role_restriction['catalog_exclusion_userroles_list'] as $user_list_key) {
+                $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
+            }
+            if ( !empty( $current_user->roles ) && !empty( $user_role_list ) && in_array($current_user->roles[0], $user_role_list)) {
+                $this->available_for = $current_user->ID;
+            }
+        }
+        if (isset($settings['catalog_exclusion_user_list'])) {
+            foreach ($catalog_user_role_restriction['catalog_exclusion_user_list'] as $user_list_key) {
+                if ($current_user->ID == intval($user_list_key['key'])) {
+                    $this->available_for = $current_user->ID;                           
+                }
+            }
+        }
 
-        // foreach ($catalog_user_role_restriction['catalog_exclusion_userroles_list'] as $user_list_key) {
-        //     $user_role_list[] = in_array( $user_list_key['key'], array_keys( wp_roles()->roles ) ) ? $user_list_key['key'] : '';
-        // }
-        // if ( !empty( $current_user->roles ) && in_array($current_user->roles[0], $user_role_list)) {
-        //     $this->available_for = $current_user->ID;
-        // }
-        
-        // foreach ($catalog_user_role_restriction['catalog_exclusion_user_list'] as $user_list_key) {
-        //     if ($current_user->ID == intval($user_list_key['key'])) {
-                $this->available_for = $current_user->ID;                           
-        //     }
-        // }
-
-        add_action('init', [$this, 'main' ], 10);
+        add_action('init', [$this, 'main' ], 99);
     }
 
     function main() {
+
         if ($this->available_for == '') {
             remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
             remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
             remove_action('woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20);
             add_action('template_redirect', [$this, 'redirect_cart_checkout_page' ], 10);
 
-            add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 35);
+            add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 40);
             // add_action('woocommerce_single_product_summary', [$this, 'display_button'], 35);
             add_action('woocommerce_single_product_summary', [$this, 'add_variation_product'], 29);
 
+            $position_settings = Catalog()->setting->get_setting( 'shop_page_possition_setting' );
+            // file_put_contents( plugin_dir_path(__FILE__) . "/error.log", date("d/m/Y H:i:s", time()) . ":position_settings:  : " . var_export($position_settings['additional_input'], true) . "\n", FILE_APPEND);
+
+            if ($position_settings['additional_input'] == '') {
+                add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 6);
+            } elseif ($position_settings['additional_input'] == 'price_section') {
+                add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 10);
+            } elseif ($position_settings['additional_input'] == 'product_description') {
+                add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 35);
+            } elseif ($position_settings['additional_input'] == 'sku_category') {
+                add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 40);
+            }
             // add_action('woocommerce_before_shop_loop_item', [$this, 'change_permalink_url_for_selected_product'], 5);
 
             add_action('woocommerce_after_shop_loop_item_title' , [$this, 'price_for_selected_product'], 5);
@@ -47,25 +62,6 @@ class Module {
                 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
             }
         }
-
-        // $display_desc = Catalog()->setting->get_setting( 'display_description' );
-        // $display_button = Catalog()->setting->get_setting( 'display_position' );
-
-        // if ($display_desc == 'above') {
-		//     add_action('woocommerce_single_product_summary', [$this, 'display_description_box']);
-        // } elseif ($display_desc == 'below') {
-		//     add_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 35);
-        // }
-
-        // if ($display_button == 'below_desc') {
-		//     add_action('woocommerce_single_product_summary', [$this, 'display_button'], 35);
-        // } elseif ($display_button == 'above_add_to_cart') {
-		//     add_action('woocommerce_before_add_to_cart_button', [$this, 'display_button']);
-        // } elseif ($display_button == 'below_add_to_cart') {
-		//     add_action('woocommerce_after_add_to_cart_button', [$this, 'display_button']);
-        // } elseif ($display_button == 'place_add_to_cart') {
-		//     add_action('woocommerce_single_product_summary', [$this, 'display_button'], 30);
-        // }
     }
 
     public function price_for_selected_product() { 
@@ -132,8 +128,9 @@ class Module {
         }
 
         if (in_array($post->ID, $product_for) || in_array($post->ID, $category_for) || in_array($post->ID, $tag_for)) {
-            add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );  
-        } else {
+            // add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );  
+        } 
+        else {
             remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );  
         }
     }
@@ -143,33 +140,38 @@ class Module {
         $settings = Catalog()->setting->get_option('catalog_enquiry_quote_exclusion_settings');      
 
         $product_for = [];
-
-        foreach ($settings['catalog_exclusion_product_list'] as $user_list_key) {
-            if ($post->ID == $user_list_key['key']) {
-                $product_for[] = $post->ID;
-            }
-        }    
+        if (isset($settings['catalog_exclusion_product_list'])) {
+            foreach ($settings['catalog_exclusion_product_list'] as $user_list_key) {
+                if ($post->ID == $user_list_key['key']) {
+                    $product_for[] = $post->ID;
+                }
+            }   
+        } 
 
         $category_for = [];
         $term_list = wp_get_post_terms($post->ID,'product_cat',array('fields'=>'ids'));
-        foreach ($settings['catalog_exclusion_category_list'] as $user_list_key) {
-            if ($user_list_key['key'] == $term_list[0]) {
-                $category_for[] = $post->ID;
+        if (isset($settings['catalog_exclusion_category_list'])) {
+            foreach ($settings['catalog_exclusion_category_list'] as $user_list_key) {
+                if ($user_list_key['key'] == $term_list[0]) {
+                    $category_for[] = $post->ID;
+                }
             }
         }
 
         $tag_for = [];
         $tag_term_list = wp_get_post_terms($post->ID,'product_tag',array('fields'=>'ids'));
-        foreach ($settings['catalog_exclusion_tag_list'] as $user_list_key) {
-            if ($user_list_key['key'] == $tag_term_list[0]) {
-                $tag_for[] = $post->ID;
+        if (isset($settings['catalog_exclusion_tag_list'])) {
+            foreach ($settings['catalog_exclusion_tag_list'] as $user_list_key) {
+                if ($user_list_key['key'] == $tag_term_list[0]) {
+                    $tag_for[] = $post->ID;
+                }
             }
         }
 
         if (in_array($post->ID, $product_for) || in_array($post->ID, $category_for) || in_array($post->ID, $tag_for)) {
             add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );           
-            add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+            // add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 ); 
             remove_action('woocommerce_single_product_summary', [$this, 'display_description_box'], 35);
         } else {
