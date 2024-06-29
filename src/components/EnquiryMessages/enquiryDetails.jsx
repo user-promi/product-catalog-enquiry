@@ -113,11 +113,17 @@ const AtSignList = ({ message, enquery, onSelect }) => {
                 </>
             ))}
             {/* @ for admin */}
-            <div onClick={() => onSelect(`${message}Admin`)}>Admin</div>
+            {appLocalizer.user_role !== 'administrator' && (
+                <div onClick={() => onSelect(`${message}Admin `)}>Admin</div>
+            )}
             {/* @ for vendor */}
-            <div onClick={() => onSelect(`${message}Vendor`)}>Vendor</div>
-            {/* @ for vendor */}
-            <div onClick={() => onSelect(`${message}User`)}>User</div>
+            {appLocalizer.user_role !== 'dc_vendor' && (
+                <div onClick={() => onSelect(`${message}Vendor `)}>Vendor</div>
+            )}
+            {/* @ for customer */}
+            {appLocalizer.user_role !== 'customer' && (
+                <div onClick={() => onSelect(`${message}User `)}>User</div>
+            )}
         </div>
     );
 }
@@ -194,28 +200,6 @@ const EnquiryDetails = (props) => {
     const handleDeleteFile = () => {
         setFile(null);
     };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     if (!file) {
-    //         alert("No file selected!");
-    //         return;
-    //     }
-
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-
-    //     try {
-    //         const response = await fetch('/upload', {
-    //             method: 'POST',
-    //             body: formData
-    //         });
-    //         const data = await response.json();
-    //         console.log('File uploaded successfully:', data);
-    //     } catch (error) {
-    //         console.error('Error uploading file:', error);
-    //     }
-    // };
 
     // Function to handle emoji click
     const onEmojiClick = (emojiData, event) => {
