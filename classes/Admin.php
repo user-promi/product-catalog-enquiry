@@ -85,9 +85,6 @@ class Admin
     public function catalog_admin_enqueue_scripts()
     {
         wp_enqueue_media();
-        
-        // global $Woocommerce_Catalog_Enquiry;
-	    
         $pages_array = $role_array = $all_users = $all_products = $all_product_cat = $all_product_tag = [];
         $pages = get_pages();
         if ($pages) {
@@ -154,7 +151,11 @@ class Admin
                 );
             }
         } 
-        
+
+        $current_user = wp_get_current_user();
+        if (!empty($current_user->roles) && is_array($current_user->roles)) {
+            $role = $current_user->roles [0];
+        }
         // Get all tab setting's database value
         $settings_databases_value = $active_modules = [];
         $active_modules = Catalog()->modules->get_active_modules();
@@ -176,6 +177,7 @@ class Admin
                 'all_product_tag' => $all_product_tag,
                 'settings_databases_value' => $settings_databases_value,
                 'active_modules' => $active_modules,
+                'user_role'     => $role,
                 'nonce' => wp_create_nonce('wp_rest'),
                 'banner_img'  => Catalog()->plugin_url . 'assets/images/catalog-pro-add-admin-banner.jpg',
                 'template1' => Catalog()->plugin_url . 'assets/images/email/templates/default_wc_tpl.png',

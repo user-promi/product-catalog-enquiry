@@ -14,18 +14,18 @@ export default {
             desc: __("Put your custom css here, to customize the enquiry form.", "woocommerce-catalog-enquiry"),
             label: __("Addional CSS", "woocommerce-catalog-enquiry"),
         },
-        {
-            key: 'is_page_redirect',
-            type: 'checkbox',
-            label: __( "Redirect after Enquiry form Submission", 'woocommerce-catalog-enquiry' ),
-            options: [
-                {
-                    key: "is_page_redirect",
-                    label: __('Enable this to redirect user to another page after successful enquiry submission.', 'woocommerce-catalog-enquiry'),
-                    value: "is_page_redirect"
-                }
-            ]
-        },
+        // {
+        //     key: 'is_page_redirect',
+        //     type: 'checkbox',
+        //     label: __( "Redirect after Enquiry form Submission", 'woocommerce-catalog-enquiry' ),
+        //     options: [
+        //         {
+        //             key: "is_page_redirect",
+        //             label: __('Enable this to redirect user to another page after successful enquiry submission.', 'woocommerce-catalog-enquiry'),
+        //             value: "is_page_redirect"
+        //         }
+        //     ]
+        // },
         {
             key: 'redirect_page_id',
             dependent: {
