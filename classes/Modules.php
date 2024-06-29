@@ -120,11 +120,11 @@ class Modules {
             }
 
             // Activate the module
-            if ( file_exists( $module['module_file'] ) && ! $this->container[ $modules_id ] ) {
+            if ( file_exists( $module['module_file'] ) && ! in_array( $modules_id, $this->container ) ) {
                 require_once $module['module_file'];
 
                 $module_class = $module['module_class'];
-                $this->container[ $module_id ] = new $module_class();
+                $this->container[ $modules_id ] = new $module_class();
 
                 /**
                  * Module activation hook
