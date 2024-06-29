@@ -19362,17 +19362,30 @@ const ButtonDND = props => {
     updateSetting
   } = (0,_contexts_SettingContext__WEBPACK_IMPORTED_MODULE_4__.useSetting)();
   const possitionSetting = setting['shop_page_button_position_setting'] || [];
-  console.log(props.currentTab.id); // Log currentTab here
   const [buttonItems, setButtonItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const handleMenuChange = (set, get) => {
-    console.log(set + get);
+  const handleSubMenuChange = (index, currentTab, menuName) => {
+    if (currentTab.id !== menuName) {
+      window.scrollTo(0, 0);
+      document.getElementById('catelog-customizer-main-wrapper').classList.add('change-tab');
+      props.setCurrentTab(props.menu[index]);
+      setTimeout(() => {
+        document.getElementById('catelog-customizer-main-wrapper').classList.remove('change-tab');
+      }, 500);
+    }
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setButtonItems([{
       id: 'enquery_button',
       content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: props.currentTab.id == "enquiry" ? '' : 'disable'
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onClick: () => {
+          handleSubMenuChange(0, props.currentTab, 'enquiry');
+        },
+        className: `button-main-container ${props.currentTab.id == "enquiry" ? '' : 'disable'}`
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+        className: "button-visibility"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+        className: "admin-font font-support"
+      })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
         text: "enquiry"
       }))
     }, {
@@ -19383,16 +19396,29 @@ const ButtonDND = props => {
     }, {
       id: 'quote_button',
       content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        onClick: () => handleMenuChange(props.currentTab.id, 'quote'),
-        className: props.currentTab.id == "quote" ? '' : 'disable'
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onClick: () => {
+          handleSubMenuChange(2, props.currentTab, 'quote');
+        },
+        className: `button-main-container ${props.currentTab.id == "quote" ? '' : 'disable'}`
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+        className: "button-visibility"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+        className: "admin-font font-support"
+      })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
         text: "Add to quote"
       }))
     }, {
       id: 'enquery_cart_button',
       content: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: props.currentTab.id == "enquiry_cart" ? '' : 'disable'
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onClick: () => {
+          handleSubMenuChange(1, props.currentTab, 'enquiry_cart');
+        },
+        className: `button-main-container ${props.currentTab.id == "enquiry_cart" ? '' : 'disable'}`
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+        className: "button-visibility"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+        className: "admin-font font-support"
+      })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AdminLibrary_Inputs_Special_ButtonCustomizer__WEBPACK_IMPORTED_MODULE_2__["default"], {
         text: "Add to enquiry cart"
       }))
     }]);
@@ -19537,8 +19563,15 @@ const CatalogCustomizer = props => {
   }, {
     id: 'additional_input',
     content: props => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      onClick: () => {
+        setCurrentTab(menu[3]);
+      },
       className: `additional-input ${props.currentTab.id === 'catalog' ? '' : 'disable'}`
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      className: "button-visibility"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: "admin-font font-support"
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       placeholder: "Additional input(optional)",
       type: "text"
     })),
@@ -19549,7 +19582,9 @@ const CatalogCustomizer = props => {
     content: props => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ButtonDND, {
       setting: props.setting,
       onChange: props.onChange,
-      currentTab: props.currentTab
+      currentTab: props.currentTab,
+      setCurrentTab: props.setCurrentTab,
+      menu: menu
     }),
     defaultPosition: 3,
     dragable: true
@@ -19626,7 +19661,10 @@ const CatalogCustomizer = props => {
     setting: setting,
     updateSetting: updateSetting,
     onChange: props.onChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
+    className: "catelog-customizer-main-wrapper",
+    id: "catelog-customizer-main-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     className: "catelog-customizer"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "product-img"
@@ -19656,7 +19694,8 @@ const CatalogCustomizer = props => {
     ...provided.draggableProps,
     ...provided.dragHandleProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(item.content, {
-    currentTab: currentTab
+    currentTab: currentTab,
+    setCurrentTab: setCurrentTab
   }))))), provided.placeholder)))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     className: "single-product-page-description"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -19667,7 +19706,7 @@ const CatalogCustomizer = props => {
     className: "admin-font font-keyboard_arrow_down"
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "Additional Information"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, "Review"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "description"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Description"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."))));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Description"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CatalogCustomizer);
 
@@ -19908,6 +19947,116 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const MediaUploader = props => {
+  let frame;
+  const runUploader = event => {
+    event.preventDefault();
+
+    // If the media frame already exists, reopen it.
+    if (frame) {
+      frame.open();
+      return;
+    }
+
+    // Create a new media frame
+    frame = wp.media({
+      title: 'Select or Upload Media Of Your Chosen Persuasion',
+      button: {
+        text: 'Use this media'
+      },
+      multiple: false // Set to true to allow multiple files to be selected
+    });
+    frame.on('select', function () {
+      var selection = frame.state().get('selection');
+      selection.map(function (attachment) {
+        attachment = attachment.toJSON();
+        props.onChange(attachment);
+      });
+    });
+
+    // Finally, open the modal on click
+    frame.open();
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    onClick: runUploader
+  }, props.children));
+};
+const FileDisplay = ({
+  fileUrl,
+  fileType
+}) => {
+  const renderFile = () => {
+    "";
+
+    if (fileType.includes('image')) {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: fileUrl,
+        alt: "file",
+        style: {
+          maxWidth: '100%'
+        }
+      });
+    }
+    switch (fileType) {
+      case 'pdf':
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+          src: fileUrl,
+          style: {
+            width: '100%',
+            height: '500px'
+          },
+          frameBorder: "0"
+        });
+      case 'text':
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+          src: fileUrl,
+          style: {
+            width: '100%',
+            height: '500px'
+          },
+          frameBorder: "0"
+        });
+      default:
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Unsupported file type");
+    }
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, renderFile());
+};
+const AtSignList = ({
+  message,
+  enquery,
+  onSelect
+}) => {
+  const pattern = /@[^!#$%^&*()_+{}|:"<>?`~\[\]\\;/\'\s]*$/;
+  const metched = pattern.test(message);
+  if (!metched) {
+    return;
+  }
+  function getCharactersAfterAt(str) {
+    const parts = str.split('@');
+    if (parts.length > 1) {
+      return parts[1];
+    }
+    return '';
+  }
+  function removeCharactersAfterLastAt(str) {
+    const lastIndex = str.lastIndexOf('@');
+    if (lastIndex !== -1) {
+      return str.substring(0, lastIndex + 1); // Include '@' in the result
+    }
+    return str; // Handle case where '@' is not found
+  }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, enquery.product?.map(product => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, product.name.toLowerCase().includes(getCharactersAfterAt(message).toLowerCase()) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => onSelect(`${removeCharactersAfterLastAt(message)}#${product.id}-${product.name}`)
+  }, product.name))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => onSelect(`${message}Admin`)
+  }, "Admin"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => onSelect(`${message}Vendor`)
+  }, "Vendor"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => onSelect(`${message}User`)
+  }, "User"));
+};
 const EnquiryDetails = props => {
   const {
     enquiry,
@@ -19943,16 +20092,23 @@ const EnquiryDetails = props => {
       console.error('Error fetching data:', error);
     }
   };
+
+  /**
+   * handle message send this will send message and attachments
+   */
   const handleSendMessage = () => {
+    const attachment = file?.id;
     (0,axios__WEBPACK_IMPORTED_MODULE_4__["default"])({
       method: "post",
       url: `${appLocalizer.apiUrl}/catalog/v1/send-messages`,
       data: {
+        attachment: attachment,
         msgReply: message,
         enquiry: enquiry
       }
     }).then(response => {
       setMessage('');
+      setFile(null);
       fetchData();
       setReply(null);
     });
@@ -19967,10 +20123,11 @@ const EnquiryDetails = props => {
   //     console.log("hit again");
   // }, [enquiry])
 
-  const handleFileChange = event => {
-    setFile(event.target.files[0]);
-    setMessage(file.name);
-  };
+  // const handleFileChange = (event) => {
+  //     console.log("hello");
+  //     setFile(event.target.files[0]);
+  // };
+
   const handleDeleteFile = () => {
     setFile(null);
   };
@@ -20112,7 +20269,15 @@ const EnquiryDetails = props => {
     className: "chat-content-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "chat-content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, enquiryDetail.attachment && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      'width': '100px',
+      'height': '100px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FileDisplay, {
+    fileUrl: enquiryDetail.attachment,
+    fileType: enquiryDetail.attachment_type
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     dangerouslySetInnerHTML: {
@@ -20159,7 +20324,15 @@ const EnquiryDetails = props => {
     className: "chat-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, enquiryDetail.attachment && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      'width': '100px',
+      'height': '100px'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FileDisplay, {
+    fileUrl: enquiryDetail.attachment,
+    fileType: enquiryDetail.attachment_type
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     dangerouslySetInnerHTML: {
       __html: enquiryDetail.msg
     }
@@ -20201,19 +20374,13 @@ const EnquiryDetails = props => {
     className: "attachment"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "attachment-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "option-btn"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "file"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUploader, {
+    onChange: attachment => {
+      setFile(attachment);
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "admin-font font-attachment"
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "attachment-upload-input",
-    type: "file",
-    name: "",
-    id: "file",
-    onChange: handleFileChange
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: toggleEmojiPicker,
     className: "option-btn"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
@@ -20227,7 +20394,11 @@ const EnquiryDetails = props => {
     skinTonesDisabled: true
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "typing-section"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(AtSignList, {
+    message: message,
+    enquery: enquiry,
+    onSelect: setMessage
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     name: "reply_msg",
     id: "reply_msg",
     value: message,
@@ -20240,9 +20411,12 @@ const EnquiryDetails = props => {
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "admin-font font-close"
-  }))), file && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }))), console.log(file), file && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "attachment-details-section"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, file.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, file.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FileDisplay, {
+    fileUrl: file.link,
+    fileType: file.type
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: handleDeleteFile
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "admin-font font-close"
@@ -21351,7 +21525,6 @@ const SubTabSection = props => {
     currentTab,
     setCurrentTab
   } = props;
-  const [selectedMenu, setSelectedMenu] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(currentTab || menuitem[0]);
   const [menuOpen, setMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [settings, setSettings] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.setting);
   const buttonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -21372,9 +21545,8 @@ const SubTabSection = props => {
     className: "tab-section"
   }, menuitem.map((menu, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: index,
-    className: `tab-section-menu ${menu.id === selectedMenu.id ? 'active' : ''}`,
+    className: `tab-section-menu ${menu.id === currentTab.id ? 'active' : ''}`,
     onClick: e => {
-      setSelectedMenu(menu);
       setCurrentTab(menu);
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
@@ -21389,9 +21561,9 @@ const SubTabSection = props => {
     className: "tab-menu-setting-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "tab-heading"
-  }, selectedMenu.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, currentTab.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "setting-wrapper-section"
-  }, selectedMenu.setting?.map((setting, index) => {
+  }, currentTab.setting?.map((setting, index) => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "tab-menu-setting-item",
       key: index
@@ -21422,7 +21594,7 @@ const SubTabSection = props => {
     to: '',
     className: "advanced-setting-btn"
   }, "Advanced settings")) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: `tab-slide-btn admin-font ${selectedMenu.icon}`
+    className: `tab-slide-btn admin-font ${currentTab.icon}`
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubTabSection);

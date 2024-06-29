@@ -1,4 +1,16 @@
 $menu-btn-color: #522c81;
+html{
+ scroll-behavior: smooth; 
+}
+
+.catelog-customizer-main-wrapper{
+  transition: transform 0.3s linear;
+  transform-origin: 100% 0;
+  &.change-tab{
+    transform: scale(0);
+  }
+}
+
 
 .catalog-customizer-wrapper {
   .settings-form-label {
@@ -65,7 +77,24 @@ $menu-btn-color: #522c81;
           .additional-input {
             cursor: move;
             border: 0.058rem solid rgba($color: #000000, $alpha: 0.125);
-            padding: 0.5rem;
+            padding: 0.5rem; 
+            position: relative;
+
+            &:hover{
+              .button-visibility{
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+
+            .button-visibility{
+              position: absolute;
+              top: 0;
+              left: 100%;
+              z-index: 1;
+              visibility: hidden;
+              opacity: 0;
+            }
 
             input {
               width: 100%;
@@ -139,6 +168,26 @@ $menu-btn-color: #522c81;
                 color: #fff;
                 cursor: crosshair;
               }
+            }
+          }
+
+          .button-main-container{
+            position: relative;
+
+            &:hover{
+              .button-visibility{
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+
+            .button-visibility{
+              position: absolute;
+              top: 0;
+              left: 100%;
+              z-index: 1;
+              visibility: hidden;
+              opacity: 0;
             }
           }
 
