@@ -849,7 +849,7 @@ span.stock-manager-pro-tag {
 
 .tab-section {
   position: absolute;
-  top: -5.55rem;
+  top: -5.8rem;
   /* padding: 0.5rem; */
   right: 0;
   display: flex;
@@ -857,7 +857,7 @@ span.stock-manager-pro-tag {
   justify-content: flex-end;
   gap: 0.75rem;
 }
-.tab-section button {
+.tab-section .tab-section-menu {
   transition: color 0.3s linear;
   padding: 0.5rem;
   position: relative;
@@ -869,17 +869,17 @@ span.stock-manager-pro-tag {
   justify-content: center;
   gap: 0.25rem;
 }
-.tab-section button span {
+.tab-section .tab-section-menu span {
   font-size: 1rem;
 }
-.tab-section button:hover {
+.tab-section .tab-section-menu:hover {
   color: #522c81;
 }
-.tab-section button.active {
+.tab-section .tab-section-menu.active {
   font-weight: 500;
   color: #522c81;
 }
-.tab-section button.active::after {
+.tab-section .tab-section-menu.active::after {
   position: absolute;
   content: "";
   bottom: 0;
@@ -904,6 +904,7 @@ span.stock-manager-pro-tag {
   border-bottom-left-radius: 50%;
   cursor: pointer;
   background: #fff;
+  z-index: 9;
 }
 .tab-menu-setting-section .tab-slide-btn {
   font-size: 1.5rem;
@@ -954,11 +955,13 @@ span.stock-manager-pro-tag {
   margin: 0 !important;
 }
 .tab-menu-setting-section.active .tab-menu-setting-wrapper .tab-menu-setting-item .setting-title {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 0.25rem;
+  max-width: 70%;
+  width: 100%;
 }
 .tab-menu-setting-section.active .tab-menu-setting-wrapper .tab-menu-setting-item .setting-title i {
   font-size: 0.75rem;
@@ -998,7 +1001,9 @@ html {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  -moz-column-gap: 2.25rem;
+       column-gap: 2.25rem;
+  row-gap: 1.5rem;
   flex-wrap: wrap;
 }
 .catalog-customizer-wrapper .catelog-customizer .product-img {
@@ -1018,21 +1023,29 @@ html {
   max-width: 100%;
 }
 .catalog-customizer-wrapper .catelog-customizer .product-data .product-name {
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.875rem;
+  font-weight: 400;
 }
 .catalog-customizer-wrapper .catelog-customizer .product-data .product-price {
+  font-size: 1.5rem;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .product-price .strikethrough {
+  text-decoration: line-through;
+  opacity: 0.5;
   font-size: 1.25rem;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 1rem;
 }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div > div {
   width: 100%;
 }
@@ -1040,6 +1053,10 @@ html {
   cursor: move;
   border: 0.058rem solid rgba(0, 0, 0, 0.125);
   padding: 0.5rem;
+<<<<<<< HEAD
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input input {
+=======
   position: relative;
 }
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input:hover .button-visibility {
@@ -1058,6 +1075,7 @@ html {
 =======
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .additional-input input {
 >>>>>>> 072e2b30c92b4604ad4bc4dc56cbaed494957f09
+>>>>>>> origin/master
   width: 100%;
   border-radius: 0;
   padding: 0.25rem 0.5rem;
@@ -1065,21 +1083,21 @@ html {
   font-size: 0.875rem;
   line-height: 1.5714285714;
   border: none !important;
-  cursor: pointer;
+  cursor: text;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .additional-input input:hover {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input input:hover, .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input input:focus {
   box-shadow: 0rem 0rem 0rem 0.126rem rgb(255, 255, 255), 0rem 0rem 0rem 0.189rem rgba(33, 33, 33, 0.5);
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-description {
-  font-size: 0.875rem;
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .product-description {
+  font-size: 1rem;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .add-to-cart-section {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .add-to-cart-section {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   width: 100%;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .add-to-cart-section select {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .add-to-cart-section select {
   max-width: 50px;
   width: 100%;
   padding: 0.25rem 0.5rem;
@@ -1087,32 +1105,34 @@ html {
   border: 0.115rem solid rgba(0, 0, 0, 0.125) !important;
   border-radius: 0.25rem !important;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .add-to-cart-section select:focus {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .add-to-cart-section select:focus {
   box-shadow: none;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .add-to-cart-section .add-to-cart-button {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .add-to-cart-section .add-to-cart-button {
   max-width: 150px;
   width: 100%;
   height: 39px;
   cursor: pointer;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .custom-button {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper > div {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.75rem;
   flex-wrap: wrap;
+  gap: 0.25rem;
+  border: 0.058rem solid rgba(0, 0, 0, 0.125);
+  padding: 0.5rem;
+  cursor: move;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .custom-button .btn-wrapper {
-  flex: 1 0 30%;
-  width: 30%;
-  height: 39px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper > div .btn-wrapper {
+  padding: 0.5rem;
+  border: 0.058rem solid rgba(0, 0, 0, 0.125);
+  cursor: move;
 }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper > div .btn-wrapper button {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -1120,6 +1140,9 @@ html {
   color: #fff;
   cursor: crosshair;
 }
+<<<<<<< HEAD
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-sku-category {
+=======
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper .button-main-container {
   position: relative;
 }
@@ -1139,16 +1162,65 @@ html {
 =======
 .catalog-customizer-wrapper .catelog-customizer .product-data .product-sku-category {
 >>>>>>> 072e2b30c92b4604ad4bc4dc56cbaed494957f09
+>>>>>>> origin/master
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .product-sku-category p {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-sku-category p {
   font-size: 0.875rem;
 }
-.catalog-customizer-wrapper .catelog-customizer .product-data .product-sku-category p span {
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-sku-category p span {
   font-weight: 500;
+}
+
+.single-product-page-description {
+  padding-top: 2rem;
+  margin-top: 1.5rem;
+  border-top: 0.125rem solid rgba(0, 0, 0, 0.125);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.single-product-page-description .option {
+  flex: 1 0 120px;
+  max-width: 200px;
+}
+.single-product-page-description .option ul {
+  margin: 0;
+}
+.single-product-page-description .option ul li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 1rem 1rem 0;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+}
+.single-product-page-description .option ul li.active {
+  color: #522c81;
+}
+.single-product-page-description .option ul li span {
+  font-size: 0.875rem;
+}
+.single-product-page-description .description {
+  flex: 1 0 500px;
+}
+.single-product-page-description .description h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.single-product-page-description .description p {
+  font-size: 0.875rem;
+}
+
+.disable {
+  opacity: 0.5;
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/GridTable/GridTable.scss ***!
