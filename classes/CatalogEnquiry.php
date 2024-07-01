@@ -22,7 +22,7 @@ final class CatalogEnquiry {
         add_action( 'before_woocommerce_init', [ $this, 'declare_compatibility' ] );
         add_action( 'woocommerce_loaded', [ $this, 'init_plugin' ] );
         add_action( 'plugins_loaded', [ $this, 'is_woocommerce_loaded'] );
-		// add_filter('woocommerce_email_classes', [ $this, 'woocommerce_catalog_enquiry_email_setup'] );
+		add_filter('woocommerce_email_classes', [ $this, 'woocommerce_catalog_enquiry_email_setup'] );
 
     }
 	
@@ -194,8 +194,8 @@ final class CatalogEnquiry {
 	 * @return modified email classes
 	 */ 
 	function woocommerce_catalog_enquiry_email_setup( $emails ) {
-		require_once( 'emails/class-woocommerce-catalog-enquiry-email.php' );
-		$emails['Woocommerce_Catalog_Enquiry_Email'] = new Woocommerce_Catalog_Enquiry_Email();
+		require_once( 'emails/EnquirySent.php' );
+		$emails['Enquiry_Sent_Email'] = new \Enquiry_Sent_Email();
 		
 		return $emails;
 	}
