@@ -979,6 +979,18 @@ span.stock-manager-pro-tag {
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/CatalogCustomizer/CatalogCustomizer.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************/
+html {
+  scroll-behavior: smooth;
+}
+
+.catelog-customizer-main-wrapper {
+  transition: transform 0.3s linear;
+  transform-origin: 100% 0;
+}
+.catelog-customizer-main-wrapper.change-tab {
+  transform: scale(0);
+}
+
 .catalog-customizer-wrapper .settings-form-label {
   display: none;
 }
@@ -1030,6 +1042,10 @@ span.stock-manager-pro-tag {
   align-items: flex-start;
   margin-bottom: 1rem;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div > div {
   width: 100%;
 }
@@ -1037,8 +1053,29 @@ span.stock-manager-pro-tag {
   cursor: move;
   border: 0.058rem solid rgba(0, 0, 0, 0.125);
   padding: 0.5rem;
+<<<<<<< HEAD
 }
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input input {
+=======
+  position: relative;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input:hover .button-visibility {
+  visibility: visible;
+  opacity: 1;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input .button-visibility {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component > div .additional-input input {
+=======
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .additional-input input {
+>>>>>>> 072e2b30c92b4604ad4bc4dc56cbaed494957f09
+>>>>>>> origin/master
   width: 100%;
   border-radius: 0;
   padding: 0.25rem 0.5rem;
@@ -1092,6 +1129,10 @@ span.stock-manager-pro-tag {
   border: 0.058rem solid rgba(0, 0, 0, 0.125);
   cursor: move;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper > div .btn-wrapper button {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -1099,7 +1140,29 @@ span.stock-manager-pro-tag {
   color: #fff;
   cursor: crosshair;
 }
+<<<<<<< HEAD
 .catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-sku-category {
+=======
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper .button-main-container {
+  position: relative;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper .button-main-container:hover .button-visibility {
+  visibility: visible;
+  opacity: 1;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .button-wrapper .button-main-container .button-visibility {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+}
+.catalog-customizer-wrapper .catelog-customizer .product-data .drag-drop-component .product-sku-category {
+=======
+.catalog-customizer-wrapper .catelog-customizer .product-data .product-sku-category {
+>>>>>>> 072e2b30c92b4604ad4bc4dc56cbaed494957f09
+>>>>>>> origin/master
   display: flex;
   justify-content: flex-start;
   align-items: center;

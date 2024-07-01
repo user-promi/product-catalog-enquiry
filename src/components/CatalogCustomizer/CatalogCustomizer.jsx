@@ -11,12 +11,18 @@ const ButtonDND = (props) => {
   const { setting, updateSetting } = useSetting();
 
   const possitionSetting = setting['shop_page_button_position_setting'] || [];
-
-  console.log(props.currentTab.id); // Log currentTab here
   const [buttonItems, setButtonItems] = useState([]);
 
-  const handleMenuChange = (set, get)=>{
-    console.log(set + get)
+  const handleSubMenuChange = (index, currentTab, menuName) => {
+    if (currentTab.id !== menuName) {
+      window.scrollTo(0, 0)
+      document.getElementById('catelog-customizer-main-wrapper').classList.add('change-tab');
+      props.setCurrentTab(props.menu[index]);
+      setTimeout(() => {
+        document.getElementById('catelog-customizer-main-wrapper').classList.remove('change-tab');
+        
+      }, 500);
+    }
   }
 
   useEffect(() => {
@@ -24,7 +30,8 @@ const ButtonDND = (props) => {
       {
         id: 'enquery_button',
         content: (
-          <div className={props.currentTab.id == "enquiry" ? '' : 'disable'}>
+          <div onClick={() => { handleSubMenuChange(0, props.currentTab, 'enquiry') }} className={`button-main-container ${props.currentTab.id == "enquiry" ? '' : 'disable'}`}>
+            <button className='button-visibility'><i className='admin-font font-support'></i></button>
             <ButtonCustomizer text='enquiry' />
           </div>
         ),
@@ -32,13 +39,14 @@ const ButtonDND = (props) => {
       {
         id: 'cart_button',
         content: (
-            <ButtonCustomizer text='Add to cart' />
+          <ButtonCustomizer text='Add to cart' />
         ),
       },
       {
         id: 'quote_button',
         content: (
-          <div onClick={()=>handleMenuChange(props.currentTab.id, 'quote')} className={props.currentTab.id == "quote" ? '' : 'disable'}>
+          <div onClick={() => { handleSubMenuChange(2, props.currentTab, 'quote') }} className={`button-main-container ${props.currentTab.id == "quote" ? '' : 'disable'}`}>
+            <button className='button-visibility'><i className='admin-font font-support'></i></button>
             <ButtonCustomizer text='Add to quote' />
           </div>
         ),
@@ -46,7 +54,8 @@ const ButtonDND = (props) => {
       {
         id: 'enquery_cart_button',
         content: (
-          <div className={props.currentTab.id == "enquiry_cart" ? '' : 'disable'}>
+          <div onClick={() => { handleSubMenuChange(1, props.currentTab, 'enquiry_cart') }} className={`button-main-container ${props.currentTab.id == "enquiry_cart" ? '' : 'disable'}`}>
+            <button className='button-visibility'><i className='admin-font font-support'></i></button>
             <ButtonCustomizer text='Add to enquiry cart' />
           </div>
         ),
@@ -117,7 +126,7 @@ const ButtonDND = (props) => {
 
 const CatalogCustomizer = (props) => {
   const { setting, updateSetting } = useSetting();
-  
+
   const [menu, setMenu] = useState([
     {
       name: "Enquiry", link: "hi", id: 'enquiry', icon: 'font-info',
@@ -213,7 +222,11 @@ const CatalogCustomizer = (props) => {
     {
       id: 'additional_input',
       content: (props) => (
-        <div className={`additional-input ${props.currentTab.id === 'catalog' ? '' : 'disable'}`}>
+        <div onClick={() => {
+          setCurrentTab(menu[3])
+        }}
+          className={`additional-input ${props.currentTab.id === 'catalog' ? '' : 'disable'}`}>
+          <button className='button-visibility'><i className='admin-font font-support'></i></button>
           <input placeholder='Additional input(optional)' type='text' />
         </div>
       ),
@@ -226,7 +239,9 @@ const CatalogCustomizer = (props) => {
         <ButtonDND
           setting={props.setting}
           onChange={props.onChange}
-          currentTab = {props.currentTab}
+          currentTab={props.currentTab}
+          setCurrentTab={props.setCurrentTab}
+          menu={menu}
         />
       ),
       defaultPosition: 3,
@@ -328,55 +343,57 @@ const CatalogCustomizer = (props) => {
         updateSetting={updateSetting}
         onChange={props.onChange}
       />
-      <section className='catelog-customizer'>
-        <div className='product-img'>
-          <img src={Sample_Product} alt="" />
-        </div>
-        <div className='product-data'>
-          <h1 className='product-name'>V-Neck T-Shirt</h1>
-          <div className='drag-drop-component'>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId='droppable'>
-                {(provided) => (
-                  <div {...provided.droppableProps} ref={provided.innerRef}>
-                    {dragableItems.map((item, index) => (
-                      <>
-                        {
-                          <Draggable key={item.id} draggableId={item.id} index={index} isDragDisabled={!item.dragable}>
-                            {(provided) => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <item.content currentTab={currentTab} />
-                              </div>
-                            )}
-                          </Draggable>
-                        }
-                      </>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
+      <main className='catelog-customizer-main-wrapper' id='catelog-customizer-main-wrapper'>
+        <section className='catelog-customizer'>
+          <div className='product-img'>
+            <img src={Sample_Product} alt="" />
           </div>
-        </div>
-      </section>
-      <section className='single-product-page-description'>
-        <div className='option'>
-          <ul>
-            <li className='active'>Description <span><i className='admin-font font-keyboard_arrow_down'></i></span></li>
-            <li>Additional Information</li>
-            <li>Review</li>
-          </ul>
-        </div>
-        <div className='description'>
-          <h2>Description</h2>
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-        </div>
-      </section>
+          <div className='product-data'>
+            <h1 className='product-name'>V-Neck T-Shirt</h1>
+            <div className='drag-drop-component'>
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId='droppable'>
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {dragableItems.map((item, index) => (
+                        <>
+                          {
+                            <Draggable key={item.id} draggableId={item.id} index={index} isDragDisabled={!item.dragable}>
+                              {(provided) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <item.content currentTab={currentTab} setCurrentTab={setCurrentTab} />
+                                </div>
+                              )}
+                            </Draggable>
+                          }
+                        </>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            </div>
+          </div>
+        </section>
+        <section className='single-product-page-description'>
+          <div className='option'>
+            <ul>
+              <li className='active'>Description <span><i className='admin-font font-keyboard_arrow_down'></i></span></li>
+              <li>Additional Information</li>
+              <li>Review</li>
+            </ul>
+          </div>
+          <div className='description'>
+            <h2>Description</h2>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+          </div>
+        </section>
+      </main>
     </>
   )
 }

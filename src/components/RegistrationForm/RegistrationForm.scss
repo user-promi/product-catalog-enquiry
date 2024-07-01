@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'admin-font';
+    src:  url('fonts/admin-font.eot?9jwf8g');
+    src:  url('fonts/admin-font.eot?9jwf8g#iefix') format('embedded-opentype'),
+      url('fonts/admin-font.ttf?9jwf8g') format('truetype'),
+      url('fonts/admin-font.woff?9jwf8g') format('woff'),
+      url('fonts/admin-font.svg?9jwf8g#admin-font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="font-"], [class*=" font-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'admin-font' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .font-delete:before {
+    content: "\e5800";
+  }
+  .font-text_fields:before {
+    content: "\e5201";
+  }
+  .font-move:before {
+    content: "\e5402";
+  }
+  
+.registrationFrom-main-wrapper-section {
+    margin-top: 5rem;
+
+    $menu-btn-color: #522c81;
+    $body-background: #f9f9f9;
+    $color-white: #fff;
+    $menu-color: #f9f8fb;
+    $color-active: #65438f;
+
+    .form-heading {
+        width: 100%;
+        padding: 2rem;
+        background-color: $color-white;
+
+        input {
+            font-size: 1.75rem;
+            border: 0;
+            padding: 0;
+            outline: 0;
+            box-shadow: none;
+            line-height: 1.5;
+            width: 100%;
+            border-radius: 0;
+
+            &:focus,
+            &:hover {
+                box-shadow: 0rem 0rem 0rem 0.126rem rgb(255, 255, 255), 0rem 0rem 0rem 0.189rem rgba(33, 33, 33, 0.5);
+            }
+        }
+
+        .registration-form-description {
+            margin-top: 0.625rem;
+            font-style: italic;
+            color: rgba(114, 114, 117, 0.6);
+            font-size: 0.875rem;
+            line-height: 1.5714285714;
+        }
+    }
+    
+    .addnew{
+        border: 1px dotted rgba($color: #000000, $alpha: 0.125);
+        background: $menu-color;
+        padding: 2.5rem;
+        max-width: 600px;
+        margin: 1.5rem auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-white;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            background: $menu-btn-color;
+        }
+    
+        p{
+            color: #000000;
+        }
+    }
+
+    .form-field{
+      background-color: $color-white;
+      padding: 2rem;
+      margin: 3rem 0;
+      position: relative;
+      background: $color-white;
+      // border: 0.125rem solid rgba(0, 0, 0, 0.125);
+
+      
+      .drag-handle{
+        width: 11rem;
+        position: absolute;
+        top: -32px;
+        left: 50%;
+        transform: translateX(-50%);
+        clip-path: polygon(30% 0, 70% 0%, 100% 100%, 0% 100%);
+        background: #f9f8fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        height: 2rem;
+        // border: 0.125rem solid rgba(0, 0, 0, 0.125);
+
+        .bth-move{
+          cursor: grab;
+        }
+
+        .btn-delete{
+          cursor: pointer;
+        }
+        
+        i{
+          font-size: 1rem;
+        }
+      }
+
+      .form-field-wrapper{
+        display: flex ;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .field-title-section{
+          width: 100%;
+
+          input{
+            font-size: 1.15rem;
+            border: 0;
+            padding: 0;
+            outline: 0;
+            box-shadow: none;
+            line-height: 1.5;
+            width: 100%;
+            border-radius: 0;
+
+            &:hover, &:focus{
+              box-shadow: 0rem 0rem 0rem 0.126rem rgb(255, 255, 255), 0rem 0rem 0rem 0.189rem rgba(33, 33, 33, 0.5);
+            }
+          }
+        }
+
+        .field-type-section{
+          max-width: 300px;
+          width: 100%;
+          position: relative;
+
+          .field-option-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid red;
+            z-index: 1;
+            background-color: $color-white;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 0.25rem;
+          }
+        }
+      }
+    }
+}
+
+
+
+.border-5 {
+    border: 5px solid black;
+}

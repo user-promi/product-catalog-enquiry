@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const SubTabSection = (props) => {
     const { menuitem, currentTab, setCurrentTab } = props;
 
-    const [selectedMenu, setSelectedMenu] = useState( currentTab || menuitem[0] );
     const [menuOpen, setMenuOpen] = useState(false);
 
     const [settings, setSettings] = useState(props.setting);
@@ -32,9 +31,8 @@ const SubTabSection = (props) => {
                 {menuitem.map((menu, index) => (
                     <div
                         key={index}
-                        className={`tab-section-menu ${ menu.id === selectedMenu.id ? 'active' : '' }`}
+                        className={`tab-section-menu ${ menu.id === currentTab.id ? 'active' : '' }`}
                         onClick={(e) => {
-                            setSelectedMenu(menu);
                             setCurrentTab(menu)
                         }}
                     >
@@ -55,9 +53,9 @@ const SubTabSection = (props) => {
                 {
                     menuOpen ?
                         <div className='tab-menu-setting-wrapper'>
-                            <p className='tab-heading'>{selectedMenu.name}</p>
+                            <p className='tab-heading'>{currentTab.name}</p>
                             <div className='setting-wrapper-section'>
-                                {selectedMenu.setting?.map((setting, index) => {
+                                {currentTab.setting?.map((setting, index) => {
                                     return (
                                         <div className='tab-menu-setting-item' key={index}>
                                             <p className='setting-title'>{setting.name} <i title={setting.description} className='admin-font font-info'></i></p>
@@ -96,7 +94,7 @@ const SubTabSection = (props) => {
                             <Link to={''} className='advanced-setting-btn'>Advanced settings</Link>
                         </div>
                         :
-                        <i className={`tab-slide-btn admin-font ${selectedMenu.icon}`}></i>
+                        <i className={`tab-slide-btn admin-font ${currentTab.icon}`}></i>
                 }
             </div>
         </>
