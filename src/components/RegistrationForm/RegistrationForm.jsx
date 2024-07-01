@@ -13,7 +13,7 @@ const sampleArray = [
     },
     {
       id: 2,
-      type: 'textbox',
+      type: 'textarea',
       label: 'First Name',
       placeholder: 'Enter your first name',
       description: 'Your given name',
@@ -49,6 +49,14 @@ const sampleArray = [
       label: 'Phone Number',
       placeholder: 'Enter your phone number',
       description: 'Include country code if outside the US',
+      required: false,
+    },
+    {
+      id: 7,
+      type: 'checkboxes',
+      label: 'What you have',
+      placeholder: '',
+      description: 'If you have not any car you are poor!!!',
       required: false,
     }
 ];
@@ -86,7 +94,7 @@ const selectOptions = [
     },
     {
         icon: 'icon-form-multi-select',
-        value: 'multi-select',
+        value: 'multiselect',
         label: 'Multi Select'
     },
     {
@@ -326,7 +334,7 @@ const CustomFrom = (props) => {
     /**
      * Function that handle type change for a particular form field
      * @param {*} index 
-     * @param {*} newType 
+     * @param {*} newType
      */
     const handleFormFieldTypeChange = (index, newType) => {
         console.log(index);
@@ -431,15 +439,21 @@ const CustomFrom = (props) => {
                                             {
                                                 (
                                                     formField.type == 'checkboxes' ||
-                                                    formField.type == 'multi-select' ||
+                                                    formField.type == 'multiselect' ||
                                                     formField.type == 'radio' ||
                                                     formField.type == 'dropdown'
                                                 ) &&
-                                                <div> Multiple Options </div>
+                                                <Template.MultipleOptions
+                                                    formField={formField}
+                                                    onChange={(key, value) => { console.log(key, value) }}
+                                                />
                                             }
                                             {
                                                 formField.type == 'textarea' &&
-                                                <div> Text Area </div>
+                                                <Template.Textarea
+                                                    formField={formField}
+                                                    onChange={(key, value) => { console.log(key, value) }}
+                                                />
                                             }
                                             {
                                                 formField.type == 'datepicker' &&
