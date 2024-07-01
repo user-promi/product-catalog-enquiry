@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { FaArrowsAlt } from 'react-icons/fa';
 import Template from "./Templates";
+import './RegistrationForm.scss'
 
 // Sample data for testings
 const sampleArray = [
@@ -12,44 +13,44 @@ const sampleArray = [
         required: true,
     },
     {
-      id: 2,
-      type: 'textbox',
-      label: 'First Name',
-      placeholder: 'Enter your first name',
-      description: 'Your given name',
-      required: true,
+        id: 2,
+        type: 'textbox',
+        label: 'First Name',
+        placeholder: 'Enter your first name',
+        description: 'Your given name',
+        required: true,
     },
     {
-      id: 3,
-      type: 'text',
-      label: 'Last Name',
-      placeholder: 'Enter your last name',
-      description: 'Your family name',
-      required: true,
+        id: 3,
+        type: 'text',
+        label: 'Last Name',
+        placeholder: 'Enter your last name',
+        description: 'Your family name',
+        required: true,
     },
     {
-      id: 4,
-      type: 'email',
-      label: 'Email Address',
-      placeholder: 'Enter your email address',
-      description: 'We will not share your email with anyone',
-      required: true,
+        id: 4,
+        type: 'email',
+        label: 'Email Address',
+        placeholder: 'Enter your email address',
+        description: 'We will not share your email with anyone',
+        required: true,
     },
     {
-      id: 5,
-      type: 'password',
-      label: 'Password',
-      placeholder: 'Create a password',
-      description: 'Must be at least 8 characters long',
-      required: true,
+        id: 5,
+        type: 'password',
+        label: 'Password',
+        placeholder: 'Create a password',
+        description: 'Must be at least 8 characters long',
+        required: true,
     },
     {
-      id: 6,
-      type: 'tel',
-      label: 'Phone Number',
-      placeholder: 'Enter your phone number',
-      description: 'Include country code if outside the US',
-      required: false,
+        id: 6,
+        type: 'tel',
+        label: 'Phone Number',
+        placeholder: 'Enter your phone number',
+        description: 'Include country code if outside the US',
+        required: false,
     }
 ];
 
@@ -130,88 +131,156 @@ const selectOptions = [
 /**
  * Component that render form field type ( dropdown ) 
  */
-const FormFieldSelect = ( props ) => {
+const FormFieldSelect = (props) => {
     const { inputTypeList, formField, onChange } = props;
 
     // State variable for select type dropdown open or closed.
-    const [ dropdownOpen, setDropdownOpen ] = useState( false );
-    
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
     // Find selected input type.
-    const selectedInputType = inputTypeList.find( ( inputType ) => inputType.value === formField.type );
-    
+    const selectedInputType = inputTypeList.find((inputType) => inputType.value === formField.type);
+
     return (
-        <div
-            className=""
+        <main
+            className="form-field-wrapper"
             onClick={(event) => {
                 event.stopPropagation();
-                setDropdownOpen( ! dropdownOpen );
+                setDropdownOpen(!dropdownOpen);
             }}
         >
-            {
-                selectedInputType ?
-                    (   
-                        <div>
-                            <i className={ `${ selectedInputType.icon }` } />
-                            {<span>{ selectedInputType.label }</span>}
-                        </div>
-                        
-                    ) : (
-                        <div>
-                            <i className={ `${ 'icon-select-question-type' }` } />
-                            { <span>Select question type</span> }
-                        </div>
-                    )
-            }
+                <div className="field-title-section">
+                    <input type="text" placeholder="Enter field name" />
+                </div>
+                <div className="field-type-section">
+                    {
+                        dropdownOpen == false && (
+                            selectedInputType ? 
+                                (
+                                    <>
+                                        <i className={`${selectedInputType.icon}`} />
+                                        <span>{selectedInputType.label}</span>
+                                    </>
 
-            {
-                dropdownOpen &&
-                inputTypeList.map(( inputType ) => (
-                    <div
-                        className={ `${ inputType.value ===  formField.type ? 'selected' : '' }` }
-                        onClick={(event) => {
-                            onChange?.( inputType.value );
-                        }}
-                    >
-                        <i className={ `${ inputType.icon }` } />
-                        { <span>{ inputType.label }</span> }
-                    </div>
-                ))
-            }
-        </div>
+                                )
+                            : 
+                                (
+                                    <>
+                                        <span>Select question type</span>
+                                        <i className={`${'icon-select-question-type'}`} />
+                                    </>
+                                )
+                        )
+                    }
+                        {
+                            dropdownOpen &&
+                                <div className="field-option-container">
+                                    {
+                                        inputTypeList.map((inputType) => (
+                                            <div
+                                            className={`${inputType.value === formField.type ? 'selected' : ''}`}
+                                            onClick={(event) => {
+                                                onChange?.(inputType.value);
+                                            }}
+                                            >
+                                                <i className={`${inputType.icon}`} />
+                                                {<span>{inputType.label}</span>}
+                                            </div>
+                                        ))}
+                                </div>
+                        }
+                </div>
+
+        </main>
     );
 }
 
 /**
  * Component that render action section example ( remove, add new )
  */
-const ActionIcon = (props) => {
-    const { onDelete, onAddNew, onRequiredChange, formField } = props;
-    const { hideRequired, hideDelete, hideAddNew } = props;
+
+const AddNewBtn = (props) => {
+    const { onAddNew } = props;
+    const { hideAddNew } = props;
 
     return (
-        <div className="action-icon">
-            <div className={`required ${hideRequired ? 'disable': ''}`}>
+        <>
+            <div
+                className={`addnew ${hideAddNew ? 'disable' : ''}`}
+            >
+                <button onClick={
+                    (event) => {
+                        event.preventDefault();
+                        onAddNew?.()
+                    }}>
+                        <i className="admin-font font-move"></i>
+                </button>
+                <p>Click to add new field</p>
+            </div>
+        </>
+    )
+}
+
+const RequiredBtn = (props) => {
+    const { onRequiredChange, formField } = props;
+    const { hideRequired } = props;
+
+    return (
+        <>
+            <div className={`required ${hideRequired ? 'disable' : ''}`}>
                 <input
                     type="checkbox"
                     checked={formField?.required}
-                    onChange={(event) => onRequiredChange?.( event.target.checked )}
+                    onChange={(event) => onRequiredChange?.(event.target.checked)}
                 />
             </div>
+        </>
+    )
+}
+
+const DeleteBtn = (props) => {
+    const { onDelete } = props;
+    const { hideDelete } = props;
+
+    return (
+        <>
             <div
                 className={`delete ${hideDelete ? 'disable' : ''}`}
                 onClick={(event) => onDelete?.()}
             >
-                Delete
+               <i className="admin-font font-close"></i>
             </div>
-            <div 
-                className={`addnew ${hideAddNew ? 'disable' : ''}`}
-                onClick={(event) => onAddNew?.()}
-            >
-                AddNew
-            </div>
-        </div>
-    );
+        </>
+    )
 }
+
+// const ActionIcon = (props) => {
+//     const { onDelete, onAddNew, onRequiredChange, formField } = props;
+//     const { hideRequired, hideDelete, hideAddNew } = props;
+
+//     return (
+//         <div className="action-icon">
+//             <div className={`required ${hideRequired ? 'disable': ''}`}>
+//                 <input
+//                     type="checkbox"
+//                     checked={formField?.required}
+//                     onChange={(event) => onRequiredChange?.( event.target.checked )}
+//                 />
+//             </div>
+//             <div
+//                 className={`delete ${hideDelete ? 'disable' : ''}`}
+//                 onClick={(event) => onDelete?.()}
+//             >
+//                 Delete
+//             </div>
+//             <div 
+//                 className={`addnew ${hideAddNew ? 'disable' : ''}`}
+//                 onClick={(event) => onAddNew?.()}
+//             >
+//                 AddNew
+//             </div>
+//         </div>
+//     );
+// }
 
 
 // props value 
@@ -222,12 +291,12 @@ const ActionIcon = (props) => {
 const CustomFrom = (props) => {
     ////////////// Define state variable here /////////////////
 
-    
+
     // Contain list of selected form fields.
     const [formFieldList, setFormFieldList] = useState(() => {
         // Form field list can't be empty it should contain atlest form title.
         // This action prevent any backend action for empty form field list.
-        
+
         if (!Array.isArray(sampleArray) || sampleArray.length <= 0) {
             return [{
                 id: 1,
@@ -254,11 +323,11 @@ const CustomFrom = (props) => {
     }, [])
 
     ////////////// Define functionality here /////////////////
-    
+
     /**
      * Function generate a empty form field and return it.
      */
-    const getNewFormField = ( type ) => {
+    const getNewFormField = (type) => {
         const newFormField = {
             id: randMaxId,
             type: type,
@@ -269,8 +338,8 @@ const CustomFrom = (props) => {
         };
 
         // update randMaxId by 1
-        setRendMaxId( randMaxId + 1 );
-        
+        setRendMaxId(randMaxId + 1);
+
         return newFormField;
     };
 
@@ -287,7 +356,7 @@ const CustomFrom = (props) => {
             newField,
             ...formFieldList.slice(index + 1)
         ];
-    
+
         // Update the state with the new array
         setFormFieldList(newFormFieldList);
 
@@ -311,8 +380,8 @@ const CustomFrom = (props) => {
      */
     const handleFormFieldChange = (index, key, value) => {
         // copy the form field before modify
-        const newFormFieldList = [ ...formFieldList ]
-        
+        const newFormFieldList = [...formFieldList]
+
         // Update the new form field list
         newFormFieldList[index] = {
             ...newFormFieldList[index],
@@ -332,21 +401,21 @@ const CustomFrom = (props) => {
         console.log(index);
         // Get the input which one is selected
         const selectedFormField = formFieldList[index];
-        
+
         // Check if selected type is previously selected type  
         if (selectedFormField.type == newType) { return }
-        
+
         // Create a empty form field for that position
         const newFormField = getNewFormField(newType);
-        
+
         // Copy some previously added data
-        newFormField['label']       = selectedFormField['label'];
+        newFormField['label'] = selectedFormField['label'];
         newFormField['placeholder'] = selectedFormField['placeholder'];
         newFormField['description'] = selectedFormField['description'];
-        newFormField['required']    = selectedFormField['required'];
-        
+        newFormField['required'] = selectedFormField['required'];
+
         // Replace the newly created form field with old one
-        const newFormFieldList  = [...formFieldList];
+        const newFormFieldList = [...formFieldList];
         newFormFieldList[index] = newFormField;
 
         setFormFieldList(newFormFieldList);
@@ -355,38 +424,38 @@ const CustomFrom = (props) => {
     return (
         // Render Registration form here
         <div
-            className=""
+            className="registrationFrom-main-wrapper-section"
         >
             {/* Render form title here */}
             {
-                <div
-                    className=""
-                    onClick={(event) => {
-                        event.stopPropagation();
-                        setOpendInput(formFieldList[0]);
-                    }}
-                >
-                    <div className="">
+                <>
+                    <div className="form-heading">
                         <input
-                            className=""
                             type="text"
-                            placeholder={ props.formTitlePlaceholder }
-                            value={ formFieldList[ 0 ]?.label }
-                            onChange={ ( event ) => { handleFormFieldChange( 0, 'label', event.target.value ) } }
+                            placeholder={props.formTitlePlaceholder}
+                            value={formFieldList[0]?.label}
+                            onChange={(event) => { handleFormFieldChange(0, 'label', event.target.value) }}
                         />
-                        <div className="mvx-registration-form-description">
-                            { props.formTitleDescription }
+                        <div className="registration-form-description">
+                            {props.formTitleDescription}
                         </div>
                     </div>
-                    <ActionIcon
+                        {/* <ActionIcon
                         hideRequired={true}
                         hideDelete={true}
                         onAddNew={() => {
                             const newInput = appendNewFormField(0);
                             setOpendInput(newInput);
                         }}
-                    />
-                </div>
+                        /> */}
+
+                    {/* <AddNewBtn
+                        onAddNew={() => {
+                            const newInput = appendNewFormField(0);
+                            setOpendInput(newInput);
+                        }}
+                    /> */}
+                </>
             }
 
             {/* Render form fields here */}
@@ -403,20 +472,31 @@ const CustomFrom = (props) => {
                             if ( index === 0 ) { return <div style={{display: 'none'}}></div> }
                             
                             return (
-                                <div style={{ marginTop: '20px' }}>
+                                <main className="form-field">
 
                                     {/* Render grab icon for drag and drop */}
-                                    <span className="drag-handle" style={{  cursor: 'grab' }}>
-                                        <FaArrowsAlt />
-                                    </span>
+                                    <section className="drag-handle">
+                                        <div className="bth-move">
+                                            <i className="admin-font font-move"></i>
+                                        </div>
+                                        <div className="btn-delete">
+                                            <DeleteBtn
+                                                onDelete={() => {
+                                                    deleteParticularFormField(index);
+                                                    setOpendInput(null);
+                                                }}
+                                            />
+                                        </div>
+                                    </section>
 
                                     {/* Render main content */}
-                                    <div
+                                    <section
                                         className={opendInput?.id != formField.id ? 'hidden-list' : ''}
                                         onClick={(event) => { setOpendInput(formField) }}
                                     >
+                                        
                                         {/* Render question name here */}
-                                        <div className="" style={{ 'border': '1px solid black' }}>
+                                        <div className="">
                                             {
                                                 (
                                                     formField.type == 'textbox' ||
@@ -462,20 +542,18 @@ const CustomFrom = (props) => {
                                                 <div> Section </div>
                                             }
                                         </div>
-                                    </div>
+                                    </section>
 
                                     {/* Render type-select section here */}
-                                    {
-                                        opendInput?.id == formField.id &&
+                                        
                                         <FormFieldSelect
                                             inputTypeList={selectOptions}
                                             formField={formField}
                                             onChange={(inputType) => { handleFormFieldTypeChange(index, inputType) }}
                                         />
-                                    }
 
                                     {/* Render action icon */}
-                                    <ActionIcon
+                                    {/* <ActionIcon
                                         formField={formField}
                                         onAddNew={() => {
                                             const newInput = appendNewFormField(index);
@@ -489,13 +567,21 @@ const CustomFrom = (props) => {
                                             console.log(required);
                                             handleFormFieldChange(index, 'required', required);
                                         }}
-                                    />
-                                </div>
+                                    /> */}
+                                </main>
                             )
                         })
                     }
                 </ReactSortable>
             }
+
+            <AddNewBtn
+                onAddNew={() => {
+                    const newInput = appendNewFormField(0);
+                    setOpendInput(newInput);
+                }}
+            />
+
         </div>
     );
 }
