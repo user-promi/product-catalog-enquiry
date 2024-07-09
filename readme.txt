@@ -1,6 +1,6 @@
 ﻿=== CatalogX - Product Catalog Mode For WooCommerce ===
 Contributors: wcmp
-Tags: catalog, enquiry, product inquiry, woocommerce, catalogue, e-commerce, Catalog marketing, Catalog manager, Product catalog template, Product list, eCommerce Product Catalog, Product Catalog Features, Product Catalog plugin, Change category prefix, easily disable price, new catalogue, filter product display, Catalog preview mode, custom product page, product edit screen, product inquiry cart, display product catalog, Apply Catalog Mode, inquiry form, product online, Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
+Tags: product inquiry, enquiry, woocommerce catalogue ,inquiry form, Product Catalog Features
 Donate link: https://multivendorx.com/donate
 Requires at least: 5.0
 Tested up to: 6.5.4
