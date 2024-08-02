@@ -116,7 +116,7 @@ export default class DynamicForm extends React.Component {
 	handleSaveNewRegistration( e ) {
 		axios( {
 			method: 'post',
-			url: `${ catalogappLocalizer.apiUrl }/mvx_catalog_pro/v1/update_enquiry_data`,
+			url: `${ catalogappLocalizer.apiurl }/mvx_catalog_pro/v1/update_enquiry_data`,
 			data: {
 				form_data: JSON.stringify(
 					this.state.mvx_registration_fileds_list
@@ -479,7 +479,7 @@ export default class DynamicForm extends React.Component {
 	handle_Vendor_active_suspend( e, api, status, vendor_id ) {
 		axios( {
 			method: 'post',
-			url: `${ catalogappLocalizer.apiUrl }/mvx_module/v1/active_suspend_vendor`,
+			url: `${ catalogappLocalizer.apiurl }/mvx_module/v1/active_suspend_vendor`,
 			data: {
 				status,
 				vendor_id,
@@ -736,7 +736,7 @@ export default class DynamicForm extends React.Component {
 		delete this.state.mapInstance;
 		axios( {
 			method: this.props.method,
-			url: catalogappLocalizer.apiUrl + '/' + this.props.url,
+			url: catalogappLocalizer.apiurl + '/' + this.props.url,
 			headers: { 'X-WP-Nonce' : catalogappLocalizer.nonce },
 			data: {
 				model: this.state,
@@ -796,7 +796,7 @@ export default class DynamicForm extends React.Component {
 				geocoder.on( 'result', function ( ev ) {
 					axios( {
 						method: 'post',
-						url: `${ catalogappLocalizer.apiUrl }/mvx_module/v1/update_vendor_store`,
+						url: `${ catalogappLocalizer.apiurl }/mvx_module/v1/update_vendor_store`,
 						data: {
 							places: ev.result.place_name,
 							lat: ev.result.center[ 0 ],
@@ -813,7 +813,7 @@ export default class DynamicForm extends React.Component {
 
 		if ( ! catalogappLocalizer.pro_active ) {
 			axios( {
-				url: `${ catalogappLocalizer.apiUrl }/mvx_catalog_pro/v1/fetch_enquiry_data`,
+				url: `${ catalogappLocalizer.apiurl }/mvx_catalog_pro/v1/fetch_enquiry_data`,
 			} ).then( ( response ) => {
 				let formJson4 = this.state.mvx_registration_fileds_list;
 				if ( response.data.length > 0 ) {
@@ -2716,7 +2716,7 @@ export default class DynamicForm extends React.Component {
 												onClick={ ( e ) =>
 													axios( {
 														method: 'post',
-														url: `${ catalogappLocalizer.apiUrl }/mvx_membership/v1/update_membership`,
+														url: `${ catalogappLocalizer.apiurl }/mvx_membership/v1/update_membership`,
 														data: {
 															action: 'verified',
 															id: row.user_id,
@@ -3771,7 +3771,7 @@ export default class DynamicForm extends React.Component {
 
 		axios( {
 			method: 'post',
-			url: `${ catalogappLocalizer.apiUrl }/mvx_module/v1/update_vendor_store`,
+			url: `${ catalogappLocalizer.apiurl }/mvx_module/v1/update_vendor_store`,
 			data: {
 				places: place_data,
 				lat: place.geometry.location.lat(),

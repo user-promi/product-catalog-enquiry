@@ -99,25 +99,6 @@ jQuery( document ).ready( function ( $ ) {
 		}
 	);
 
-	var $enquiryButton = $('#woocommerce-catalog'); 
-
-	if ($('form.variations_form').length > 0) {
-		$enquiryButton.hide();
-	}
-
-	
-	$('form.variations_form').on('show_variation', function(event, variation) {
-		$enquiryButton.show();
-	});
-
-	$('form.variations_form').on('hide_variation', function(event) {
-		$enquiryButton.hide();
-	});
-
-	$('form.variations_form').on('reset_data', function(event) {
-		$enquiryButton.hide();
-	});
-
 	$( '#woocommerce-submit-enquiry' ).on( 'click', function () {
 		var name = document.getElementById( 'woocommerce-user-name' ).value;
 		var email = document.getElementById( 'woocommerce-user-email' ).value;

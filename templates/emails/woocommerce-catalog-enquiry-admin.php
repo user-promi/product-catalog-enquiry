@@ -13,82 +13,91 @@ do_action( 'woocommerce_email_header', $email_heading ); ?>
 <p><?php esc_html_e('Dear Admin','woocommerce-catalog-enquiry');?>,</p>
 <p><?php esc_html_e('Please find the product enquiry, details are given below','woocommerce-catalog-enquiry');?>.</p>
 
-<?php
-$product_obj = wc_get_product( $product_id );
-
-?>
 <h3><?php esc_html_e( 'Product Details', 'woocommerce-catalog-enquiry' ); ?></h3>
 <table cellspacing="0" cellpadding="6" style="width: 100%; border: 1px solid #eee;" border="1" bordercolor="#eee">
 	<thead>
 		<tr>
 			<th scope="col"><?php esc_html_e( 'Product', 'woocommerce-catalog-enquiry' ); ?></th>
 			<th scope="col"><?php esc_html_e( 'Product Url', 'woocommerce-catalog-enquiry' ); ?></th>
-			<?php if ($product_obj->get_sku()) { ?>
 			<th scope="col"><?php esc_html_e( 'Product SKU', 'woocommerce-catalog-enquiry' ); ?></th>
-			<?php } ?>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+		<?php 
+		if (is_array($product_id)) {
+			foreach ($product_id as $id) {
+				$product_obj = wc_get_product( $id ); ?>
+				<tr>
+				<td scope="col"><?php echo $product_obj->get_name(); ?>
+				<?php 
+					if ($product_obj->get_type() == 'variation') {
+						if (isset($enquiry_data['variations']) && count($enquiry_data['variations']) > 0 ) {
+							foreach ($enquiry_data['variations'] as $label => $value) {
+								$label = str_replace( 'attribute_pa_', '', $label );
+								$label = str_replace( 'attribute_', '', $label );
+								echo "<br>".ucfirst($label).": ".ucfirst($value);
+							} 
+						}else{
+							if ($product_obj->get_attributes()) {
+								foreach ($product_obj->get_attributes() as $label => $value) {
+									echo "<br>".ucfirst(wc_attribute_label($label)).": ".ucfirst($value);
+								}
+							}
+						}
+					} ?>
+				</td>
+				<td scope="col"><a href="<?php echo $product_obj->get_permalink(); ?>" target="_blank"><?php echo $product_obj->get_title(); ?></a></td>
+				<?php if ($product_obj->get_sku()) { ?>
+				<td scope="col"><?php echo $product_obj->get_sku(); ?></td>
+				<?php } else { ?>
+					<td scope="col"><?php echo '-'; ?></td>
+				<?php }?>
+			</tr>
+			<?php
+			}
+		} else {
+			$product_obj = wc_get_product( $product_id ); ?>
+			<tr>
 			<td scope="col"><?php echo $product_obj->get_name(); ?>
 			<?php 
-                        if ($product_obj->get_type() == 'variation') {
-                            if (isset($enquiry_data['variations']) && count($enquiry_data['variations']) > 0 ) {
-                                foreach ($enquiry_data['variations'] as $label => $value) {
-                                    $label = str_replace( 'attribute_pa_', '', $label );
-                                    $label = str_replace( 'attribute_', '', $label );
-                                    echo "<br>".ucfirst($label).": ".ucfirst($value);
-                                } 
-                            }else{
-                                if ($product_obj->get_attributes()) {
-                                    foreach ($product_obj->get_attributes() as $label => $value) {
-                                      echo "<br>".ucfirst(wc_attribute_label($label)).": ".ucfirst($value);
-                                    }
-                                }
-                            }
-                        } ?>
+				if ($product_obj->get_type() == 'variation') {
+					if (isset($enquiry_data['variations']) && count($enquiry_data['variations']) > 0 ) {
+						foreach ($enquiry_data['variations'] as $label => $value) {
+							$label = str_replace( 'attribute_pa_', '', $label );
+							$label = str_replace( 'attribute_', '', $label );
+							echo "<br>".ucfirst($label).": ".ucfirst($value);
+						} 
+					}else{
+						if ($product_obj->get_attributes()) {
+							foreach ($product_obj->get_attributes() as $label => $value) {
+								echo "<br>".ucfirst(wc_attribute_label($label)).": ".ucfirst($value);
+							}
+						}
+					}
+				} ?>
 			</td>
 			<td scope="col"><a href="<?php echo $product_obj->get_permalink(); ?>" target="_blank"><?php echo $product_obj->get_title(); ?></a></td>
 			<?php if ($product_obj->get_sku()) { ?>
 			<td scope="col"><?php echo $product_obj->get_sku(); ?></td>
-			<?php } ?>
+			<?php } else { ?>
+				<td scope="col"><?php echo '-'; ?></td>
+			<?php }?>
 		</tr>
+		<?php
+		}
+		?>
 	</tbody>
 </table>
 
 <h3><?php esc_html_e( 'Customer Details', 'woocommerce-catalog-enquiry' ); ?></h3>
 <p>
 	<strong><?php esc_html_e( 'Name', 'woocommerce-catalog-enquiry' ); ?> : </strong>
-	<?php echo $enquiry_data['cust_name']; ?>
+	<?php echo $enquiry_data['user_name']; ?>
 </p>
 <p>
 	<strong><?php esc_html_e( 'Email', 'woocommerce-catalog-enquiry' ); ?> : </strong>
-	<a target="_blank" href="mailto:<?php echo $enquiry_data['cust_email']; ?>"><?php echo $enquiry_data['cust_email']; ?></a>
+	<a target="_blank" href="mailto:<?php echo $enquiry_data['user_email']; ?>"><?php echo $enquiry_data['user_email']; ?></a>
 </p>
-<?php if (isset($enquiry_data['phone'])) { ?>
-<p>
-	<strong><?php esc_html_e("User Phone : ",'woocommerce-catalog-enquiry'); ?> </strong>
-	<?php echo $enquiry_data['phone']; ?>
-</p>
-<?php } ?>
-<?php if (isset($enquiry_data['address'])) { ?>
-<p>
-	<strong><?php esc_html_e( "User Address : ",'woocommerce-catalog-enquiry' ); ?> </strong>
-	<?php echo $enquiry_data['address']; ?>
-</p>
-<?php } ?>
-<?php if (isset($enquiry_data['subject'])) { ?>
-<p>
-	<strong><?php esc_html_e( "User Subject : ",'woocommerce-catalog-enquiry' ); ?> </strong>
-	<?php echo $enquiry_data['subject']; ?>
-</p>
-<?php } ?>
-<?php if (isset($enquiry_data['comment'])) { ?>
-<p>
-	<strong><?php esc_html_e( "User Comments : ",'woocommerce-catalog-enquiry' ); ?> </strong>
-	<?php echo $enquiry_data['comment']; ?>
-</p>
-<?php } ?>
 
 <table cellspacing="0" cellpadding="10" border="0" width="100%">
 	<tbody>

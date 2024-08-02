@@ -36,7 +36,7 @@ export default class TabSection extends Component {
 			: query_name;
 		if ( this.props.subtab !== this.state.current_url ) {
 			axios( {
-				url: `${ catalogappLocalizer.apiUrl }/mvx_catalog/v1/fetch_admin_tabs`,
+				url: `${ catalogappLocalizer.apiurl }/mvx_catalog/v1/fetch_admin_tabs`,
 				headers: { 'X-WP-Nonce' : catalogappLocalizer.nonce } 
 			} ).then( ( response ) => {
 				this.setState( {
