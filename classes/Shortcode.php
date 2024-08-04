@@ -20,10 +20,10 @@ class Shortcode {
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts'] );
 
         // Hook the function to template_redirect
-        add_action( 'template_redirect', [ $this, 'my_custom_redirect' ]);
+        add_action( 'template_redirect', [ $this, 'wholesale_shop_page_redirect' ]);
     }
 
-    function my_custom_redirect() {
+    function wholesale_shop_page_redirect() {
         // Redirect to shop page if the user is not a wholesale user
         if (is_page('wholesale-product-list') && !Util::is_wholesale_user() ) {
             // Redirect to the shop page if the user is not a wholesale user
@@ -73,12 +73,6 @@ class Shortcode {
     function display_wholesale_product_list() {
         // Start output buffering to capture the output
         ob_start();
-        // Check if the user is a wholesale user
-        if ( !Util::is_wholesale_user() ) {
-            // Redirect to the shop page if the user is not a wholesale user
-            wp_redirect( get_permalink( get_option('woocommerce_shop_page_id') ) );
-            exit;
-        }
         ?>
         <div id="wholesale_product_list">
         </div>
