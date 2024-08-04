@@ -76,9 +76,9 @@ final class CatalogEnquiry {
 	 * Load setup class 
 	 */
 	function catalog_setup_wizard() {
-		
-		new SetupWizard();
+
 		if (get_option('catalog_plugin_activated')) {
+			new SetupWizard();
 			delete_option('catalog_plugin_activated');
 			wp_redirect(admin_url('admin.php?page=catalog-setup'));
 			exit;

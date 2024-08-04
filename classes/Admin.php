@@ -204,7 +204,7 @@ class Admin {
         $current_user      = wp_get_current_user();
         $current_user_role = '';
         if ( ! empty( $current_user->roles ) && is_array( $current_user->roles ) ) {
-            $current_user_role = $current_user->roles[0];
+            $current_user_role = reset($current_user->roles);
         }
 
         // Get all tab setting's database value

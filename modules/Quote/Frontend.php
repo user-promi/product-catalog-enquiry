@@ -15,10 +15,8 @@ class Frontend {
         }
         add_action ('display_shop_page_button', [ $this, 'add_button_for_quote'] );
         add_action('woocommerce_after_shop_loop_item', [$this, 'add_button_for_quote'], 11 );
-        //exclusion
-        add_action( 'woocommerce_single_product_summary', [$this, 'catalog_woocommerce_template_single'], 5 );
-
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+
     }
 
     /**
@@ -47,6 +45,12 @@ class Frontend {
     function add_button_for_quote() {
 
         global $product;
+
+        //Exclusion settings for shop and single product page
+        if ( ! Util::is_available_for_product($product->get_id()) ) {
+            return;
+        }
+
         $quote_btn_text = Utill::get_translated_string( 'woocommerce-catalog-enquiry', 'add_to_quote', 'Add to Quote' );    
         $view_quote_btn_text = Utill::get_translated_string( 'woocommerce-catalog-enquiry', 'view_quote', 'View Quote' ); 
         $btn_style = '';
@@ -94,16 +98,4 @@ class Frontend {
         ]);
     }
 
-    /**
-     * Exclusion in single product page
-     */
-    function catalog_woocommerce_template_single() { 
-        global $post;
-        if ( !Util::is_available_for_product($post->ID)) {
-            remove_action( 'display_shop_page_button', [ $this, 'add_button_for_quote'] );
-        } else {
-            add_action( 'display_shop_page_button', [ $this, 'add_button_for_quote'] );
-
-        }
-    }
 }
