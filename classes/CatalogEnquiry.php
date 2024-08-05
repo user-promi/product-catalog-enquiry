@@ -31,6 +31,21 @@ final class CatalogEnquiry {
         $this->container[ 'version' ]        = WOOCOMMERCE_CATALOG_ENQUIRY_PLUGIN_VERSION;
         $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
 
+		// global $wpdb;
+
+		// echo "<pre>";
+		// print_r("CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ] . "` (
+        //         `id` bigint(20) NOT NULL AUTO_INCREMENT,
+        //         `product_info` text NOT NULL,
+        //         `user_id` bigint(20) NOT NULL DEFAULT 0,
+        //         `user_name` varchar(50) NOT NULL,
+        //         `user_email` varchar(50) NOT NULL,
+        //         `user_additional_fields` text NOT NULL,
+        //         `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        //         PRIMARY KEY (`id`)
+        //     );");
+		// die();
+
         register_activation_hook( $file, [ $this, 'activate' ] );
 		register_deactivation_hook( $file, [ $this, 'deactivate' ] );
 

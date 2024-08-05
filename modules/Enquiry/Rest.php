@@ -1,6 +1,7 @@
 <?php 
 
 namespace CatalogEnquiry\Enquiry;
+use CatalogEnquiry\Utill;
 
 class Rest {
     /**
@@ -98,7 +99,7 @@ class Rest {
 
         $product_variations = ( get_transient( 'variation_list' ) ) ? get_transient( 'variation_list' ) : [];
 
-        $result = $wpdb->insert( $wpdb->prefix . 'catalog_enquiry_table', $data );
+        $result = $wpdb->insert("{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ], $data );
 
         if ( $result ) {
             $enquiry_id   = $wpdb->insert_id;
@@ -113,7 +114,7 @@ class Rest {
                 }
             }
 
-            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}catelog_cust_vendor_answers SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, ! empty( $product_ids ) ? serialize( $product_ids ) : $product_id, $enquiry_id, 'unread' ) );
+            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix} " . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, ! empty( $product_ids ) ? serialize( $product_ids ) : $product_id, $enquiry_id, 'unread' ) );
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
 				'user_name'             => $customer_name,
