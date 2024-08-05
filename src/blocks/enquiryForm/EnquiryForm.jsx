@@ -215,6 +215,7 @@ const EnquiryForm = (props) => {
         axios.post(submitUrl, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              "X-WP-Nonce": appLocalizer.nonce
             },
           })
           .then(response => {

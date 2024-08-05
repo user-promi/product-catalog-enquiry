@@ -44,7 +44,6 @@ class Install {
         
         $this->create_page_for_quote();
         $this->create_page_for_quote_thank_you();
-        $this->create_page_for_wholesale_product_list();
 
         // Update the version in database
         update_option( self::VERSION_KEY, self::$current_version );
@@ -497,40 +496,4 @@ class Install {
         update_option('request_quote_thank_you_page', $page_id);
     }
 
-    /**
-     * Create page for wholesale pruduct list
-     * @return void
-     */
-    public function create_page_for_wholesale_product_list() {
-        // quote page
-        $option_value = get_option('wholesale_product_list_page');
-        if ($option_value > 0 && get_post($option_value)) {
-            return;
-        }
-
-        $page_found = get_posts([
-            'name' => 'wholesale-product-list',
-            'post_status' => 'publish',
-            'post_type' => 'page',
-            'fields' => 'ids',
-            'numberposts' => 1
-        ]);
-        if ($page_found) {
-            if (!$option_value) {
-                update_option('wholesale_product_list_page', $page_found[0]);
-            }
-            return;
-        }
-        $page_data = [
-            'post_status' => 'publish',
-            'post_type' => 'page',
-            'post_author' => 1,
-            'post_name' => 'wholesale-product-list',
-            'post_title' => __('Wholesale Product List', 'woocommerce-catalog-enquiry-pro'),
-            'post_content' => '[wholesale_product_list]',
-            'comment_status' => 'closed'
-        ];
-        $page_id = wp_insert_post($page_data);
-        update_option('wholesale_product_list_page', $page_id);
-    }
 }

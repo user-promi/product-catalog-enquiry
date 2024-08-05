@@ -21,7 +21,7 @@ class Admin {
 
         add_menu_page(
             __( 'catalog', 'woocommerce-catalog-enquiry' ),
-            __( 'Catalog', 'woocommerce-catalog-enquiry' ),
+            __( 'CatalogX', 'woocommerce-catalog-enquiry' ),
             'manage_woocommerce',
             'catalog',
             [ $this, 'menu_page_callback' ],

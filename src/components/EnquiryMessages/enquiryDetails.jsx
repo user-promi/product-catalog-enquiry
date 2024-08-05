@@ -12,12 +12,12 @@ const FileDisplay = ({ fileUrl, fileType }) => {
             return <img src={fileUrl} alt="file" style={{ maxWidth: '100%' }} />;
         }
         switch (fileType) {
+            case 'application':
             case 'application/pdf':
-            case 'pdf':
             return (
                 <iframe
                 src={fileUrl}
-                style={{ width: '100%', height: '500px' }}
+                style={{ width: '100%', height: '250px' }}
                 frameBorder="0"
                 />
             );
@@ -25,12 +25,12 @@ const FileDisplay = ({ fileUrl, fileType }) => {
             return (
                 <iframe
                 src={fileUrl}
-                style={{ width: '100%', height: '500px' }}
+                style={{ width: '100%', height: '250px' }}
                 frameBorder="0"
                 />
             );
             default:
-            return <p>Unsupported file type</p>;
+            return <p>{console.log(fileType)}Unsupported file type</p>;
       }
     };
   
@@ -287,7 +287,7 @@ const EnquiryDetails = (props) => {
                                                                         <div className="content">
                                                                         {
                                                                             enquiryDetail.attachment &&
-                                                                            <div style={{'width': '100px', 'height': '100px'}}>
+                                                                            <div className='attachment-content-wrapper'>
                                                                                 <a target='_blank' href={enquiryDetail.attachment}>
                                                                                     <FileDisplay fileUrl={ enquiryDetail.attachment } fileType={enquiryDetail.attachment_type} />
                                                                                 </a>
