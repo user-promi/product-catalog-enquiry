@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getApiLink } from "../../../services/apiService";
 import axios from 'axios';
+import Loading from './Loading';
 
 const Wholesale = (props) => {
     const { onFinish, onPrev } = props;
@@ -42,52 +43,63 @@ const Wholesale = (props) => {
     };
 
     return (
-        <div>
+        <section>
             <h2>Wholesale</h2>
 
-            <div>
-                <label htmlFor="wholesale_discount_type">Wholesale type</label>
-                <select
-                    id="wholesale_discount_type"
-                    name="wholesale_discount_type"
-                    value={wholesaleType}
-                    onChange={handleWholesaleTypeChange}
-                >
-                    <option value="fixed_amount">Fixed Amount</option>
-                    <option value="percentage_amount">Percentage Amount</option>
-                </select>
-            </div>
+            <article className='module-wrapper'>
+                <div className='module-items'>
+                    <p>Display Enquiry Form:</p>
+                    <div className='input-container'>
+                        <select
+                            id="wholesale_discount_type"
+                            name="wholesale_discount_type"
+                            value={wholesaleType}
+                            onChange={handleWholesaleTypeChange}
+                        >
+                            <option value="fixed_amount">Fixed Amount</option>
+                            <option value="percentage_amount">Percentage Amount</option>
+                        </select>
+                    </div>
+                </div>
+            </article>
+            <article className='module-wrapper'>
+                <div className='module-items'>
+                    <p>Wholesale Amount</p>
+                    <div className='input-container'>
+                    <input
+                        type="number"
+                        id="wholesale_amount"
+                        name="wholesale_amount"
+                        value={wholesaleAmount}
+                        onChange={handleWholesaleAmountChange}
+                    />
+                    </div>
+                </div>
+            </article>
+            <article className='module-wrapper'>
+                <div className='module-items'>
+                    <p>Minimum Quantity</p>
+                    <div className='input-container'>
+                    <input
+                        type="number"
+                        id="minimum_quantity"
+                        name="minimum_quantity"
+                        value={minimumQuantity}
+                        onChange={handleMinimumQuantityChange}
+                    />
+                    </div>
+                </div>
+            </article>
 
-            <div>
-                <label htmlFor="wholesale_amount">Wholesale Amount</label>
-                <input
-                    type="number"
-                    id="wholesale_amount"
-                    name="wholesale_amount"
-                    value={wholesaleAmount}
-                    onChange={handleWholesaleAmountChange}
-                />
-            </div>
-
-            <div>
-                <label htmlFor="minimum_quantity">Minimum Quantity</label>
-                <input
-                    type="number"
-                    id="minimum_quantity"
-                    name="minimum_quantity"
-                    value={minimumQuantity}
-                    onChange={handleMinimumQuantityChange}
-                />
-            </div>
-
-            <div>
-                <button onClick={onPrev}>Prev</button>
-                <button onClick={onFinish}>Skip</button>
-                <button onClick={saveWholesaleSettings}>Finish</button>
-            </div>
-
-            {loading && <div> Loading... </div>}
-        </div>
+            <footer className='setup-footer-btn-wrapper'>
+                <div>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn ' onClick={onFinish}>Skip</button>
+                </div>
+                <button className='footer-btn next-btn' onClick={saveWholesaleSettings}>Finish</button>
+            </footer>
+            {loading && <Loading />}
+        </section>
     );
 };
 

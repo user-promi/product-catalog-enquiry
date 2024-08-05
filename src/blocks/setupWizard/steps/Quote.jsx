@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getApiLink } from "../../../services/apiService";
 import axios from 'axios';
+import Loading from './Loading';
 
 const Quote = (props) => {
     const { onNext, onPrev } = props;
@@ -33,27 +34,33 @@ const Quote = (props) => {
     };
 
     return (
-        <div>
+        <section>
             <h2>Quote</h2>
-            <div>
-                <label>Restrict for logged-in user</label>
-                <input
-                    type="checkbox"
-                    id="logged_out"
-                    name="logged_out"
-                    checked={restrictUserQuote.includes('logged_out')}
-                    onChange={handleRestrictUserQuoteChange}
-                />
-            </div>
+            <article className='module-wrapper'>
+                <div className="module-items">
+                    <p>Restrict for logged-in user</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="logged_out"
+                            name="logged_out"
+                            checked={restrictUserQuote.includes('logged_out')}
+                            onChange={handleRestrictUserQuoteChange}
+                        />
+                        <label htmlFor='logged_out'></label>
+                    </div>
+                </div>
+            </article>
 
-            <div>
-                <button onClick={onPrev}>Prev</button>
-                <button onClick={onNext}>Skip</button>
-                <button onClick={saveQuoteSettings}>Next</button>
-            </div>
-
-            {loading && <div> Loading... </div>}
-        </div>
+            <footer className='setup-footer-btn-wrapper'>
+                <div>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn ' onClick={onNext}>Skip</button>
+                </div>
+                <button className='footer-btn next-btn' onClick={saveQuoteSettings}>Next</button>
+            </footer>
+            {loading && <Loading />}
+        </section>
     );
 };
 

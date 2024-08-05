@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getApiLink } from "../../../services/apiService";
 import axios from 'axios';
+import Loading from './Loading';
 
 const Enquiry = (props) => {
     const { onNext, onPrev } = props;
@@ -14,7 +15,7 @@ const Enquiry = (props) => {
 
     const handleRestrictUserEnquiryChange = (event) => {
         const { checked, name } = event.target;
-        setRestrictUserEnquiry((prevState) => 
+        setRestrictUserEnquiry((prevState) =>
             checked ? [...prevState, name] : prevState.filter(value => value !== name)
         );
     };
@@ -39,52 +40,48 @@ const Enquiry = (props) => {
     };
 
     return (
-        <div>
+        <section>
             <h2>Enquiry</h2>
-            <div>
-                <label>Display Enquiry Form:</label>
-                <div>
-                    <input
-                        type="radio"
-                        id="popup"
-                        name="display_option"
-                        value="popup"
-                        checked={displayOption === 'popup'}
-                        onChange={handleDisplayOptionChange}
-                    />
-                    <label htmlFor="popup">Popup</label>
+            <article className='module-wrapper'>
+                <div className='module-items'>
+                    <p>Display Enquiry Form:</p>
+                    <ul>
+                        <li>
+                            <input className="toggle-setting-form-input" type="radio" id="popup" name="approve_vendor" value="popup" checked={displayOption === 'popup'} />
+                            <label for="popup" onClick={(e) => setDisplayOption('popup')}>Popup</label>
+                        </li>
+                        <li>
+                            <input className="toggle-setting-form-input" type="radio" id="inline" name="approve_vendor" value="inline" checked={displayOption === 'inline'} />
+                            <label for="inline" onClick={(e) => setDisplayOption('inline')}>Inline In-page</label>
+                        </li>
+                    </ul>
                 </div>
-                <div>
-                    <input
-                        type="radio"
-                        id="inline"
-                        name="display_option"
-                        value="inline"
-                        checked={displayOption === 'inline'}
-                        onChange={handleDisplayOptionChange}
-                    />
-                    <label htmlFor="inline">Inline</label>
+            </article>
+            <article className='module-wrapper'>
+                <div className="module-items">
+                    <p>Restrict for logged-in user</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="enquiry_logged_out"
+                            name="enquiry_logged_out"
+                            checked={restrictUserEnquiry.includes('enquiry_logged_out')}
+                            onChange={handleRestrictUserEnquiryChange}
+                        />
+                        <label htmlFor='enquiry_logged_out'></label>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label>Restrict for logged-in user</label>
-                <input
-                    type="checkbox"
-                    id="enquiry_logged_out"
-                    name="enquiry_logged_out"
-                    checked={restrictUserEnquiry.includes('enquiry_logged_out')}
-                    onChange={handleRestrictUserEnquiryChange}
-                />
-            </div>
+            </article>
 
-            <div>
-                <button onClick={onPrev}>Prev</button>
-                <button onClick={onNext}>Skip</button>
-                <button onClick={saveEnquirySettings}>Next</button>
-            </div>
-
-            {loading && <div> Loading... </div>}
-        </div>
+            <footer className='setup-footer-btn-wrapper'>
+                <div>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn ' onClick={onNext}>Skip</button>
+                </div>
+                <button className='footer-btn next-btn' onClick={saveEnquirySettings}>Next</button>
+            </footer>
+            {loading && <Loading />}
+        </section>
     );
 };
 

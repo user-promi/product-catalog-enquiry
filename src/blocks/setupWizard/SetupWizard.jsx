@@ -10,7 +10,7 @@ import Logo from '../../assets/images/Brand.png'
 
 const SetupWizard = () => {
 
-	const [currentStep, setCurrentStep] = useState(0);
+	const [currentStep, setCurrentStep] = useState(4);
 	const onPrev = () => {
 		setCurrentStep(Math.max(0, (currentStep - 1) ));
 	}

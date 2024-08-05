@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getApiLink } from "../../../services/apiService";
 import axios from 'axios';
+import Loading from './Loading';
 
 const Modules = (props) => {
     const { onNext, onPrev } = props;
@@ -35,60 +36,74 @@ const Modules = (props) => {
     };
 
     return (
-        <div>
+        <section>
             <h2>Modules</h2>
-            <div>
-                <label htmlFor="catalog">Catalog</label>
-                <input
-                    type="checkbox"
-                    id="catalog"
-                    name="catalog"
-                    checked={selectedModules.catalog}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
-            
-            <div>
-                <label htmlFor="enquiry">Enquiry</label>
-                <input
-                    type="checkbox"
-                    id="enquiry"
-                    name="enquiry"
-                    checked={selectedModules.enquiry}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
-            
-            <div>
-                <label htmlFor="quote">Quote</label>
-                <input
-                    type="checkbox"
-                    id="quote"
-                    name="quote"
-                    checked={selectedModules.quote}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
-            
-            <div>
-                <label htmlFor="wholesale">Wholesale</label>
-                <input
-                    type="checkbox"
-                    id="wholesale"
-                    name="wholesale"
-                    checked={selectedModules.wholesale}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
-
-            <div>
-                <button onClick={onPrev}>Prev</button>
-                <button onClick={onNext}>Skip</button>
-                <button onClick={moduleSave}>Next</button>
-            </div>
-
-            {loading && <div> Loading... </div>}
-        </div>
+            <article className='module-wrapper'>
+                <div className="module-items">
+                    <p>Catalog</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="catalog"
+                            name="catalog"
+                            checked={selectedModules.catalog}
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="catalog"></label>
+                    </div>
+                </div>
+                
+                <div className="module-items">
+                    <p>Enquiry</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="enquiry"
+                            name="enquiry"
+                            checked={selectedModules.enquiry}
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="enquiry"></label>
+                    </div>
+                </div>
+                
+                <div className="module-items">
+                    <p>Quote</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="quote"
+                            name="quote"
+                            checked={selectedModules.quote}
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="quote"></label>
+                    </div>
+                </div>
+                
+                <div className="module-items">
+                    <p>Wholesale</p>
+                    <div className='toggle-checkbox'>
+                        <input
+                            type="checkbox"
+                            id="wholesale"
+                            name="wholesale"
+                            checked={selectedModules.wholesale}
+                            onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="wholesale"></label>
+                    </div>
+                </div>
+            </article>
+            <footer className='setup-footer-btn-wrapper'>
+                <div>
+                    <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
+                    <button className='footer-btn ' onClick={onNext}>Skip</button>
+                </div>
+                <button className='footer-btn next-btn' onClick={moduleSave}>Next</button>
+            </footer>
+            {loading && <Loading />}
+        </section>
     );
 };
 
