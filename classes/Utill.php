@@ -5,6 +5,15 @@ namespace CatalogEnquiry;
 defined( 'ABSPATH' ) || exit;
 
 class Utill {
+    /**
+     * Constent holds table name
+     * @var array
+     */
+    const TABLES = [
+        'enquiry' => 'catalogx_enquiry',
+        'rule'    => 'catalogx_rules',
+        'message' => 'catalogx_messages',
+    ];
 
     /**
      * Function to console and debug errors.

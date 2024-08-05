@@ -83,7 +83,7 @@ class Admin {
             '__return_null'
         );
 
-        if ( Utill::is_pro_active() ) {
+        if ( ! Utill::is_pro_active() ) {
             $submenu[ 'catalog' ][] = [
                 '<style>
 					a:has(.upgrade-to-pro){

@@ -46,22 +46,7 @@ class Install {
             $collate = $wpdb->get_charset_collate();
         }
 
-        $wpdb->query(
-            "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "catalog_enquiry_table` (
-                `id` bigint(20) NOT NULL AUTO_INCREMENT,
-                `product_info` text NOT NULL,
-                `user_id` bigint(20) NOT NULL DEFAULT 0,
-                `user_name` varchar(50) NOT NULL,
-                `user_email` varchar(50) NOT NULL,
-                `user_additional_fields` text NOT NULL,
-                `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                PRIMARY KEY (`id`)
-            ) $collate;"
-        );
-
-        $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catalog_enquiry_table` 
-        ADD COLUMN pin_msg_id bigint(20);");
-
+        // Create message table
         $wpdb->query(
             "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "catelog_cust_vendor_answers` (
                 `chat_message_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -76,8 +61,24 @@ class Install {
             ) $collate;"
         );
 
+        // Create enquiry table
         $wpdb->query(
-            "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "catalog_rule` (
+           "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ] . "` (
+                `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                `product_info` text NOT NULL,
+                `user_id` bigint(20) NOT NULL DEFAULT 0,
+                `user_name` varchar(50) NOT NULL,
+                `user_email` varchar(50) NOT NULL,
+                `user_additional_fields` text NOT NULL,
+                `pin_msg_id` bigint(20) DEFAULT NULL,
+                `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (`id`)
+            ) $collate;"
+        );
+
+        // Create rules table
+        $wpdb->query(
+            "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'rule' ] . "` (
                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
                 `name` text,
                 `user_id` bigint(20),
@@ -93,12 +94,26 @@ class Install {
             ) $collate;"
         );
 
-        $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers`
-            ADD COLUMN attachment bigint(20);");
-        $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers`
-            ADD COLUMN reaction varchar(20);");
-        $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers`
-            ADD COLUMN star bigint(20);");
+        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+            // Rebame the table
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
+            );
+
+            // Add column to table
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN attachment bigint(20);"
+            );
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN reaction varchar(20);"
+            );
+            $wpdb->query(
+                "ALTER TABLE `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`
+                ADD COLUMN star boolean;"
+            );
+        }
     }
 
     /**
@@ -127,8 +142,50 @@ class Install {
      * @return void
      */
     public function migrate_database_table() {
+        global $wpdb;
+
         if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
-            
+            try {
+                // Get woosubscribe post and post meta
+                $enquirys_datas = $wpdb->get_results(
+                    "SELECT p.ID as id,
+                        p.post_author as user_id,
+                        p.post_date as date,
+                        MAX(CASE WHEN pm.meta_key = '_enquiry_username' THEN pm.meta_value END) as username,
+                        MAX(CASE WHEN pm.meta_key = '_enquiry_useremail' THEN pm.meta_value END) as useremail,
+                        MAX(CASE WHEN pm.meta_key = '_user_enquiry_fields' THEN pm.meta_value END) as additional_fields,
+                        MAX(CASE WHEN pm.meta_key = '_enquiry_product' THEN pm.meta_value END) as product_ids,
+                        MAX(CASE WHEN pm.meta_key = '_enquiry_product_quantity' THEN pm.meta_value END) as product_quantitys,
+                    FROM {$wpdb->prefix}posts as p
+                    JOIN {$wpdb->prefix}postmeta as pm ON p.ID = pm.post_id
+                    WHERE p.post_type = 'wcce_enquiry'
+                    GROUP BY p.ID",
+                    ARRAY_A
+                );
+
+                foreach ( $enquirys_datas as $id => $enquiry ) {
+                    $product_ids        = $enquiry[ 'product_ids' ];
+                    $product_quantitys  = $enquiry[ 'product_quantitys' ];
+
+                    $wpdb->insert(
+                        "{$wpdb->prefix}" . Utill::TABLES['rule'],
+                        [
+                            'id'                     => $enquiry[ 'id' ],
+                            'user_id'                => $enquiry[ 'user_id' ],
+                            'user_name'              => $enquiry[ 'user_name' ],
+                            'user_email'             => $enquiry[ 'useremail' ],
+                            'user_additional_fields' => $enquiry[ 'additional_fields' ],
+                            'date'                   => $enquiry[ 'date' ],
+                            'product_info'           => [ $product_ids => $product_quantitys ],
+                        ]
+                    );
+
+                    // Delete the posts
+                    wp_delete_post( $enquiry[ 'id' ], false );
+                }
+            } catch ( \Exception $e ) {
+                Utill::log( $e->getMessage() );
+            }
         }
     }
 

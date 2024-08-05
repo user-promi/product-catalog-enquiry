@@ -1,6 +1,7 @@
 <?php 
 
 namespace CatalogEnquiry\Enquiry;
+use CatalogEnquiry\Utill;
 
 class Rest {
     /**
@@ -34,7 +35,6 @@ class Rest {
         $product_id = $request->get_param( 'productId' );
 
         $user       = wp_get_current_user();
-        
         $user_name  = $user->display_name;
         $user_email = $user->user_email;
 
@@ -98,7 +98,7 @@ class Rest {
 
         $product_variations = ( get_transient( 'variation_list' ) ) ? get_transient( 'variation_list' ) : [];
 
-        $result = $wpdb->insert( $wpdb->prefix . 'catalog_enquiry_table', $data );
+        $result = $wpdb->insert("{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ], $data );
 
         if ( $result ) {
             $enquiry_id   = $wpdb->insert_id;
@@ -108,24 +108,24 @@ class Rest {
         
             $chat_message = '';
             foreach( $other_fields as $key => $field ) { 
-                if ( $field[ 'type' ] != 'file' ) {
+                if ( $field[ 'name' ] != 'file' ) {
                     $chat_message.= '<strong>' . $field[ 'name' ] . ':</strong><br>' . $field[ 'value' ] . '<br>';
                 }
             }
-
-            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}catelog_cust_vendor_answers SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, ! empty( $product_ids ) ? serialize( $product_ids ) : $product_id, $enquiry_id, 'unread' ) );
+    
+            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread' ) );
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
 				'user_name'             => $customer_name,
 				'user_email'            => $customer_email,
-				'product_id'            => ! empty( $product_ids ) ? $product_ids : $product_id,
+				'product_id'            => $product_info,
                 'variations'            => $product_variations,
 				'user_enquiry_fields'   => $other_fields,
 				]);
 
-            // $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
+            $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			// $send_email->trigger( $admin_email, $enquiry_data );
+			$send_email->trigger( $admin_email, $enquiry_data );
 				
             $redirect_link = Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             
