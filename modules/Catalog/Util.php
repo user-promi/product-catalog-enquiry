@@ -101,11 +101,4 @@ class Util {
         return true;
     }
 
-    /**
-     * Display descriopton box
-     * @return void
-     */
-    public static function display_description_box() {
-        do_action( 'display_shop_page_description_box' );
-    }
 }
