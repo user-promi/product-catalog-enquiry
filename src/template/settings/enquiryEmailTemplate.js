@@ -15,6 +15,13 @@ export default {
             hint: __("", "woocommerce-catalog-enquiry"),
         },
         {
+            key: 'additional_alert_email',
+            type: 'textarea',
+            class: 'woo-setting-wpeditor-class',
+            desc: __("Set the email address to receive notifications when a user submits enquiry of a product. You can add multiple comma-separated emails.<br/> Default: The admin\'s email is set as the receiver. Exclude the admin\'s email from the list to exclude admin from receiving these notifications.", "woocommerce-stock-manager"),
+            label: __("Recipient email for new subscriber", "woocommerce-stock-manager"),
+        },
+        {
             key: "selected_email_tpl",
             type: "radio_select",
             label: "Store Header",
@@ -64,11 +71,11 @@ export default {
                 }
             ],
         },
-        {
-            key: "custom_email_subject",
-            type: "textarea",
-            desc: "Available tags |USER_NAME|,|USER_EMAIL|,|PRODUCT_NAME|,|PRODUCT_URL|,|PRODUCT_SKU|,|PRODUCT_TYPE| ****All the product related tags are not available for multiple enquiry.",
-            label: "Custom Email Subject",
-        }
+        // {
+        //     key: "custom_email_subject",
+        //     type: "textarea",
+        //     desc: "Available tags |USER_NAME|,|USER_EMAIL|,|PRODUCT_NAME|,|PRODUCT_URL|,|PRODUCT_SKU|,|PRODUCT_TYPE| ****All the product related tags are not available for multiple enquiry.",
+        //     label: "Custom Email Subject",
+        // }
     ]
 }
