@@ -5,6 +5,8 @@ import Modules from './steps/Module';
 import Enquiry from './steps/Enquiry';
 import Quote from './steps/Quote';
 import Wholesale from './steps/Wholesale';
+import './SetupWizard.scss';
+import Logo from '../../assets/images/Brand.png'
 
 const SetupWizard = () => {
 
@@ -35,10 +37,17 @@ const SetupWizard = () => {
 
 	return (
 		<>
-		<div>
-            <h1>Setup Wizard</h1>
-            <div>{steps[currentStep].component}</div>
-        </div>
+		<main className='setup-wizard-main-wrapper'>
+			<img src={Logo} alt="Logo" />
+			<nav className='step-count'>
+				<ul>
+					{steps.map((step, index)=>{
+						return <li key={index} className={currentStep >= index ? 'active' : ''}>{step.title}</li>
+					})}
+				</ul>
+			</nav>
+            <main className='setup-container'>{steps[currentStep].component}</main>
+        </main>
 		</>
 
 	);
