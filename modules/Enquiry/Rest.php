@@ -123,9 +123,9 @@ class Rest {
 				'user_enquiry_fields'   => $other_fields,
 				]);
 
-            // $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
+            $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			// $send_email->trigger( $admin_email, $enquiry_data );
+			$send_email->trigger( $admin_email, $enquiry_data );
 				
             $redirect_link = Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             

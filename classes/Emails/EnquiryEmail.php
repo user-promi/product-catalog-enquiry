@@ -88,7 +88,7 @@ class EnquiryEmail extends \WC_Email {
 		$product = wc_get_product( $this->product_id );
 
 		$this->find[]      = '{PRODUCT_NAME}';
-		$this->replace[]   = is_array($this->product_id) ? 'MULTIPLE PRODUCT' : $product->get_title();
+		$this->replace[]   =  is_array($this->product_id) && count($this->product_id) > 1 ? 'MULTIPLE PRODUCTS' : $product->get_title();
 		$this->find[]      = '{USER_NAME}';
 		$this->replace[]   = $enquiry_data['user_name'];
 
