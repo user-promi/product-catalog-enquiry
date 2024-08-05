@@ -24,7 +24,7 @@ class Frontend{
         add_action( 'template_redirect', [ $this, 'redirect_cart_checkout_page' ], 10 );
 
         // Display single product page descrioption box 
-        add_action( 'display_shop_page_description_box', [ self::class, 'display_description_box' ] );
+        add_action( 'display_shop_page_description_box', [ self::class, 'show_description_box' ] );
 
         // Hooks for exclutions
         add_action( 'woocommerce_after_shop_loop_item_title' , [ $this, 'price_for_selected_product' ] , 5 );
@@ -53,9 +53,10 @@ class Frontend{
                 'available_variations' => $available_variations
             ]);
 
-        } elseif ( $product->is_type( 'simple' ) ) {
-            echo wc_get_stock_html( $product );
-        }
+        } 
+        // elseif ( $product->is_type( 'simple' ) ) {
+        //     echo wc_get_stock_html( $product );
+        // }
     }
     
     /**
@@ -101,7 +102,7 @@ class Frontend{
      * Display single product page descrioption box 
      * @return void
      */
-    public static function display_description_box() {
+    public static function show_description_box() {
         ?>
         <div class="desc-box">
             <?php $input_box = Catalog()->setting->get_setting( 'additional_input' );
@@ -133,11 +134,11 @@ class Frontend{
     public function add_to_cart_button_for_selected_product() {
         global $post;
 
-        if ( ! Util::is_available_for_product( $post->ID ) ) {
+        if ( ! Util::is_available_for_product($post->ID)) {
             add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );  
         } 
         else {
-            if ( !empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {   
+            if ( !empty(Catalog()->setting->get_setting( 'is_hide_cart_checkout' )) ) {   
                 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );  
             }
         }
@@ -155,12 +156,12 @@ class Frontend{
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );           
             add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
             add_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 ); 
-            remove_action( 'display_shop_page_description_box', [ $this, 'display_description_box' ] );
+            remove_action( 'display_shop_page_description_box', [$this, 'show_description_box'] );
+            
         } else {
             remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
             remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
-
-            if ( ! empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {          
+            if ( !empty(Catalog()->setting->get_setting( 'is_hide_cart_checkout' )) ) {          
                 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
                 remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
             }  
@@ -172,6 +173,7 @@ class Frontend{
      * @return void
      */
     public function register_description_box() {
+        
         // Get shop page button settings
         $position_settings = Catalog()->setting->get_setting( 'shop_page_possition_setting' );
         $position_settings = is_array( $position_settings ) ? $position_settings : [];
@@ -224,5 +226,13 @@ class Frontend{
                 add_action( 'woocommerce_single_product_summary', [ self::class, 'display_description_box' ], 6 + $possiton_priority );
                 break;
         }
+    }
+
+     /**
+     * Display descriopton box
+     * @return void
+     */
+    public static function display_description_box() {
+        do_action( 'display_shop_page_description_box' );
     }
 }
