@@ -31,19 +31,49 @@ final class CatalogEnquiry {
         $this->container[ 'version' ]        = WOOCOMMERCE_CATALOG_ENQUIRY_PLUGIN_VERSION;
         $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
 
-		// global $wpdb;
+		// $exclusion_user_list = $array = array(
+		// 	array(
+		// 		"value" => 15,
+		// 		"label" => "lml test",
+		// 		"index" => 0
+		// 	),
+		// 	array(
+		// 		"value" => 4,
+		// 		"label" => "Joe Blogs",
+		// 		"index" => 2
+		// 	),
+		// 	array(
+		// 		"value" => 17,
+		// 		"label" => "mvx-admin",
+		// 		"index" => 5
+		// 	),
+		// 	array(
+		// 		"value" => 7,
+		// 		"label" => "Narayan Patil",
+		// 		"index" => 7
+		// 	),
+		// 	array(
+		// 		"value" => 8,
+		// 		"label" => "test_vendor",
+		// 		"index" => 10
+		// 	),
+		// 	array(
+		// 		"value" => 6,
+		// 		"label" => "ravi",
+		// 		"index" => 8
+		// 	)
+		// );
 
-		// echo "<pre>";
-		// print_r("CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ] . "` (
-        //         `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        //         `product_info` text NOT NULL,
-        //         `user_id` bigint(20) NOT NULL DEFAULT 0,
-        //         `user_name` varchar(50) NOT NULL,
-        //         `user_email` varchar(50) NOT NULL,
-        //         `user_additional_fields` text NOT NULL,
-        //         `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        //         PRIMARY KEY (`id`)
-        //     );");
+		// $exclusion_user_list = array_map(function ($user_list) {
+		// 	return [
+		// 		'key'   => $user_list[ 'value' ],
+		// 		'label' => $user_list[ 'label' ],
+		// 		'value'	=> $user_list[ 'value' ],
+		// 	];
+		// }, $exclusion_user_list );
+
+		// echo ("<pre>");
+		// print_r($exclusion_user_list);
 		// die();
 
         register_activation_hook( $file, [ $this, 'activate' ] );

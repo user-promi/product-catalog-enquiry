@@ -4,6 +4,23 @@ namespace CatalogEnquiry;
 class Install {
     const VERSION_KEY = 'catalog_enquiry_plugin_version';
 
+    const FREE_FORM_MAP = [
+        'name'           => 'name-label',
+        'email'          => 'email-label',
+        'phone'          => 'is-phone',
+        'address'        => 'is-address',
+        'subject'        => 'is-subject',
+        'comment'        => 'is-comment',
+        'fileupload'     => 'is-fileupload',
+        'filesize-limit' => 'filesize-limit',
+        'captcha'        => 'is-captcha',
+    ];
+
+    const PRO_FORM_TYPE_MAP = [
+        'p_title' => 'title',
+        'textbox' => 'text',
+    ];
+
     public static $previous_version = '';
 
     public static $current_version  = '';
@@ -194,64 +211,216 @@ class Install {
      * @return void
      */
     public function set_default_settings() {
-        // $catalog_settings = [ 
-        //     'enquiry_user_permission' => "all_users", 
-        //     'quote_user_permission' => "all_users", 
-        //     'is_hide_cart_checkout' => ['is_hide_cart_checkout']
-        // ];
+        // Migration by version controll
+        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+            
+            $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
+            $previous_general_settings = $previous_general_settings[ 'woocommerce_catalog_enquiry_general_settings' ] ?? [];
 
-        $tool_settings = [
-            'set_enquiry_cart_page' => intval(get_option('catalog_enquiry_cart_page')),
-            'set_request_quote_page' => intval(get_option('request_quote_page'))
-        ];
+            // Update product page builder
+            $page_builder_setting = [
+                'hide_product_price' => $previous_general_settings[ 'is_remove_price_free' ] == "is_remove_price_free",
+                'additional_input'   => $previous_general_settings[ 'replace_text_in_price' ] ?? '',
+            ];
 
-        $form_settings = [
-            'formsettings' => [
-                'formfieldlist' => [ 
-                    [
-                      'id' => 1,
-                      'type' => 'title',
-                      'label' => 'Enquiry Form',
-                    ],
-                    [
-                      'id' => 2,
-                      'type' => 'text',
-                      'label' => 'Enter your name',
-                      'required' => true,
-                      'placeholder' => 'I am default place holder',
-                      'name' => 'name',
-                      'not_editable'  => true
-                    ],
-                    [
-                      'id' => 3,
-                      'type' => 'email',
-                      'label' => 'Enter your email',
-                      'required' => true,
-                      'placeholder' => 'I am default place holder',
-                      'name' => 'email',
-                      'not_editable'  => true
-                    ],
+            update_option( 'catalog_enquiry_catalog_customization_settings', $page_builder_setting );
+
+            
+            // Update shopping gurnal
+            $all_settings = [
+                'is_enable_out_of_stock'  => $previous_general_settings[ 'is_enable_out_of_stock' ] == "Enable",
+                'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ] == 3,
+                'is_page_redirect'        => $previous_general_settings[ 'is_enable_enquiry' ] == 'is_enable_enquiry',
+                'is_disable_popup'        => $previous_general_settings[ 'is_disable_popup' ] == 'is_disable_popup' ? 'inline' : 'popup',
+            ];
+
+            update_option( 'catalog_all_settings_settings', $all_settings );
+
+
+            // Update tools settings
+            $tool_settings = [
+                'set_enquiry_cart_page'  => intval( get_option( 'catalog_enquiry_cart_page' ) ),
+                'set_request_quote_page' => intval( get_option( 'request_quote_page' ) )
+            ];
+
+            update_option( 'catalog_tools_settings', $tool_settings );
+            
+            //// Update form settings
+            
+            // Free form migration
+            $previous_free_from_setting = get_option( 'mvx_catalog_enquiry_form_tab_settings', [] );
+
+            $free_form = [
+                [
+                    'key'       => 'name',
+                    'label'     => 'Enter your name',
+                    'active'    => true,
                 ],
-                'butttonsetting' => [],
-            ],
-            'freefromsetting' => [
-                  [
-                    'key' => 'name',
-                    'label' => 'Enter your name',
-                    'active' => true,
-                  ],
-                  [
-                    'key' => 'email',
-                    'label' => 'Enter your email',
-                    'active' => true,
-                  ],
-            ],            
-        ];
+                [
+                    'key'       => 'email',
+                    'label'     => 'Enter your email',
+                    'active'    => true,
+                ],
+                [ "key" => "phone" ],
+                [ "key" => "address" ],
+                [ "key" => "subject" ],
+                [ "key" => "comment" ],
+                [ "key" => "fileupload" ],
+                [ "key" => "filesize-limit" ],
+                [ "key" => "captcha" ],
+            ];
+            
 
-        update_option('catalog_enquiry_form_customization_settings', $form_settings);
-        // update_option( 'catalog_all_settings_settings', $catalog_settings );
-        update_option('catalog_tools_settings', $tool_settings);
+            $previous_free_from = $previous_free_from_setting[ 'enquiry_form_fileds' ];
 
+            if ( is_array( $previous_free_from ) ) {
+                
+                $previous_free_from_keys = array_column( $previous_free_from, 0 );
+
+                $free_form = array_map( function ( $form ) use ( $previous_free_from, $previous_free_from_keys ) {
+                    
+                    // Get label key and active status key
+                    $label_key  = self::FREE_FORM_MAP[ $form[ 'key' ] ];
+                    $active_key = "{$label_key}_checkbox";
+
+                    $label_index  = array_search( $label_key, $previous_free_from_keys );
+                    $active_index = array_search( $active_key, $previous_free_from_keys );
+
+                    $label  = $form[ 'label' ] ?? '';
+                    $active = $form[ 'active' ] ?? false;
+
+                    $label  = $label_index ? $previous_free_from[ $label_index ][ 1 ] : $label;
+                    $active = $active_index ? $previous_free_from[ $active_index ][ 1 ] : $active;
+
+                    return [
+                        'key'       => $form[ 'key' ],
+                        'label'     => $label,
+                        'active'    => $active,
+                    ];
+
+                }, $free_form );
+            }
+
+            // Pro form migration
+            $previous_pro_from_setting = get_option( 'mvx_catalog_pro_enquiry_form_data', [] );
+
+            if ( is_array( $previous_pro_from_setting ) ) {
+                $pro_form = array_map( function ( $form ) {
+                    return [
+                        ...$form,
+                        'name' => $form[ 'name' ],
+                        'type' => self::PRO_FORM_TYPE_MAP[ $form[ 'type' ] ] ?? $form[ 'type' ],
+                    ];
+                }, $previous_pro_from_setting );
+            } else {
+                $pro_form = [ 
+                    [
+                        'id'      => 1,
+                        'type'    => 'title',
+                        'label'   => 'Enquiry Form',
+                    ],
+                    [
+                        'id'           => 2,
+                        'type'         => 'text',
+                        'label'        => 'Enter your name',
+                        'required'     => true,
+                        'placeholder'  => 'I am default place holder',
+                        'name'         => 'name',
+                        'not_editable' => true
+                    ],
+                    [
+                        'id'           => 3,
+                        'type'         => 'email',
+                        'label'        => 'Enter your email',
+                        'required'     => true,
+                        'placeholder'  => 'I am default place holder',
+                        'name'         => 'email',
+                        'not_editable' => true
+                    ],
+                ];
+            }
+
+            $form_settings = [
+                'formsettings'    => [
+                    'formfieldlist'  => $pro_form,
+                    'butttonsetting' => [],
+                ],
+                'freefromsetting' => $free_form,          
+            ];
+    
+            update_option( 'catalog_enquiry_form_customization_settings', $form_settings );
+
+            //// Update exclusion settings
+            $previous_exclusion_settings = get_option( 'mvx_catalog_exclusion_tab_settings', [] );
+
+            // Prepare exclusion user list
+            $exclusion_user_list = $previous_exclusion_settings[ 'woocommerce_user_list' ];
+            $exclusion_user_list = is_array( $exclusion_user_list ) ? $exclusion_user_list : [];
+
+            $exclusion_user_list = array_map(function ($user_list) {
+                return [
+                    'key'   => $user_list[ 'value' ],
+                    'label' => $user_list[ 'label' ],
+                    'value'	=> $user_list[ 'value' ],
+                ];
+            }, $exclusion_user_list );
+
+            // Prepare user role list
+            $exclusion_userroles_list = $previous_exclusion_settings[ 'woocommerce_userroles_list' ];
+            $exclusion_userroles_list = is_array( $exclusion_userroles_list ) ? $exclusion_userroles_list : [];
+
+            $exclusion_userroles_list = array_map(function ($user_list) {
+                return [
+                    'key'   => $user_list[ 'value' ],
+                    'label' => $user_list[ 'label' ],
+                    'value'	=> $user_list[ 'value' ],
+                ];
+            }, $exclusion_userroles_list );
+
+            // Prepare product list
+            $exclusion_product_list = $previous_exclusion_settings[ 'woocommerce_product_list' ];
+            $exclusion_product_list = is_array( $exclusion_product_list ) ? $exclusion_product_list : [];
+
+            $exclusion_product_list = array_map(function ($user_list) {
+                return [
+                    'key'   => $user_list[ 'value' ],
+                    'label' => $user_list[ 'label' ],
+                    'value'	=> $user_list[ 'value' ],
+                ];
+            }, $exclusion_product_list );
+
+            // Prepare category list
+            $exclusion_category_list = $previous_exclusion_settings[ 'woocommerce_category_list' ];
+            $exclusion_category_list = is_array( $exclusion_category_list ) ? $exclusion_category_list : [];
+
+            $exclusion_category_list = array_map( function ( $user_list ) {
+                return [
+                    'key'   => $user_list[ 'value' ],
+                    'label' => $user_list[ 'label' ],
+                    'value'	=> $user_list[ 'value' ],
+                ];
+            }, $exclusion_category_list );
+
+            $exclusion_settings = [
+                'catalog_exclusion_user_list'       => $exclusion_user_list,
+                'enquiry_exclusion_user_list'       => $exclusion_user_list,
+                'quote_exclusion_user_list'         => $exclusion_user_list,
+
+                'quote_exclusion_userroles_list'    => $exclusion_userroles_list,
+                'catalog_exclusion_userroles_list'  => $exclusion_userroles_list,
+                'enquiry_exclusion_userroles_list'  => $exclusion_userroles_list,
+
+                'enquiry_exclusion_product_list'    => $exclusion_product_list,
+                'catalog_exclusion_product_list'    => $exclusion_product_list,
+                'quote_exclusion_product_list'      => $exclusion_product_list,
+
+                'catalog_exclusion_category_list'   => $exclusion_category_list,
+                'enquiry_exclusion_category_list'   => $exclusion_category_list,
+                'quote_exclusion_category_list'     => $exclusion_category_list,
+            ];
+
+            update_option( 'catalog_enquiry_quote_exclusion_settings', $exclusion_settings );
+        }
     }
 
     /**
