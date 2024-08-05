@@ -97,6 +97,8 @@ class Install {
             ADD COLUMN attachment bigint(20);");
         $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers`
             ADD COLUMN reaction varchar(20);");
+        $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "catelog_cust_vendor_answers`
+            ADD COLUMN star bigint(20);");
     }
 
     /**

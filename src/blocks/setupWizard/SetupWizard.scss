@@ -1,0 +1,113 @@
+$menu-btn-color: #522c81;
+$body-background: #f9f9f9;
+$color-white: #fff;
+$menu-color: #f9f8fb;
+$color-active: #65438f;
+
+
+.setup-wizard-main-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+    width: 100%;
+    height: 86vh;
+
+    .step-count{
+        max-width: 700px;
+        width: 100%;
+        margin: 1rem 0 0rem;
+        ul{
+            padding: 0 0 24px;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+
+            li{
+                width: 100%;
+                float: left;
+                margin: 0;
+                text-align: center;
+                position: relative;
+                border-bottom: 4px solid #ccc;
+                line-height: 1.4;
+                border-width: .125rem;
+                padding: .75rem .5rem;
+                max-width: 124px;
+
+                &::before{
+                    content: "";
+                    position: absolute;
+                    background: #fff;
+                    border: .125rem solid #d4d1d9;
+                    border-radius: 100%;
+                    width: .5rem;
+                    height: .5rem;
+                    transform: translate(-50%, -50%);
+                    left: 50%;
+                    bottom: -12px;
+                    box-shadow: inset 0 0 0 .125rem #fdfdfe;
+                }
+
+                &.active{
+                    border-color: $color-active;
+                    color: $color-active;
+                    font-weight: 400;
+
+                    &:before{
+                        border-color: $color-active;
+                        background-color: $color-active;
+                    }
+                }
+            }
+        }
+    }
+
+    .setup-container{
+        max-width: 700px;
+        width: 100%;
+        background: $color-white;
+        border-radius: 0.25rem;
+        min-height: 240px;
+        
+        section{
+            padding: 2.25rem;
+
+            h2{
+                border: 0;
+                clear: none;
+                font-weight: 500;
+                padding: 0 0 1.25rem;
+                margin: 0;
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            p{
+                text-align: center;
+                margin: 15px 0;
+                font-size: 0.875rem;
+                line-height: 1.75;
+                color: #5e5d60;
+            }
+
+            .next-btn{
+                display: block;
+                margin: auto;
+                width: 150px;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                border: none;
+                outline: none;
+                color: #fff;
+                background: #65438f;
+                font-size: 0.875rem;
+                cursor: pointer;
+                margin-top: 0.75rem;
+            }
+        }
+    }
+}

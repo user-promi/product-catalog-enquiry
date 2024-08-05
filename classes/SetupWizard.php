@@ -34,6 +34,7 @@ class SetupWizard {
     
     function admin_scripts() {
         wp_enqueue_script('setup_wizard_js', Catalog()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
+        wp_enqueue_style('setup_wizard_css', Catalog()->plugin_url . 'build/blocks/setupWizard/index.css');
         wp_localize_script(
             'setup_wizard_js', 'appLocalizer', [
             'apiurl' => untrailingslashit(get_rest_url()),

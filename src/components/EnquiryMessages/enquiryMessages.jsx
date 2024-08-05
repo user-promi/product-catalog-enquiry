@@ -80,10 +80,52 @@ const EnquiryMessages = (props) => {
             <div className="chat-list">
                 <div className="header">
                     <div className="header-container">
-                        <div className="header-heading">
-                            <h1>CatalogX</h1>
-                            <span className="total-message">({enquiryLists.length})</span>
-                        </div>
+                        <nav className='header-container-wrapper'>
+                            <div className="header-heading">
+                                <h1>CatalogX</h1>
+                                <span className="total-message">({enquiryLists.length})</span>
+                            </div>
+                            <span className='starter-message'>
+                                <i className='admin-font font-more-vertical'></i>
+                            </span>
+                            <main className='starter-container-wrapper'>
+                                <ul>
+                                    <li>
+                                        <article>
+                                            <div className='sender-img'>
+                                                <img src="https://shorturl.at/gGILQ" alt="" />
+                                            </div>
+                                            <main className='chat-content-wrapper'>
+                                                <section>
+                                                    <div>
+                                                        phone:
+                                                        629034824
+                                                        address:
+                                                        12/1A/3D Chowbaga Road
+                                                        subject:
+                                                        hgcahgvxwhv
+                                                        comment:
+                                                        jhvhvhj jcj
+                                                    </div>
+                                                    <nav>
+                                                        <button>
+                                                            <i class="admin-font font-more-vertical"></i>
+                                                        </button>
+                                                        <div className="chat-text-control-wrapper">
+                                                            <button>Copy</button>
+                                                            <button>Remove star</button>
+                                                        </div>
+                                                    </nav>
+                                                </section>
+                                                <footer>
+                                                    2024-07-24 17:26:11
+                                                </footer>
+                                            </main>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </main>
+                        </nav>
                         <div className="search-option">
                             <input
                                 className="search-input"
