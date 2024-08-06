@@ -1,6 +1,7 @@
 <?php 
 
 namespace CatalogEnquiry\Enquiry;
+
 use CatalogEnquiry\Utill;
 
 class Rest {
