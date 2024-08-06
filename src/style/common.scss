@@ -260,3 +260,26 @@ span.admin-pro-tag{
     width: 1.3125rem;
 }
 }
+
+.radioselect-class {
+
+  label{
+    position: relative;
+    height: 200px;
+    display: block;
+    border: 1px solid red;
+    overflow: hidden;
+  }
+
+  img.section-img-fluid {
+    width: calc(100% - 1rem);
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    object-fit: cover;
+    object-position: top;
+    transform: translate(-50%);
+    height: calc(100% - 2rem);
+    border-radius: 0.25rem;
+  }
+}
