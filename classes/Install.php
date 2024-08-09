@@ -140,13 +140,13 @@ class Install {
         if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
             
             // Enable enquiry module by default
-            $active_module_list = [ 'enquiry' ];
+            $active_module_list = [ 'catalog' ];
             
-            $previous_settings = get_option( 'woocommerce_catalog_enquiry_general_settings', [] );
+            $previous_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
 
             // Enable catalog setting based on previous setting
-            if ( isset( $previous_settings[ 'is_enable' ] ) && $previous_settings[ 'is_enable' ] === 'Enable' ) {
-                $active_module_list[] = [ 'catalog' ];
+            if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
+                $active_module_list[] = [ 'enquiry' ];
             }
 
             update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
@@ -162,7 +162,7 @@ class Install {
 
         if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
             try {
-                // Get woosubscribe post and post meta
+                // Get enquiry post and post meta
                 $enquirys_datas = $wpdb->get_results(
                     "SELECT p.ID as id,
                         p.post_author as user_id,
@@ -214,11 +214,11 @@ class Install {
         if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
             
             $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
-            $previous_general_settings = $previous_general_settings[ 'woocommerce_catalog_enquiry_general_settings' ] ?? [];
+            // $previous_general_settings = $previous_general_settings[ 'woocommerce_catalog_enquiry_general_settings' ] ?? [];
 
             // Update product page builder
             $page_builder_setting = [
-                'hide_product_price' => $previous_general_settings[ 'is_remove_price_free' ] == "is_remove_price_free",
+                'hide_product_price' => !empty($previous_general_settings[ 'is_remove_price_free' ]) ? true : false,
                 'additional_input'   => $previous_general_settings[ 'replace_text_in_price' ] ?? '',
             ];
 
@@ -227,10 +227,10 @@ class Install {
             
             // Update shopping gurnal
             $all_settings = [
-                'is_enable_out_of_stock'  => $previous_general_settings[ 'is_enable_out_of_stock' ] == "Enable",
-                'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ] == 3,
-                'is_page_redirect'        => $previous_general_settings[ 'is_enable_enquiry' ] == 'is_enable_enquiry',
-                'is_disable_popup'        => $previous_general_settings[ 'is_disable_popup' ] == 'is_disable_popup' ? 'inline' : 'popup',
+                'is_enable_out_of_stock'  => $previous_general_settings[ 'is_enable_out_of_stock' ] ?? [],
+                'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ]['value'] == 1 ? ['enquiry_logged_out'] : [],
+                'is_page_redirect'        => $previous_general_settings[ 'is_page_redirect' ] ?? [],
+                'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
             ];
 
             update_option( 'catalog_all_settings_settings', $all_settings );
