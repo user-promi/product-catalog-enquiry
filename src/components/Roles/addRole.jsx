@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { __ } from "@wordpress/i18n";
 import { getApiLink } from "../../services/apiService";
 import axios from 'axios';
+import './roles.scss';
 
 const AddRole = (props) => {
     const { setOpenDialog } = props;
@@ -18,7 +19,8 @@ const AddRole = (props) => {
 				inheritRole: inheritRole,
 			},
 		}).then((response) => {
-			// console.log(response.data.msg);
+			console.log(response.data.msg);
+            setOpenDialog(false);
 
 		});
     }

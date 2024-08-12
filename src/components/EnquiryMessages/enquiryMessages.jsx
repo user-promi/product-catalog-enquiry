@@ -18,6 +18,18 @@ const EnquiryMessages = (props) => {
     const [enquiryLists, setEnquiryLists] = useState([]);
     const [selectedEnquiry, setSelectedEnquiry] = useState(null);
     const [filterValue, SetFilterValue] = useState('');
+    const [starMsgOpen, SetStarMsgOpen] = useState(false);
+    const [starMsgList, setStarMsgList] = useState([]);
+
+    useEffect(() => {
+        const closePopup = ()  => {
+			SetStarMsgOpen(false);
+        } 
+		document.body.addEventListener("click", closePopup)
+        return () => {
+            document.body.removeEventListener("click", closePopup )
+        }
+	}, []);
 
     useEffect(() => {
         axios({
@@ -29,6 +41,15 @@ const EnquiryMessages = (props) => {
     }, []);
 
     console.log(enquiryLists);
+
+    useEffect(() => {
+        axios({
+            method: "post",
+            url: `${appLocalizer.apiurl}/catalog/v1/get-star-msg-list`,
+        }).then((response) => {
+            setStarMsgList(response.data);
+        });
+    }, []);
 
     const handleEnquiryClick = (enquiry) => {
         setSelectedEnquiry(enquiry);
@@ -86,45 +107,45 @@ const EnquiryMessages = (props) => {
                                 <span className="total-message">({enquiryLists.length})</span>
                             </div>
                             <span className='starter-message'>
-                                <i className='admin-font font-more-vertical'></i>
+                                <i className='admin-font font-more-vertical' onClick={(e) => {
+                                    e.stopPropagation();
+                                    SetStarMsgOpen(true);
+                                }}></i>
                             </span>
-                            <main className='starter-container-wrapper'>
-                                <ul>
-                                    <li>
-                                        <article>
-                                            <div className='sender-img'>
-                                                <img src="https://shorturl.at/gGILQ" alt="" />
-                                            </div>
-                                            <main className='chat-content-wrapper'>
-                                                <section>
-                                                    <div>
-                                                        phone:
-                                                        629034824
-                                                        address:
-                                                        12/1A/3D Chowbaga Road
-                                                        subject:
-                                                        hgcahgvxwhv
-                                                        comment:
-                                                        jhvhvhj jcj
+                            {starMsgOpen && 
+                                <main className='starter-container-wrapper'>
+                                    <ul>
+                                        {starMsgList.map((message, index) => (
+                                            <li key={index}>
+                                                <article>
+                                                    <div className="sender-img">
+                                                        <img src="https://shorturl.at/gGILQ" alt="Sender" />
                                                     </div>
-                                                    <nav>
-                                                        <button>
-                                                            <i class="admin-font font-more-vertical"></i>
-                                                        </button>
-                                                        <div className="chat-text-control-wrapper">
-                                                            <button>Copy</button>
-                                                            <button>Remove star</button>
-                                                        </div>
-                                                    </nav>
-                                                </section>
-                                                <footer>
-                                                    2024-07-24 17:26:11
-                                                </footer>
-                                            </main>
-                                        </article>
-                                    </li>
-                                </ul>
-                            </main>
+                                                    <main className="chat-content-wrapper">
+                                                        <section>
+                                                            <div>
+                                                                <p dangerouslySetInnerHTML={{ __html: message.msg }} />
+                                                            </div>
+                                                            {/* <nav>
+                                                                <button>
+                                                                    <i className="admin-font font-more-vertical"></i>
+                                                                </button>
+                                                                <div className="chat-text-control-wrapper">
+                                                                    <button>Copy</button>
+                                                                    <button>Remove star</button>
+                                                                </div>
+                                                            </nav> */}
+                                                        </section>
+                                                        <footer>
+                                                            {message.date}
+                                                        </footer>
+                                                    </main>
+                                                </article>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </main>
+                            }
                         </nav>
                         <div className="search-option">
                             <input

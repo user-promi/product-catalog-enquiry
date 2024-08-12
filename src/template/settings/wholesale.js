@@ -28,12 +28,7 @@ export default {
                     key: "automatic",
                     label: __('Automatic', 'woocommerce-catalog-enquiry'),
                     value: "Automatic"
-                },
-                {
-                    key: "off",
-                    label: __('Off', 'woocommerce-catalog-enquiry'),
-                    value: "off"
-                },
+                }
             ],
             proSetting: true,
         },

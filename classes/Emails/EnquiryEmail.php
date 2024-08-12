@@ -85,7 +85,7 @@ class EnquiryEmail extends \WC_Email {
 		if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
 			return false;
 		}
-		$product = wc_get_product( $this->product_id );
+		$product = wc_get_product( key($this->product_id) );
 
 		$this->find[]      = '{PRODUCT_NAME}';
 		$this->replace[]   =  is_array($this->product_id) && count($this->product_id) > 1 ? 'MULTIPLE PRODUCTS' : $product->get_title();

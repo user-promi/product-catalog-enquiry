@@ -16,8 +16,8 @@ class Admin {
         add_action( 'woocommerce_process_product_meta', [ $this, 'save_custom_product_data_fields' ] );
 
         // Add and save fields in users tab
-        add_action( 'edit_user_profile', [ $this, 'add_extra_profile_field' ] );
-        add_action( 'edit_user_profile_update', [ $this, 'save_extra_profile_fields' ] );
+        // add_action( 'edit_user_profile', [ $this, 'add_extra_profile_field' ] );
+        // add_action( 'edit_user_profile_update', [ $this, 'save_extra_profile_fields' ] );
     }
 
     /**

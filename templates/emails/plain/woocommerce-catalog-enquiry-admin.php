@@ -16,7 +16,7 @@ echo sprintf( __( "Please find the product enquiry, details are given below", 'w
 
 echo "\n****************************************************\n\n";
 
-$product_obj = wc_get_product( $product_id );
+$product_obj = wc_get_product( key($product_id) );
 
 echo "\n Product Name : ".$product_obj->get_name();
 

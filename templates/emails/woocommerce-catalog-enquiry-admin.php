@@ -24,8 +24,8 @@ do_action( 'woocommerce_email_header', $email_heading ); ?>
 	</thead>
 	<tbody>
 		<?php 
-		if (is_array($product_id)) {
-			foreach ($product_id as $id) {
+		if (is_array($product_id) && count($product_id) > 1) {
+			foreach ($product_id as $id => $value) {
 				$product_obj = wc_get_product( $id ); ?>
 				<tr>
 				<td scope="col"><?php echo $product_obj->get_name(); ?>
@@ -56,7 +56,7 @@ do_action( 'woocommerce_email_header', $email_heading ); ?>
 			<?php
 			}
 		} else {
-			$product_obj = wc_get_product( $product_id ); ?>
+			$product_obj = wc_get_product( key($product_id) ); ?>
 			<tr>
 			<td scope="col"><?php echo $product_obj->get_name(); ?>
 			<?php 

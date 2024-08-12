@@ -190,7 +190,7 @@ class Fontend {
 
         // Calculate save amount
         $retail_price    = floatval( $product->get_regular_price() );
-        $wholesale_price = $retail_price - $amount; 
+        $wholesale_price = $retail_price - floatval($amount); 
         $save_amount     = $amount;
         
         // Handle if the user is not wholesale user
