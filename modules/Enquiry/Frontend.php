@@ -113,6 +113,13 @@ class Frontend{
         $current_user = wp_get_current_user();
 
         wp_enqueue_style( 'mvx-catalog-product-style', Catalog()->plugin_url . '/build/blocks/enquiryForm/index.css' );
+        // additional css
+        $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
+
+        if (isset($additional_css_settings) && !empty($additional_css_settings)) {
+            wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
+        }
+        
         wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
 
         wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element' ], Catalog()->version, true );

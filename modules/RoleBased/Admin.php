@@ -18,19 +18,19 @@ class Admin {
         register_rest_route( Catalog()->rest_namespace, '/get-roles', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'get_roles' ],
-            'permission_callback'   => [ Catalog()->rest, 'catalog_permission' ]
+            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
         ] );
 
         register_rest_route( Catalog()->rest_namespace, '/add-role', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'add_role' ],
-            'permission_callback'   => [ Catalog()->rest, 'catalog_permission' ]
+            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
         ] );
 
         register_rest_route( Catalog()->rest_namespace, '/edit-role', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
             'callback'              => [ $this, 'edit_role' ],
-            'permission_callback'   => [ Catalog()->rest, 'catalog_permission' ]
+            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ]
         ] );
     }
     

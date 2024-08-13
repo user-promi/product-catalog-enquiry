@@ -222,8 +222,9 @@ const EnquiryForm = (props) => {
             setResponseMessage(response.data.msg)
             setLoading(false);
             setToast(true);
+            console.log(response.data)
             if(response.data.redirect_link !== ''){
-                return;
+                window.location.href = response.data.redirect_link;
             }
             setTimeout(() => {
                 setToast(false);

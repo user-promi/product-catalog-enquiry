@@ -38,7 +38,7 @@ class Rest {
         $user       = wp_get_current_user();
         $user_name  = $user->display_name;
         $user_email = $user->user_email;
-
+        
         $post_params = $request->get_body_params();
         $file_data   = $request->get_file_params();
 
@@ -124,9 +124,10 @@ class Rest {
 				'user_enquiry_fields'   => $other_fields,
 				]);
 
+            $additional_email = Catalog()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			$send_email->trigger( $admin_email, $enquiry_data );
+			$send_email->trigger( $additional_email, $enquiry_data );
 				
             $redirect_link = Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             

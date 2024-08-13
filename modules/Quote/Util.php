@@ -131,10 +131,15 @@ class Util {
         $order->set_billing_email($customer_email);
         $order->set_billing_phone($customer_phone);
 
+        $product_info = [];
         foreach ($product_data as $item) {
             $product_id = isset($item['product_id']) ? $item['product_id'] : null;
             $quantity = isset($item['quantity']) ? intval($item['quantity']) : 0;
     
+            $product_info[] = [
+                'product_id' => $product_id,
+                'quantity' => $quantity
+            ];
             if ($product_id && $quantity > 0) {
                 $product = wc_get_product($product_id);
                 if ($product) {
@@ -151,8 +156,13 @@ class Util {
 		$order->add_meta_data( 'quote_customer_email', $customer_email);
         $order->add_meta_data( 'quote_customer_msg', $customer_message);
         $order->save();
+        $customer_data = [
+            'name' => $customer_name,
+            'email' => $customer_email,
+            'details'   => $customer_message
+        ];
         $email = WC()->mailer()->emails[ 'requestQuoteSendEmail' ];
-        $email->trigger( $product_id );
+        $email->trigger( $product_info, $customer_data );
 
         Catalog()->quotecart->clear_cart();
         return $order->get_id();
