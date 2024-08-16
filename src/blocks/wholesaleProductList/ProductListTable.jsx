@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+// import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { __ } from "@wordpress/i18n";
 import CustomTable, { TableCell } from "../../components/AdminLibrary/CustomTable/CustomTable";
 import { getApiLink } from "../../services/apiService";
 import axios from 'axios';
-import Dialog from "@mui/material/Dialog";
-import { DateRangePicker } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+// import Dialog from "@mui/material/Dialog";
 import './ProductListTable.scss';
 
 const WholesaleProductList = () => {
@@ -82,19 +80,6 @@ const WholesaleProductList = () => {
 	}
 
 	const handleAddCart =() => {
-		// const newProductQuantity = {};
-		// selectedRows.forEach(row => {
-		// 	let id = row.id;
-		// 	let value = productQuantity[id] || 1;
-			
-		// 	newProductQuantity[id] = value;
-
-		// 	newProductQuantity{
-		// 		id : id,
-		// 		quantity: value
-		// 	}
-		// });
-
 		const newProductQuantity = selectedRows.map(row => {
 			let id = row.id;
 			let value = productQuantity[id] || 1;
@@ -103,32 +88,6 @@ const WholesaleProductList = () => {
 				quantity: value
 			};
 		});
-
-		// axios({
-		// 	method: "post",
-		// 	url: getApiLink('products-add-to-cart'),
-		// 	headers: { "X-WP-Nonce": appLocalizer.nonce },
-		// 	data: {
-		// 		products : newProductQuantity
-		// 	},
-		// }).then((response) => {
-		// 	console.log(response)
-		// 	// setData(response.data);
-		// });
-
-		// axios({
-		// 	method: "post",
-		// 	url: `${appLocalizer.apiurl}/wc/store/v1/cart/add-item`,
-		// 	dataType: 'json',
-		// 	headers: { "X-WC-Store-API-Nonce": appLocalizer.cart_nonce },
-		// 	data: {
-		// 		id : 253,
-		// 		quantity: 1,
-		// 	},
-		// }).then((response) => {
-		// 	console.log(response)
-		// 	// setData(response.data);
-		// });
 
 		newProductQuantity.forEach(product => {
 			axios({
@@ -323,7 +282,7 @@ const WholesaleProductList = () => {
 							</button>
 						</div>
 					</div>
-                    {/* {console.log(data)} */}
+
 					{
 						<CustomTable
 							data={data}

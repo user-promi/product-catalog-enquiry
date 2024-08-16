@@ -9,9 +9,9 @@ const QuoteList = () => {
 	const [data, setData] = useState(null);
 	const [selectedRows, setSelectedRows] = useState([]);
 	const [productQuantity, setProductQuantity] = useState([]);
-	const [ loading, setLoading ] = useState(false);
-	const [ responseContent, setResponseContent ] = useState(false);
-	const [ responseStatus, setResponseStatus ] = useState('');
+	const [loading, setLoading] = useState(false);
+	const [responseContent, setResponseContent] = useState(false);
+	const [responseStatus, setResponseStatus] = useState('');
 	const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -200,61 +200,63 @@ const QuoteList = () => {
 				}
 			</div>
 			
-			<div className='main-form'>
-				{	loading &&
-					<Loader />
-				}
-				<p className='form-row form-row-first'>
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                    />
-                </p>
-                <p className='form-row form-row-last'>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                    />
-                </p>
-                <p className="form-row form-row-wide">
-                    <label htmlFor="phone">Phone:</label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                    />
-                </p>
-                <p className='form-row form-row-wide'>
-                    <label htmlFor="message">Message:</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="4"
-                        cols="50"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                    ></textarea>
-                </p>
-				<p>
-					<button id='SendQuote' onClick={handleSendQuote}> Send Quote </button>
-				</p>
-				{	
-					responseContent &&
-					<section className={`response-message-container ${responseStatus}`}>
-						<p>{responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"}</p>
-					</section>
-				}
-			</div>
+			{data && Object.keys(data).length > 0 && 
+				<div className='main-form'>
+					{	loading &&
+						<Loader />
+					}
+					<p className='form-row form-row-first'>
+						<label htmlFor="name">Name:</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							value={formData.name}
+							onChange={handleInputChange}
+						/>
+					</p>
+					<p className='form-row form-row-last'>
+						<label htmlFor="email">Email:</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							value={formData.email}
+							onChange={handleInputChange}
+						/>
+					</p>
+					<p className="form-row form-row-wide">
+						<label htmlFor="phone">Phone:</label>
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							value={formData.phone}
+							onChange={handleInputChange}
+						/>
+					</p>
+					<p className='form-row form-row-wide'>
+						<label htmlFor="message">Message:</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="4"
+							cols="50"
+							value={formData.message}
+							onChange={handleInputChange}
+						></textarea>
+					</p>
+					<p>
+						<button id='SendQuote' onClick={handleSendQuote}> Send Quote </button>
+					</p>
+					{	
+						responseContent &&
+						<section className={`response-message-container ${responseStatus}`}>
+							<p>{responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"}</p>
+						</section>
+					}
+				</div>
+			}
 		</>
 
 	);

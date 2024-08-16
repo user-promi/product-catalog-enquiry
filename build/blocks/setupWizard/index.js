@@ -4410,7 +4410,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const SetupWizard = () => {
-  const [currentStep, setCurrentStep] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(4);
+  const [currentStep, setCurrentStep] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const onPrev = () => {
     setCurrentStep(Math.max(0, currentStep - 1));
   };

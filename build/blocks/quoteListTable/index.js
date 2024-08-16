@@ -4718,7 +4718,7 @@ const QuoteList = () => {
       setSelectedRows(selectRows);
     }
     // autoLoading={false}
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), data && Object.keys(data).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "main-form"
   }, loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Loader, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "form-row form-row-first"
@@ -9029,6 +9029,28 @@ module.exports = window["React"];
 
 "use strict";
 module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
@@ -14880,17 +14902,56 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _QuoteListTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuoteListTable */ "./src/blocks/quoteListTable/QuoteListTable.jsx");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _QuoteListTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuoteListTable */ "./src/blocks/quoteListTable/QuoteListTable.jsx");
+
+// import { render } from '@wordpress/element';
+// import { BrowserRouter } from 'react-router-dom';
+// import QuoteListTable from './QuoteListTable';
+
+// // Render the App component into the DOM
+// render(<BrowserRouter>
+// <QuoteListTable/>
+// </BrowserRouter>, document.getElementById('request_quote_list'));
 
 
 
 
 
-// Render the App component into the DOM
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuoteListTable__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('request_quote_list'));
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)("woocommerce-catalog-enquiry/quote-cart", {
+  apiVersion: 2,
+  title: "Quote Cart",
+  icon: "list-view",
+  category: "widgets",
+  supports: {
+    html: false
+  },
+  edit() {
+    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps,
+      id: "request_quote_list"
+    }, (0,_QuoteListTable__WEBPACK_IMPORTED_MODULE_4__["default"])());
+  },
+  save() {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      id: "request_quote_list"
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const element = document.getElementById("request_quote_list");
+  if (element) {
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuoteListTable__WEBPACK_IMPORTED_MODULE_4__["default"], null)), element);
+  }
+});
 })();
 
 /******/ })()

@@ -112,8 +112,53 @@ final class CatalogEnquiry {
 		add_action( 'init', [ $this, 'catalog_register_form_strings' ] );
 		add_action( 'init', [ $this, 'catalog_setup_wizard' ] );
 		
+		add_action('enqueue_block_editor_assets', [$this, 'enqueue_block_assets']);
+
 		do_action( 'catalog_enquiry_loaded' );
 
+
+	}
+
+	function enqueue_block_assets() {
+		wp_enqueue_script(
+			'wholesale-product-list-block',
+			Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.js',
+			[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
+		);
+	
+		wp_enqueue_style(
+			'wholesale-product-list-block-style',
+			Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.css',
+			[],
+		);
+
+		$products = wc_get_products([
+			'meta_key'   => 'wholesale_product',
+			'meta_value' => 'yes',
+			'return' => 'ids',
+			'limit' => -1
+		]);
+	
+		wp_localize_script(
+			'wholesale-product-list-block', 'appLocalizer', [
+			'apiurl' => untrailingslashit(get_rest_url()),
+			'nonce' => wp_create_nonce('wp_rest'),
+			'cart_nonce' => wp_create_nonce('wc_store_api'),
+			'pro_active' => Utill::is_pro_active(),
+			'products' => $products,
+		]);
+
+		wp_enqueue_script(
+			'quote-cart-block',
+			Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
+			[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
+		);
+	
+		wp_enqueue_style(
+			'quote-cart-block-style',
+			Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css',
+			[],
+		);
 
 	}
 
@@ -121,9 +166,9 @@ final class CatalogEnquiry {
 	 * Load setup class 
 	 */
 	function catalog_setup_wizard() {
-
+		
+		new SetupWizard();
 		if (get_option('catalog_plugin_activated')) {
-			new SetupWizard();
 			delete_option('catalog_plugin_activated');
 			wp_redirect(admin_url('admin.php?page=catalog-setup'));
 			exit;
@@ -175,9 +220,9 @@ final class CatalogEnquiry {
 		$this->container['restapi']	 	= new Rest();
 		$this->container['util']     	= new Utill();
 		$this->container['modules']	 	= new Modules();
-		$this->container[ 'shortcode' ] = new Shortcode();
-		$this->container[ 'session' ] 	= new Core\Session();
-        $this->container[ 'quotecart' ] = new Core\QuoteCart();
+		$this->container['shortcode'] = new Shortcode();
+		$this->container['session'] 	= new Core\Session();
+        $this->container['quotecart'] = new Core\QuoteCart();
 
 		// Load all active modules
 		$this->container['modules']->load_active_modules();
@@ -244,6 +289,7 @@ final class CatalogEnquiry {
      * @return void
      */
 	public function activate() {
+		ob_start();
 		$this->container['install'] = new Install();
 
 		if (!get_option('catalog_plugin_installed')) {
@@ -251,6 +297,7 @@ final class CatalogEnquiry {
 			add_option('catalog_plugin_activated', true);
 		}
         flush_rewrite_rules();
+		ob_end_clean();
     }
 
 	/**

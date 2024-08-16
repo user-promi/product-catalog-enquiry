@@ -21,7 +21,7 @@ jQuery( function( $ ) {
 
         currentElement.after(' <img src="' + quote_cart.loader + '" >');
         
-        $.post(enquiry_cart.ajaxurl, requestData, function (response) {
+        $.post(quote_cart.ajaxurl, requestData, function (response) {
 
             currentElement.next().remove();
             if (response.result == 'true' || response.result == 'exists') {

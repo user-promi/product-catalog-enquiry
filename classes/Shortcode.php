@@ -21,6 +21,7 @@ class Shortcode {
 
         // Hook the function to template_redirect
         add_action( 'template_redirect', [ $this, 'wholesale_shop_page_redirect' ]);
+
     }
 
     function wholesale_shop_page_redirect() {
@@ -31,32 +32,44 @@ class Shortcode {
             exit;
         }
     }
-
-
+    
     function frontend_scripts() {
-        wp_enqueue_script('product_list_js', Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
-        wp_enqueue_style('product_list_css', Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.css');
+        global $post;
 
-        $products = wc_get_products([
-            'meta_key'   => 'wholesale_product',
-            'meta_value' => 'yes',
-            'return' => 'ids',
-            'limit' => -1
-        ]);
+        if (has_shortcode($post->post_content, 'wholesale_product_list') || has_block('woocommerce-catalog-enquiry/wholesale-product-list')) {
+            wp_enqueue_script('product_list_js', Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
+            wp_enqueue_style('product_list_css', Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.css');
 
-        wp_localize_script(
-            'product_list_js', 'appLocalizer', [
-            'apiurl' => untrailingslashit(get_rest_url()),
-            'nonce' => wp_create_nonce( 'wp_rest' ),
-            'cart_nonce' => wp_create_nonce( 'wc_store_api' ),
-            'pro_active' => Utill::is_pro_active(),
-            'products' => $products,
-        ]);
+            $products = wc_get_products([
+                'meta_key'   => 'wholesale_product',
+                'meta_value' => 'yes',
+                'return' => 'ids',
+                'limit' => -1
+            ]);
 
-        wp_enqueue_script('quote_list_js', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
-        wp_enqueue_style('quote_list_css', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
-        wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quoteThankYou/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
+            wp_localize_script(
+                'product_list_js', 'appLocalizer', [
+                'apiurl' => untrailingslashit(get_rest_url()),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+                'cart_nonce' => wp_create_nonce( 'wc_store_api' ),
+                'pro_active' => Utill::is_pro_active(),
+                'products' => $products,
+            ]);
+        }
 
+        if (has_shortcode($post->post_content, 'request_quote') || has_block('woocommerce-catalog-enquiry/quote-cart')) {
+            wp_enqueue_script('quote_list_js', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
+            wp_localize_script(
+                'quote_list_js', 'appLocalizer', [
+                'apiurl' => untrailingslashit(get_rest_url()),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+            ]);
+            wp_enqueue_style('quote_list_css', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
+        }
+
+        if (has_shortcode($post->post_content, 'request_quote_thank_you')) {
+            wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quoteThankYou/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
+        }
     }
 
 	function display_request_quote() {
