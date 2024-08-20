@@ -451,7 +451,7 @@ class Install {
             'post_type' => 'page',
             'post_author' => 1,
             'post_name' => 'request-quote',
-            'post_title' => __('Request Quote', 'woocommerce-catalog-enquiry-pro'),
+            'post_title' => __('Request Quote', 'woocommerce-catalog-enquiry'),
             'post_content' => '[request_quote]',
             'comment_status' => 'closed'
         ];
@@ -488,7 +488,7 @@ class Install {
             'post_type' => 'page',
             'post_author' => 1,
             'post_name' => 'request-quote-thank-you',
-            'post_title' => __('Quotation Confirmation', 'woocommerce-catalog-enquiry-pro'),
+            'post_title' => __('Quotation Confirmation', 'woocommerce-catalog-enquiry'),
             'post_content' => '[request_quote_thank_you]',
             'comment_status' => 'closed'
         ];

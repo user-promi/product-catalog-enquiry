@@ -33,14 +33,18 @@ class SetupWizard {
     }
     
     function admin_scripts() {
-        wp_enqueue_script('setup_wizard_js', Catalog()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
-        wp_enqueue_style('setup_wizard_css', Catalog()->plugin_url . 'build/blocks/setupWizard/index.css');
-        wp_localize_script(
-            'setup_wizard_js', 'appLocalizer', [
-            'apiurl' => untrailingslashit(get_rest_url()),
-            'nonce' => wp_create_nonce( 'wp_rest' ),
-            'redirect_url' => admin_url() . 'admin.php?page=catalog#&tab=settings&subtab=all_settings',
-        ]);
+        $current_screen = get_current_screen();
+
+        if ( $current_screen->id === 'dashboard_page_catalog-setup' ) {
+            wp_enqueue_script('setup_wizard_js', Catalog()->plugin_url . 'build/blocks/setupWizard/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
+            wp_enqueue_style('setup_wizard_css', Catalog()->plugin_url . 'build/blocks/setupWizard/index.css');
+            wp_localize_script(
+                'setup_wizard_js', 'appLocalizer', [
+                'apiurl' => untrailingslashit(get_rest_url()),
+                'nonce' => wp_create_nonce( 'wp_rest' ),
+                'redirect_url' => admin_url() . 'admin.php?page=catalog#&tab=settings&subtab=all_settings',
+            ]);
+        }
     }
 
 }

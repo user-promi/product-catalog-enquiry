@@ -233,17 +233,17 @@ export default function QuotesList() {
   const getStatus = (status) => {
     switch (status) {
       case 'quote-new':
-        return __('New quote Request', 'woocommerce-catalog-enquiry-pro');
+        return __('New quote Request', 'woocommerce-catalog-enquiry');
       case 'quote-pending':
-        return __('Pending Request', 'woocommerce-catalog-enquiry-pro');
+        return __('Pending Request', 'woocommerce-catalog-enquiry');
       case 'quote-expired':
-        return __('Expired', 'woocommerce-catalog-enquiry-pro');
+        return __('Expired', 'woocommerce-catalog-enquiry');
       case 'quote-accepted':
-        return __('Accepted', 'woocommerce-catalog-enquiry-pro');
+        return __('Accepted', 'woocommerce-catalog-enquiry');
       case 'quote-rejected':
-        return __('Rejected', 'woocommerce-catalog-enquiry-pro');
+        return __('Rejected', 'woocommerce-catalog-enquiry');
       default:
-        return __('-', 'woocommerce-catalog-enquiry-pro');
+        return __('-', 'woocommerce-catalog-enquiry');
     }
     return $quote_status;
   }

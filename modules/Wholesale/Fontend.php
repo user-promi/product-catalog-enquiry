@@ -115,7 +115,7 @@ class Fontend {
         wp_enqueue_script(
             'wholesale_registration_form',
             Catalog()->plugin_url . 'build/blocks/wholesaleRegister/index.js',
-            [ 'jquery', 'jquery-blockui', 'wp-element' ],
+            [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ],
             Catalog()->version,
             true
         );

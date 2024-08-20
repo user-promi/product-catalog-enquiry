@@ -17,6 +17,8 @@ class Frontend {
         add_action('woocommerce_after_shop_loop_item', [$this, 'add_button_for_quote'], 11 );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 
+        // Quote button shortcode
+        add_shortcode( 'catalog_quote_button', [ $this, 'catalog_quote_button_shortcode' ] );
     }
 
     /**
@@ -34,7 +36,7 @@ class Frontend {
             [
                 'ajaxurl' => admin_url('admin-ajax.php'),
                 'loader' => admin_url('images/wpspin_light.gif'),
-                'no_more_product' => __('No more product in Quote list!', 'woocommerce-catalog-enquiry-pro'),
+                'no_more_product' => __('No more product in Quote list!', 'woocommerce-catalog-enquiry'),
             ]
         );
     }
@@ -96,6 +98,11 @@ class Frontend {
             'rqa_url'           => Catalog()->quotecart->get_request_quote_page_url(),
             'exists'            => Catalog()->quotecart->exists_in_cart( $product->get_id() )
         ]);
+    }
+
+    public function catalog_quote_button_shortcode() {
+        remove_action('display_shop_page_button', [ $this, 'add_button_for_quote' ]);
+        $this->add_button_for_quote();
     }
 
 }

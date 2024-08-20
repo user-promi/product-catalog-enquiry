@@ -457,7 +457,7 @@ class QuoteCart {
             $key_to_find = md5( $product_id );
         }
         if ( array_key_exists( $key_to_find, $this->quote_cart_content ) ) {
-            $this->errors[] = __( 'Product already in Cart.', 'woocommerce-catalog-enquiry-pro' );
+            $this->errors[] = __( 'Product already in Cart.', 'woocommerce-catalog-enquiry' );
             return true;
         }
         return false;

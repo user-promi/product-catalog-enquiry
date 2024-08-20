@@ -183,7 +183,7 @@ const QuoteList = () => {
 				<div className="admin-page-title">
 					<div className="add-to-quotation-button">
 						<button onClick={handleUpdateCart}>
-							Update Cart
+							{__("Update Cart", "woocommerce-catalog-enquiry")}
 						</button>
 					</div>
 				</div>
@@ -206,7 +206,7 @@ const QuoteList = () => {
 						<Loader />
 					}
 					<p className='form-row form-row-first'>
-						<label htmlFor="name">Name:</label>
+						<label htmlFor="name">{__("Name:", "woocommerce-catalog-enquiry")}</label>
 						<input
 							type="text"
 							id="name"
@@ -216,7 +216,7 @@ const QuoteList = () => {
 						/>
 					</p>
 					<p className='form-row form-row-last'>
-						<label htmlFor="email">Email:</label>
+						<label htmlFor="email">{__("Email:", "woocommerce-catalog-enquiry")}</label>
 						<input
 							type="email"
 							id="email"
@@ -226,7 +226,7 @@ const QuoteList = () => {
 						/>
 					</p>
 					<p className="form-row form-row-wide">
-						<label htmlFor="phone">Phone:</label>
+						<label htmlFor="phone">{__("Phone:", "woocommerce-catalog-enquiry")}</label>
 						<input
 							type="tel"
 							id="phone"
@@ -236,7 +236,7 @@ const QuoteList = () => {
 						/>
 					</p>
 					<p className='form-row form-row-wide'>
-						<label htmlFor="message">Message:</label>
+						<label htmlFor="message">{__("Message:", "woocommerce-catalog-enquiry")}</label>
 						<textarea
 							id="message"
 							name="message"
@@ -247,7 +247,7 @@ const QuoteList = () => {
 						></textarea>
 					</p>
 					<p>
-						<button id='SendQuote' onClick={handleSendQuote}> Send Quote </button>
+						<button id='SendQuote' onClick={handleSendQuote}> {__("Send Quote", "woocommerce-catalog-enquiry")} </button>
 					</p>
 					{	
 						responseContent &&
