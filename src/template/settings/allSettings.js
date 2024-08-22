@@ -3,7 +3,7 @@ export default {
     id: 'all_settings',
     priority: 20,
     name: __("Shopping Journey", "woocommerce-catalog-enquiry"),
-    desc: __("Set up sales flow and catalog mode with integrated inquiry and quotation management.", "woocommerce-catalog-enquiry"),
+    desc: __("Set up sales flow and catalog mode with integrated enquiry and quotation management.", "woocommerce-catalog-enquiry"),
     icon: 'font-settings',
     submitUrl: 'save_enquiry',
     modal: [
@@ -72,13 +72,13 @@ export default {
         {
             key: 'separator_content',
             type: 'section',
-            desc: __("Inquiry", "woocommerce-catalog-enquiry"),
-            //hint: __("Inquiry", "woocommerce-catalog-enquiry"),
+            desc: __("Enquiry", "woocommerce-catalog-enquiry"),
+            //hint: __("Enquiry", "woocommerce-catalog-enquiry"),
         },
         {
             key: 'enquiry_user_permission',
             type: 'checkbox',
-            label: __( "Restrict product inquiries for logged-in users only", 'woocommerce-catalog-enquiry' ),
+            label: __( "Restrict product enquiries for logged-in users only", 'woocommerce-catalog-enquiry' ),
             desc: __( "If enabled, non-logged-in users can't access the enquiry flow.", 'woocommerce-catalog-enquiry' ),
             options: [
                 {
@@ -90,8 +90,8 @@ export default {
         {
             key: 'is_enable_out_of_stock',
             type: 'checkbox',
-            label: __( "Inquiry for out-of-stock products only", 'woocommerce-catalog-enquiry' ),
-            desc: __("Inquiry button is shown exclusively for products that are out of stock. For items that are in stock, the Add-to-Cart button will be displayed instead.", 'woocommerce-catalog-enquiry'),
+            label: __( "Enquiry for out-of-stock products only", 'woocommerce-catalog-enquiry' ),
+            desc: __("Enquiry button is shown exclusively for products that are out of stock. For items that are in stock, the Add-to-Cart button will be displayed instead.", 'woocommerce-catalog-enquiry'),
             options: [
                 {
                     key: "is_enable_out_of_stock",
@@ -119,7 +119,7 @@ export default {
         {
             key: 'is_disable_popup',
             type: 'settingToggle',
-            label: __( "Display inquiry form as", 'woocommerce-catalog-enquiry' ),
+            label: __( "Display enquiry form as", 'woocommerce-catalog-enquiry' ),
             desc: __("Select whether the form is displayed directly on the page or in a pop-up window.", 'woocommerce-catalog-enquiry'),
             options: [
                 {
@@ -137,7 +137,7 @@ export default {
         {
             key: 'is_page_redirect',
             type: 'checkbox',
-            label: __( "Redirect after inquiry form Submission", 'woocommerce-catalog-enquiry' ),
+            label: __( "Redirect after enquiry form Submission", 'woocommerce-catalog-enquiry' ),
             desc: __("Enable this to redirect user to another page after successful enquiry submission.", 'woocommerce-catalog-enquiry'),
             options: [
                 {
@@ -153,15 +153,15 @@ export default {
                 set: true
             },
             type: 'select',
-            label:  __( 'Post inquiry submission redirect page', 'woocommerce-catalog-enquiry' ),
+            label:  __( 'Post enquiry submission redirect page', 'woocommerce-catalog-enquiry' ),
             desc: __( 'Select page where user will be redirected after successful enquiry.', 'woocommerce-catalog-enquiry' ),
             options: appLocalizer.all_pages,
         },
         {
             key: 'is_enable_multiple_product_enquiry',
             type: 'checkbox',
-            label: __( "Multi-product inquiry", 'woocommerce-catalog-enquiry' ),
-            desc: __("Enable multiple enquiry floe so customers can add several products to their enquiry cart and submit a single inquiry for all selected items.", 'woocommerce-catalog-enquiry'),
+            label: __( "Multi-product enquiry", 'woocommerce-catalog-enquiry' ),
+            desc: __("Enable multiple enquiry flow so customers can add several products to their enquiry cart and submit a single enquiry for all selected items.", 'woocommerce-catalog-enquiry'),
             options: [
                 {
                     key: "is_enable_multiple_product_enquiry",
@@ -173,7 +173,7 @@ export default {
         {
             key: 'separator_content',
             type: 'section',
-            desc: __("Quote", "woocommerce-catalog-enquiry"),
+            desc: __("Quotation", "woocommerce-catalog-enquiry"),
             //hint: __("Quote", "woocommerce-catalog-enquiry"),
         },
         {

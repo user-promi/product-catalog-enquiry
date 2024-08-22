@@ -12,8 +12,8 @@ export default [
     },
     {
         id: 'enquiry',
-        name: __("Inquiry & Communication", "woocommerce-catalog-enquiry"),
-        desc: __("<span class='highlight'>Free:</span> Add inquiry button for single product email inquiries to admin.<br><br> <span class='highlight'>Pro:</span> Full messaging hub with two-way communication, multi-product inquiries, and centralized management.", "woocommerce-catalog-enquiry"),
+        name: __("Enquiry & Communication", "woocommerce-catalog-enquiry"),
+        desc: __("<span class='highlight'>Free:</span> Add inquiry button for single product email enquiries to admin.<br><br> <span class='highlight'>Pro:</span> Full messaging hub with two-way communication, multi-product ennquiries, and centralized management.", "woocommerce-catalog-enquiry"),
         icon: 'font-mail',
         doc_link: '',
         settings_link: appLocalizer.site_url,
