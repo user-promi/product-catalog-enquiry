@@ -163,7 +163,7 @@ class Rest {
             $order->update_status('wc-quote-rejected');
             $order->set_customer_note($reason);
             $order->save();
-            return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'woocommerce-catalog-enquiry-pro' ) , $order_id )]);
+            return rest_ensure_response(['message' => sprintf( __( 'You have confirmed rejection of the quotation No: %d', 'woocommerce-catalog-enquiry' ) , $order_id )]);
         }
     }
 }

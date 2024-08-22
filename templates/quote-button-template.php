@@ -2,10 +2,10 @@
 /**
  * MVX Catalog Enquiry Cart Button Section
  *
- * Override this template by copying it to yourtheme/woocommerce-catalog-enquiry-pro/woocommerce-catalog-enquiry-pro-cart-button-template.php
+ * Override this template by copying it to yourtheme/woocommerce-catalog-enquiry/quote-button-template.php
  *
  * @author    MultiVendorX
- * @package   woocommerce-catalog-enquiry-pro/Templates
+ * @package   woocommerce-catalog-enquiry/Templates
  * @version   1.0.0
  */
 

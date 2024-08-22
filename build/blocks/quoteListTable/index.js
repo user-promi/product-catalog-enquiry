@@ -4710,7 +4710,7 @@ const QuoteList = () => {
     className: "add-to-quotation-button"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: handleUpdateCart
-  }, "Update Cart"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Update Cart", "woocommerce-catalog-enquiry")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: data,
     columns: columns,
     selectable: true,
@@ -4724,7 +4724,7 @@ const QuoteList = () => {
     className: "form-row form-row-first"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "name"
-  }, "Name:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
     id: "name",
     name: "name",
@@ -4734,7 +4734,7 @@ const QuoteList = () => {
     className: "form-row form-row-last"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "email"
-  }, "Email:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Email:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "email",
     id: "email",
     name: "email",
@@ -4744,7 +4744,7 @@ const QuoteList = () => {
     className: "form-row form-row-wide"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "phone"
-  }, "Phone:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Phone:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "tel",
     id: "phone",
     name: "phone",
@@ -4754,7 +4754,7 @@ const QuoteList = () => {
     className: "form-row form-row-wide"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     htmlFor: "message"
-  }, "Message:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Message:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     id: "message",
     name: "message",
     rows: "4",
@@ -4764,7 +4764,7 @@ const QuoteList = () => {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     id: "SendQuote",
     onClick: handleSendQuote
-  }, " Send Quote ")), responseContent && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+  }, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Send Quote", "woocommerce-catalog-enquiry"), " ")), responseContent && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     className: `response-message-container ${responseStatus}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"))));
 };

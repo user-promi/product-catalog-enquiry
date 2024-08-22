@@ -4434,7 +4434,7 @@ const QuoteThankYou = () => {
     class: "reject-quote-from-mail"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "reject-content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('You are about to reject the quote {orderId}', 'woocommerce-catalog-enquiry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please feel free to enter here your reason or provide us your feedback:', 'woocommerce-catalog-enquiry-pro')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('You are about to reject the quote {orderId}', 'woocommerce-catalog-enquiry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please feel free to enter here your reason or provide us your feedback:', 'woocommerce-catalog-enquiry')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     name: "reason",
     id: "reason",
     cols: "10",
@@ -4443,7 +4443,7 @@ const QuoteThankYou = () => {
     onChange: e => setReason(e.target.value)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: handleRejectQuote
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Reject the quote', 'woocommerce-catalog-enquiry-pro')))) : orderId && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Thank you for your quote request ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, orderId), "."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Our team is reviewing your details and will get back to you shortly with a personalized quote. We appreciate your patience and look forward to serving you!', 'woocommerce-catalog-enquiry'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Reject the quote', 'woocommerce-catalog-enquiry')))) : orderId && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Thank you for your quote request ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, orderId), "."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Our team is reviewing your details and will get back to you shortly with a personalized quote. We appreciate your patience and look forward to serving you!', 'woocommerce-catalog-enquiry'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "success-message"
   }, successMessage));
 };

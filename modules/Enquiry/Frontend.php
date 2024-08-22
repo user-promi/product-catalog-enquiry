@@ -20,6 +20,9 @@ class Frontend{
         add_action( 'woocommerce_single_product_summary', [ $this, 'enquiry_button_exclusion' ], 5);
 
         add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );
+
+        // Enquiry button shortcode
+        add_shortcode( 'wce_enquiry_button', [ $this, 'wce_enquiry_button_shortcode' ] );
     }
 
     /**
@@ -115,14 +118,13 @@ class Frontend{
         wp_enqueue_style( 'mvx-catalog-product-style', Catalog()->plugin_url . '/build/blocks/enquiryForm/index.css' );
         // additional css
         $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
-
         if (isset($additional_css_settings) && !empty($additional_css_settings)) {
             wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
         }
         
         wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
 
-        wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element' ], Catalog()->version, true );
+        wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true );
         wp_localize_script(
             'enquiry_form_js', 'enquiry_form_data', [
             'apiurl'        => untrailingslashit(get_rest_url()),
@@ -172,5 +174,10 @@ class Frontend{
         }
 
         return $form_settings[ 'formsettings' ];
+    }
+
+    public function wce_enquiry_button_shortcode() {
+        remove_action('display_shop_page_button', [ $this, 'add_form_for_enquiry_without_popup' ]);
+        $this->add_enquiry_button();
     }
 }
