@@ -1,0 +1,13 @@
+{
+  "apiVersion": 2,
+  "name": "woocommerce-catalog-enquiry/add-enquiry-cart-button",
+  "title": "Add To Enquiry Button",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "A block that displays add-to-enquiry cart button.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "woocommerce-catalog-enquiry",
+  "editorScript": "file:./index.js"
+}

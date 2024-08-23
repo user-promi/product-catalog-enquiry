@@ -33,9 +33,9 @@ class Ajax {
         }
 
         if ( 'true' === $return ) {
-            $message = 'Product added in list' ;
+            $message = __( 'Product added to quote list.', 'woocommerce-catalog-enquiry' );
         } elseif ( 'exists' === $return ) {
-            $message = 'Product already in quote list';
+            $message = __( 'Product already in your quote list.', 'woocommerce-catalog-enquiry' );
         } else {
             $message = $errors;
         }

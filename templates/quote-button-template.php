@@ -23,12 +23,12 @@ $position = $position !== false ? $position : 0;
 
 	</div>
 	<div
-		class="quote_add_item_product-response-<?php echo esc_attr( $args['product_id'] ); ?> yith_ywraq_add_item_product_message hide hide-when-removed"
+		class="quote_add_item_product-response-<?php echo esc_attr( $args['product_id'] ); ?>"
 		style="display:none" data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"></div>
 	<div
 		class="quote_add_item_response-<?php echo esc_attr( $args['product_id'] ); ?> quote_add_item_response_message <?php echo esc_attr( ( ! $args['exists'] ) ? 'hide' : 'show' ); ?> hide-when-removed"
 		data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"
-		style="display:<?php echo ( ! $args['exists'] ) ? 'none' : 'block'; ?>"><?php echo esc_html('Already in quote list' ); ?></div>
+		style="display:<?php echo ( ! $args['exists'] ) ? 'none' : 'block'; ?>"><?php echo esc_html('Product already in your quote list' ); ?></div>
 	<div
 		class="quote_add_item_browse-list-<?php echo esc_attr( $args['product_id'] ); ?> quote_add_item_browse_message  <?php echo esc_attr( ( ! $args['exists'] ) ? 'hide' : 'show' ); ?> hide-when-removed"
 		style="display:<?php echo esc_attr( ( ! $args['exists'] ) ? 'none' : 'block' ); ?>"

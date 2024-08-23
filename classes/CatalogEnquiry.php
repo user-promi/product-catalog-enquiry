@@ -160,6 +160,26 @@ final class CatalogEnquiry {
 			[],
 		);
 
+		wp_enqueue_script(
+			'enquiry-button-block',
+			Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
+			[ 'wp-blocks', 'wp-element', 'wp-editor' ],
+			true
+		);
+
+		wp_enqueue_script(
+			'quote-button-block',
+			Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
+			[ 'wp-blocks', 'wp-element', 'wp-editor' ],
+			true
+		);
+
+		wp_localize_script(
+			'quote-button-block', 'appLocalizer', [
+			'apiurl' => untrailingslashit(get_rest_url()),
+			'nonce' => wp_create_nonce('wp_rest'),
+		]);
+
 	}
 
 	/**

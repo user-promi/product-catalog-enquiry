@@ -215,20 +215,19 @@ const EnquiryForm = (props) => {
         axios.post(submitUrl, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
-              "X-WP-Nonce": appLocalizer.nonce
+              "X-WP-Nonce": enquiry_form_data.nonce
             },
           })
           .then(response => {
             setResponseMessage(response.data.msg)
             setLoading(false);
             setToast(true);
-            console.log(response.data)
             if(response.data.redirect_link !== ''){
                 window.location.href = response.data.redirect_link;
             }
             setTimeout(() => {
                 setToast(false);
-
+                window.location.reload();
             }, 3000);
           })
           .catch(error => {
