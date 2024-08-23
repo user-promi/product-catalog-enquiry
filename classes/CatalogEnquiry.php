@@ -113,6 +113,7 @@ final class CatalogEnquiry {
 		add_action( 'init', [ $this, 'catalog_setup_wizard' ] );
 		
 		add_action('enqueue_block_editor_assets', [$this, 'enqueue_block_assets']);
+		add_action('wp_enqueue_scripts', [$this, 'enqueue_block_assets']);
 
 		do_action( 'catalog_enquiry_loaded' );
 
@@ -176,8 +177,7 @@ final class CatalogEnquiry {
 
 		wp_localize_script(
 			'quote-button-block', 'appLocalizer', [
-			'apiurl' => untrailingslashit(get_rest_url()),
-			'nonce' => wp_create_nonce('wp_rest'),
+			'ajaxurl' => admin_url('admin-ajax.php'),
 		]);
 
 	}

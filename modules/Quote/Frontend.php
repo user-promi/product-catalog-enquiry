@@ -26,19 +26,23 @@ class Frontend {
      * @return void
      */
     public function enqueue_scripts() {
-        $frontend_script_path = Catalog()->plugin_url . 'modules/quote/js/';
-        $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
+        global $post;
+        // wp_enqueue_script('quote-button-block');
+        if (is_shop() || is_product() || has_shortcode($post->post_content, 'catalog_quote_button')) {
+             $frontend_script_path = Catalog()->plugin_url . 'modules/quote/js/';
+            $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
-        wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], Catalog()->version, true);
-        wp_localize_script(
-            'add_to_quote_js',
-            'quote_cart',
-            [
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'loader' => admin_url('images/wpspin_light.gif'),
-                'no_more_product' => __('No more product in Quote list!', 'woocommerce-catalog-enquiry'),
-            ]
-        );
+            wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], Catalog()->version, true);
+            wp_localize_script(
+                'add_to_quote_js',
+                'quote_cart',
+                [
+                    'ajaxurl' => admin_url('admin-ajax.php'),
+                    'loader' => admin_url('images/wpspin_light.gif'),
+                    'no_more_product' => __('No more product in Quote list!', 'woocommerce-catalog-enquiry'),
+                ]
+            );
+        }
     }
 
     /**

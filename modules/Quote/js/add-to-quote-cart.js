@@ -4,7 +4,6 @@ jQuery( function( $ ) {
 
   	function handleClick (event) {
         event.preventDefault();
-
         const currentElement = $(this);
 
         let productId = currentElement.data('product_id');

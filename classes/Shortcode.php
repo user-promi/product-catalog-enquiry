@@ -95,8 +95,6 @@ class Shortcode {
         return ob_get_clean();
     }
     
-
-
     function display_request_quote_thank_you() {
         ob_start();
         ?>
@@ -105,4 +103,5 @@ class Shortcode {
         <?php
         return ob_get_clean();
     }
+
 } 

@@ -30,16 +30,6 @@ module.exports = window["wp"]["blockEditor"];
 
 module.exports = window["wp"]["blocks"];
 
-/***/ }),
-
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["element"];
-
 /***/ })
 
 /******/ 	});
@@ -123,74 +113,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-
-// import { registerBlockType } from '@wordpress/blocks';
-// import { useBlockProps } from '@wordpress/block-editor';
-// import { useState, useEffect } from '@wordpress/element';
-// import { RawHTML } from '@wordpress/element';
-// import axios from 'axios';
-
-// registerBlockType('woocommerce-catalog-enquiry/quote-button', {
-//     title: 'Quote Button',
-//     icon: 'button',
-//     category: 'widgets',
-// 	supports: {
-// 		html: true,
-// 	},
-//     attributes: {
-//         content: {
-//             type: 'string',
-//             default: '',
-//         },
-//     },
-//     edit({ attributes, setAttributes }) {
-//         const blockProps = useBlockProps();
-//         const [shortcodeContent, setShortcodeContent] = useState(attributes.content);
-
-//         useEffect(() => {
-//             if (!shortcodeContent) {
-//                 axios({
-//                     method: 'post',
-//                     url: `${appLocalizer.apiurl}/catalog/v1/render-quote-button`,
-//                 }).then((response) => {
-//                     setShortcodeContent(response.data);
-//                     setAttributes({ content: response.data });
-//                 });
-//             }
-//         }, [shortcodeContent, setAttributes]);
-
-//         return (
-//             <div {...blockProps}>
-//                 <RawHTML>{shortcodeContent}</RawHTML>
-//             </div>
-//         );
-//     },
-// 	save({ attributes }) {
-//         // Render the saved content on the front end
-//         return (
-//             <div>
-//                 <RawHTML>{attributes.content}</RawHTML>
-//             </div>
-//         );
-//     },
-// });
-
-// import { registerBlockType } from '@wordpress/blocks';
-// import { __ } from '@wordpress/i18n';
-
-// registerBlockType('woocommerce-catalog-enquiry/quote-button', {
-//     title: __('Quote Button', 'woocommerce-catalog-enquiry'),
-//     icon: 'button',
-//     category: 'widgets',
-//     edit: () => <p>{__('Catalog Quote Button (Visible only on single product pages)', 'woocommerce-catalog-enquiry')}</p>,
-//     save: () => <div></div>, // Save is handled by PHP
-// });
 
 
 
 
+// Register the block
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)('woocommerce-catalog-enquiry/quote-button', {
   title: 'Quote Button',
   icon: 'button',
@@ -199,28 +126,27 @@ __webpack_require__.r(__webpack_exports__);
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...blockProps
-    }, AddToQuote());
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      className: "add-request-quote-button"
+    }, "Add to Quote"));
   },
   save() {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       className: "add-request-quote-button"
-    }, "Add to Quote");
+    }, "Add to Quote"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "quote-message-container"
+    }));
   }
 });
-const AddToQuote = () => {
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    console.log('hiiiii');
-    document.addEventListener('click', function (event) {
-      if (event.target.closest('.add-request-quote-button')) {
-        handleClick(event);
-      }
-    });
-    function handleClick(event) {
+document.addEventListener('DOMContentLoaded', function () {
+  const quoteButton = document.querySelector('.add-request-quote-button');
+  if (quoteButton) {
+    quoteButton.addEventListener('click', function (event) {
       event.preventDefault();
+      console.log('second');
       const productElement = document.querySelector('[data-block-name="woocommerce/single-product"]');
       const productId = productElement ? productElement.dataset.productId : null;
-      console.log(productId); // Output the product ID
-
+      console.log(productId);
       const quantityElement = document.querySelector('.quantity .qty');
       const quantity = quantityElement ? quantityElement.value : 1;
       const requestData = new URLSearchParams({
@@ -231,28 +157,21 @@ const AddToQuote = () => {
       });
       fetch(appLocalizer.ajaxurl, {
         method: 'POST',
-        // headers: {
-        //     'Content-Type': 'application/x-www-form-urlencoded'
-        // },
         body: requestData
-      }).then(response => response.json()).then(data => {
-        console.log(data); // Handle the response data as needed
+      }).then(response => {
+        return response.json();
+      }).then(data => {
+        console.log('Response:', data.message);
+        const messageContainer = document.querySelector('.quote-message-container');
+        if (messageContainer) {
+          messageContainer.textContent = data.message;
+        }
       }).catch(error => {
         console.error('Error:', error);
       });
-    }
-    return () => {
-      document.removeEventListener('click', function (event) {
-        if (event.target.closest('.add-request-quote-button')) {
-          handleClick(event);
-        }
-      });
-    };
-  }, []);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "add-request-quote-button"
-  }, "Add to Quote");
-};
+    });
+  }
+});
 })();
 
 /******/ })()

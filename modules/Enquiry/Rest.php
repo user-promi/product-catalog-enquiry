@@ -22,6 +22,12 @@ class Rest {
             'callback'              => [ $this, 'save_form_data' ],
             'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ],
         ]);
+
+        register_rest_route( Catalog()->rest_namespace, '/render-enquiry-button', [
+            'methods'               => \WP_REST_Server::ALLMETHODS,
+            'callback'              => [ $this, 'render_enquiry_button_shortcode_rest' ],
+            'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ],
+        ]);
 	}
 
     /**
@@ -141,5 +147,13 @@ class Rest {
         }
 
         return rest_ensure_response( null );
+    }
+
+    /**
+     * render enquiry button shortcode into block
+     * @return \WP_Error|\WP_REST_Response
+     */
+    public function render_enquiry_button_shortcode_rest() {
+        return rest_ensure_response(do_shortcode('[wce_enquiry_button]'));
     }
 }
