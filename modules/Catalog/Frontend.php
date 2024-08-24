@@ -103,6 +103,11 @@ class Frontend{
      * @return void
      */
     public static function show_description_box() {
+        global $post;
+
+        if ( ! Util::is_available_for_product( $post->ID  ) ) {
+            return;
+        }
         ?>
         <div class="desc-box">
             <?php $input_box = Catalog()->setting->get_setting( 'additional_input' );

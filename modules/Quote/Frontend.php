@@ -53,10 +53,7 @@ class Frontend {
     function add_button_for_quote() {
 
         global $product;
-
-        if(!$product) {
-            return;
-        }
+        
         //Exclusion settings for shop and single product page
         if ( ! Util::is_available_for_product($product->get_id()) ) {
             return;
