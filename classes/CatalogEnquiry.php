@@ -274,6 +274,7 @@ final class CatalogEnquiry {
 	 */
 	public function load_emails( $emails ) {
 		$emails[ 'EnquiryEmail' ] = new Emails\EnquiryEmail();
+		$emails[ 'requestQuoteSendEmail' ]  = new Emails\RequestQuoteSendEmail();
 		return $emails;
 	}
 
