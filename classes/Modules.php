@@ -68,11 +68,11 @@ class Modules {
                     'module_file'    => Catalog()->plugin_path . 'modules/Quote/Module.php',
                     'module_class'   => 'CatalogEnquiry\Quote\Module',
                 ],
-                'wholesale'    => [
-                    'id'             => 'wholesale',
-                    'module_file'    => Catalog()->plugin_path . 'modules/Wholesale/Module.php',
-                    'module_class'   => 'CatalogEnquiry\Wholesale\Module',
-                ],
+                // 'wholesale'    => [
+                //     'id'             => 'wholesale',
+                //     'module_file'    => Catalog()->plugin_path . 'modules/Wholesale/Module.php',
+                //     'module_class'   => 'CatalogEnquiry\Wholesale\Module',
+                // ],
             ]);
         }
 

@@ -9,8 +9,10 @@ class Frontend {
      * Frontend class constructor functions
      */
     public function __construct() {
+        if ( ! Util::is_available() ) return;
+
         $display_quote_button = Catalog()->setting->get_setting( 'quote_user_permission' );
-        if (!$display_quote_button && !is_user_logged_in()) {
+        if (in_array('logged_out', $display_quote_button) && !is_user_logged_in()) {
             return;
         }
         add_action ('display_shop_page_button', [ $this, 'add_button_for_quote'] );
@@ -52,6 +54,9 @@ class Frontend {
 
         global $product;
 
+        if(!$product) {
+            return;
+        }
         //Exclusion settings for shop and single product page
         if ( ! Util::is_available_for_product($product->get_id()) ) {
             return;

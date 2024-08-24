@@ -754,11 +754,14 @@ const DynamicForm = (props) => {
         case "from_builder":
           input = (
             <FromBuilder
-              name={inputField.key}
-              onChange={(value) => {
-                settingChanged.current = true;
-                updateSetting(inputField.key, value);
-              }}
+				name={inputField.key}
+				// proSetting={isProSetting(inputField.proSetting)}
+				onChange={(value) => {
+				if (!proSettingChanged(inputField.proSetting)) {
+					settingChanged.current = true;
+					updateSetting(inputField.key, value);
+				}
+				}}
             />
           );
           break;

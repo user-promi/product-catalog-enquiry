@@ -121,33 +121,6 @@ final class CatalogEnquiry {
 	}
 
 	function enqueue_block_assets() {
-		wp_enqueue_script(
-			'wholesale-product-list-block',
-			Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.js',
-			[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
-		);
-	
-		wp_enqueue_style(
-			'wholesale-product-list-block-style',
-			Catalog()->plugin_url . 'build/blocks/wholesaleProductList/index.css',
-			[],
-		);
-
-		$products = wc_get_products([
-			'meta_key'   => 'wholesale_product',
-			'meta_value' => 'yes',
-			'return' => 'ids',
-			'limit' => -1
-		]);
-	
-		wp_localize_script(
-			'wholesale-product-list-block', 'appLocalizer', [
-			'apiurl' => untrailingslashit(get_rest_url()),
-			'nonce' => wp_create_nonce('wp_rest'),
-			'cart_nonce' => wp_create_nonce('wc_store_api'),
-			'pro_active' => Utill::is_pro_active(),
-			'products' => $products,
-		]);
 
 		wp_enqueue_script(
 			'quote-cart-block',

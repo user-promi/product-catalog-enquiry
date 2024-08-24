@@ -14890,18 +14890,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _ProductListTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductListTable */ "./src/blocks/wholesaleProductList/ProductListTable.jsx");
 
-// import { render } from '@wordpress/element';
-// import { BrowserRouter } from 'react-router-dom';
-// import WholesaleProductList from './ProductListTable';
-
-// // Render the App component into the DOM
-// render(
-//     <BrowserRouter>
-//         <WholesaleProductList />
-//     </BrowserRouter>,
-//     document.getElementById('wholesale_product_list')
-// );
-
 
 
 
