@@ -3,6 +3,7 @@
 namespace CatalogEnquiry\Enquiry;
 
 use CatalogEnquiry\Utill;
+use CatalogEnquiryPro\CatalogEnquiryPro;
 
 class Rest {
     /**
@@ -123,17 +124,40 @@ class Rest {
             $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread' ) );
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
+                'enquiry_id'            => $enquiry_id,
 				'user_name'             => $customer_name,
 				'user_email'            => $customer_email,
 				'product_id'            => $product_info,
                 'variations'            => $product_variations,
 				'user_enquiry_fields'   => $other_fields,
-				]);
+			]);
 
+            if (Utill::is_pro_active()) {
+                $html = \CatalogEnquiryPro\Enquiry\Util::get_html($enquiry_data);
+                if ($html) { 
+                    $pdf_maker = new \CatalogEnquiryPro\PDFMaker($html);
+                    $pdf = $pdf_maker->output();
+            
+                    // Save the PDF to a temporary location
+                    $upload_dir = wp_upload_dir();
+                    $file_path = $upload_dir['basedir'] . '/enquiry-' . $enquiry_id . '.pdf';
+            
+                    file_put_contents($file_path, $pdf);
+        
+                    $pdf_output = '';
+                    $pdf_maker->get_pdf_headers($file_path, $pdf_output, $pdf);
+                    echo $pdf;
+                } else {
+                    wp_die(__("PDF document could not be generated", 'mvx-pro'));
+                }
+                $attach_pdf = Catalog()->setting->get_setting( 'enquiry_pdf_permission' );
+                $attachments = ($attach_pdf === 'attach_pdf_to_email') ? [$file_path] : [];
+            }
+                        
             $additional_email = Catalog()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			$send_email->trigger( $additional_email, $enquiry_data );
+			$send_email->trigger( $additional_email, $enquiry_data, $attachments ?? [] );
 				
             $redirect_link = Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             
@@ -156,4 +180,5 @@ class Rest {
     public function render_enquiry_button_shortcode_rest() {
         return rest_ensure_response(do_shortcode('[wce_enquiry_button]'));
     }
+
 }

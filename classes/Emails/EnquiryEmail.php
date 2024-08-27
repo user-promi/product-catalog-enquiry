@@ -73,9 +73,10 @@ class EnquiryEmail extends \WC_Email {
 	 * @access public
 	 * @return bool
 	 */
-	function trigger( $recipient, $enquiry_data ) {
+	function trigger( $recipient, $enquiry_data, $attachments ) {
 		
 		$this->recipient 		= $recipient;
+		$this->attachments 		= $attachments;
 		$this->product_id 		= $enquiry_data[ 'product_id' ];
 		$this->enquiry_data 	= $enquiry_data;
 		$this->cust_name 		= $enquiry_data[ 'user_name' ];
@@ -118,9 +119,9 @@ class EnquiryEmail extends \WC_Email {
      * Get email attachments.
      * @return string
      */
-    // public function get_attachments() {
-    //     return apply_filters( 'woocommerce_catalog_enquiry_admin_email_attachments', $this->attachments, $this->id, $this->object );
-    // }
+    public function get_attachments() {
+        return apply_filters( 'woocommerce_catalog_enquiry_admin_email_attachments', $this->attachments, $this->id, $this->object );
+    }
 
 	/**
 	 * Get email headers.

@@ -330,7 +330,7 @@ final class CatalogEnquiry {
     }
 
 	/**
-     * Initializes the MooWoodle class.
+     * Initializes the catalog enquiry class.
      * Checks for an existing instance
      * And if it doesn't find one, create it.
      * @param mixed $file

@@ -755,7 +755,7 @@ const DynamicForm = (props) => {
           input = (
             <FromBuilder
 				name={inputField.key}
-				// proSetting={isProSetting(inputField.proSetting)}
+				proSetting={isProSetting(inputField.proSetting)}
 				onChange={(value) => {
 				if (!proSettingChanged(inputField.proSetting)) {
 					settingChanged.current = true;
