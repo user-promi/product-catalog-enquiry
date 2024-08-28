@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { FaArrowsAlt } from 'react-icons/fa';
 import OptionMetaBox from "./OptionMetaBox";
 
 const MultipleOptions = (props) => {
     const { formField, onChange, selected } = props;
+    const settingHasChanged = useRef(false);
+    const firstTimeRender = useRef(true);
 
     const [options, setOptions] = useState(() => {
         if (Array.isArray(formField.options) && formField.options.length) {
@@ -14,7 +16,10 @@ const MultipleOptions = (props) => {
     });
 
     useEffect(() => {
-        onChange('options', options);
+        if (settingHasChanged.current) {
+            settingHasChanged.current = false;
+            onChange('options', options);
+        }
     }, [options]);
 
     ///////////////////////////////////////// Functionality for button change /////////////////////////////////////////
@@ -79,7 +84,13 @@ const MultipleOptions = (props) => {
             <ReactSortable
                 className="multiOption-wrapper"
                 list={options}
-                setList={(newList) => { setOptions(newList)}}
+                setList={(newList) => { 
+                    if (firstTimeRender.current) {
+                        firstTimeRender.current = false;
+                        return;
+                    }
+                    setOptions(newList)
+                }}
                 handle=".drag-handle-option"
             >
                 {
@@ -91,6 +102,7 @@ const MultipleOptions = (props) => {
                                     type="text"
                                     value={option.label}
                                     onChange={(event) => {
+                                        settingHasChanged.current = true;
                                         handleOptionFieldChange(index, 'label', event.target.value);
                                     }}
                                     readOnly
@@ -103,13 +115,18 @@ const MultipleOptions = (props) => {
                             {/* Render grab icon for drag and drop */}
                             <div className="option-control-section">
                                 {/* Render delete option */}
-                                <div onClick={() => handleDeleteOption(index)}>Delete</div>
+                                <div onClick={() => {settingHasChanged.current = true;
+                                handleDeleteOption(index)}}>Delete</div>
                                 {/* Render setting option */}
                                 <OptionMetaBox
                                     option={option}
-                                    onChange={(key, value) => handleOptionFieldChange(index, key, value)}
+                                    onChange={(key, value) => {
+                                        settingHasChanged.current = true;
+                                        handleOptionFieldChange(index, key, value)}
+                                    }
                                     setDefaultValue={() => {
                                         if (option.isdefault) {
+                                            settingHasChanged.current = true;
                                             handleOptionFieldChange(index, 'isdefault', false);
                                         } else {
                                             let defaultValueIndex = null;
@@ -119,8 +136,10 @@ const MultipleOptions = (props) => {
                                                 }
                                             });
                                             if (defaultValueIndex !== null) {
+                                                settingHasChanged.current = true;
                                                 handleOptionFieldChange(defaultValueIndex, 'isdefault', false);
                                             }
+                                            settingHasChanged.current = true;
                                             handleOptionFieldChange(index, 'isdefault', true);
 
                                             // copy the form field before modify
@@ -130,6 +149,7 @@ const MultipleOptions = (props) => {
                                             newOptions[defaultValueIndex] = { ...newOptions[defaultValueIndex], isdefault: false }
                                             newOptions[index] = { ...newOptions[index], isdefault: true }
 
+                                            settingHasChanged.current = true;
                                             // Update the state variable
                                             setOptions(newOptions);
                                         }
@@ -141,7 +161,10 @@ const MultipleOptions = (props) => {
                 }
 
                 {/* Render add option at last */}
-                <div className="add-more-option-section" onClick={() => handleInsertOption()}>
+                <div className="add-more-option-section" onClick={() => {
+                    settingHasChanged.current = true;
+                    handleInsertOption()}
+                    }>
                     Add new options <span><i className="admin-font font-support"></i></span>
                 </div>
             </ReactSortable>

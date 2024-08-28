@@ -25,7 +25,7 @@ export default {
             key: 'wholesale_from_settings',
             type: 'from_builder',
             classes: 'catalog-customizer-wrapper',
-            // proSetting: true,
+            proSetting: true,
         }
     ]
 }

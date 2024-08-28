@@ -709,6 +709,7 @@ const DynamicForm = (props) => {
           input = (
             <CatalogCustomizer
               setting={setting}
+              proSetting={appLocalizer.pro_active}
               onChange={(key, value) => {
                 if (!proSettingChanged(inputField.proSetting)) {
                   settingChanged.current = true;
@@ -742,11 +743,12 @@ const DynamicForm = (props) => {
               key={inputField.key}
               setting={setting}
               proSetting={isProSetting(inputField.proSetting)}
+              proSettingChange={()=> proSettingChanged(inputField.proSetting)}
               onChange={(key, value) => {
-                if (!proSettingChanged(inputField.proSetting)) {
+                // if (!proSettingChanged(inputField.proSetting)) {
                   settingChanged.current = true;
                   updateSetting(key, value);
-                }
+                // }
               }}
             />
           );
@@ -754,14 +756,15 @@ const DynamicForm = (props) => {
         case "from_builder":
           input = (
             <FromBuilder
-				name={inputField.key}
-				proSetting={isProSetting(inputField.proSetting)}
-				onChange={(value) => {
-				if (!proSettingChanged(inputField.proSetting)) {
-					settingChanged.current = true;
-					updateSetting(inputField.key, value);
-				}
-				}}
+              name={inputField.key}
+              proSetting={isProSetting(inputField.proSetting)}
+              proSettingChange={()=> proSettingChanged(inputField.proSetting)}
+              onChange={(value) => {
+                // if (!proSettingChanged(inputField.proSetting)) {
+                  settingChanged.current = true;
+                  updateSetting(inputField.key, value);
+                // }
+				      }}
             />
           );
           break;

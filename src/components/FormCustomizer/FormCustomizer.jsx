@@ -4,7 +4,7 @@ import SubTabSection from '../SubTabSection/SubTabSection';
 import ProForm from '../RegistrationForm/RegistrationForm';
 
 const FormCustomizer = (props) => {
-    const { setting, proSetting, onChange } = props;
+    const { setting, proSetting, proSettingChange, onChange } = props;
     const settingChange = useRef(false);
     const [formFieldsData, setFromFieldsData] = useState(setting['freefromsetting'] || []);
     useEffect(() => {
@@ -104,6 +104,7 @@ const FormCustomizer = (props) => {
                 currentTab.id == 1 ?
                     <ProForm
                         name='formsettings'
+                        proSettingChange={proSettingChange}
                         onChange={(value) => onChange('formsettings', value)}
                     />
                     :

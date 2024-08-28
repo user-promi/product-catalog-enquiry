@@ -153,14 +153,14 @@ const DeleteBtn = (props) => {
 // 3. formFieldTypes
 
 const CustomFrom = (props) => {
-    const { onChange, name } = props;
-
+    const { onChange, name, proSettingChange } = props;
     ////////////// Define state variable here /////////////////
 
     const { setting } = useSetting();
     const formSetting = setting[ name ] || {};
     
     const settingHasChanged = useRef(false);
+    const firstTimeRender = useRef(true);
 
     // Contain list of selected form fields.
     const [formFieldList, setFormFieldList] = useState(() => {
@@ -246,6 +246,7 @@ const CustomFrom = (props) => {
      * If form field list is empty it append at begining of form field list.
      */
     const appendNewFormField = (index, type = 'text') => {
+        if (proSettingChange()) return;
         const newField = getNewFormField(type);
 
         // Create a new array with the new element inserted
@@ -267,6 +268,8 @@ const CustomFrom = (props) => {
      * @param {*} index 
      */
     const deleteParticularFormField = (index) => {
+        
+        if (proSettingChange()) return;
 
         // Create a new array without the element at the specified index
         const newFormFieldList = formFieldList.filter((_, i) => i !== index);
@@ -280,6 +283,7 @@ const CustomFrom = (props) => {
      * Function handle indivisual form field changes
      */
     const handleFormFieldChange = (index, key, value) => {
+        if (proSettingChange()) return;
         // copy the form field before modify
         const newFormFieldList = [...formFieldList]
 
@@ -300,6 +304,7 @@ const CustomFrom = (props) => {
      * @param {*} newType
      */
     const handleFormFieldTypeChange = (index, newType) => {
+        if (proSettingChange()) return;
 
         // Get the input which one is selected
         const selectedFormField = formFieldList[index];
@@ -355,6 +360,11 @@ const CustomFrom = (props) => {
                     <ReactSortable
                         list={formFieldList}
                         setList={(newList) => {
+                            if (firstTimeRender.current) {
+                                firstTimeRender.current = false;
+                                return;
+                            }
+                            if (proSettingChange()) return;
                             settingHasChanged.current = true;
                             setFormFieldList(newList)
                         }}
@@ -499,6 +509,7 @@ const CustomFrom = (props) => {
                         text='Submit'
                         setting={buttonSetting}
                         onChange={(key, value) => {
+                            if (proSettingChange()) return;
                             settingHasChanged.current = true;
                             const previousSetting = buttonSetting || {};
                             setButtonSetting({ ...previousSetting, [key]: value });
