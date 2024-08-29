@@ -19,7 +19,7 @@ const WholesaleProductList = () => {
         axios({
             method: "post",
             url: getApiLink('get-wholesale-products'),
-            headers: { "X-WP-Nonce": appLocalizer.nonce },
+            headers: { "X-WP-Nonce": wholesale_product_list.nonce },
             data: {
                 counts: true
             },
@@ -32,7 +32,7 @@ const WholesaleProductList = () => {
         axios({
             method: "post",
             url: getApiLink('get-all-categories'),
-            headers: { "X-WP-Nonce": appLocalizer.nonce },
+            headers: { "X-WP-Nonce": wholesale_product_list.nonce },
         }).then((response) => {
             setCategory(response.data);
         });
@@ -64,7 +64,7 @@ const WholesaleProductList = () => {
 		axios({
 			method: "post",
 			url: getApiLink('get-wholesale-products'),
-			headers: { "X-WP-Nonce": appLocalizer.nonce },
+			headers: { "X-WP-Nonce": wholesale_product_list.nonce },
 			data: {
 				page: currentPage,
 				row: rowsPerPage,
@@ -92,9 +92,9 @@ const WholesaleProductList = () => {
 		newProductQuantity.forEach(product => {
 			axios({
 			  method: "post",
-			  url: `${appLocalizer.apiurl}/wc/store/v1/cart/add-item`,
+			  url: `${wholesale_product_list.apiurl}/wc/store/v1/cart/add-item`,
 			  dataType: 'json',
-			  headers: { "X-WC-Store-API-Nonce": appLocalizer.cart_nonce },
+			  headers: { "X-WC-Store-API-Nonce": wholesale_product_list.cart_nonce },
 			  data: {
 				id: product.id,
 				quantity: product.quantity,
@@ -247,7 +247,7 @@ const WholesaleProductList = () => {
 
 	return (
 		<>
-			{/* {!appLocalizer.pro_active ? (
+			{/* {!wholesale_product_list.pro_active ? (
 				<>
 					<Dialog
 						className="admin-module-popup"

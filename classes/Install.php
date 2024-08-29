@@ -146,7 +146,7 @@ class Install {
 
             // Enable catalog setting based on previous setting
             if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
-                $active_module_list[] = [ 'enquiry' ];
+                $active_module_list = [ 'enquiry' ];
             }
 
             update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
@@ -231,6 +231,8 @@ class Install {
                 'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ]['value'] == 1 ? ['enquiry_logged_out'] : [],
                 'is_page_redirect'        => $previous_general_settings[ 'is_page_redirect' ] ?? [],
                 'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
+                'is_hide_cart_checkout'   => ['is_hide_cart_checkout'],
+                'set_expiry_time'         => 'Never',
             ];
 
             update_option( 'catalog_all_settings_settings', $all_settings );
@@ -303,7 +305,7 @@ class Install {
             // Pro form migration
             $previous_pro_from_setting = get_option( 'mvx_catalog_pro_enquiry_form_data', [] );
 
-            if ( is_array( $previous_pro_from_setting ) ) {
+            if ( is_array( $previous_pro_from_setting ) && !empty($previous_pro_from_setting) ) {
                 $pro_form = array_map( function ( $form ) {
                     return [
                         ...$form,

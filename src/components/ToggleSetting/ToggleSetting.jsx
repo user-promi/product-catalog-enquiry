@@ -3,7 +3,7 @@ import './ToggleSetting.scss';
 
 const ToggleSetting = (props) => {
 
-    const { description, key, options, wrapperClass, descClass, value, onChange } = props;
+    const { description, key, options, wrapperClass, descClass, value, onChange, proSetting } = props;
 
     return (
         <>
@@ -24,6 +24,7 @@ const ToggleSetting = (props) => {
                         })}
                     </ul>
                 </div>
+                { proSetting && <span className="admin-pro-tag">pro</span> }
                 {description && 
                     <p className={descClass} dangerouslySetInnerHTML={{__html: description}}></p>
                 }

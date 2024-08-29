@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 quote_action: 'add_item'
             });
 
-            fetch(appLocalizer.ajaxurl, {
+            fetch(quote_button.ajaxurl, {
                 method: 'POST',
                 body: requestData
             })

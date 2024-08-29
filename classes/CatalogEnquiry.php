@@ -127,6 +127,12 @@ final class CatalogEnquiry {
 			Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
 			[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
 		);
+
+		wp_localize_script(
+			'quote-cart-block', 'appLocalizer', [
+			'apiurl' => untrailingslashit(get_rest_url()),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+		]);
 	
 		wp_enqueue_style(
 			'quote-cart-block-style',
@@ -149,7 +155,7 @@ final class CatalogEnquiry {
 		);
 
 		wp_localize_script(
-			'quote-button-block', 'appLocalizer', [
+			'quote-button-block', 'quote_button', [
 			'ajaxurl' => admin_url('admin-ajax.php'),
 		]);
 

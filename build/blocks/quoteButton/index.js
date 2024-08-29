@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
         quantity: quantity,
         quote_action: 'add_item'
       });
-      fetch(appLocalizer.ajaxurl, {
+      fetch(quote_button.ajaxurl, {
         method: 'POST',
         body: requestData
       }).then(response => {

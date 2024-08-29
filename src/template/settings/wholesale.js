@@ -79,7 +79,7 @@ export default {
             type: "mergeComponent",
             label: __("Discount rule", "woocommerce-catalog-enquiry"),
             desc: __('<b>Bulk Discount Configuration: </b> Set discount type (percentage/fixed), discount amount, and minimum quantity for wholesellers', 'woocommerce-catalog-enquiry'),
-            
+            proSetting: true,
         },
 
         // {

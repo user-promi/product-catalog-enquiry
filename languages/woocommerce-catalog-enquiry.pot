@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Product Catalog Enquiry\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-20 06:50+0000\n"
+"POT-Creation-Date: 2024-08-28 08:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -60,15 +60,8 @@ msgstr ""
 msgid "All Wholesale Users"
 msgstr ""
 
-#: modules/Wholesale/Admin.php:114
 #: src/components/WholesaleUser/wholesaleUser.jsx:88
 msgid "Approve"
-msgstr ""
-
-#: modules/Wholesale/Fontend.php:202
-#, php-format
-msgid ""
-"Become a wholesale member today and enjoy a %s discount on your purchases."
 msgstr ""
 
 #: classes/Admin.php:23
@@ -133,15 +126,11 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:219
+#: src/blocks/quoteListTable/QuoteListTable.jsx:220
 msgid "Email:"
 msgstr ""
 
-#: modules/Wholesale/Admin.php:78
-msgid "Enable wholesale for this product"
-msgstr ""
-
-#: classes/Emails/EnquiryEmail.php:113
+#: classes/Emails/EnquiryEmail.php:114
 msgid "Enquiry for {PRODUCT_NAME}"
 msgstr ""
 
@@ -149,7 +138,7 @@ msgstr ""
 msgid "Enquiry sent"
 msgstr ""
 
-#: modules/Enquiry/Rest.php:134
+#: modules/Enquiry/Rest.php:164
 msgid "Enquiry sent successfully"
 msgstr ""
 
@@ -182,11 +171,7 @@ msgstr ""
 msgid "https://www.google.com"
 msgstr ""
 
-#: modules/Wholesale/Fontend.php:47
-msgid "I want to be a wholesale customer"
-msgstr ""
-
-#: src/blocks/quoteListTable/QuoteListTable.jsx:147
+#: src/blocks/quoteListTable/QuoteListTable.jsx:148
 #: src/blocks/wholesaleProductList/ProductListTable.jsx:195
 msgid "Image"
 msgstr ""
@@ -195,11 +180,7 @@ msgstr ""
 msgid "Inquiry Messages"
 msgstr ""
 
-#: modules/Wholesale/Fontend.php:103
-msgid "Login for wholesale registration"
-msgstr ""
-
-#: src/blocks/quoteListTable/QuoteListTable.jsx:239
+#: src/blocks/quoteListTable/QuoteListTable.jsx:240
 msgid "Message:"
 msgstr ""
 
@@ -216,12 +197,12 @@ msgid "MultiVendorX"
 msgstr ""
 
 #: templates/emails/woocommerce-catalog-enquiry-admin.php:94
-#: src/blocks/quoteListTable/QuoteListTable.jsx:154
+#: src/blocks/quoteListTable/QuoteListTable.jsx:155
 #: src/blocks/wholesaleProductList/ProductListTable.jsx:206
 msgid "Name"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:209
+#: src/blocks/quoteListTable/QuoteListTable.jsx:210
 msgid "Name:"
 msgstr ""
 
@@ -240,7 +221,7 @@ msgid_plural "New Quote Requests <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: modules/Quote/Frontend.php:39
+#: modules/Quote/Frontend.php:46
 msgid "No more product in Quote list!"
 msgstr ""
 
@@ -296,7 +277,7 @@ msgstr[1] ""
 msgid "Pending Request"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:229
+#: src/blocks/quoteListTable/QuoteListTable.jsx:230
 msgid "Phone:"
 msgstr ""
 
@@ -317,8 +298,16 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
+#: modules/Quote/Ajax.php:36
+msgid "Product added to quote list."
+msgstr ""
+
 #: classes/Core/QuoteCart.php:460
 msgid "Product already in Cart."
+msgstr ""
+
+#: modules/Quote/Ajax.php:38
+msgid "Product already in your quote list."
 msgstr ""
 
 #. Name of the plugin
@@ -329,7 +318,7 @@ msgstr ""
 msgid "Product Details"
 msgstr ""
 
-#: classes/Emails/EnquiryEmail.php:104
+#: classes/Emails/EnquiryEmail.php:105
 msgid "Product Enquiry for {PRODUCT_NAME} by {USER_NAME}"
 msgstr ""
 
@@ -341,7 +330,7 @@ msgstr ""
 msgid "Product Url"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:162
+#: src/blocks/quoteListTable/QuoteListTable.jsx:163
 #: src/blocks/wholesaleProductList/ProductListTable.jsx:236
 msgid "Quantity"
 msgstr ""
@@ -362,7 +351,6 @@ msgstr ""
 msgid "Quotes List"
 msgstr ""
 
-#: modules/Wholesale/Admin.php:117
 #: src/components/WholesaleUser/wholesaleUser.jsx:93
 msgid "Reject"
 msgstr ""
@@ -383,16 +371,12 @@ msgid_plural "Rejected Quote <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:140
+#: src/blocks/quoteListTable/QuoteListTable.jsx:141
 msgid "Remove"
 msgstr ""
 
 #: classes/Install.php:454
 msgid "Request Quote"
-msgstr ""
-
-#: modules/Wholesale/Admin.php:111
-msgid "Request Status"
 msgstr ""
 
 #: src/components/Roles/roles.jsx:100
@@ -403,7 +387,7 @@ msgstr ""
 msgid "Roles"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:250
+#: src/blocks/quoteListTable/QuoteListTable.jsx:251
 msgid "Send Quote"
 msgstr ""
 
@@ -428,22 +412,15 @@ msgstr ""
 msgid "Stock"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:170
+#: src/blocks/quoteListTable/QuoteListTable.jsx:171
 msgid "Subtotal"
-msgstr ""
-
-#: modules/Wholesale/Fontend.php:216
-#, php-format
-msgid ""
-"To unlock your %s discount, add %s more items to your cart. Save more when "
-"you buy more!"
 msgstr ""
 
 #: src/components/QuoteRequests/quoteRequests.jsx:272
 msgid "Total"
 msgstr ""
 
-#: src/blocks/quoteListTable/QuoteListTable.jsx:186
+#: src/blocks/quoteListTable/QuoteListTable.jsx:187
 msgid "Update Cart"
 msgstr ""
 
@@ -457,14 +434,6 @@ msgstr ""
 
 #: src/components/WholesaleUser/wholesaleUser.jsx:234
 msgid "User Email"
-msgstr ""
-
-#: modules/Wholesale/Admin.php:52
-msgid "Wholesale"
-msgstr ""
-
-#: modules/Wholesale/Admin.php:108
-msgid "Wholesale User Request Confirmation"
 msgstr ""
 
 #: classes/Admin.php:52 classes/Admin.php:53

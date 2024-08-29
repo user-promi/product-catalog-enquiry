@@ -4539,7 +4539,7 @@ const WholesaleProductList = () => {
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-wholesale-products'),
       headers: {
-        "X-WP-Nonce": appLocalizer.nonce
+        "X-WP-Nonce": wholesale_product_list.nonce
       },
       data: {
         counts: true
@@ -4553,7 +4553,7 @@ const WholesaleProductList = () => {
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-all-categories'),
       headers: {
-        "X-WP-Nonce": appLocalizer.nonce
+        "X-WP-Nonce": wholesale_product_list.nonce
       }
     }).then(response => {
       setCategory(response.data);
@@ -4575,7 +4575,7 @@ const WholesaleProductList = () => {
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-wholesale-products'),
       headers: {
-        "X-WP-Nonce": appLocalizer.nonce
+        "X-WP-Nonce": wholesale_product_list.nonce
       },
       data: {
         page: currentPage,
@@ -4601,10 +4601,10 @@ const WholesaleProductList = () => {
     newProductQuantity.forEach(product => {
       (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
         method: "post",
-        url: `${appLocalizer.apiurl}/wc/store/v1/cart/add-item`,
+        url: `${wholesale_product_list.apiurl}/wc/store/v1/cart/add-item`,
         dataType: 'json',
         headers: {
-          "X-WC-Store-API-Nonce": appLocalizer.cart_nonce
+          "X-WC-Store-API-Nonce": wholesale_product_list.cart_nonce
         },
         data: {
           id: product.id,

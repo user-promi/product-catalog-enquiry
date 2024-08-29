@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './MergeComponent.scss';
 import Select from 'react-select';
 
 const MergeComponent = (props) => {
-    const { wrapperClass, descClass, description, onChange, value } = props;
+    const { wrapperClass, descClass, description, onChange, value, proSetting } = props;
+    const firstRender = useRef(true);
     const [data, setData] = useState({
         'wholesale_discount_type' : value.wholesale_discount_type || '',
         'wholesale_amount' : value.wholesale_amount || '',
@@ -17,6 +18,10 @@ const MergeComponent = (props) => {
     }
 
     useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return; // Prevent the initial call
+        }
         onChange(data)
       }, [data]);
 
@@ -39,6 +44,7 @@ const MergeComponent = (props) => {
                     <p className={descClass} dangerouslySetInnerHTML={{ __html: description }} >
                     </p>
                 }
+                { proSetting && <span className="admin-pro-tag">pro</span> }
             </main>
         </>
     )

@@ -777,9 +777,12 @@ const DynamicForm = (props) => {
               key={inputField.key}
               options={inputField.options}
               value={value}
-              onChange={(value) => {
-                settingChanged.current = true;
-                updateSetting(inputField.key, value);
+              proSetting={isProSetting(inputField.proSetting)}
+              onChange={(data) => {
+                if (!proSettingChanged(inputField.proSetting)) {
+                  settingChanged.current = true;
+                  updateSetting(inputField.key, data)
+                }
               }}
             />
           );
