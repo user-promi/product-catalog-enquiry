@@ -10,7 +10,7 @@ const CatalogCustomizer = (props) => {
 
   const [buttonSetting, setButtonSetting] = useState({});
 
-  const { onChange } = props;
+  const { onChange, proSetting } = props;
 
   // State variable for manage setting locally
   // Manage state variable locally better management
@@ -28,32 +28,7 @@ const CatalogCustomizer = (props) => {
   const [menu, setMenu] = useState([
     {
       name: "Enquiry", link: "hi", id: 'enquiry', icon: 'font-info',
-      // setting: [
-      //   {
-      //     name: 'Display Enquiry form via popup',
-      //     id: 'is_disable_popup',
-      //     type: 'checkbox',
-      //     description: "By default the form will be displayed via popup. Enable this, if you want to display the form below the product description."
-      //   },
-      //   {
-      //     name: 'Redirect after Enquiry form Submission',
-      //     id: 'is_page_redirect',
-      //     type: 'checkbox',
-      //     description: "Enable this to redirect user to another page after successful enquiry submission."
-      //   },
-      // ]
     },
-    // {
-    //   name: "Enquiry Cart", link: "hi", id: 'enquiry_cart', icon: 'font-store',
-    // setting: [
-    //   {
-    //     name: 'Enable Multiple Enquiry Cart',
-    //     id: 'is_enable_multiple_product_enquiry',
-    //     type: 'checkbox',
-    //     description: "Enable this checkbox to allow multiple product enquiry via enquiry cart. Also multiple enquiry product displays on the cart"
-    //   },
-    // ]
-    // },
     {
       name: "Quote", link: "hi", id: 'quote', icon: 'font-payment',
     },
@@ -113,30 +88,8 @@ const CatalogCustomizer = (props) => {
     },
     {
       id: 'additional_input',
-      content: (props) => {
-        const [value, setValue] = useState(setting['additional_input']);
-        return (
-          <div onClick={() => {
-            handleSubMenuChange(menu[2])
-          }}
-            className={`additional-input toggle-visibility ${props.currentTab.id === 'catalog' ? '' : 'disable'}`}>
-            {/* {console.log("inputbox",currentTab)}
-            {console.log("menu",menu)} */}
-            <button className='button-visibility'><i className='admin-font font-support'></i></button>
-            <input
-              placeholder='Additional input(optional)'
-              type='text'
-              value={value}
-              onChange={(e) => {
-                setValue(e.target.value);
-                setSetting('additional_input', e.target.value);
-              }}
-            />
-          </div>
-        );
-      },
       defaultPosition: 2,
-      dragable: true,
+      dragable: proSetting ? true : false,
     },
     {
       id: 'add_to_cart',
@@ -166,7 +119,7 @@ const CatalogCustomizer = (props) => {
       id: 'custom_button',
       content: 'buttonDND',
       defaultPosition: 5,
-      dragable: true,
+      dragable: proSetting ? true : false,
     },
   ]);
 
@@ -320,12 +273,11 @@ const CatalogCustomizer = (props) => {
    * @param {*} props 
    * @returns 
    */
-  const handleSubMenuChange = (newTab) => {
 
+  const handleSubMenuChange = (newTab) => {
     if (currentTab.id === newTab.id) return;
 
     setCurrentTab({ ...newTab });
-
 
     let mainWrapper = document.getElementById('catelog-customizer-main-wrapper');
     window.scrollTo(0, 0)
@@ -343,6 +295,7 @@ const CatalogCustomizer = (props) => {
     }, 500);
   }
 
+
   return (
     <>
       {/* Render upper tab sections */}
@@ -355,7 +308,7 @@ const CatalogCustomizer = (props) => {
       />
 
       {/* Render shop page sections */}
-      <main className='catelog-customizer-main-wrapper' id='catelog-customizer-main-wrapper'>
+      <main className='catelog-customizer-main-wrapper ' id='catelog-customizer-main-wrapper'>
         <section className='catelog-customizer'>
           <div className='product-img'>
             <img src={Sample_Product} alt="" />
@@ -383,91 +336,90 @@ const CatalogCustomizer = (props) => {
                             <ReactDragListView
                               nodeSelector=".shop-page-button-draggable"
                               lineClassName="dragLine"
-                              onDragEnd={(fromIndex, toIndex) => onButtonDragEnd(fromIndex, toIndex)}
+                              handleSelector={proSetting ? ".shop-page-button-draggable" : "none"}
+                              onDragEnd={(fromIndex, toIndex) => proSetting && onButtonDragEnd(fromIndex, toIndex)}
                             >
-                              {
-                                buttonItems.map((item, index) => (
-                                  <div className='shop-page-button-draggable'>
-                                    {
-                                      item.id == 'enquery_button' &&
-                                      <div
-                                        // className='enquery-button'
-                                        onClick={() => { handleSubMenuChange(menu[0]) }}
-                                        className={`button-main-container toggle-visibility ${currentTab.id == "enquiry" ? '' : 'disable'}`}
-                                      >
-                                        <button className='button-visibility'><i className='admin-font font-support'></i></button>
-                                        <ButtonCustomizer
-                                          className='ignore-drag'
-                                          text='enquiry'
-                                          setting={setting['enquery_button']}
-                                          onChange={(key, value) => {
-                                            const previousSetting = setting['enquery_button'] || {};
-                                            setSetting('enquery_button', { ...previousSetting, [key]: value });
-                                          }}
-                                        />
-                                      </div>
-                                    }
-                                    {
-                                      item.id == 'cart_button' &&
+                              {buttonItems.map(item => (
+                                <div key={item.id} className='shop-page-button-draggable'>
+                                  {item.id === 'enquery_button' && (
+                                    <div
+                                      onClick={() => { handleSubMenuChange(menu[0]); }}
+                                      className={`button-main-container toggle-visibility ${currentTab.id === "enquiry" ? '' : 'disable'}`}
+                                    >
+                                      <button className='button-visibility'><i className='admin-font font-support'></i></button>
                                       <ButtonCustomizer
-                                        text='Add to cart'
-                                        setting={setting['cart_button']}
+                                        className='ignore-drag'
+                                        text='enquiry'
+                                        setting={setting['enquery_button']}
                                         onChange={(key, value) => {
-                                          const previousSetting = setting['cart_button'] || {};
-                                          setSetting('cart_button', { ...previousSetting, [key]: value });
+                                          const previousSetting = setting['enquery_button'] || {};
+                                          setSetting('enquery_button', { ...previousSetting, [key]: value });
                                         }}
                                       />
-                                    }
-                                    {
-                                      item.id == 'quote_button' &&
-                                      <div
-                                        onClick={() => { handleSubMenuChange(menu[1]) }}
-                                        className={`button-main-container toggle-visibility ${currentTab.id == "quote" ? '' : 'disable'}`}
-                                      >
-                                        <button className='button-visibility'><i className='admin-font font-support'></i></button>
-                                        <ButtonCustomizer
-                                          text='Add to quote'
-                                          setting={setting['quote_button']}
-                                          onChange={(key, value) => {
-                                            const previousSetting = setting['quote_button'] || {};
-                                            setSetting('quote_button', { ...previousSetting, [key]: value });
-                                          }}
-                                        />
-                                      </div>
-                                    }
-                                    {/* {
-                                      item.id == 'enquery_cart_button' &&
-                                      <div
-                                        onClick={() => { handleSubMenuChange(1, currentTab, 'enquiry_cart') }}
-                                        className={`button-main-container toggle-visibility ${currentTab.id == "enquiry_cart" ? '' : 'disable'}`}
-                                      >
-                                        <button className='button-visibility'><i className='admin-font font-support'></i></button>
-                                          <ButtonCustomizer
-                                            text='Add to enquiry cart'
-                                            setting={setting['enquery_cart_button']}l
-                                            onChange={(key, value) => {
-                                              const previousSetting = setting['enquery_cart_button'] || {};
-                                              setSetting('enquery_cart_button', { ...previousSetting, [key]: value });
-                                            }}
-                                          />
-                                      </div>
-                                    } */}
-                                  </div>
-                                ))
-                              }
+                                    </div>
+                                  )}
+                                  {item.id === 'cart_button' && (
+                                    <ButtonCustomizer
+                                      text='Add to cart'
+                                      setting={setting['cart_button']}
+                                      onChange={(key, value) => {
+                                        const previousSetting = setting['cart_button'] || {};
+                                        setSetting('cart_button', { ...previousSetting, [key]: value });
+                                      }}
+                                    />
+                                  )}
+                                  {item.id === 'quote_button' && (
+                                    <div
+                                      onClick={() => { handleSubMenuChange(menu[1]); }}
+                                      className={`button-main-container toggle-visibility ${currentTab.id === "quote" ? '' : 'disable'}`}
+                                    >
+                                      <button className='button-visibility'><i className='admin-font font-support'></i></button>
+                                      <ButtonCustomizer
+                                        text='Add to quote'
+                                        setting={setting['quote_button']}
+                                        onChange={(key, value) => {
+                                          const previousSetting = setting['quote_button'] || {};
+                                          setSetting('quote_button', { ...previousSetting, [key]: value });
+                                        }}
+                                      />
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
                             </ReactDragListView>
                           </div>
                           :
-                          <item.content currentTab={currentTab} setCurrentTab={setCurrentTab} />
+                          item.id === 'additional_input' ?
+                            <div onClick={() => {
+                              handleSubMenuChange(menu[2])
+                            }}
+                              className={`additional-input toggle-visibility ${currentTab.id === 'catalog' ? '' : 'disable'}`}>
+                              {/* {console.log("inputbox",currentTab)}
+                            {console.log("menu",menu)} */}
+                              <button className='button-visibility'><i className='admin-font font-support'></i></button>
+                              <input
+                                placeholder='Additional input(optional)'
+                                type='text'
+                                value={setting['additional_input']}
+                                onChange={(e) => {
+                                  // setValue(e.target.value);
+                                  setSetting('additional_input', e.target.value);
+                                }}
+                              />
+                            </div>
+                            :
+                            <item.content currentTab={currentTab} setCurrentTab={setCurrentTab} />
                       }
                     </div>
                   ))}
               </ReactDragListView>
             </div>
-            <article className='pro-banner'>
-              <p>Upgrade to pro for endless customization</p>
-              <a href="#" target='_blank'>Upgrade now</a>
-            </article>
+            {!proSetting &&
+              <article className='pro-banner'>
+                <p>Upgrade to pro for endless customization</p>
+                <a href="#" target='_blank'>Upgrade now</a>
+              </article>
+            }
           </div>
         </section>
         <section className='single-product-page-description'>

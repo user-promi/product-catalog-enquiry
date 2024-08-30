@@ -6915,13 +6915,13 @@ const EnquiryForm = props => {
     className: "modal-close-btn"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "admin-font font-cross"
-  })), proActive ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_libreary_FormViewer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, enquiry_form_data.content_before_form), proActive ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_libreary_FormViewer__WEBPACK_IMPORTED_MODULE_2__["default"], {
     formFields: formData.settings_pro,
     onSubmit: onSubmit
   }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FreeForm, {
     formFields: formData.settings_free,
     onSubmit: onSubmit
-  })));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, enquiry_form_data.content_after_form)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EnquiryForm);
 

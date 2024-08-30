@@ -235,7 +235,6 @@ const EnquiryForm = (props) => {
           });
     }
 
-
     return (
         <div className='enquiry-form-modal'>
             {toast && 
@@ -257,6 +256,7 @@ const EnquiryForm = (props) => {
                 <div className='modal-close-btn'>
                     <i className='admin-font font-cross'></i>
                 </div>
+                <div>{enquiry_form_data.content_before_form}</div>
                 {
                     proActive ?
                     <FromViewer
@@ -269,6 +269,7 @@ const EnquiryForm = (props) => {
                         onSubmit={onSubmit}
                     />
                 }
+                <div>{enquiry_form_data.content_after_form}</div>
             </div>
         </div>
     );

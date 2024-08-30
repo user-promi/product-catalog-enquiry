@@ -612,7 +612,7 @@ const DynamicForm = (props) => {
               value={value}
               proSetting={isProSetting(inputField.proSetting)}
               onChange={(e) => {
-                if (inputField.dependent) {
+                if (inputField?.dependent?.key == 'is_enable_out_of_stock') {
                   setModelPluginOpen(true)
                 }
                 if (!proSettingChanged(inputField.proSetting)) {

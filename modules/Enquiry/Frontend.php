@@ -23,6 +23,7 @@ class Frontend{
 
         // Enquiry button shortcode
         add_shortcode( 'wce_enquiry_button', [ $this, 'wce_enquiry_button_shortcode' ] );
+
     }
 
     /**
@@ -125,8 +126,7 @@ class Frontend{
             }
             
             wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
-
-            wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true );
+            wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], Catalog()->version, true );
             wp_localize_script(
                 'enquiry_form_js', 'enquiry_form_data', [
                 'apiurl'        => untrailingslashit(get_rest_url()),
@@ -138,7 +138,9 @@ class Frontend{
                 'default_placeholder'  => [
                     'name'  => $current_user->display_name,
                     'email' => $current_user->user_email
-                ]
+                ],
+                'content_before_form' => apply_filters('catalog_add_content_before_form', ''),
+                'content_after_form'  => apply_filters('catalog_add_content_after_form', ''),
             ]);
         }
     }
