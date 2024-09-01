@@ -7,43 +7,6 @@ export default {
     icon: 'font-settings',
     submitUrl: 'save_enquiry',
     modal: [
-        // {
-        //     key: 'separator_content',
-        //     type: 'section',
-        //     desc: __("Catalog", "woocommerce-catalog-enquiry"),
-        //     //hint: __("Modify settings to control user access, catalog design.", "woocommerce-catalog-enquiry"),
-        // },
-        // {
-        //     key: 'display_button_user_type',
-        //     type: 'grid_table',
-        //     label: __("Access Control", "woocommerce-catalog-enquiry"),
-        //     // desc: __("Grid Table", "woocommerce-catalog-enquiry"),
-        //     classes: 'gridTable',
-        //     rows: [
-        //         {
-        //             key: "logged_out",
-        //             label: __('Logged out users', 'woocommerce-catalog-enquiry'),
-        //         },
-        //         {
-        //             key: "logged_in",
-        //             label: __('Logged in users', 'woocommerce-catalog-enquiry'),
-        //         },
-        //         {
-        //             key: "all_users",
-        //             label: __('All users', 'woocommerce-catalog-enquiry'),
-        //         }
-        //     ],
-        //     columns: [
-        //         {
-        //             key: "enquiry_user_permission",
-        //             label: __("Enquiry", "woocommerce-catalog-enquiry")
-        //         },
-        //         {
-        //             key: "quote_user_permission",
-        //             label: __("Quote", "woocommerce-catalog-enquiry")
-        //         }
-        //     ],
-        // },
         {
             key: 'is_hide_cart_checkout',
             type: 'checkbox',

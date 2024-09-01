@@ -214,12 +214,23 @@ class Install {
         if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
             
             $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
+            $previous_button_settings = get_option( 'mvx_catalog_button_appearance_tab_settings', [] );
             // $previous_general_settings = $previous_general_settings[ 'woocommerce_catalog_enquiry_general_settings' ] ?? [];
 
             // Update product page builder
             $page_builder_setting = [
                 'hide_product_price' => !empty($previous_general_settings[ 'is_remove_price_free' ]) ? true : false,
                 'additional_input'   => $previous_general_settings[ 'replace_text_in_price' ] ?? '',
+                'enquery_button'     => [
+                    'button_text_color' => !empty($previous_button_settings['custom_text_color']) ? $previous_button_settings['custom_text_color'] : '',
+                    'button_background_color_onhover' => !empty($previous_button_settings['custom_hover_background_color']) ? $previous_button_settings['custom_hover_background_color'] : '',
+                    'button_text_color_onhover' => !empty($previous_button_settings['custom_hover_text_color']) ? $previous_button_settings['custom_hover_text_color'] : '',
+                    'button_border_color' => !empty($previous_button_settings['custom_border_color']) ? $previous_button_settings['custom_border_color'] : '',
+                    'button_border_size' => !empty($previous_button_settings['custom_border_size']) ? $previous_button_settings['custom_border_size'] : '',
+                    'button_border_radious' => !empty($previous_button_settings['custom_border_radius']) ? $previous_button_settings['custom_border_radius'] : '',
+                    'button_text' => !empty($previous_button_settings['enquiry_button_text']) ? $previous_button_settings['enquiry_button_text'] : '',
+                    'button_font_size' => !empty($previous_button_settings['custom_font_size']) ? $previous_button_settings['custom_font_size'] : '',
+                ]
             ];
 
             update_option( 'catalog_enquiry_catalog_customization_settings', $page_builder_setting );
@@ -237,14 +248,22 @@ class Install {
 
             update_option( 'catalog_all_settings_settings', $all_settings );
 
-
-            // Update tools settings
-            $tool_settings = [
-                'set_enquiry_cart_page'  => intval( get_option( 'catalog_enquiry_cart_page' ) ),
-                'set_request_quote_page' => intval( get_option( 'request_quote_page' ) )
+            
+            $email_settings = [
+                'additional_alert_email'  => $previous_general_settings[ 'other_emails' ] ?? get_option( 'admin_email' ),
             ];
 
-            update_option( 'catalog_tools_settings', $tool_settings );
+            update_option( 'catalog_enquiry_email_temp_settings', $email_settings );
+
+            // Update pages settings
+            $page_settings = [
+                'set_enquiry_cart_page'  => intval( get_option( 'catalog_enquiry_cart_page' ) ),
+                'set_request_quote_page' => intval( get_option( 'request_quote_page' ) ),
+                'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
+            ];
+
+            // update_option( 'catalog_tools_settings', $tool_settings );
+            update_option( 'catalog_pages_settings', $page_settings );
             
             //// Update form settings
             
@@ -405,19 +424,15 @@ class Install {
             $exclusion_settings = [
                 'catalog_exclusion_user_list'       => $exclusion_user_list,
                 'enquiry_exclusion_user_list'       => $exclusion_user_list,
-                'quote_exclusion_user_list'         => $exclusion_user_list,
 
-                'quote_exclusion_userroles_list'    => $exclusion_userroles_list,
                 'catalog_exclusion_userroles_list'  => $exclusion_userroles_list,
                 'enquiry_exclusion_userroles_list'  => $exclusion_userroles_list,
 
                 'enquiry_exclusion_product_list'    => $exclusion_product_list,
                 'catalog_exclusion_product_list'    => $exclusion_product_list,
-                'quote_exclusion_product_list'      => $exclusion_product_list,
 
                 'catalog_exclusion_category_list'   => $exclusion_category_list,
                 'enquiry_exclusion_category_list'   => $exclusion_category_list,
-                'quote_exclusion_category_list'     => $exclusion_category_list,
             ];
 
             update_option( 'catalog_enquiry_quote_exclusion_settings', $exclusion_settings );
