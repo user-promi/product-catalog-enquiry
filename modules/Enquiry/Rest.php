@@ -146,7 +146,7 @@ class Rest {
         
                     $pdf_output = '';
                     $pdf_maker->get_pdf_headers($file_path, $pdf_output, $pdf);
-                    echo $pdf;
+                    // echo $pdf;
                 } else {
                     wp_die(__("PDF document could not be generated", 'mvx-pro'));
                 }

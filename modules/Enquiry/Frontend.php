@@ -182,7 +182,9 @@ class Frontend{
     }
 
     public function wce_enquiry_button_shortcode() {
+        ob_start();
         remove_action('display_shop_page_button', [ $this, 'add_enquiry_button' ]);
         $this->add_enquiry_button();
+        return ob_get_clean();
     }
 }

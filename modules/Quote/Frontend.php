@@ -56,6 +56,7 @@ class Frontend {
 
         global $product;
         
+        if (!$product) return;
         //Exclusion settings for shop and single product page
         if ( ! Util::is_available_for_product($product->get_id()) ) {
             return;
@@ -109,8 +110,10 @@ class Frontend {
     }
 
     public function catalog_quote_button_shortcode() {
+        ob_start();
         remove_action('display_shop_page_button', [ $this, 'add_button_for_quote' ]);
         $this->add_button_for_quote();
+        return ob_get_clean();
     }
 
 }

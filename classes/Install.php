@@ -146,7 +146,7 @@ class Install {
 
             // Enable catalog setting based on previous setting
             if ( isset( $previous_settings[ 'is_enable_enquiry' ] ) && reset($previous_settings[ 'is_enable_enquiry' ]) === 'is_enable_enquiry' ) {
-                $active_module_list = [ 'enquiry' ];
+                $active_module_list[] = 'enquiry';
             }
 
             update_option( Modules::ACTIVE_MODULES_DB_KEY, $active_module_list );
@@ -265,7 +265,7 @@ class Install {
             // update_option( 'catalog_tools_settings', $tool_settings );
             update_option( 'catalog_pages_settings', $page_settings );
             
-            //// Update form settings
+            // Update form settings
             
             // Free form migration
             $previous_free_from_setting = get_option( 'mvx_catalog_enquiry_form_tab_settings', [] );

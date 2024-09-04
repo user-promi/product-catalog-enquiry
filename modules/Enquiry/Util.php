@@ -70,8 +70,8 @@ class Util {
         }
 
         if (Utill::is_active_MVX()) {
-            $settings = get_user_meta(get_current_user_id(), 'vendor_enquiry_settings', true);
-            $product_author = get_mvx_product_vendors($product_id);
+            $product_author = get_mvx_product_vendors($product_id) ? get_mvx_product_vendors($product_id)->id : 0;
+            $settings = get_user_meta($product_author, 'vendor_enquiry_settings', true);
             if ($product_author) {
                 $settings = isset($settings['woocommerce_product_list']) && is_array( $settings['woocommerce_product_list'] ) ? $settings['woocommerce_product_list'] : [];
                 if (!empty($settings)) {
