@@ -33,7 +33,7 @@
 	},
 	"homepage": "https://github.com/multivendorx/woocommerce-catalog-enquiry#readme",
 	"devDependencies": {
-		"@wordpress/scripts": "^26.0.0"
+		"@wordpress/scripts": "^29.0.0"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.10.5",
