@@ -16,7 +16,7 @@ class Frontend {
      */
     public function __construct() {
         add_action( 'init', [ $this, 'display_button_group' ] );
-        add_action( 'init', [ $this, 'display_price_and_description' ] );
+        add_action( 'init', [ $this, 'display_price_and_description' ]);
 
         add_action('woocommerce_cart_calculate_fees', [$this, 'calculate_discount']);
         add_action('woocommerce_review_order_before_shipping', [$this, 'calculate_discount']);
@@ -104,6 +104,7 @@ class Frontend {
     public function display_price_and_description() {
         $price_hide_product_page = Catalog()->setting->get_setting( 'hide_product_price' );
         if ( $price_hide_product_page ) {
+            add_filter( 'woocommerce_show_variation_price', '__return_false' );
             remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
             remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
         }

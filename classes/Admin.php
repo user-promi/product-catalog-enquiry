@@ -220,7 +220,7 @@ class Admin {
 
         // Enque script and style
         wp_enqueue_style('mvx-catalog-style', Catalog()->plugin_url . '/build/index.css');
-        wp_enqueue_script('mvx-catalog-script', Catalog()->plugin_url . '/build/index.js', [ 'wp-element', 'wp-i18n' ], '1.0.0', true);
+        wp_enqueue_script('mvx-catalog-script', Catalog()->plugin_url . '/build/index.js', [ 'wp-element', 'wp-i18n', 'react-jsx-runtime' ], '1.0.0', true);
         wp_set_script_translations( 'mvx-catalog-script', 'woocommerce-catalog-enquiry' );
 
         // Localize script

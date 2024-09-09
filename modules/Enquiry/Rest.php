@@ -137,7 +137,7 @@ class Rest {
                 if ($html) { 
                     $pdf_maker = new \CatalogEnquiryPro\PDFMaker($html);
                     $pdf = $pdf_maker->output();
-            
+
                     // Save the PDF to a temporary location
                     $upload_dir = wp_upload_dir();
                     $file_path = $upload_dir['basedir'] . '/enquiry-' . $enquiry_id . '.pdf';

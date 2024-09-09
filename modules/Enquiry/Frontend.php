@@ -15,6 +15,10 @@ class Frontend{
             return;
         }
 
+        if ( ! empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
+            add_action( 'woocommerce_after_shop_loop_item', [$this, 'add_button_in_shop_page'] );
+        }
+
         add_action( 'display_shop_page_button', [ $this, 'add_enquiry_button' ] );
 
         add_action( 'woocommerce_single_product_summary', [ $this, 'enquiry_button_exclusion' ], 5);
@@ -181,10 +185,29 @@ class Frontend{
         return $form_settings[ 'formsettings' ];
     }
 
+    /**
+     * enquiry button shortcode
+     * @return void
+     */
     public function wce_enquiry_button_shortcode() {
         ob_start();
         remove_action('display_shop_page_button', [ $this, 'add_enquiry_button' ]);
         $this->add_enquiry_button();
         return ob_get_clean();
+    }
+
+    /**
+     * Add enquiry button in shop page
+     * @return void
+     */
+    function add_button_in_shop_page() {
+        $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
+        $settings_array = is_array($settings_array) ? $settings_array : [];
+        $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogEnquiry\Utill::get_translated_string( 'woocommerce-catalog-enquiry', 'send_an_enquiry', 'Send an enquiry' );
+        if ( is_shop() ) {
+            global $product;
+            $product_link = get_permalink( $product->get_id() );
+            echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button">' . esc_html( $button_text ) . '</a>';
+        }
     }
 }

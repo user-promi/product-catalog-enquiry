@@ -239,8 +239,9 @@ class Install {
             // Update shopping gurnal
             $all_settings = [
                 'is_enable_out_of_stock'  => $previous_general_settings[ 'is_enable_out_of_stock' ] ?? [],
-                'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ]['value'] == 1 ? ['enquiry_logged_out'] : [],
+                'enquiry_user_permission' => $previous_general_settings[ 'for_user_type' ]['value'] == '1' ? ['enquiry_logged_out'] : [],
                 'is_page_redirect'        => $previous_general_settings[ 'is_page_redirect' ] ?? [],
+                'redirect_page_id'        => $previous_general_settings[ 'redirect_page_id' ] ? $previous_general_settings[ 'redirect_page_id' ]['value'] : '',
                 'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
                 'is_hide_cart_checkout'   => ['is_hide_cart_checkout'],
                 'set_expiry_time'         => 'Never',
@@ -252,6 +253,15 @@ class Install {
             $email_settings = [
                 'additional_alert_email'  => $previous_general_settings[ 'other_emails' ] ?? get_option( 'admin_email' ),
             ];
+
+            if (!empty($previous_general_settings['is_other_admin_mail'])) {
+                $admin_email = get_option('admin_email');
+                
+                // Convert the string into an array, remove the admin email, and convert back to a string
+                $emails_array = array_map('trim', explode(',', $email_settings['additional_alert_email']));
+                $emails_array = array_diff($emails_array, [$admin_email]);
+                $email_settings['additional_alert_email'] = implode(', ', $emails_array);
+            }
 
             update_option( 'catalog_enquiry_email_temp_settings', $email_settings );
 
