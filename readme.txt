@@ -3,9 +3,9 @@ Contributors: wcmp
 Tags: product inquiry, enquiry, woocommerce catalogue ,inquiry form, Product Catalog Features
 Donate link: https://multivendorx.com/donate
 Requires at least: 5.0
-Tested up to: 6.5.4
+Tested up to: 6.6.1
 Requires PHP: 7.4
-Stable tag: 5.0.8
+Stable tag: 5.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,6 +159,11 @@ Answer: Simply enable the 'Product Enquiry Button When Product is Out Of Stock' 
 10. Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
+
+= 5.0.9 - 2024-09-10 =
+* Added: Compatibility of WordPress 6.6.1.
+* Added: Compatibility of WooCommerce 9.2.3.
+* Fixed: The "Enquiry" button was missing for variable products when the "Remove Product Price" option was enabled
 
 = 5.0.8 - 2024-06-18 =
 * Added: Compatibility of WordPress 6.5.4.
