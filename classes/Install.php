@@ -41,6 +41,8 @@ class Install {
         $this->migrate_database_table();
         
         $this->set_default_settings();
+
+        $this->migrate_vendor_settings();
         
         $this->create_page_for_quote();
         $this->create_page_for_quote_thank_you();
@@ -446,6 +448,67 @@ class Install {
             ];
 
             update_option( 'catalog_enquiry_quote_exclusion_settings', $exclusion_settings );
+        }
+    }
+
+    public function migrate_vendor_settings() {
+        $vendors = get_users( array( 'role' => 'dc_vendor' ) );
+
+        foreach ( $vendors as $vendor ) {
+            // Check if the vendor has the meta key '_mvx_vendor_catalog_settings'
+            $catalog_settings = get_user_meta( $vendor->ID, '_mvx_vendor_catalog_settings', true );
+
+            if ( ! empty( $catalog_settings['woocommerce_product_vendor_list'] ) && is_array( $catalog_settings['woocommerce_product_vendor_list'] ) ) {
+                $new_product_list = array();
+                $index = 0;
+    
+                foreach ( $catalog_settings['woocommerce_product_vendor_list'] as $product_id ) {
+                    // Get the product title (assuming these are product IDs)
+                    $product = wc_get_product( $product_id );
+    
+                    if ( $product ) {
+                        // Create the new format for each product
+                        $new_product_list[] = array(
+                            'value' => $product_id,
+                            'label' => $product->get_name(),  // Fetch the product name
+                            'index' => $index,
+                        );
+                        $index++;
+                    }
+                }
+            }
+
+            if ( ! empty( $catalog_settings['woocommerce_category_vendor_list'] ) && is_array( $catalog_settings['woocommerce_category_vendor_list'] ) ) {
+                $new_category_list = array();
+                $index = 0;
+    
+                foreach ( $catalog_settings['woocommerce_category_vendor_list'] as $category_id ) {
+                    // Get the category name using the category ID
+                    $category = get_term( $category_id, 'product_cat' ); // 'product_cat' is the WooCommerce category taxonomy
+    
+                    if ( $category ) {
+                        // Create the new format for each category
+                        $new_category_list[] = array(
+                            'value' => $category_id,
+                            'label' => $category->name,  // Fetch the category name
+                            'index' => $index,
+                        );
+                        $index++;
+                    }
+                }
+            }
+
+            // If the meta key does not exist or is empty, create it with default values
+            if ( !empty( $catalog_settings ) ) {
+                $new_catalog_settings = array(
+                    'selected_email_tpl' => $catalog_settings['selected_email_tpl'] ? $catalog_settings['selected_email_tpl'] : '',
+                    'woocommerce_product_list' => $new_product_list,
+                    'woocommerce_category_list' => $new_category_list,
+                );
+
+                // Update user meta with default catalog settings
+                update_user_meta( $vendor->ID, 'vendor_enquiry_settings', $new_catalog_settings );
+            }
         }
     }
 

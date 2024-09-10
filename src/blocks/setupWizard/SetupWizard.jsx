@@ -4,7 +4,6 @@ import Intro from './steps/Intro';
 import Modules from './steps/Module';
 import Enquiry from './steps/Enquiry';
 import Quote from './steps/Quote';
-import Wholesale from './steps/Wholesale';
 import './SetupWizard.scss';
 import Logo from '../../assets/images/Brand.png'
 
@@ -30,8 +29,7 @@ const SetupWizard = () => {
         { component: <Intro onNext={onNext}/>, title: 'Intro' },
         { component: <Modules onPrev={onPrev} onNext={onNext}/>, title: 'Modules' },
         { component: <Enquiry onPrev={onPrev} onNext={onNext}/>, title: 'Enquiry' },
-        { component: <Quote onPrev={onPrev} onNext={onNext}/>, title: 'Quote' },
-        { component: <Wholesale onPrev={onPrev} onFinish={onFinish}/>, title: 'Wholesale' },
+        { component: <Quote onPrev={onPrev} onFinish={onFinish}/>, title: 'Quote' },
     ];
 
 

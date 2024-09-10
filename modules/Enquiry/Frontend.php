@@ -37,8 +37,7 @@ class Frontend{
     public function add_enquiry_button() {
         global $post, $product;
 
-        $productid      = $post->ID;
-        $product        = wc_get_product($productid);
+        $product        = wc_get_product($post->ID);
         $current_user   = wp_get_current_user();
         $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];

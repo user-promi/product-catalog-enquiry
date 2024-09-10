@@ -120,47 +120,90 @@ final class CatalogEnquiry {
 
 	}
 
+	// function enqueue_block_assets() {
+
+	// 	wp_enqueue_script(
+	// 		'quote-cart-block',
+	// 		Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
+	// 		[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
+	// 	);
+
+	// 	wp_localize_script(
+	// 		'quote-cart-block', 'appLocalizer', [
+	// 		'apiurl' => untrailingslashit(get_rest_url()),
+	// 		'nonce' => wp_create_nonce( 'wp_rest' ),
+	// 	]);
+	
+	// 	wp_enqueue_style(
+	// 		'quote-cart-block-style',
+	// 		Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css',
+	// 		[],
+	// 	);
+
+	// 	wp_enqueue_script(
+	// 		'enquiry-button-block',
+	// 		Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
+	// 		[ 'wp-blocks', 'wp-element', 'wp-editor' ],
+	// 		true
+	// 	);
+
+	// 	wp_enqueue_script(
+	// 		'quote-button-block',
+	// 		Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
+	// 		[ 'wp-blocks', 'wp-element', 'wp-editor' ],
+	// 		true
+	// 	);
+
+	// 	wp_localize_script(
+	// 		'quote-button-block', 'quote_button', [
+	// 		'ajaxurl' => admin_url('admin-ajax.php'),
+	// 	]);
+
+	// }
+
 	function enqueue_block_assets() {
 
-		wp_enqueue_script(
-			'quote-cart-block',
-			Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
-			[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
-		);
-
-		wp_localize_script(
-			'quote-cart-block', 'appLocalizer', [
-			'apiurl' => untrailingslashit(get_rest_url()),
-			'nonce' => wp_create_nonce( 'wp_rest' ),
-		]);
+		$scripts = [
+			[
+				'handle' => 'quote-cart-block',
+				'src'    => Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
+				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n' ],
+				'localize' => [
+					'object_name' => 'appLocalizer',
+					'data' => [
+						'apiurl' => untrailingslashit(get_rest_url()),
+						'nonce'  => wp_create_nonce('wp_rest'),
+					],
+				],
+			],
+			[
+				'handle' => 'enquiry-button-block',
+				'src'    => Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
+				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor' ],
+			],
+			[
+				'handle' => 'quote-button-block',
+				'src'    => Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
+				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor' ],
+				'localize' => [
+					'object_name' => 'quote_button',
+					'data' => [
+						'ajaxurl' => admin_url('admin-ajax.php'),
+					],
+				],
+			]
+		];
 	
-		wp_enqueue_style(
-			'quote-cart-block-style',
-			Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css',
-			[],
-		);
-
-		wp_enqueue_script(
-			'enquiry-button-block',
-			Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
-			[ 'wp-blocks', 'wp-element', 'wp-editor' ],
-			true
-		);
-
-		wp_enqueue_script(
-			'quote-button-block',
-			Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
-			[ 'wp-blocks', 'wp-element', 'wp-editor' ],
-			true
-		);
-
-		wp_localize_script(
-			'quote-button-block', 'quote_button', [
-			'ajaxurl' => admin_url('admin-ajax.php'),
-		]);
-
+		foreach ($scripts as $script) {
+			wp_enqueue_script($script['handle'], $script['src'], $script['deps']);
+			if (isset($script['localize'])) {
+				wp_localize_script($script['handle'], $script['localize']['object_name'], $script['localize']['data']);
+			}
+		}
+	
+		wp_enqueue_style('quote-cart-block-style', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
 	}
-
+	
 	/**
 	 * Load setup class 
 	 */

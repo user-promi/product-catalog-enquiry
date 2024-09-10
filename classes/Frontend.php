@@ -16,7 +16,7 @@ class Frontend {
      */
     public function __construct() {
         add_action( 'init', [ $this, 'display_button_group' ] );
-        add_action( 'init', [ $this, 'display_price_and_description' ]);
+        add_action( 'init', [ $this, 'display_price_and_description' ] );
 
         add_action('woocommerce_cart_calculate_fees', [$this, 'calculate_discount']);
         add_action('woocommerce_review_order_before_shipping', [$this, 'calculate_discount']);
