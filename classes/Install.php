@@ -186,7 +186,7 @@ class Install {
                     $product_quantitys  = $enquiry[ 'product_quantitys' ];
 
                     $wpdb->insert(
-                        "{$wpdb->prefix}" . Utill::TABLES['rule'],
+                        "{$wpdb->prefix}" . Utill::TABLES['enquiry'],
                         [
                             'id'                     => $enquiry[ 'id' ],
                             'user_id'                => $enquiry[ 'user_id' ],
@@ -247,6 +247,7 @@ class Install {
                 'is_disable_popup'        => !empty($previous_general_settings[ 'is_disable_popup' ]) ? 'inline' : 'popup',
                 'is_hide_cart_checkout'   => ['is_hide_cart_checkout'],
                 'set_expiry_time'         => 'Never',
+                'is_enable_multiple_product_enquiry'    => $previous_general_settings[ 'is_enable_multiple_product_enquiry' ] ?? [],
             ];
 
             update_option( 'catalog_all_settings_settings', $all_settings );
