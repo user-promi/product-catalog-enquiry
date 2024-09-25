@@ -115,7 +115,7 @@ const EnquiryMessages = (props) => {
                             {starMsgOpen && 
                                 <main className='starter-container-wrapper'>
                                     <ul>
-                                        {starMsgList.map((message, index) => (
+                                        {starMsgList && starMsgList.map((message, index) => (
                                             <li key={index}>
                                                 <article>
                                                     <div className="sender-img">
@@ -126,7 +126,7 @@ const EnquiryMessages = (props) => {
                                                             <div>
                                                                 <p dangerouslySetInnerHTML={{ __html: message.msg }} />
                                                             </div>
-                                                            {/* <nav>
+                                                            <nav>
                                                                 <button>
                                                                     <i className="admin-font font-more-vertical"></i>
                                                                 </button>
@@ -134,7 +134,7 @@ const EnquiryMessages = (props) => {
                                                                     <button>Copy</button>
                                                                     <button>Remove star</button>
                                                                 </div>
-                                                            </nav> */}
+                                                            </nav>
                                                         </section>
                                                         <footer>
                                                             {message.date}

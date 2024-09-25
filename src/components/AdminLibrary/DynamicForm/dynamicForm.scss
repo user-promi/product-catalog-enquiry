@@ -96,7 +96,7 @@ $color-active: #65438f;
               background: $color-active;
               border-radius: 90rem;
               transition: 0.3s;
-              z-index: 1;
+              z-index: 0;
             }
           }
 
@@ -112,6 +112,50 @@ $color-active: #65438f;
           }
         }
 
+        .form-group-radio-select{
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+          .radioselect-class {
+            width: 48%;
+            display: flex;
+
+            .radio-select-under-label-class{
+              border: none !important;
+              overflow: visible !important;
+                
+                .section-img-fluid{
+                  width: 100%;
+                  height: 1.2rem;
+                  margin-left: -1.2rem;
+                  padding-top: 5px;;
+                  border-radius: 0!important;
+                  transition: height 0.5s ease;
+                }
+
+                .radioselect-overlay-text{
+                  display: none;
+                }
+
+              }
+              
+              .setting-form-input{
+                  margin-top:0.15rem;
+              }
+              label{
+                width: 100%;
+                height: 4rem!important; // To overwrite default common.scss scss;
+                border: none !important; // To overwrite default common.scss scss;
+              }
+
+              &:hover .section-img-fluid{
+                height: 25rem!important;
+                z-index: 9;
+              }
+          }
+        }
+        
         .setting-form-input {
           position: relative;
 
