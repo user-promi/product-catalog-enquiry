@@ -33,7 +33,7 @@ class Frontend {
         global $post;
         // wp_enqueue_script('quote-button-block');
         if (is_shop() || is_product() || has_shortcode($post->post_content, 'catalog_quote_button')) {
-             $frontend_script_path = Catalog()->plugin_url . 'modules/quote/js/';
+             $frontend_script_path = Catalog()->plugin_url . 'modules/Quote/js/';
             $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
             wp_enqueue_script('add_to_quote_js', $frontend_script_path . 'add-to-quote-cart.js', ['jquery'], Catalog()->version, true);
@@ -79,23 +79,23 @@ class Frontend {
             $btn_style .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_border_radious' ] ) )
             $btn_style .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
-            $button_onhover_style = $border_size = '';
-            $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? $settings_array[ 'button_border_size' ].'px' : '1px';
-    
-            if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
-                $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
-            if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
-                $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
-            if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
-                $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
-            if ( $button_onhover_style ) {
-                echo '<style>
-                    .add-request-quote-button:hover{
-                    '. esc_html( $button_onhover_style ) .'
-                    } 
-                </style>';
-            } 
-        
+        $button_onhover_style = $border_size = '';
+        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? $settings_array[ 'button_border_size' ].'px' : '1px';
+
+        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        if ( $button_onhover_style ) {
+            echo '<style>
+                .add-request-quote-button:hover{
+                '. esc_html( $button_onhover_style ) .'
+                } 
+            </style>';
+        } 
+        $quote_btn_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : $quote_btn_text;
         Catalog()->util->get_template('quote-button-template.php',
         [
             'class'             => 'add-request-quote-button ',

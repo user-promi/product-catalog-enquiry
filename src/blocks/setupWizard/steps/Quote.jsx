@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loading from './Loading';
 
 const Quote = (props) => {
-    const { onNext, onPrev } = props;
+    const { onFinish, onPrev } = props;
     const [loading, setLoading] = useState(false);
     const [restrictUserQuote, setRestrictUserQuote] = useState([]);
 
@@ -29,7 +29,7 @@ const Quote = (props) => {
             data: data
         }).then((response) => {
             setLoading(false);
-            onNext();
+            onFinish();
         });
     };
 
@@ -55,9 +55,9 @@ const Quote = (props) => {
             <footer className='setup-footer-btn-wrapper'>
                 <div>
                     <button className='footer-btn pre-btn' onClick={onPrev}>Prev</button>
-                    <button className='footer-btn ' onClick={onNext}>Skip</button>
+                    <button className='footer-btn ' onClick={onFinish}>Skip</button>
                 </div>
-                <button className='footer-btn next-btn' onClick={saveQuoteSettings}>Next</button>
+                <button className='footer-btn next-btn' onClick={saveQuoteSettings}>Finish</button>
             </footer>
             {loading && <Loading />}
         </section>

@@ -14,7 +14,8 @@ const RegistrationForm = (props) => {
             },
         })
         .then(response => {
-            // console.log(response);
+            // console.log(response.data);
+            window.location.href = response.data;
         })
         .catch(error => {
             console.error('Error:', error);

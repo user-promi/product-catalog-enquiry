@@ -80,20 +80,7 @@ const Modules = (props) => {
                         <label htmlFor="quote"></label>
                     </div>
                 </div>
-                
-                <div className="module-items">
-                    <p>Wholesale</p>
-                    <div className='toggle-checkbox'>
-                        <input
-                            type="checkbox"
-                            id="wholesale"
-                            name="wholesale"
-                            checked={selectedModules.wholesale}
-                            onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor="wholesale"></label>
-                    </div>
-                </div>
+            
             </article>
             <footer className='setup-footer-btn-wrapper'>
                 <div>

@@ -45,7 +45,7 @@ class Frontend{
         $form_settings =  Catalog()->setting->get_setting( 'form_customizer' );
         $form_settings = is_array( $form_settings ) ? $form_settings : [];
 
-        $button_css = "";
+        $button_css = $button_onhover_style = "";
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
         if ( !empty( $settings_array[ 'button_background_color' ] ) )
             $button_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
@@ -58,6 +58,19 @@ class Frontend{
         if ( !empty( $settings_array[ 'button_border_radious' ] ) )
             $button_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
 
+        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        if ( $button_onhover_style ) {
+            echo '<style>
+                .woocommerce-catalog-enquiry-btn:hover{
+                '. esc_html( $button_onhover_style ) .'
+                } 
+            </style>';
+        } 
         $settings_array[ 'button_text' ] = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogEnquiry\Utill::get_translated_string( 'woocommerce-catalog-enquiry', 'send_an_enquiry', 'Send an enquiry' );
         $button_position_settings = Catalog()->setting->get_setting( 'shop_page_button_position_setting' );
         $button_position_settings = is_array($button_position_settings) ? $button_position_settings : [];
@@ -128,7 +141,7 @@ class Frontend{
                 wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
             }
             
-            wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
+            wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
             wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], Catalog()->version, true );
             wp_localize_script(
                 'enquiry_form_js', 'enquiry_form_data', [

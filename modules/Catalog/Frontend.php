@@ -9,7 +9,6 @@ class Frontend{
     public function __construct() {
         // Check the exclution
         if ( ! Util::is_available() ) return;
-
         // Remove add to cart button
         if ( ! empty( Catalog()->setting->get_setting( 'is_hide_cart_checkout' ) ) ) {
             remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );

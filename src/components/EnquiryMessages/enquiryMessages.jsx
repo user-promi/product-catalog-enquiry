@@ -115,7 +115,7 @@ const EnquiryMessages = (props) => {
                             {starMsgOpen && 
                                 <main className='starter-container-wrapper'>
                                     <ul>
-                                        {starMsgList.map((message, index) => (
+                                        {starMsgList && starMsgList.map((message, index) => (
                                             <li key={index}>
                                                 <article>
                                                     <div className="sender-img">
