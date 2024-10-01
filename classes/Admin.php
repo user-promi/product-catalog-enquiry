@@ -121,11 +121,13 @@ class Admin {
         
         // Prepare data of all pages
         $pages      = get_pages();
-        $all_pages  = [[
-            'value' => '',
-            'label' => 'Home',
-            'key'   => '',
-        ]];
+        $all_pages  = [
+            // [
+            // 'value' => '',
+            // 'label' => 'Home',
+            // 'key'   => '',
+            // ]
+        ];
 
         if ( $pages ) {
             foreach ( $pages as $page ) {

@@ -159,7 +159,7 @@ class Rest {
 
 			$send_email->trigger( $additional_email, $enquiry_data, $attachments ?? [] );
 				
-            $redirect_link = Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
+            $redirect_link = Catalog()->setting->get_setting( 'is_page_redirect' ) && Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             
             $msg = __( "Enquiry sent successfully", 'woocommerce-catalog-enquiry' );
             

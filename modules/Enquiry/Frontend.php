@@ -2,6 +2,9 @@
 
 namespace CatalogEnquiry\Enquiry;
 
+use CatalogEnquiry\CatalogEnquiry;
+use CatalogEnquiry\Utill;
+
 class Frontend{
     /**
      * Frontend class constructor function.
@@ -36,7 +39,9 @@ class Frontend{
      */
     public function add_enquiry_button() {
         global $post, $product;
-
+        if ( Catalog()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_pro_active() ) {
+            return;
+        }
         $product        = wc_get_product($post->ID);
         $current_user   = wp_get_current_user();
         $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
@@ -213,13 +218,48 @@ class Frontend{
      * @return void
      */
     function add_button_in_shop_page() {
+        global $product;
+        if ( ! Util::is_available_for_product( $product->get_id() ) ) {
+            return;
+        }
+
+        if ( Catalog()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_pro_active() ) {
+            return;
+        }
+
         $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];
+        $button_css = $button_onhover_style = "";
+        $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? esc_html( $settings_array[ 'button_border_size' ] ).'px' : '1px';
+        if ( !empty( $settings_array[ 'button_background_color' ] ) )
+            $button_css .= "background:" . esc_html( $settings_array[ 'button_background_color' ] ) . ";";
+        if ( !empty( $settings_array[ 'button_text_color' ] ) )
+            $button_css .= "color:" . esc_html( $settings_array[ 'button_text_color' ] ) . ";";
+        if ( !empty( $settings_array[ 'button_border_color' ] ) )
+            $button_css .= "border: " . $border_size . " solid " . esc_html( $settings_array[ 'button_border_color' ] ) . ";";
+        if ( !empty( $settings_array[ 'button_font_size' ] ) )
+            $button_css .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
+        if ( !empty( $settings_array[ 'button_border_radious' ] ) )
+            $button_css .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
+
+        if ( isset( $settings_array[ 'button_background_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_background_color_onhover' ] ) ? 'background: ' . $settings_array[ 'button_background_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_text_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_text_color_onhover' ] ) ? ' color: ' . $settings_array[ 'button_text_color_onhover' ] . ' !important;' : '';
+        if ( isset( $settings_array[ 'button_border_color_onhover' ] ) )
+            $button_onhover_style .= !empty( $settings_array[ 'button_border_color_onhover' ] ) ? 'border: ' . $border_size . ' solid' . $settings_array[ 'button_border_color_onhover' ] . ' !important;' : '';
+        if ( $button_onhover_style ) {
+            echo '<style>
+                .single_add_to_cart_button:hover{
+                '. esc_html( $button_onhover_style ) .'
+                } 
+            </style>';
+        } 
         $button_text = !empty( $settings_array[ 'button_text' ] ) ? $settings_array[ 'button_text' ] : \CatalogEnquiry\Utill::get_translated_string( 'woocommerce-catalog-enquiry', 'send_an_enquiry', 'Send an enquiry' );
         if ( is_shop() ) {
             global $product;
             $product_link = get_permalink( $product->get_id() );
-            echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button">' . esc_html( $button_text ) . '</a>';
+            echo '<a href="' . esc_url( $product_link ) . '" class="single_add_to_cart_button button" style="' . esc_attr( $button_css ) . '">' . esc_html( $button_text ) . '</a>';
         }
     }
 }

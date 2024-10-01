@@ -86,7 +86,7 @@ const Modules = () => {
         <div className="module-option-row">
           {modulesArray.map((module) => (
             <div className="module-list-item">
-              {module.pro_module && <span className="admin-pro-tag">Pro</span>}
+              {module.pro_module && !appLocalizer.pro_active && <span className="admin-pro-tag">Pro</span>}
               <div className="module-icon">
                 <i className={`font ${module.icon}`}></i>
               </div>
