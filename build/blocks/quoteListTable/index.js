@@ -5007,8 +5007,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/AdminLibrary/CustomTable/CustomTable */ "./src/components/AdminLibrary/CustomTable/CustomTable.jsx");
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _QuoteListTable_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuoteListTable.scss */ "./src/blocks/quoteListTable/QuoteListTable.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -5053,7 +5055,7 @@ const QuoteList = () => {
   };
   function requestData() {
     //Fetch the data to show in the table
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-all-quote'),
       headers: {
@@ -5064,7 +5066,7 @@ const QuoteList = () => {
     });
   }
   const handleRemoveCart = (e, id, key) => {
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('quote-remove-cart'),
       headers: {
@@ -5092,7 +5094,7 @@ const QuoteList = () => {
       quantity: value.quantity,
       key: value.key
     }));
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('quote-update-cart'),
       headers: {
@@ -5109,7 +5111,7 @@ const QuoteList = () => {
     const sendBtn = document.getElementById('SendQuote');
     sendBtn.style.display = 'none';
     setLoading(true);
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('quote-send'),
       headers: {
@@ -5135,129 +5137,157 @@ const QuoteList = () => {
     });
   };
   const Loader = () => {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-      className: "loader_wrapper"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "loader"
-    }));
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+      className: "loader_wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "loader"
+      })
+    });
   };
 
   //columns for the data table
   const columns = [{
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Remove", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "remove"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      onClick: e => handleRemoveCart(e, row.id, row.key)
-    }, "cross"))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "remove",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        onClick: e => handleRemoveCart(e, row.id, row.key),
+        children: "cross"
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Image", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "image"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      dangerouslySetInnerHTML: {
-        __html: row.image
-      }
-    }))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "image",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        dangerouslySetInnerHTML: {
+          __html: row.image
+        }
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "name"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      dangerouslySetInnerHTML: {
-        __html: row.name
-      }
-    }))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "name",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        dangerouslySetInnerHTML: {
+          __html: row.name
+        }
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Quantity", "woocommerce-catalog-enquiry"),
     cell: row => {
       var _productQuantity$row$;
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-        title: "quantity"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-        type: "number",
-        name: "quantity",
-        min: "1",
-        value: (_productQuantity$row$ = productQuantity[row.id]?.quantity) !== null && _productQuantity$row$ !== void 0 ? _productQuantity$row$ : row.quantity,
-        placeholder: "1",
-        onChange: e => handleQuantityChange(e, row.id, row.key)
-      }));
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+        title: "quantity",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "number",
+          name: "quantity",
+          min: "1",
+          value: (_productQuantity$row$ = productQuantity[row.id]?.quantity) !== null && _productQuantity$row$ !== void 0 ? _productQuantity$row$ : row.quantity,
+          placeholder: "1",
+          onChange: e => handleQuantityChange(e, row.id, row.key)
+        })
+      });
     }
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Subtotal", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "subtotal"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      dangerouslySetInnerHTML: {
-        __html: row.total
-      }
-    }))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "subtotal",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        dangerouslySetInnerHTML: {
+          __html: row.total
+        }
+      })
+    })
   }];
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-enrollment-list QuoteListTable-main-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-page-title"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "add-to-quotation-button"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: handleUpdateCart
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Update Cart", "woocommerce-catalog-enquiry")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    data: data,
-    columns: columns,
-    selectable: true,
-    handleSelect: selectRows => {
-      setSelectedRows(selectRows);
-    }
-    // autoLoading={false}
-  })), data && Object.keys(data).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "main-form"
-  }, loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Loader, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "form-row form-row-first"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "name"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "text",
-    id: "name",
-    name: "name",
-    value: formData.name,
-    onChange: handleInputChange
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "form-row form-row-last"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "email"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Email:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "email",
-    id: "email",
-    name: "email",
-    value: formData.email,
-    onChange: handleInputChange
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "form-row form-row-wide"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "phone"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Phone:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "tel",
-    id: "phone",
-    name: "phone",
-    value: formData.phone,
-    onChange: handleInputChange
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "form-row form-row-wide"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "message"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Message:", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
-    id: "message",
-    name: "message",
-    rows: "4",
-    cols: "50",
-    value: formData.message,
-    onChange: handleInputChange
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    id: "SendQuote",
-    onClick: handleSendQuote
-  }, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Send Quote", "woocommerce-catalog-enquiry"), " ")), responseContent && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-    className: `response-message-container ${responseStatus}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"))));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "admin-enrollment-list QuoteListTable-main-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "admin-page-title",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "add-to-quotation-button",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            onClick: handleUpdateCart,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Update Cart", "woocommerce-catalog-enquiry")
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        data: data,
+        columns: columns,
+        selectable: true,
+        handleSelect: selectRows => {
+          setSelectedRows(selectRows);
+        }
+        // autoLoading={false}
+      })]
+    }), data && Object.keys(data).length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "main-form",
+      children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Loader, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+        className: "form-row form-row-first",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+          htmlFor: "name",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name:", "woocommerce-catalog-enquiry")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "text",
+          id: "name",
+          name: "name",
+          value: formData.name,
+          onChange: handleInputChange
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+        className: "form-row form-row-last",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+          htmlFor: "email",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Email:", "woocommerce-catalog-enquiry")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "email",
+          id: "email",
+          name: "email",
+          value: formData.email,
+          onChange: handleInputChange
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+        className: "form-row form-row-wide",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+          htmlFor: "phone",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Phone:", "woocommerce-catalog-enquiry")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "tel",
+          id: "phone",
+          name: "phone",
+          value: formData.phone,
+          onChange: handleInputChange
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+        className: "form-row form-row-wide",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+          htmlFor: "message",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Message:", "woocommerce-catalog-enquiry")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
+          id: "message",
+          name: "message",
+          rows: "4",
+          cols: "50",
+          value: formData.message,
+          onChange: handleInputChange
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+          id: "SendQuote",
+          onClick: handleSendQuote,
+          children: [" ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Send Quote", "woocommerce-catalog-enquiry"), " "]
+        })
+      }), responseContent && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+        className: `response-message-container ${responseStatus}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: responseStatus === 'error' ? "Something went  wrong! Try Again" : "Form submitted successfully"
+        })
+      })]
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuoteList);
 
@@ -5279,6 +5309,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_data_table_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-data-table-component */ "./node_modules/react-data-table-component/dist/index.cjs.js");
 /* harmony import */ var _table_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.scss */ "./src/components/AdminLibrary/CustomTable/table.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -5292,24 +5324,34 @@ const LoadingTable = () => {
   const rows = Array.from({
     length: 10
   }, (_, index) => index);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
-    className: "load-table"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rows.map((row, rowIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", {
-    key: rowIndex
-  }, Array.from({
-    length: 5
-  }, (_, cellIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
-    key: cellIndex,
-    className: "load-table-td"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "line"
-  }))))))));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("table", {
+      className: "load-table",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+        children: rows.map((row, rowIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", {
+          children: Array.from({
+            length: 5
+          }, (_, cellIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "load-table-td",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "line"
+            })
+          }, cellIndex))
+        }, rowIndex))
+      })
+    })
+  });
 };
 const TableCell = props => {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    title: props.value,
-    className: "table-row-custom"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, props.title), props.children));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      title: props.value,
+      className: "table-row-custom",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        children: props.title
+      }), props.children]
+    })
+  });
 };
 const CustomTable = props => {
   const {
@@ -5354,13 +5396,15 @@ const CustomTable = props => {
   if (!sortableFild.isDropDown) {
     columns.push({
       name: "",
-      cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "table-dropdown_btn"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-        onClick: e => handleTableExpand(e.currentTarget)
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-        class: "admin-font font-arrow-right"
-      }))),
+      cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "table-dropdown_btn",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: e => handleTableExpand(e.currentTarget),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+            class: "admin-font font-arrow-right"
+          })
+        })
+      }),
       isDropDown: true
     });
   }
@@ -5467,47 +5511,52 @@ const CustomTable = props => {
 
   // Contain which type count is currently active.
   const typeCountActive = filterData.typeCount || 'all';
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `table-container ${loading ? "table-loading" : ""} ${selectable ? "selectable-table" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-table-wrapper-filter"
-  }, typeCounts && typeCounts.map(countInfo => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    onClick: e => {
-      setFilterData({
-        typeCount: countInfo.key
-      });
-    },
-    className: countInfo.key == typeCountActive ? 'type-count-active' : ''
-  }, `${countInfo.name} (${countInfo.count})`))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "filter-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wrap-bulk-all-date"
-  }, realtimeFilter && realtimeFilter.map(filter => {
-    return filter.render(handleFilterChange, filterData[filter.name]);
-  })), bulkActionComp && bulkActionComp()), loading ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LoadingTable, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    pagination: true,
-    paginationServer: true,
-    selectableRows: selectable,
-    columns: columns,
-    data: data || []
-    // Pagination details.
-    ,
-    paginationTotalRows: totalRows,
-    paginationDefaultPage: currentPage,
-    paginationPerPage: rowsPerPage,
-    paginationRowsPerPageOptions: perPageOption
-    // Mouse enter leave callback.
-    ,
-    onRowMouseEnter: handleMouseEnter,
-    onRowMouseLeave: handleMouseLeave
-    // Pagination callback.
-    ,
-    onChangePage: handlePageChange,
-    onChangeRowsPerPage: handleRowsPerPageChange
-    // Row select callback.
-    ,
-    onSelectedRowsChange: handleOnSelectedRowsChange
-  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: `table-container ${loading ? "table-loading" : ""} ${selectable ? "selectable-table" : ""}`,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "admin-table-wrapper-filter",
+      children: typeCounts && typeCounts.map(countInfo => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        onClick: e => {
+          setFilterData({
+            typeCount: countInfo.key
+          });
+        },
+        className: countInfo.key == typeCountActive ? 'type-count-active' : '',
+        children: `${countInfo.name} (${countInfo.count})`
+      }))
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "filter-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "wrap-bulk-all-date",
+        children: realtimeFilter && realtimeFilter.map(filter => {
+          return filter.render(handleFilterChange, filterData[filter.name]);
+        })
+      }), bulkActionComp && bulkActionComp()]
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(LoadingTable, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      pagination: true,
+      paginationServer: true,
+      selectableRows: selectable,
+      columns: columns,
+      data: data || []
+      // Pagination details.
+      ,
+      paginationTotalRows: totalRows,
+      paginationDefaultPage: currentPage,
+      paginationPerPage: rowsPerPage,
+      paginationRowsPerPageOptions: perPageOption
+      // Mouse enter leave callback.
+      ,
+      onRowMouseEnter: handleMouseEnter,
+      onRowMouseLeave: handleMouseLeave
+      // Pagination callback.
+      ,
+      onChangePage: handlePageChange,
+      onChangeRowsPerPage: handleRowsPerPageChange
+      // Row select callback.
+      ,
+      onSelectedRowsChange: handleOnSelectedRowsChange
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CustomTable);
 
@@ -9329,6 +9378,17 @@ module.exports = window["React"];
 
 "use strict";
 module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["ReactJSXRuntime"];
 
 /***/ }),
 
@@ -15736,17 +15796,16 @@ var __webpack_exports__ = {};
   !*** ./src/blocks/quoteListTable/index.js ***!
   \********************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _QuoteListTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuoteListTable */ "./src/blocks/quoteListTable/QuoteListTable.jsx");
-
+/* harmony import */ var _QuoteListTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuoteListTable */ "./src/blocks/quoteListTable/QuoteListTable.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 // import { render } from '@wordpress/element';
 // import { BrowserRouter } from 'react-router-dom';
 // import QuoteListTable from './QuoteListTable';
@@ -15761,7 +15820,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)("woocommerce-catalog-enquiry/quote-cart", {
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)("woocommerce-catalog-enquiry/quote-cart", {
   apiVersion: 2,
   title: "Quote Cart",
   icon: "list-view",
@@ -15770,14 +15830,15 @@ __webpack_require__.r(__webpack_exports__);
     html: false
   },
   edit() {
-    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
-      id: "request_quote_list"
-    }, (0,_QuoteListTable__WEBPACK_IMPORTED_MODULE_4__["default"])());
+      id: "request_quote_list",
+      children: (0,_QuoteListTable__WEBPACK_IMPORTED_MODULE_3__["default"])()
+    });
   },
   save() {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       id: "request_quote_list"
     });
   }
@@ -15785,7 +15846,9 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("request_quote_list");
   if (element) {
-    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_QuoteListTable__WEBPACK_IMPORTED_MODULE_4__["default"], null)), element);
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_QuoteListTable__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+    }), element);
   }
 });
 })();

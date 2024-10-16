@@ -7502,9 +7502,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _EnquiryForm_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EnquiryForm.scss */ "./src/blocks/enquiryForm/EnquiryForm.scss");
 /* harmony import */ var _libreary_FormViewer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../libreary/FormViewer */ "./src/blocks/libreary/FormViewer.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _Recaptcha__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Recaptcha */ "./src/blocks/enquiryForm/Recaptcha.jsx");
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -7517,6 +7518,7 @@ __webpack_require__.r(__webpack_exports__);
  * @param {*} props 
  * @returns 
  */
+
 const FreeForm = props => {
   let {
     formFields,
@@ -7566,108 +7568,139 @@ const FreeForm = props => {
     }
     onSubmit(data);
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "enquiry-free-form"
-  }, formFields.map(field => {
-    if (!field.active) {
-      return;
-    }
-    switch (field.key) {
-      case "name":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "text",
-          name: field.key,
-          value: inputs[field.key],
-          onChange: handleChange,
-          required: true
-        }));
-      case "email":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "email",
-          name: field.key,
-          value: inputs[field.key],
-          onChange: handleChange,
-          required: true
-        }));
-      case "phone":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "number",
-          name: field.key,
-          value: inputs[field.key],
-          onChange: handleChange,
-          required: true
-        }));
-      case "address":
-      case "subject":
-      case "comment":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
-          name: field.key,
-          value: inputs[field.key],
-          onChange: handleChange,
-          required: true
-        }));
-      case "fileupload":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-          className: "attachment-main-label"
-        }, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "attachment-section"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-          htmlFor: "dropzone-file",
-          className: "attachment-label"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "wrapper"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-          "aria-hidden": "true",
-          xmlns: "http://www.w3.org/2000/svg",
-          fill: "none",
-          viewBox: "0 0 20 16"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-          stroke: "currentColor",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeWidth: 2,
-          d: "M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-        })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-          className: "heading"
-        }, fileName == '' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Click to upload"), " or drag and drop") : fileName)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          name: field.key,
-          onChange: handleChange,
-          required: true,
-          id: "dropzone-file",
-          type: "file",
-          className: "hidden"
-        }))));
-      case "captcha":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "form-free-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "recaptcha-wrapper"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Recaptcha__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          captchaValid: validStatus => setCaptchaStatus(validStatus)
-        })));
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-    className: "popup-footer-section"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: e => {
-      const captcha = formFields?.find(field => field.key == "captcha");
-      if (captcha?.active && !captchaStatus) return;
-      handleSubmit(e);
-    }
-  }, "Submit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    id: "close-enquiry-popup",
-    className: "close-enquiry-popup"
-  }, "Close")));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "enquiry-free-form",
+    children: [formFields.map(field => {
+      if (!field.active) {
+        return;
+      }
+      switch (field.key) {
+        case "name":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "text",
+              name: field.key,
+              value: inputs[field.key],
+              onChange: handleChange,
+              required: true
+            })]
+          });
+        case "email":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "email",
+              name: field.key,
+              value: inputs[field.key],
+              onChange: handleChange,
+              required: true
+            })]
+          });
+        case "phone":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "number",
+              name: field.key,
+              value: inputs[field.key],
+              onChange: handleChange,
+              required: true
+            })]
+          });
+        case "address":
+        case "subject":
+        case "comment":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+              name: field.key,
+              value: inputs[field.key],
+              onChange: handleChange,
+              required: true
+            })]
+          });
+        case "fileupload":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              className: "attachment-main-label",
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "attachment-section",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+                htmlFor: "dropzone-file",
+                className: "attachment-label",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "wrapper",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+                    "aria-hidden": "true",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 20 16",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                      stroke: "currentColor",
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                    className: "heading",
+                    children: fileName == '' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                        children: "Click to upload"
+                      }), " or drag and drop"]
+                    }) : fileName
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  name: field.key,
+                  onChange: handleChange,
+                  required: true,
+                  id: "dropzone-file",
+                  type: "file",
+                  className: "hidden"
+                })]
+              })
+            })]
+          });
+        case "captcha":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-free-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "recaptcha-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Recaptcha__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                captchaValid: validStatus => setCaptchaStatus(validStatus)
+              })
+            })]
+          });
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+      className: "popup-footer-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        onClick: e => {
+          const captcha = formFields?.find(field => field.key == "captcha");
+          if (captcha?.active && !captchaStatus) return;
+          handleSubmit(e);
+        },
+        children: "Submit"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        id: "close-enquiry-popup",
+        className: "close-enquiry-popup",
+        children: "Close"
+      })]
+    })]
+  });
 };
 const EnquiryForm = props => {
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -7687,7 +7720,7 @@ const EnquiryForm = props => {
     }
     formData.append('productId', productId);
     formData.append('quantity', quantity);
-    axios__WEBPACK_IMPORTED_MODULE_4__["default"].post(submitUrl, formData, {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(submitUrl, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         "X-WP-Nonce": enquiry_form_data.nonce
@@ -7707,35 +7740,45 @@ const EnquiryForm = props => {
       console.error('Error:', error);
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "enquiry-form-modal"
-  }, toast && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-notice-display-title"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: "admin-font font-icon-yes"
-  }), responseMessage), loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-    className: "loader-component"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "three-body"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "three-body__dot"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "three-body__dot"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "three-body__dot"
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "modal-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "modal-close-btn"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: "admin-font font-cross"
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, enquiry_form_data.content_before_form), proActive ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_libreary_FormViewer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    formFields: formData.settings_pro,
-    onSubmit: onSubmit
-  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(FreeForm, {
-    formFields: formData.settings_free,
-    onSubmit: onSubmit
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, enquiry_form_data.content_after_form)));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "enquiry-form-modal",
+    children: [toast && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "admin-notice-display-title",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        className: "admin-font font-icon-yes"
+      }), responseMessage]
+    }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+      className: "loader-component",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        class: "three-body",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          class: "three-body__dot"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          class: "three-body__dot"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          class: "three-body__dot"
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "modal-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "modal-close-btn",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+          className: "admin-font font-cross"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: enquiry_form_data.content_before_form
+      }), proActive ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_libreary_FormViewer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        formFields: formData.settings_pro,
+        onSubmit: onSubmit
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(FreeForm, {
+        formFields: formData.settings_free,
+        onSubmit: onSubmit
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: enquiry_form_data.content_after_form
+      })]
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EnquiryForm);
 
@@ -7754,6 +7797,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
 const Recaptcha = props => {
@@ -7774,12 +7819,16 @@ const Recaptcha = props => {
     let value = e.target.value;
     captchaValid(value === securityCode);
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "text",
-    id: "securityCode",
-    name: "securityCode",
-    onChange: captchCheck
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Your security code is: ", securityCode));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "text",
+      id: "securityCode",
+      name: "securityCode",
+      onChange: captchCheck
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      children: ["Your security code is: ", securityCode]
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recaptcha);
 
@@ -7798,6 +7847,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
 const Button = props => {
@@ -7832,12 +7883,13 @@ const Button = props => {
     padding: (_ref12 = customStyle.button_padding + 'px') !== null && _ref12 !== void 0 ? _ref12 : '0px'
   };
   const [hovered, setHovered] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
     onMouseEnter: e => setHovered(true),
     onMouseLeave: e => setHovered(false),
     style: hovered ? hoverStyle : style,
-    onClick: onClick
-  }, customStyle.button_text || children);
+    onClick: onClick,
+    children: customStyle.button_text || children
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
 
@@ -7856,11 +7908,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./src/blocks/libreary/Button.jsx");
 /* harmony import */ var _FromViewer_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FromViewer.scss */ "./src/blocks/libreary/FromViewer.scss");
 /* harmony import */ var react_google_recaptcha__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-google-recaptcha */ "./node_modules/react-google-recaptcha/lib/esm/index.js");
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -7872,6 +7925,7 @@ __webpack_require__.r(__webpack_exports__);
  * @param {*} props 
  * @returns 
  */
+
 const Checkboxes = props => {
   const {
     options,
@@ -7890,21 +7944,23 @@ const Checkboxes = props => {
     }
     setCheckedItems(newCheckedItems);
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "multiselect-container items-wrapper"
-  }, options.map((option, index) => {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: index,
-      className: "select-items"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-      type: "checkbox",
-      id: index,
-      checked: checkedItems.find(item => item.value === option.value),
-      onChange: e => handleChange(option, e.target.checked)
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-      htmlFor: index
-    }, option.label));
-  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "multiselect-container items-wrapper",
+    children: options.map((option, index) => {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "select-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          type: "checkbox",
+          id: index,
+          checked: checkedItems.find(item => item.value === option.value),
+          onChange: e => handleChange(option, e.target.checked)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          htmlFor: index,
+          children: option.label
+        })]
+      }, index);
+    })
+  });
 };
 
 /**
@@ -7939,7 +7995,7 @@ const Multiselect = props => {
   const handleChange = selectedOptions => {
     setSelectedOptions(selectedOptions);
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
     isMulti: isMulti,
     value: selectedOptions,
     onChange: handleChange,
@@ -7965,22 +8021,24 @@ const Radio = props => {
   const handleChange = e => {
     setSelectdedItem(e.target.value);
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "multiselect-container items-wrapper"
-  }, options.map((option, index) => {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: index,
-      className: "select-items"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-      type: "radio",
-      id: index,
-      value: option.value,
-      checked: selectdedItem === option.value,
-      onChange: handleChange
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-      htmlFor: index
-    }, option.label));
-  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "multiselect-container items-wrapper",
+    children: options.map((option, index) => {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "select-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          type: "radio",
+          id: index,
+          value: option.value,
+          checked: selectdedItem === option.value,
+          onChange: handleChange
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+          htmlFor: index,
+          children: option.label
+        })]
+      }, index);
+    })
+  });
 };
 
 /**
@@ -8029,170 +8087,219 @@ const FromViewer = props => {
     onSubmit(data);
   };
   const [defaultDate, setDefaultDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date().getFullYear() + '-01-01');
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
-    className: "enquiry-pro-form"
-  }, formList.map(field => {
-    if (field.disabled) {
-      return;
-    }
-    switch (field.type) {
-      case "title":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: "form-title"
-        }, " ", field.label, " ");
-      case "text":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: "form-text form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "text",
-          name: field.name,
-          value: inputs[field.name],
-          placeholder: field.placeholder,
-          onChange: e => handleChange(field.name, e.target.value),
-          required: field.required,
-          maxLength: field.charlimit
-        }));
-      case "email":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: "form-email form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "email",
-          name: field.name,
-          value: inputs[field.name],
-          placeholder: field.placeholder,
-          onChange: e => handleChange(field.name, e.target.value),
-          required: field.required,
-          maxLength: field.charlimit
-        }));
-      case "textarea":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
-          name: field.name,
-          value: inputs[field.name],
-          placeholder: field.placeholder,
-          onChange: e => handleChange(field.name, e.target.value),
-          required: field.required,
-          maxLength: field.charlimit,
-          rows: field.row,
-          cols: field.col
-        }));
-      case "checkboxes":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Checkboxes, {
-          options: field.options,
-          onChange: data => handleChange(field.name, data)
-        }));
-      case "multiselect":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "multiselect-container"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Multiselect, {
-          options: field.options,
-          onChange: data => handleChange(field.name, data),
-          isMulti: true
-        })));
-      case "dropdown":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "multiselect-container"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Multiselect, {
-          options: field.options,
-          onChange: data => handleChange(field.name, data)
-        })));
-      case "radio":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Radio, {
-          options: field.options,
-          onChange: data => handleChange(field.name, data)
-        }));
-      case "recapta":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "recaptcha-wrapper"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_google_recaptcha__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          sitekey: field.sitekey,
-          onChange: handleCaptchaChange
-        })));
-      case "attachment":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: "form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "attachment-section"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-          htmlFor: "dropzone-file",
-          className: "attachment-label"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "wrapper"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-          "aria-hidden": "true",
-          xmlns: "http://www.w3.org/2000/svg",
-          fill: "none",
-          viewBox: "0 0 20 16"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-          stroke: "currentColor",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeWidth: 2,
-          d: "M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-        })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-          className: "heading"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Click to upload"), " or drag and drop")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          readOnly: true,
-          id: "dropzone-file",
-          type: "file",
-          className: "hidden"
-        }))));
-      case "datepicker":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-          className: "date-picker-wrapper"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "date",
-          value: inputs[field.name] || defaultDate,
-          onChange: e => {
-            handleChange(field.name, e.target.value);
-          }
-        })));
-      case "timepicker":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, field.label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-          type: "time",
-          value: inputs[field.name],
-          onChange: e => {
-            handleChange(field.name, e.target.value);
-          }
-        }));
-      case "section":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: " form-pro-sections"
-        }, field.label);
-      case "divider":
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-          className: "section-divider-container"
-        });
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-    className: "popup-footer-section"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    customStyle: buttonSetting,
-    onClick: e => {
-      const captcha = formFields.formfieldlist?.find(field => field.key == "recapta");
-      if (captcha && !captchaToken) return;
-      handleSubmit(e);
-    },
-    children: 'submit'
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    id: "close-enquiry-popup",
-    className: "close-enquiry-popup"
-  }, "Close")));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("main", {
+    className: "enquiry-pro-form",
+    children: [formList.map(field => {
+      if (field.disabled) {
+        return;
+      }
+      switch (field.type) {
+        case "title":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: "form-title",
+            children: [" ", field.label, " "]
+          });
+        case "text":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: "form-text form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "text",
+              name: field.name,
+              value: inputs[field.name],
+              placeholder: field.placeholder,
+              onChange: e => handleChange(field.name, e.target.value),
+              required: field.required,
+              maxLength: field.charlimit
+            })]
+          });
+        case "email":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: "form-email form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "email",
+              name: field.name,
+              value: inputs[field.name],
+              placeholder: field.placeholder,
+              onChange: e => handleChange(field.name, e.target.value),
+              required: field.required,
+              maxLength: field.charlimit
+            })]
+          });
+        case "textarea":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
+              name: field.name,
+              value: inputs[field.name],
+              placeholder: field.placeholder,
+              onChange: e => handleChange(field.name, e.target.value),
+              required: field.required,
+              maxLength: field.charlimit,
+              rows: field.row,
+              cols: field.col
+            })]
+          });
+        case "checkboxes":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Checkboxes, {
+              options: field.options,
+              onChange: data => handleChange(field.name, data)
+            })]
+          });
+        case "multiselect":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "multiselect-container",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Multiselect, {
+                options: field.options,
+                onChange: data => handleChange(field.name, data),
+                isMulti: true
+              })
+            })]
+          });
+        case "dropdown":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "multiselect-container",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Multiselect, {
+                options: field.options,
+                onChange: data => handleChange(field.name, data)
+              })
+            })]
+          });
+        case "radio":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Radio, {
+              options: field.options,
+              onChange: data => handleChange(field.name, data)
+            })]
+          });
+        case "recapta":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "recaptcha-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_google_recaptcha__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                sitekey: field.sitekey,
+                onChange: handleCaptchaChange
+              })
+            })]
+          });
+        case "attachment":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: "form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "attachment-section",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+                htmlFor: "dropzone-file",
+                className: "attachment-label",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "wrapper",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+                    "aria-hidden": "true",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 20 16",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                      stroke: "currentColor",
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                    className: "heading",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                      children: "Click to upload"
+                    }), " or drag and drop"]
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  readOnly: true,
+                  id: "dropzone-file",
+                  type: "file",
+                  className: "hidden"
+                })]
+              })
+            })]
+          });
+        case "datepicker":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "date-picker-wrapper",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "date",
+                value: inputs[field.name] || defaultDate,
+                onChange: e => {
+                  handleChange(field.name, e.target.value);
+                }
+              })
+            })]
+          });
+        case "timepicker":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+            className: " form-pro-sections",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              children: field.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "time",
+              value: inputs[field.name],
+              onChange: e => {
+                handleChange(field.name, e.target.value);
+              }
+            })]
+          });
+        case "section":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+            className: " form-pro-sections",
+            children: field.label
+          });
+        case "divider":
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+            className: "section-divider-container"
+          });
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+      className: "popup-footer-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        customStyle: buttonSetting,
+        onClick: e => {
+          const captcha = formFields.formfieldlist?.find(field => field.key == "recapta");
+          if (captcha && !captchaToken) return;
+          handleSubmit(e);
+        },
+        children: 'submit'
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        id: "close-enquiry-popup",
+        className: "close-enquiry-popup",
+        children: "Close"
+      })]
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FromViewer);
 
@@ -17699,6 +17806,17 @@ module.exports = window["ReactDOM"];
 
 /***/ }),
 
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["ReactJSXRuntime"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -26459,20 +26577,21 @@ var __webpack_exports__ = {};
   !*** ./src/blocks/enquiryForm/index.js ***!
   \*****************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _EnquiryForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EnquiryForm */ "./src/blocks/enquiryForm/EnquiryForm.jsx");
-
+/* harmony import */ var _EnquiryForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EnquiryForm */ "./src/blocks/enquiryForm/EnquiryForm.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
 // Render the App component into the DOM
 
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EnquiryForm__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('catalog-modal'));
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EnquiryForm__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+}), document.getElementById('catalog-modal'));
 })();
 
 /******/ })()

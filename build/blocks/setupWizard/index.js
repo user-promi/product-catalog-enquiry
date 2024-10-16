@@ -5010,6 +5010,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _steps_Quote__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./steps/Quote */ "./src/blocks/setupWizard/steps/Quote.jsx");
 /* harmony import */ var _SetupWizard_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SetupWizard.scss */ "./src/blocks/setupWizard/SetupWizard.scss");
 /* harmony import */ var _assets_images_Brand_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/images/Brand.png */ "./src/assets/images/Brand.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -5033,44 +5035,51 @@ const SetupWizard = () => {
     window.location.href = appLocalizer.redirect_url;
   };
   const steps = [{
-    component: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_steps_Intro__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    component: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_steps_Intro__WEBPACK_IMPORTED_MODULE_2__["default"], {
       onNext: onNext
     }),
     title: 'Intro'
   }, {
-    component: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_steps_Module__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    component: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_steps_Module__WEBPACK_IMPORTED_MODULE_3__["default"], {
       onPrev: onPrev,
       onNext: onNext
     }),
     title: 'Modules'
   }, {
-    component: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_steps_Enquiry__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_steps_Enquiry__WEBPACK_IMPORTED_MODULE_4__["default"], {
       onPrev: onPrev,
       onNext: onNext
     }),
     title: 'Enquiry'
   }, {
-    component: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_steps_Quote__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    component: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_steps_Quote__WEBPACK_IMPORTED_MODULE_5__["default"], {
       onPrev: onPrev,
       onFinish: onFinish
     }),
     title: 'Quote'
   }];
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
-    className: "setup-wizard-main-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: _assets_images_Brand_png__WEBPACK_IMPORTED_MODULE_7__,
-    alt: "Logo"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", {
-    className: "step-count"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, steps.map((step, index) => {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-      key: index,
-      className: currentStep >= index ? 'active' : ''
-    }, step.title);
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", {
-    className: "setup-container"
-  }, steps[currentStep].component)));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("main", {
+      className: "setup-wizard-main-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+        src: _assets_images_Brand_png__WEBPACK_IMPORTED_MODULE_7__,
+        alt: "Logo"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("nav", {
+        className: "step-count",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("ul", {
+          children: steps.map((step, index) => {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
+              className: currentStep >= index ? 'active' : '',
+              children: step.title
+            }, index);
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("main", {
+        className: "setup-container",
+        children: steps[currentStep].component
+      })]
+    })
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SetupWizard);
 
@@ -5089,8 +5098,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./src/blocks/setupWizard/steps/Loading.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -5121,7 +5132,7 @@ const Enquiry = props => {
       displayOption: displayOption,
       restrictUserEnquiry: restrictUserEnquiry
     };
-    (0,axios__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_4__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_1__.getApiLink)('save-settings'),
       headers: {
@@ -5133,56 +5144,83 @@ const Enquiry = props => {
       onNext();
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Enquiry"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    className: "module-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Display Enquiry Form:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "toggle-setting-form-input",
-    type: "radio",
-    id: "popup",
-    name: "approve_vendor",
-    value: "popup",
-    checked: displayOption === 'popup'
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: "popup",
-    onClick: e => setDisplayOption('popup')
-  }, "Popup")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "toggle-setting-form-input",
-    type: "radio",
-    id: "inline",
-    name: "approve_vendor",
-    value: "inline",
-    checked: displayOption === 'inline'
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    for: "inline",
-    onClick: e => setDisplayOption('inline')
-  }, "Inline In-page"))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    className: "module-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Restrict for logged-in user"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "toggle-checkbox"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "checkbox",
-    id: "enquiry_logged_out",
-    name: "enquiry_logged_out",
-    checked: restrictUserEnquiry.includes('enquiry_logged_out'),
-    onChange: handleRestrictUserEnquiryChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "enquiry_logged_out"
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("footer", {
-    className: "setup-footer-btn-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn pre-btn",
-    onClick: onPrev
-  }, "Prev"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn ",
-    onClick: onNext
-  }, "Skip")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn next-btn",
-    onClick: saveEnquirySettings
-  }, "Next")), loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      children: "Enquiry"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+      className: "module-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Display Enquiry Form:"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              className: "toggle-setting-form-input",
+              type: "radio",
+              id: "popup",
+              name: "approve_vendor",
+              value: "popup",
+              checked: displayOption === 'popup'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              for: "popup",
+              onClick: e => setDisplayOption('popup'),
+              children: "Popup"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              className: "toggle-setting-form-input",
+              type: "radio",
+              id: "inline",
+              name: "approve_vendor",
+              value: "inline",
+              checked: displayOption === 'inline'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              for: "inline",
+              onClick: e => setDisplayOption('inline'),
+              children: "Inline In-page"
+            })]
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+      className: "module-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Restrict for logged-in user"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "toggle-checkbox",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "checkbox",
+            id: "enquiry_logged_out",
+            name: "enquiry_logged_out",
+            checked: restrictUserEnquiry.includes('enquiry_logged_out'),
+            onChange: handleRestrictUserEnquiryChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "enquiry_logged_out"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("footer", {
+      className: "setup-footer-btn-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn pre-btn",
+          onClick: onPrev,
+          children: "Prev"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn ",
+          onClick: onNext,
+          children: "Skip"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "footer-btn next-btn",
+        onClick: saveEnquirySettings,
+        children: "Next"
+      })]
+    }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Enquiry);
 
@@ -5200,6 +5238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
 const Intro = props => {
@@ -5207,10 +5247,21 @@ const Intro = props => {
     onNext
   } = props;
   console.log(onNext);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Welcome to the CatalogX family!"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Thank you for choosing CatalogX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "It\u2019s completely optional and shouldn\u2019t take longer than five minutes.")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn next-btn",
-    onClick: onNext
-  }, "Next"));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+      children: "Welcome to the CatalogX family!"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      children: ["Thank you for choosing CatalogX! This quick setup wizard will help you configure the basic settings and you will have your marketplace ready in no time. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+        children: "It\u2019s completely optional and shouldn\u2019t take longer than five minutes."
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      children: "If you don't want to go through the wizard right now, you can skip and return to the WordPress dashboard. Come back anytime if you change your mind!"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "footer-btn next-btn",
+      onClick: onNext,
+      children: "Next"
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Intro);
 
@@ -5228,14 +5279,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
 const Loading = () => {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
-    className: "loader-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "loader"
-  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    className: "loader-wrapper",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      class: "loader"
+    })
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loading);
 
@@ -5254,8 +5308,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./src/blocks/setupWizard/steps/Loading.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -5286,7 +5342,7 @@ const Modules = props => {
   const moduleSave = () => {
     setLoading(true);
     const modulesToSave = Object.keys(selectedModules).filter(key => selectedModules[key]);
-    (0,axios__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_4__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_1__.getApiLink)('module-save'),
       headers: {
@@ -5300,56 +5356,79 @@ const Modules = props => {
       onNext();
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Modules"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    className: "module-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Catalog"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "toggle-checkbox"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "checkbox",
-    id: "catalog",
-    name: "catalog",
-    checked: selectedModules.catalog,
-    onChange: handleCheckboxChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "catalog"
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Enquiry"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "toggle-checkbox"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "checkbox",
-    id: "enquiry",
-    name: "enquiry",
-    checked: selectedModules.enquiry,
-    onChange: handleCheckboxChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "enquiry"
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Quote"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "toggle-checkbox"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "checkbox",
-    id: "quote",
-    name: "quote",
-    checked: selectedModules.quote,
-    onChange: handleCheckboxChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "quote"
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("footer", {
-    className: "setup-footer-btn-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn pre-btn",
-    onClick: onPrev
-  }, "Prev"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn ",
-    onClick: onNext
-  }, "Skip")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn next-btn",
-    onClick: moduleSave
-  }, "Next")), loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      children: "Modules"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("article", {
+      className: "module-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Catalog"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "toggle-checkbox",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "checkbox",
+            id: "catalog",
+            name: "catalog",
+            checked: selectedModules.catalog,
+            onChange: handleCheckboxChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "catalog"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Enquiry"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "toggle-checkbox",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "checkbox",
+            id: "enquiry",
+            name: "enquiry",
+            checked: selectedModules.enquiry,
+            onChange: handleCheckboxChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "enquiry"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Quote"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "toggle-checkbox",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "checkbox",
+            id: "quote",
+            name: "quote",
+            checked: selectedModules.quote,
+            onChange: handleCheckboxChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "quote"
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("footer", {
+      className: "setup-footer-btn-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn pre-btn",
+          onClick: onPrev,
+          children: "Prev"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn ",
+          onClick: onNext,
+          children: "Skip"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "footer-btn next-btn",
+        onClick: moduleSave,
+        children: "Next"
+      })]
+    }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Modules);
 
@@ -5368,8 +5447,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./src/blocks/setupWizard/steps/Loading.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -5395,7 +5476,7 @@ const Quote = props => {
       action: 'quote',
       restrictUserQuote: restrictUserQuote
     };
-    (0,axios__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_4__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_1__.getApiLink)('save-settings'),
       headers: {
@@ -5407,32 +5488,47 @@ const Quote = props => {
       onFinish();
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Quote"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    className: "module-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "module-items"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Restrict for logged-in user"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "toggle-checkbox"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "checkbox",
-    id: "logged_out",
-    name: "logged_out",
-    checked: restrictUserQuote.includes('logged_out'),
-    onChange: handleRestrictUserQuoteChange
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    htmlFor: "logged_out"
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("footer", {
-    className: "setup-footer-btn-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn pre-btn",
-    onClick: onPrev
-  }, "Prev"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn ",
-    onClick: onFinish
-  }, "Skip")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "footer-btn next-btn",
-    onClick: saveQuoteSettings
-  }, "Finish")), loading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      children: "Quote"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+      className: "module-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "module-items",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          children: "Restrict for logged-in user"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "toggle-checkbox",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "checkbox",
+            id: "logged_out",
+            name: "logged_out",
+            checked: restrictUserQuote.includes('logged_out'),
+            onChange: handleRestrictUserQuoteChange
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "logged_out"
+          })]
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("footer", {
+      className: "setup-footer-btn-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn pre-btn",
+          onClick: onPrev,
+          children: "Prev"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "footer-btn ",
+          onClick: onFinish,
+          children: "Skip"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "footer-btn next-btn",
+        onClick: saveQuoteSettings,
+        children: "Finish"
+      })]
+    }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Quote);
 
@@ -8629,6 +8725,16 @@ module.exports = window["React"];
 /***/ ((module) => {
 
 module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
 
 /***/ }),
 
@@ -13500,19 +13606,21 @@ var __webpack_exports__ = {};
   !*** ./src/blocks/setupWizard/index.js ***!
   \*****************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _SetupWizard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SetupWizard */ "./src/blocks/setupWizard/SetupWizard.jsx");
-
+/* harmony import */ var _SetupWizard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SetupWizard */ "./src/blocks/setupWizard/SetupWizard.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
 // Render the App component into the DOM
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SetupWizard__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('catalog_setup_wizard'));
+
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, {
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SetupWizard__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+}), document.getElementById('catalog_setup_wizard'));
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

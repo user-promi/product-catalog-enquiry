@@ -7,6 +7,7 @@ const MultipleOptions = (props) => {
     const { formField, onChange, selected } = props;
     const settingHasChanged = useRef(false);
     const firstTimeRender = useRef(true);
+    const [openOption, setOpenOption] = useState(null);
 
     const [options, setOptions] = useState(() => {
         if (Array.isArray(formField.options) && formField.options.length) {
@@ -107,6 +108,7 @@ const MultipleOptions = (props) => {
                                     }}
                                     readOnly
                                     onClick={(event) => {
+                                        setOpenOption(index)
                                         event.stopPropagation()
                                     }}
                                 />
@@ -119,6 +121,7 @@ const MultipleOptions = (props) => {
                                 handleDeleteOption(index)}}>Delete</div>
                                 {/* Render setting option */}
                                 <OptionMetaBox
+                                    hasOpen={openOption === index}
                                     option={option}
                                     onChange={(key, value) => {
                                         settingHasChanged.current = true;

@@ -5007,9 +5007,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/AdminLibrary/CustomTable/CustomTable */ "./src/components/AdminLibrary/CustomTable/CustomTable.jsx");
 /* harmony import */ var _services_apiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/apiService */ "./src/services/apiService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _ProductListTable_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductListTable.scss */ "./src/blocks/wholesaleProductList/ProductListTable.scss");
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 // import React from 'react';
 
 
@@ -5017,6 +5018,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // import Dialog from "@mui/material/Dialog";
+
 
 const WholesaleProductList = () => {
   const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
@@ -5026,7 +5028,7 @@ const WholesaleProductList = () => {
   const [category, setCategory] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [productQuantity, setProductQuantity] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-wholesale-products'),
       headers: {
@@ -5040,7 +5042,7 @@ const WholesaleProductList = () => {
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-all-categories'),
       headers: {
@@ -5062,7 +5064,7 @@ const WholesaleProductList = () => {
   };
   function requestData(rowsPerPage = 10, currentPage = 1, typeCount = "", catagoryField = '', searchField = "", searchAction = "") {
     //Fetch the data to show in the table
-    (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+    (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
       method: "post",
       url: (0,_services_apiService__WEBPACK_IMPORTED_MODULE_3__.getApiLink)('get-wholesale-products'),
       headers: {
@@ -5090,7 +5092,7 @@ const WholesaleProductList = () => {
       };
     });
     newProductQuantity.forEach(product => {
-      (0,axios__WEBPACK_IMPORTED_MODULE_5__["default"])({
+      (0,axios__WEBPACK_IMPORTED_MODULE_6__["default"])({
         method: "post",
         url: `${wholesale_product_list.apiurl}/wc/store/v1/cart/add-item`,
         dataType: 'json',
@@ -5113,130 +5115,172 @@ const WholesaleProductList = () => {
   const realtimeFilter = [{
     name: "catagoryField",
     render: (updateFilter, filterValue) => {
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "admin-header-search-section catagoryField"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-        name: "catagoryField",
-        onChange: e => updateFilter(e.target.name, e.target.value),
-        value: filterValue || ""
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-        value: ""
-      }, "Category"), Object.entries(category).map(([categoryId, categoryName]) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-        value: categoryId
-      }, categoryName)))));
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "admin-header-search-section catagoryField",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+            name: "catagoryField",
+            onChange: e => updateFilter(e.target.name, e.target.value),
+            value: filterValue || "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: "",
+              children: "Category"
+            }), Object.entries(category).map(([categoryId, categoryName]) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: categoryId,
+              children: categoryName
+            }))]
+          })
+        })
+      });
     }
   }, {
     name: "searchField",
-    render: (updateFilter, filterValue) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "admin-header-search-section searchField"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-      name: "searchField",
-      type: "text",
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Search...", "moowoodle"),
-      onChange: e => updateFilter(e.target.name, e.target.value),
-      value: filterValue || ""
-    })))
+    render: (updateFilter, filterValue) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "admin-header-search-section searchField",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          name: "searchField",
+          type: "text",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Search...", "moowoodle"),
+          onChange: e => updateFilter(e.target.name, e.target.value),
+          value: filterValue || ""
+        })
+      })
+    })
   }, {
     name: "searchAction",
     render: (updateFilter, filterValue) => {
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "admin-header-search-section searchAction"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-        name: "searchAction",
-        onChange: e => updateFilter(e.target.name, e.target.value),
-        value: filterValue || ""
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-        value: ""
-      }, "Select"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-        value: "name"
-      }, "Name"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-        value: "sku"
-      }, "SKU"))));
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "admin-header-search-section searchAction",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+            name: "searchAction",
+            onChange: e => updateFilter(e.target.name, e.target.value),
+            value: filterValue || "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: "",
+              children: "Select"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: "name",
+              children: "Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+              value: "sku",
+              children: "SKU"
+            })]
+          })
+        })
+      });
     }
   }];
 
   //columns for the data table
   const columns = [{
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("SKU", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "sku"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, row.sku)))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "sku",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: row.sku
+        })
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Image", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "image"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: row.image[0],
-      alt: ""
-    })))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "image",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+          src: row.image[0],
+          alt: ""
+        })
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Name", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "name"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      dangerouslySetInnerHTML: {
-        __html: row.name
-      }
-    })))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "name",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          dangerouslySetInnerHTML: {
+            __html: row.name
+          }
+        })
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Stock", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "stock"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, row.stock)))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "stock",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: row.stock
+        })
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Price", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "price"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, row.price)))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "price",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: row.price
+        })
+      })
+    })
   }, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Quantity", "woocommerce-catalog-enquiry"),
-    cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
-      title: "quantity"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "action-section"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-      type: "number",
-      name: "quantity",
-      min: "1",
-      value: productQuantity[row.id],
-      placeholder: "1",
-      onChange: e => handleQuantityChange(e, row.id)
-    })))
+    cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__.TableCell, {
+      title: "quantity",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "action-section",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "number",
+          name: "quantity",
+          min: "1",
+          value: productQuantity[row.id],
+          placeholder: "1",
+          onChange: e => handleQuantityChange(e, row.id)
+        })
+      })
+    })
   }];
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "product-list-table-main-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-page-title"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All Wholesale Users", "woocommerce-catalog-enquiry")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "add-to-quotation-button"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: handleAddCart
-  }, "Add To Cart"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    data: data,
-    columns: columns,
-    selectable: true,
-    handleSelect: selectRows => {
-      setSelectedRows(selectRows);
-    },
-    handlePagination: requestApiForData,
-    defaultRowsParPage: 10,
-    defaultTotalRows: totalRows,
-    perPageOption: [10, 25, 50],
-    realtimeFilter: realtimeFilter
-    // typeCounts={wholesaleUserStatus}
-    ,
-    autoLoading: false
-  })));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "product-list-table-main-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "admin-page-title",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All Wholesale Users", "woocommerce-catalog-enquiry")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "add-to-quotation-button",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            onClick: handleAddCart,
+            children: "Add To Cart"
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_AdminLibrary_CustomTable_CustomTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        data: data,
+        columns: columns,
+        selectable: true,
+        handleSelect: selectRows => {
+          setSelectedRows(selectRows);
+        },
+        handlePagination: requestApiForData,
+        defaultRowsParPage: 10,
+        defaultTotalRows: totalRows,
+        perPageOption: [10, 25, 50],
+        realtimeFilter: realtimeFilter
+        // typeCounts={wholesaleUserStatus}
+        ,
+        autoLoading: false
+      })]
+    })
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WholesaleProductList);
 
@@ -5258,6 +5302,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_data_table_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-data-table-component */ "./node_modules/react-data-table-component/dist/index.cjs.js");
 /* harmony import */ var _table_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.scss */ "./src/components/AdminLibrary/CustomTable/table.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -5271,24 +5317,34 @@ const LoadingTable = () => {
   const rows = Array.from({
     length: 10
   }, (_, index) => index);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("table", {
-    className: "load-table"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tbody", null, rows.map((row, rowIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", {
-    key: rowIndex
-  }, Array.from({
-    length: 5
-  }, (_, cellIndex) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
-    key: cellIndex,
-    className: "load-table-td"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "line"
-  }))))))));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("table", {
+      className: "load-table",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+        children: rows.map((row, rowIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", {
+          children: Array.from({
+            length: 5
+          }, (_, cellIndex) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "load-table-td",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "line"
+            })
+          }, cellIndex))
+        }, rowIndex))
+      })
+    })
+  });
 };
 const TableCell = props => {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    title: props.value,
-    className: "table-row-custom"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, props.title), props.children));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      title: props.value,
+      className: "table-row-custom",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        children: props.title
+      }), props.children]
+    })
+  });
 };
 const CustomTable = props => {
   const {
@@ -5333,13 +5389,15 @@ const CustomTable = props => {
   if (!sortableFild.isDropDown) {
     columns.push({
       name: "",
-      cell: row => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "table-dropdown_btn"
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-        onClick: e => handleTableExpand(e.currentTarget)
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-        class: "admin-font font-arrow-right"
-      }))),
+      cell: row => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "table-dropdown_btn",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: e => handleTableExpand(e.currentTarget),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+            class: "admin-font font-arrow-right"
+          })
+        })
+      }),
       isDropDown: true
     });
   }
@@ -5446,47 +5504,52 @@ const CustomTable = props => {
 
   // Contain which type count is currently active.
   const typeCountActive = filterData.typeCount || 'all';
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `table-container ${loading ? "table-loading" : ""} ${selectable ? "selectable-table" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "admin-table-wrapper-filter"
-  }, typeCounts && typeCounts.map(countInfo => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    onClick: e => {
-      setFilterData({
-        typeCount: countInfo.key
-      });
-    },
-    className: countInfo.key == typeCountActive ? 'type-count-active' : ''
-  }, `${countInfo.name} (${countInfo.count})`))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "filter-wrapper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wrap-bulk-all-date"
-  }, realtimeFilter && realtimeFilter.map(filter => {
-    return filter.render(handleFilterChange, filterData[filter.name]);
-  })), bulkActionComp && bulkActionComp()), loading ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(LoadingTable, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    pagination: true,
-    paginationServer: true,
-    selectableRows: selectable,
-    columns: columns,
-    data: data || []
-    // Pagination details.
-    ,
-    paginationTotalRows: totalRows,
-    paginationDefaultPage: currentPage,
-    paginationPerPage: rowsPerPage,
-    paginationRowsPerPageOptions: perPageOption
-    // Mouse enter leave callback.
-    ,
-    onRowMouseEnter: handleMouseEnter,
-    onRowMouseLeave: handleMouseLeave
-    // Pagination callback.
-    ,
-    onChangePage: handlePageChange,
-    onChangeRowsPerPage: handleRowsPerPageChange
-    // Row select callback.
-    ,
-    onSelectedRowsChange: handleOnSelectedRowsChange
-  }));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: `table-container ${loading ? "table-loading" : ""} ${selectable ? "selectable-table" : ""}`,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "admin-table-wrapper-filter",
+      children: typeCounts && typeCounts.map(countInfo => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        onClick: e => {
+          setFilterData({
+            typeCount: countInfo.key
+          });
+        },
+        className: countInfo.key == typeCountActive ? 'type-count-active' : '',
+        children: `${countInfo.name} (${countInfo.count})`
+      }))
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "filter-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "wrap-bulk-all-date",
+        children: realtimeFilter && realtimeFilter.map(filter => {
+          return filter.render(handleFilterChange, filterData[filter.name]);
+        })
+      }), bulkActionComp && bulkActionComp()]
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(LoadingTable, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_data_table_component__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      pagination: true,
+      paginationServer: true,
+      selectableRows: selectable,
+      columns: columns,
+      data: data || []
+      // Pagination details.
+      ,
+      paginationTotalRows: totalRows,
+      paginationDefaultPage: currentPage,
+      paginationPerPage: rowsPerPage,
+      paginationRowsPerPageOptions: perPageOption
+      // Mouse enter leave callback.
+      ,
+      onRowMouseEnter: handleMouseEnter,
+      onRowMouseLeave: handleMouseLeave
+      // Pagination callback.
+      ,
+      onChangePage: handlePageChange,
+      onChangeRowsPerPage: handleRowsPerPageChange
+      // Row select callback.
+      ,
+      onSelectedRowsChange: handleOnSelectedRowsChange
+    })]
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CustomTable);
 
@@ -9308,6 +9371,17 @@ module.exports = window["React"];
 
 "use strict";
 module.exports = window["ReactDOM"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["ReactJSXRuntime"];
 
 /***/ }),
 
@@ -15715,23 +15789,23 @@ var __webpack_exports__ = {};
   !*** ./src/blocks/wholesaleProductList/index.js ***!
   \**************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _ProductListTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductListTable */ "./src/blocks/wholesaleProductList/ProductListTable.jsx");
+/* harmony import */ var _ProductListTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductListTable */ "./src/blocks/wholesaleProductList/ProductListTable.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)("woocommerce-catalog-enquiry/wholesale-product-list", {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)("woocommerce-catalog-enquiry/wholesale-product-list", {
   apiVersion: 2,
   title: "Wholesale Product List",
   icon: "list-view",
@@ -15740,14 +15814,15 @@ __webpack_require__.r(__webpack_exports__);
     html: false
   },
   edit() {
-    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
-      id: "wholesale_product_list"
-    }, (0,_ProductListTable__WEBPACK_IMPORTED_MODULE_4__["default"])());
+      id: "wholesale_product_list",
+      children: (0,_ProductListTable__WEBPACK_IMPORTED_MODULE_3__["default"])()
+    });
   },
   save() {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       id: "wholesale_product_list"
     });
   }
@@ -15755,7 +15830,9 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("wholesale_product_list");
   if (element) {
-    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ProductListTable__WEBPACK_IMPORTED_MODULE_4__["default"], null)), element);
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ProductListTable__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+    }), element);
   }
 });
 })();

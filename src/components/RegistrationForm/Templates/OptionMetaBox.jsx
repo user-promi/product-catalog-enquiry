@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import Draggable from 'react-draggable';
 
 const OPtionMetaBox = (props) => {
-    const { option, onChange, setDefaultValue } = props;
+    const { option, onChange, setDefaultValue, hasOpen } = props;
 
-    const [hasOpened, setHasOpend] = useState(false);
+    const [hasOpened, setHasOpend] = useState(hasOpen);
+
+    useEffect(() => {
+        setHasOpend(hasOpen);
+    }, [hasOpen]);
 
     return (
         <div onClick={() => setHasOpend(true)}>

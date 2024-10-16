@@ -35,7 +35,7 @@ export default [
         icon: 'font-mail',
         doc_link: '',
         settings_link: appLocalizer.site_url,
-        pro_module: false
+        pro_module: true
     },
     {
         id: 'rules',
