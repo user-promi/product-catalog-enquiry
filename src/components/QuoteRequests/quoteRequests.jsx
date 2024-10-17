@@ -94,8 +94,35 @@ export default function QuotesList() {
     if (selectedRows.length) {
       datas = selectedRows;
     }
-    return datas.map(({ order, date, status, total }) => { return { order, date, status, total } });
-  }
+  
+    // Map through the data and modify each field as needed
+    return datas.map(({ order, date, status, total }) => {
+      // Extract order ID and customer name from the HTML link using a regular expression
+      const orderMatch = order.match(/>(#[0-9]+) (.+)<\/strong>/);
+      const orderId = orderMatch ? orderMatch[1] : order ;
+      const customerName = orderMatch ? orderMatch[2] : "";
+
+      // Format the date if necessary (e.g., to 'MM/DD/YYYY' format)
+      const formattedDate = new Date(date).toLocaleDateString();
+  
+      // Return the modified data object
+      return {
+        orderId: orderId,
+        customer: customerName,
+        date: formattedDate,
+        status: getStatus(status),
+        total,
+      };
+    });
+  };
+  
+  // const filterForCSV = (datas) => {
+  //   if (selectedRows.length) {
+  //     datas = selectedRows;
+  //   }
+  //   console.log(datas)
+  //   return datas.map(({ order, date, status, total }) => { return { order, date, status, total } });
+  // }
 
   useEffect(() => {
     requestData();
@@ -233,9 +260,9 @@ export default function QuotesList() {
   const getStatus = (status) => {
     switch (status) {
       case 'quote-new':
-        return __('New quote Request', 'woocommerce-catalog-enquiry');
+        return __('New', 'woocommerce-catalog-enquiry');
       case 'quote-pending':
-        return __('Pending Request', 'woocommerce-catalog-enquiry');
+        return __('Pending', 'woocommerce-catalog-enquiry');
       case 'quote-expired':
         return __('Expired', 'woocommerce-catalog-enquiry');
       case 'quote-accepted':
