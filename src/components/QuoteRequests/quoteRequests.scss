@@ -177,7 +177,7 @@ $color-active: #65438f;
     }
 
     .rdt_Table .rdt_TableBody .rdt_TableRow .rdt_TableCell{
-        height: 68px;
+        height: 4.25rem;
         a{
             color: #522c81;
         }
@@ -198,7 +198,7 @@ $color-active: #65438f;
     }
 }
 
-@media only screen and (max-width: 514px) {
+@media only screen and (max-width: 32.125rem) {
     .admin-subscriber-list {
         .admin-page-title {
             justify-content: flex-start; 

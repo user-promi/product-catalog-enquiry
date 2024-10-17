@@ -26,16 +26,16 @@ $color-active: #65438f;
     .module-list-item {
       border-radius: 0.25rem;
       box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.125);
-      flex: 1 0 300px;
+      flex: 1 0 18.75rem;
       padding-top: 1.5rem;
-      max-width: 320px;
+      max-width: 20rem;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       flex-direction: column;
       background-color: $color-white;
       overflow: hidden;
-      min-height: 340px;
+      min-height: 21.25rem;
       position: relative;
 
       @media screen and (max-width: 768px) {
@@ -74,7 +74,7 @@ $color-active: #65438f;
 
         .meta-description {
           font-size: 0.875rem;
-          min-height: 84px;
+          min-height: 5.25rem;
 
           .highlight{
             font-weight: 600;
@@ -194,14 +194,14 @@ $color-active: #65438f;
             &::before {
               content: "";
               position: absolute;
-              width: 100px;
+              width: 6.25rem;
               height: 100%;
               background-image: linear-gradient(120deg,
                   rgba(255, 255, 255, 0) 30%,
                   rgba(255, 255, 255, 0.8),
                   rgba(255, 255, 255, 0) 70%);
               top: 0;
-              left: -100px;
+              left: -6.25rem;
               opacity: 0.6;
             }
 
@@ -216,7 +216,7 @@ $color-active: #65438f;
 
             @keyframes shine {
               0% {
-                left: -100px;
+                left: -6.25rem;
               }
 
               60% {

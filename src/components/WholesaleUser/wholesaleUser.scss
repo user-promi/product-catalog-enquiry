@@ -58,7 +58,7 @@ $color-active: #65438f;
             border-radius: .25rem;
             color: #1e1e1e;
             padding: .5rem 1rem;
-            width: 110px;
+            width: 6.875rem;
         }
         
         
@@ -103,7 +103,7 @@ $color-active: #65438f;
         box-sizing: border-box;
     }
     .MuiPaper-root{
-        max-width: 300px;
+        max-width: 18.75rem;
         width: 100%;
         padding: 1.25rem;
         margin: 1rem;
@@ -136,7 +136,7 @@ $color-active: #65438f;
 
                 label {
                     font-size: 0.875rem;
-                    min-width: 100px;
+                    min-width: 6.25rem;
                 }
 
                 input{

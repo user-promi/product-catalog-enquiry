@@ -7,10 +7,10 @@
 
     
     &>*{
-        flex: 1 0 100px;
+        flex: 1 0 6.25rem;
     }
     select, input{
-        min-height: 44px;
+        min-height: 2.75rem;
         border-radius: 0.25rem !important;
 
         &:hover, &:active, &:focus{

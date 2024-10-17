@@ -7,7 +7,7 @@ $color-active: #65438f;
 
 .admin-roles-popup {
     .MuiPaper-root{
-        max-width: 300px;
+        max-width: 18.75rem;
         width: 100%;
         padding: 1.25rem;
         margin: 1rem;
@@ -32,7 +32,7 @@ $color-active: #65438f;
 
                 label {
                     font-size: 0.875rem;
-                    min-width: 100px;
+                    min-width: 6.25rem;
                 }
 
                 input{
