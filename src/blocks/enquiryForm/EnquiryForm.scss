@@ -206,6 +206,7 @@
         align-items: center;
         justify-content: center;
         background-color: rgba($color: #000000, $alpha: 0.2);
+        z-index: 1;
 
         .three-body {
             --uib-size: 5.205rem;
