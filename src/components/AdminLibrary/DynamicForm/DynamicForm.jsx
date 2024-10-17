@@ -9,7 +9,7 @@ import { useSetting } from "../../../contexts/SettingContext";
 import { getApiLink, sendApiResponse } from "../../../services/apiService";
 import Dialog from "@mui/material/Dialog";
 import Popoup from "../../PopupContent/PopupContent";
-import FormCustomizer from "../../formCustomizer/formCustomizer";
+import FormCustomizer from "../../FormCustomizer/FormCustomizer";
 import CatalogCustomizer from "../../CatalogCustomizer/CatalogCustomizer";
 import GridTable from "../../GridTable/GridTable";
 import PopupPluginDependency from "../../PopupContent/PopupPluginDependency";
