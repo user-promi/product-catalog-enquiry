@@ -31,7 +31,7 @@ class Shortcode {
         }
 
         if (has_shortcode($post->post_content, 'request_quote_thank_you')) {
-            wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quoteThankYou/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
+            wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quoteThankyou/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
         }
     }
 
