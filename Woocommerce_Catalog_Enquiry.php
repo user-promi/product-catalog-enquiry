@@ -40,9 +40,9 @@ function woocommerce_catalog_enquiry_plugin_links( $links ) {
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'woocommerce_catalog_enquiry_plugin_links' );
 
-add_filter( 'plugin_row_meta', 'plugin_row_meta', 10, 2 );
+add_filter( 'plugin_row_meta', 'pro_tag_add_in_plugin_row', 10, 2 );
 
-function plugin_row_meta( $links, $file ) {
+function pro_tag_add_in_plugin_row( $links, $file ) {
     if($file == 'woocommerce-catalog-enquiry/Woocommerce_Catalog_Enquiry.php' && apply_filters( 'woocommerce_catalog_enquiry_free_active', true )){
         $row_meta = array(
             'pro'    => '<a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" title="' . esc_attr( __( 'Upgrade to Pro', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) ) . '">' . __( 'Upgrade to Pro', WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN ) . '</a>'
