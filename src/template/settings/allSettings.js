@@ -25,7 +25,14 @@ export default {
             type: 'select',
             label:  __( 'Cart/Checkout Redirect Page', 'woocommerce-catalog-enquiry' ),
             // desc: apply_filters('woocommerce_catalog_redirect_disabled_cart_page', __( 'Select page where user will be redirected for disable cart page. To use this feature kindly upgrade to <a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">WooCommerce Catalog Enquiry Pro</a>.', 'woocommerce-catalog-enquiry' )),
-            options: appLocalizer.all_pages,
+            options: [
+                {
+                    value:'',
+                    label: 'Home',
+                    key : '',
+                },
+                ...appLocalizer.all_pages
+            ],
             dependent: {
                 key: "is_hide_cart_checkout",
                 set: true
@@ -64,7 +71,7 @@ export default {
         },
         {
             key: 'notify_me_button',
-            type: 'checkbox',
+            type: 'stock_alert_checkbox',
             dependent: {
                 key: "is_enable_out_of_stock",
                 set: true

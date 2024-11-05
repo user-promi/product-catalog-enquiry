@@ -612,11 +612,45 @@ const DynamicForm = (props) => {
               value={value}
               proSetting={isProSetting(inputField.proSetting)}
               onChange={(e) => {
+                if (!proSettingChanged(inputField.proSetting)) {
+                  handleChange(e, inputField.key, "multiple");
+                }
+              }}
+              onMultiSelectDeselectChange={(e) =>
+                handlMultiSelectDeselectChange(inputField.key, inputField.options)
+              }
+            />
+          );
+          break;
+
+        case "stock_alert_checkbox":
+          input = (
+            <CustomInput.MultiCheckBox
+              wrapperClass="checkbox-list-side-by-side"
+              descClass="settings-metabox-description"
+              description={inputField.desc}
+              selectDeselectClass="select-deselect-trigger"
+              inputWrapperClass="toggle-checkbox-header"
+              inputInnerWrapperClass="toggle-checkbox-content"
+              inputClass={inputField.class}
+              hintOuterClass="dashicons dashicons-info"
+              hintInnerClass="hover-tooltip"
+              idPrefix="toggle-switch"
+              selectDeselect={inputField.select_deselect}
+              selectDeselectValue="Select / Deselect All"
+              rightContentClass="settings-metabox-description"
+              rightContent={inputField.right_content}
+              options={inputField.options}
+              value={value}
+              proSetting={isProSetting(inputField.proSetting)}
+              onChange={(e) => {
                 if (inputField?.dependent?.key == 'is_enable_out_of_stock') {
                   setModelPluginOpen(true)
                 }
                 if (!proSettingChanged(inputField.proSetting)) {
-                  handleChange(e, inputField.key, "multiple");
+                  if (appLocalizer.stock_alert_open) {
+                    handleChange(e, inputField.key, "multiple");
+                  }
                 }
               }}
               onMultiSelectDeselectChange={(e) =>

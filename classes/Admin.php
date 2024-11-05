@@ -250,6 +250,7 @@ class Admin {
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
             'site_url'                  => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=all_settings' ),
             'currency'                  => get_woocommerce_currency(),
+            'stock_alert_open'          => class_exists('StockManager')
         ]));
     }
 

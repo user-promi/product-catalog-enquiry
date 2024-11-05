@@ -79,6 +79,12 @@ class Frontend {
             $btn_style .= "font-size:" . esc_html( $settings_array[ 'button_font_size' ] ) . "px;";
         if ( !empty( $settings_array[ 'button_border_radious' ] ) )
             $btn_style .= "border-radius:" . esc_html( $settings_array[ 'button_border_radious' ] ) . "px;";
+        if ( !empty( $settings_array[ 'button_font_width' ] ) )
+            $btn_style .= "font-weight:" . esc_html( $settings_array[ 'button_font_width' ] ) . "px;";
+        if ( !empty( $settings_array[ 'button_padding' ] ) )
+            $btn_style .= "padding:" . esc_html( $settings_array[ 'button_padding' ] ) . "px;";
+        if ( !empty( $settings_array[ 'button_margin' ] ) )
+            $btn_style .= "margin:" . esc_html( $settings_array[ 'button_margin' ] ) . "px;";
         $button_onhover_style = $border_size = '';
         $border_size = ( !empty( $settings_array[ 'button_border_size' ] ) ) ? $settings_array[ 'button_border_size' ].'px' : '1px';
 
