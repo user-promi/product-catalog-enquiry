@@ -1,8 +1,4 @@
-$menu-btn-color: #522c81;
-$body-background: #f9f9f9;
-$color-white: #fff;
-$menu-color: #f9f8fb;
-$color-active: #65438f;
+@import '/src/components/config.scss';
 
 .module-container {
   .tab-name {
@@ -24,7 +20,7 @@ $color-active: #65438f;
     flex-wrap: wrap;
 
     .module-list-item {
-      border-radius: 0.25rem;
+      border-radius: $border-radius-small;
       box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.125);
       flex: 1 0 18.75rem;
       padding-top: 1.5rem;
@@ -38,7 +34,7 @@ $color-active: #65438f;
       min-height: 21.25rem;
       position: relative;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 48rem) {
         max-width: 100%;
       }
 
@@ -53,7 +49,7 @@ $color-active: #65438f;
           width: 3.024rem;
           height: 3.024rem;
           background: #f9f8fb;
-          color: #65438f;
+          color: $color-active;
           border-radius: 0.189rem;
           font-size: 2rem;
           display: flex;
@@ -90,9 +86,10 @@ $color-active: #65438f;
         justify-content: space-between;
         gap: 0.5rem;
         padding: 0.75rem 1rem;
-        background: $body-background;
+        background: $background-color;
         position: absolute;
         bottom: 0;
+        box-sizing: border-box;
 
         .toggle-checkbox-content {
           margin-left: auto;
@@ -106,8 +103,8 @@ $color-active: #65438f;
             left: 2.3rem;
             width: 0.25rem;
             height: 0.25rem;
-            border: 0.0625rem solid #65438f;
-            border-radius: 8rem;
+            border: $border-theme-small;
+            border-radius: $border-radius-button;
             transition: 0.3s;
             z-index: 0;
           }
@@ -116,7 +113,7 @@ $color-active: #65438f;
             height: 0;
             width: 0;
             visibility: hidden;
-            display: none;
+            display: none; // hide for toggle button
           }
 
           label {
@@ -125,9 +122,9 @@ $color-active: #65438f;
             height: 1.5rem;
             background: 0 0;
             display: block;
-            border-radius: 8rem;
+            border-radius: $border-radius-button;
             position: relative;
-            border: 0.125rem solid #d4d1d9;
+            border: $border-light-medium;
 
             &::before {
               content: "";
@@ -135,9 +132,9 @@ $color-active: #65438f;
               top: 50%;
               transform: translateY(-50%);
               left: 0.5rem;
-              width: 0.17rem;
-              height: 0.57rem;
-              background: #fdfdfe;
+              width: 0.188rem;
+              height: 0.563rem;
+              background: $color-white;
               -webkit-transition: 0.3s;
               transition: 0.3s;
             }
@@ -159,13 +156,13 @@ $color-active: #65438f;
 
           input:checked+label {
             background: $color-active;
-            border: 0.125rem solid $color-active;
+            border: $border-theme-medius;
           }
 
           input:checked+label::after {
             left: calc(100% - 1.313rem);
             transform: translateY(-50%);
-            background: $body-background;
+            background: $background-color;
           }
         }
 
@@ -182,7 +179,7 @@ $color-active: #65438f;
             box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.2);
             background-color: $color-active;
             cursor: pointer;
-            border-radius: 0.25rem;
+            border-radius: $border-radius-small;
             display: flex;
             align-items: center;
             justify-content: center;
