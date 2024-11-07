@@ -1,0 +1,86 @@
+@import '/src/components/config.scss';
+
+.sso-key-section {
+  display: flex;
+  align-items: center;
+
+  .input-section{
+    width: 100%;
+    position: relative;
+
+    .clear-btn{
+        background: transparent;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        position: absolute;
+        top: 50%;
+        right: 0.315rem;
+        transform: translateY(-50%);
+        
+        &:focus{
+            box-shadow: none;
+        }
+        
+        svg{
+            width: 0.756rem;
+
+            path{
+                fill: rgba(255, 0, 0, 0.522);
+            }
+        }
+    }
+
+    input {
+      margin: 0;
+
+      @media screen and (max-width: 49.266rem) {
+        min-height: 1.26rem;
+      }
+    }
+  }
+
+  button{
+    border-top-right-radius: $border-radius-small;
+    border-bottom-right-radius: $border-radius-small;
+    color: $color-white;
+    background-color: $color-active;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .copy-btn {    
+    span {
+      position: absolute;
+      background: $color-active;
+      padding: 0.5rem 0.75rem;
+      top: -2.835rem;
+      border-radius: $border-radius-small;
+      
+      &::after {
+          position: absolute;
+        content: "";
+        bottom: -0.189rem;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 0.504rem;
+        height: 0.504rem;
+        background: $color-active;
+      }
+    }
+
+    svg {
+      width: 0.945rem;
+    }
+  }
+  
+  .generate-btn {
+    svg{
+        width: 0.945rem;
+    }
+  }
+}

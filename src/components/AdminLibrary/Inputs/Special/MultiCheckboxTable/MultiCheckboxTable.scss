@@ -1,0 +1,103 @@
+@import '/src/components/config.scss';
+
+.gridTable {
+
+    // dynamicForm.scss
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+
+    &.no-label {
+        flex-direction: column;
+
+        .settings-form-label {
+            width: 100% !important;
+        }
+
+        .settings-input-content {
+            width: 100% !important;
+        }
+    }
+
+    .settings-input-content {
+
+        .settings-metabox-description {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .grid-table {
+            width: 100%;
+            border: $border-light-medium;
+            border-radius: $border-radius-small;
+            font-size: 0.875rem;
+
+            thead {
+                width: 100%;
+
+                tr {
+                    display: flex;
+                    align-items: stretch;
+                    align-content: stretch;
+                    margin: 0.5rem 0.25rem 0;
+                    padding: 0.5rem;
+
+                    th {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-grow: 1;
+                        flex-shrink: 0;
+                        flex-basis: 0;
+                        font-weight: 500;
+
+                        &:first-child {
+                            max-width: 9.375rem;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                width: 100%;
+
+                tr {
+                    display: flex;
+                    align-items: stretch;
+                    align-content: stretch;
+                    padding: 0.5rem;
+                    background: #f8f9fa;
+                    margin: 0.5rem 0.25rem 0.25rem;
+                    border-radius: $border-radius-small;
+
+                    td {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-grow: 1;
+                        flex-shrink: 0;
+                        flex-basis: 0;
+                        padding: 0 1rem;
+
+                        &:first-child {
+                            max-width: 8.125rem;
+                        }
+
+                        input[type=checkbox] {
+                            width: fit-content;
+                        }
+
+                        &:first-child {
+                            place-content: start;
+                        }
+
+                        .clear {
+                            clear: both;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

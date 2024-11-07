@@ -1,11 +1,11 @@
-﻿=== CatalogX - Product Catalog Mode For WooCommerce ===
+﻿=== Product Catalog Mode For WooCommerce ===
 Contributors: wcmp
-Tags: product enquiry, woocommerce catalog ,request a quote, Product Catalog, wordpress catalog
+Tags: catalog, enquiry, product inquiry, woocommerce, catalogue, e-commerce, Catalog marketing, Catalog manager, Product catalog template, Product list, eCommerce Product Catalog, Product Catalog Features, Product Catalog plugin, Change category prefix, easily disable price, new catalogue, filter product display, Catalog preview mode, custom product page, product edit screen, product inquiry cart, display product catalog, Apply Catalog Mode, inquiry form, product online, Product Catelog Overview Mode, Best WordPress Catalog Plugins, Category-based mode, product-based catalog mode, single product page
 Donate link: https://multivendorx.com/donate
 Requires at least: 5.0
-Tested up to: 6.6.2
+Tested up to: 6.4.3
 Requires PHP: 7.4
-Stable tag: 5.0.10
+Stable tag: 5.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,7 +96,7 @@ Unlock even more possibilities with WooCommerce Product Catalog Mode Pro - Quote
 
 **🚀Manage and Customise Query Mails [PRO]:** Customize Inquiry Emails with Templates and Send Queries to Customers and Vendors Automatically.
 
-**🚀Make it Marketplace Ready:** Our Multivendor plugin, [MultiVendorX](https://multivendorx.com/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry), integrates with Product Catalog Mode for WooCommerce. Vendors can view and respond to inquiries about their products from their dashboard.
+**🚀Make it Marketplace Ready:** Our Multivendor plugin, [MultiVendorX](http://multivendorx.com/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry), integrates with Product Catalog Mode for WooCommerce. Vendors can view and respond to inquiries about their products from their dashboard.
 
 👉 Learn More About Pro: [WooCommerce Product Catalog Mode Pro - Quote Request](https://multivendorx.com/woocommerce-product-catalog-mode-pro-quote-request/?utm_source=wordpress.org&utm_medium=freelandingpage&utm_campaign=Catalogenquiry)
 
@@ -159,22 +159,6 @@ Answer: Simply enable the 'Product Enquiry Button When Product is Out Of Stock' 
 10. Catalog Enquiry with MultiVendorX - Vendor Catalog Settings
 
 == Changelog ==
-
-= 5.0.10 - 2024-11-05 =
-* Added: Compatibility of WordPress 6.6.2.
-* Added: Compatibility of WooCommerce 9.3.3.
-* Fixed: Resolved fatal error issue.
-
-= 5.0.9 - 2024-09-10 =
-* Added: Compatibility of WordPress 6.6.1.
-* Added: Compatibility of WooCommerce 9.2.3.
-* Fixed: The "Enquiry" button was missing for variable products when the "Remove Product Price" option was enabled
-
-= 5.0.8 - 2024-06-18 =
-* Added: Compatibility of WordPress 6.5.4.
-* Added: Compatibility of WooCommerce 8.9.3.
-* Fixed: Issue with redirect option #40.
-* Fixed: Issue with Enquiry button for variable products #33.
 
 = 5.0.7 - 2024-02-13 =
 * Added: Compatibility of WordPress 6.4.3.

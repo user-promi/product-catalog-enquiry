@@ -1,0 +1,13 @@
+{
+    "apiVersion": 2,
+    "name": "woocommerce-catalog-enquiry/wholesale-product-list",
+    "title": "Wholesale Product List",
+    "category": "widgets",
+    "icon": "list-view",
+    "description": "A block that displays a wholesale product list using React Router.",
+    "supports": {
+        "html": false
+    },
+    "textdomain": "woocommerce-catalog-enquiry",
+    "editorScript": "file:./index.js"
+}
