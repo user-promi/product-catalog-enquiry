@@ -79,11 +79,11 @@ class Rest {
         foreach ( $post_params as $key => $value ) {
             switch ( $key ) {
                 case 'name':
-                    $customer_name = $user_name;
+                    $customer_name = $user_name ? $user_name : $value ;
                     break;
 
                 case 'email':
-                    $customer_email = $user_email;
+                    $customer_email = $user_email ? $user_email : $value;
                     break;
                 
                 default:
