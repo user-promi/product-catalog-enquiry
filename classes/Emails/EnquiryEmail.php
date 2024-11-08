@@ -79,7 +79,7 @@ class EnquiryEmail extends \WC_Email {
 	
 		// Set the appropriate template paths
 		$this->template_html  = $template_map[$email_setting] ?? 'emails/woocommerce-catalog-enquiry-admin.php';
-		$this->template_plain = 'emails/plain/enquiry-email-plain.php';
+		$this->template_plain = $is_pro_active ? 'emails/plain/enquiry-email-plain.php' : 'emails/plain/woocommerce-catalog-enquiry-admin.php';
 		$this->template_base  = $base_template_path;
 	}
 	
