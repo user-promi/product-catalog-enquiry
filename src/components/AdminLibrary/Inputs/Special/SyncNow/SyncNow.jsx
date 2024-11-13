@@ -112,7 +112,7 @@ const SyncNow = (props) => {
               {status.action}
               <div className="status-meta">
                 <span className="status-icons">
-                  <i class="admin-font font-icon-yes"></i>
+                  <i class="admin-font adminLib-icon-yes"></i>
                 </span>
                 <span>{status.current} / {status.total}</span>
               </div>

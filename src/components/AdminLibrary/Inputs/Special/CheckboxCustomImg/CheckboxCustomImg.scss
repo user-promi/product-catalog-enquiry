@@ -18,9 +18,9 @@
     border-radius: $border-radius-small;
     box-shadow: 0 0 0rem 0.05rem rgba(0, 0, 0, 0.3);
 
-    input {
+    input[type="checkbox"]{
       position: absolute;
-      width: 100%;
+      width: 100% !important; // To overwrite dynamic.scss input width
       height: 100%;
       top: 0;
       left: 0;

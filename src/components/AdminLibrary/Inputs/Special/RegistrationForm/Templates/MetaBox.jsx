@@ -49,7 +49,7 @@ const SettingMetaBox = (props) => {
 
     return (
         <div onClick={() => setHasOpend(true)}>
-            <i className="admin-font font-menu"></i>
+            <i className="admin-font adminLib-menu"></i>
             {
                 hasOpened &&
                     <Draggable>
@@ -59,7 +59,7 @@ const SettingMetaBox = (props) => {
                                 event.stopPropagation();
                                 setHasOpend(false);
                             }}>
-                                <i className="admin-font font-cross"></i>
+                                <i className="admin-font adminLib-cross"></i>
                             </button>
                             
                             {/* Render main components */}

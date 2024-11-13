@@ -26,6 +26,8 @@ const FreeForm = (props) => {
         const { name, value, type, files } = e.target;
 
         if (type === 'file') {
+            console.log(e.target.files[0].name)
+            console.log(files[0])
             setFileName( e.target.files[0].name )
             setInputs((prevData) => ({
                 ...prevData,
@@ -62,7 +64,7 @@ const FreeForm = (props) => {
             {
                 formFields.map((field) => {
                     if (!field.active) { return }
-
+            console.log('field', field)
                     switch (field.key) {
                         case "name":
                             return (
@@ -223,6 +225,7 @@ const EnquiryForm = (props) => {
             setLoading(false);
             setToast(true);
             if(response.data.redirect_link !== ''){
+                console.log('response.data', response.data)
                 window.location.href = response.data.redirect_link;
             }
             setTimeout(() => {
@@ -239,7 +242,7 @@ const EnquiryForm = (props) => {
         <div className='enquiry-form-modal'>
             {toast && 
                <div className="admin-notice-display-title">
-                    <i className="admin-font font-icon-yes"></i>
+                    <i className="admin-font adminLib-icon-yes"></i>
                     {responseMessage}
                 </div>
             }
@@ -254,7 +257,7 @@ const EnquiryForm = (props) => {
             }
             <div className='modal-wrapper'>
                 <div className='modal-close-btn'>
-                    <i className='admin-font font-cross'></i>
+                    <i className='admin-font adminLib-cross'></i>
                 </div>
                 <div>{enquiry_form_data.content_before_form}</div>
                 {

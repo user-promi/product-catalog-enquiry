@@ -1,44 +1,46 @@
 import { useState } from "react";
-import { Calendar } from "react-multi-date-picker";
+import DatePicker from "react-multi-date-picker";
 
 const CalendarInput = (props) => {
-  const [selectedDate, setSelectedDate] = useState(props.value || "");
-  const [showCalendar, setShowCalendar] = useState(!props.value);
+	let formattedDate;
+	const dates = props.value.split(',');
+	
+	if (dates.length === 1 && !dates[0].includes(" - ")) {
+		formattedDate = new Date(dates[0].trim());
+	} else {
+		formattedDate = dates.map((date) => {
+			if (date.includes(" - ")) {
+				const rangeDates = date.split(' - ');
+				const startDate = new Date(rangeDates[0].trim());
+				const endDate = new Date(rangeDates[1].trim());
+				return [startDate, endDate];
+			} else {
+				return new Date(date.trim());
+			}
+		});
+	}
+	
+	const [selectedDate, setSelectedDate] = useState(formattedDate || "");
 
-  // Handle date selection and hide calendar
-  const handleDateChange = (e) => {
-    setSelectedDate(e);
-    setShowCalendar(false);
-    props.onChange?.(e);
-  };
+	const handleDateChange = (e) => {
+		setSelectedDate(e);
+		props.onChange?.(e);
+	};
 
-  // Show calendar again when the input is clicked
-  const handleInputClick = () => {
-    setShowCalendar(true);
-  };
-
-  return (
-    <div className={props.wrapperClass}>
-      {showCalendar ? (
-        <Calendar
-          className={props.inputClass}
-          format={props.format || "D/M/YYYY"}
-          multiple={props.multiple}
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      ) : (
-        <input
-          type="text"
-          className="selected-date-input"
-          value={selectedDate?.toString() || ""}
-          readOnly
-          onClick={handleInputClick}
-        />
-      )}
-      {props.proSetting && <span className="admin-pro-tag">pro</span>}
-    </div>
-  );
+	return (
+	<div className={props.wrapperClass}>
+		<DatePicker 
+			className={props.inputClass}
+			format={props.format || "YYYY-MM-DD"}
+			multiple={props.multiple}
+			range={props.range}
+			value={selectedDate}
+			placeholder={"YYYY-MM-DD"}
+			onChange={handleDateChange}
+		/>
+		{props.proSetting && <span className="admin-pro-tag">pro</span>}
+	</div>
+	);
 };
 
 export default CalendarInput;

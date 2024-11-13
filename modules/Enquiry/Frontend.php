@@ -173,7 +173,7 @@ class Frontend{
     }
 
     public function catalog_free_form_settings() {
-        $form_settings = get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = Catalog()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['freefromsetting'] as &$free_field ) {
@@ -187,7 +187,7 @@ class Frontend{
     }
 
     public function catalog_pro_form_settings() {
-        $form_settings = get_option( 'catalog_enquiry_form_customization_settings', [] );
+        $form_settings = Catalog()->setting->get_option( 'catalog_enquiry_form_customization_settings', [] );
     
         if ( function_exists( 'icl_t' ) ) {
             foreach ( $form_settings['formsettings']['formfieldlist'] as &$field ) {

@@ -5,7 +5,7 @@ export default {
     priority: 10,
     name: __("Product Page Builder", "woocommerce-catalog-enquiry"),
     desc: __("Drag-and-drop to create and customize single product page elements.", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal: [
         {

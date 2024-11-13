@@ -1,130 +1,351 @@
 @import '/src/components/config.scss';
 
 @font-face {
-  font-family: "admin-font";
-  src: url("fonts/admin-font.eot?nofply");
-  src:
-    url("fonts/admin-font.eot?nofply#iefix") format("embedded-opentype"),
-    url("fonts/admin-font.ttf?nofply") format("truetype"),
-    url("fonts/admin-font.woff?nofply") format("woff"),
-    url("fonts/admin-font.svg?nofply#admin-font") format("svg");
+  font-family: 'AdminLibrary';
+  src:  url('fonts/AdminLibrary.eot?ohbj0e');
+  src:  url('fonts/AdminLibrary.eot?ohbj0e#iefix') format('embedded-opentype'),
+    url('fonts/AdminLibrary.ttf?ohbj0e') format('truetype'),
+    url('fonts/AdminLibrary.woff?ohbj0e') format('woff'),
+    url('fonts/AdminLibrary.svg?ohbj0e#AdminLibrary') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="font-"],
-[class*=" font-"] {
+[class^="adminLib-"], [class*=" adminLib-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "admin-font" !important;
+  font-family: 'AdminLibrary' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-resize:before {
-  content: "\e90e";
+.adminLib-captcha-automatic-code-svgrepo-com:before {
+  content: "\e93e";
 }
-
-.font-arrow-down:before {
-  content: "\e90a";
+.adminLib-multi-select:before {
+  content: "\e93d";
 }
-
-.font-arrow-up:before {
-  content: "\e909";
+.adminLib-dropdown-checklist:before {
+  content: "\e93c";
 }
-
-.font-arrow-right:before {
-  content: "\e907";
+.adminLib-star_icon:before {
+  content: "\e938";
 }
-
-.font-arrow-left:before {
+.adminLib-editor-list-ul:before {
+  content: "\e805";
+}
+.adminLib-captcha:before {
+  content: "\e820";
+}
+.adminLib-checkbox:before {
+  content: "\e822";
+}
+.adminLib-divider:before {
+  content: "\e828";
+}
+.adminLib-radio:before {
+  content: "\e84e";
+}
+.adminLib-toggle:before {
+  content: "\e869";
+}
+.adminLib-text:before {
+  content: "\e86d";
+}
+.adminLib-section:before {
+  content: "\e898";
+}
+.adminLib-plus-circle-o:before {
+  content: "\e8f7";
+}
+.adminLib-calendar:before {
   content: "\e908";
 }
-
-.font-mailchimp:before {
+.adminLib-undo:before {
+  content: "\e93b";
+}
+.adminLib-paint-brush:before {
+  content: "\e92b";
+}
+.adminLib-help:before {
+  content: "\e941";
+}
+.adminLib-t-letter-bold:before {
+  content: "\e94e";
+}
+.adminLib-unread:before {
+  content: "\e9ba";
+}
+.adminLib-cart:before {
+  content: "\8907";
+}
+.adminLib-person:before {
+  content: "\e520";
+}
+.adminLib-user-circle:before {
+  content: "\e800";
+}
+.adminLib-error:before {
+  content: "\e802";
+}
+.adminLib-security:before {
+  content: "\e803";
+}
+.adminLib-storefront:before {
+  content: "\e804";
+}
+.adminLib-search:before {
+  content: "\e806";
+}
+.adminLib-info:before {
+  content: "\e807";
+}
+.adminLib-check:before {
+  content: "\e809";
+}
+.adminLib-smile-o:before {
+  content: "\e80a";
+}
+.adminLib-close:before {
+  content: "\e810";
+}
+.adminLib-book:before {
+  content: "\e8f0";
+}
+.adminLib-mailchimp:before {
   content: "\e900";
 }
-
-.font-keyboard_arrow_down:before {
-  content: "\e913";
-}
-
-.font-create:before {
-  content: "\e912";
-}
-
-.font-edit:before {
-  content: "\e912";
-}
-
-.font-support:before {
-  content: "\e911";
-}
-
-.font-link:before {
-  content: "\e90d";
-}
-
-.font-crop-free:before {
-  content: "\e90f";
-}
-
-.font-text-fields:before {
-  content: "\e910";
-}
-
-.font-send:before {
-  content: "\e90c";
-}
-
-.font-menu:before {
-  content: "\e90b";
-}
-
-.font-cross:before {
-  content: "\e905";
-}
-
-.font-icon-yes:before {
-  content: "\e906";
-}
-
-.font-mail:before {
+.adminLib-mail:before {
   content: "\e901";
 }
-.font-file-submission:before {
+.adminLib-file-submission:before {
   content: "\e902";
 }
-.font-submission-message:before {
+.adminLib-submission-message:before {
   content: "\e903";
 }
-.font-settings:before {
+.adminLib-settings:before {
   content: "\e904";
 }
-.font-delete:before {
-  content: "\e5800";
+.adminLib-cross:before {
+  content: "\e905";
 }
-.font-text_fields:before {
+.adminLib-icon-yes:before {
+  content: "\e906";
+}
+.adminLib-arrow-right:before {
+  content: "\e907";
+}
+.adminLib-arrow-left:before {
+  content: "\e909";
+}
+.adminLib-arrow-up:before {
+  content: "\e90a";
+}
+.adminLib-arrow-down:before {
+  content: "\e90b";
+}
+.adminLib-menu:before {
+  content: "\e90c";
+}
+.adminLib-send:before {
+  content: "\e90d";
+}
+.adminLib-link:before {
+  content: "\e90e";
+}
+.adminLib-resize:before {
+  content: "\e90f";
+}
+.adminLib-crop-free:before {
+  content: "\e910";
+}
+.adminLib-text-fields:before {
+  content: "\e911";
+}
+.adminLib-support:before {
+  content: "\e912";
+}
+.adminLib-create:before {
+  content: "\e913";
+}
+.adminLib-keyboard_arrow_down:before {
+  content: "\e914";
+}
+.adminLib-button-appearance-tab:before {
+  content: "\e915";
+}
+.adminLib-enquiry-form-tab:before {
+  content: "\e916";
+}
+.adminLib-exclusion-tab:before {
+  content: "\e917";
+}
+.adminLib-general-tab:before {
+  content: "\e918";
+}
+.adminLib-live-preview-tab:before {
+  content: "\e919";
+}
+.adminLib-upgrade-to-pro-tab:before {
+  content: "\e91a";
+}
+.adminLib-next:before {
+  content: "\e91b";
+}
+.adminLib-previous:before {
+  content: "\e91c";
+}
+.adminLib-select:before {
+  content: "\e91d";
+}
+.adminLib-success-notification:before {
+  content: "\e91e";
+}
+.adminLib-drop-down:before {
+  content: "\e91f";
+}
+.adminLib-vendor-form-delete:before {
+  content: "\e920";
+}
+.adminLib-vendor-form-copy:before {
+  content: "\e921";
+}
+.adminLib-vendor-form-add:before {
+  content: "\e922";
+}
+.adminLib-select-question-type:before {
+  content: "\e923";
+}
+.adminLib-form-url:before {
+  content: "\e924";
+}
+.adminLib-form-textbox:before {
+  content: "\e925";
+}
+.adminLib-form-textarea:before {
+  content: "\e926";
+}
+.adminLib-form-address01:before {
+  content: "\e927";
+}
+.adminLib-form-address02:before {
+  content: "\e928";
+}
+.adminLib-form-attachment:before {
+  content: "\e929";
+}
+.adminLib-form-checkboxes:before {
+  content: "\e92a";
+}
+.adminLib-form-city:before {
+  content: "\e92c";
+}
+.adminLib-form-country:before {
+  content: "\e92d";
+}
+.adminLib-form-dropdown:before {
+  content: "\e92e";
+}
+.adminLib-form-email:before {
+  content: "\e92f";
+}
+.adminLib-form-multi-select:before {
+  content: "\e930";
+}
+.adminLib-form-paypal-email:before {
+  content: "\e931";
+}
+.adminLib-form-phone:before {
+  content: "\e932";
+}
+.adminLib-form-postcode:before {
+  content: "\e933";
+}
+.adminLib-form-radio:before {
+  content: "\e934";
+}
+.adminLib-form-recaptcha:before {
+  content: "\e935";
+}
+.adminLib-form-section:before {
+  content: "\e936";
+}
+.adminLib-form-state:before {
+  content: "\e937";
+}
+.adminLib-form-store-description:before {
+  content: "\e939";
+}
+.adminLib-eye:before {
+  content: "\e9ce";
+}
+.adminLib-eye-blocked:before {
+  content: "\e9d1";
+}
+.adminLib-text_fields:before {
   content: "\e5201";
 }
-.font-move:before {
+.adminLib-move:before {
   content: "\e5402";
 }
+.adminLib-delete:before {
+  content: "\e5800";
+}
+.adminLib-more-vertical:before {
+  content: "\e8051";
+}
+.adminLib-attachment:before {
+  content: "\e8598";
+}
+.adminLib-dots-three-horizontal:before {
+  content: "\e8eee";
+}
+.adminLib-credit_card:before {
+  content: "\e9502";
+}
+.adminLib-folder-open:before {
+  content: "\e93a";
+}
+.adminLib-clock2:before {
+  content: "\e94f";
+}
+.adminLib-alarm:before {
+  content: "\e950";
+}
+.adminLib-cloud-upload:before {
+  content: "\e93f";
+}
+
 
 
 
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
+.general-wrapper{
+  padding: 1.5rem 1rem 0 0;
+} 
 code {
   background: transparent;
 }
@@ -133,55 +354,45 @@ p{
   font-size: 0.875rem;
   margin: 0;
   }
+a{
+  text-decoration: none;
 
-#admin-catalog{
-  padding: 1.5rem 1rem 0 0;
-
-  a{
-    text-decoration: none;
-  
-    &:focus{
-      box-shadow: none;
-      outline: none;
-    }
-  }
-  
-  button{
+  &:focus{
+    box-shadow: none;
     outline: none;
-    border: none;
   }
-  
+}
+.btn-purple{
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-small;
+  background: $menu-btn-color;
+  width: fit-content;
+  color: $color-white;
+  cursor: pointer;    
+  transition: all 0.3s linear;  
+  font-size: 0.875rem;
+  border: none;  
+}
 
+button{
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
 
-  .btn-purple{
-    padding: 0.5rem 1rem;
-    border-radius: $border-radius-small;
-    background: $menu-btn-color;
-    width: fit-content;
-    color: $color-white;
-    cursor: pointer;    
-    transition: all 0.3s linear;    
-    font-family: sans-serif;
-    font-size: 0.875rem;  
+input[type="radio"]{
+  border-color: $color-active;
+
+  &::before{
+    background: $color-active;
   }
-  .btn-purple{
+} 
 
-  }
+.form-group-radio-select{
 
-  input[type="radio"]{
-    border-color: $color-active;
-
+  input:checked{
     &::before{
-      background: $color-active;
-    }
-  } 
-
-  .form-group-radio-select{
-
-    input:checked{
-      &::before{
-        content: "\e90e";
-      }
+      content: "\e90e";
     }
   }
 }

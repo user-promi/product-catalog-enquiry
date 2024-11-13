@@ -68,11 +68,11 @@ const Tabs = (props) => {
           </div>
           {menuCol ? null : openedSubtab == tab.id ? (
             <p className="tab-menu-dropdown-icon active">
-              <i className="admin-font font-keyboard_arrow_down"></i>
+              <i className="admin-font adminLib-keyboard_arrow_down"></i>
             </p>
           ) : (
             <p className="tab-menu-dropdown-icon">
-              <i className="admin-font font-keyboard_arrow_down"></i>
+              <i className="admin-font adminLib-keyboard_arrow_down"></i>
             </p>
           )}
         </div>
@@ -155,7 +155,7 @@ const Tabs = (props) => {
                 })}
                 <div className="menu-coll-btn" onClick={handleMenuShow}>
                   <span>
-                    <i className="admin-font font-arrow-left"></i>
+                    <i className="admin-font adminLib-arrow-left"></i>
                   </span>
                   {menuCol ? null : "Collapse"}
                 </div>

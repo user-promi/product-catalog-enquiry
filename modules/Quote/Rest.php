@@ -143,7 +143,7 @@ class Rest {
         $order_id = Util::create_new_order($customer_id, $customer_name, $customer_email, $customer_phone, $customer_message, $product_data);
         
         if ($order_id) {
-            $redirect_url = add_query_arg(['order_id' => $order_id], get_permalink(get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
+            $redirect_url = add_query_arg(['order_id' => $order_id], get_permalink(Catalog()->setting->get_option('woocommerce_myaccount_page_id')) . 'request-quote-thank-you/');
             return rest_ensure_response( ['order_id' => $order_id, 'redirect_url' => $redirect_url ]);
         } 
     }

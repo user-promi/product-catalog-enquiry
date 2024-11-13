@@ -16,10 +16,10 @@ const Profile = ({ showProfile, handleProfile, enquiry }) => {
             <img src={enquiry.image} alt="https://shorturl.at/gGILQ" />
             <div className='profile-pic-controls'>
               <button onClick={handleProfile} className="controls-button">
-                  <i className="admin-font font-close" />
+                  <i className="admin-font adminLib-close" />
               </button>
               <button onClick={handleShowControlsBtn} className="controls-button">
-                  <i className="admin-font font-more-vertical" />
+                  <i className="admin-font adminLib-more-vertical" />
               </button>
               { showControlsBtn && <EnquiryControlsBtn enquiry={enquiry} />}
             </div>

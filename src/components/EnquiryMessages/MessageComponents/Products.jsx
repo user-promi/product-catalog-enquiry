@@ -19,7 +19,7 @@ const Products = ({ productKey, productItems, deletable }) => {
                         <p className='instock'>{productItems.status}</p>
                     </div>
                     {deletable &&
-                        <button className='product-delete-btn'><i className='admin-font font-cross'></i> </button>
+                        <button className='product-delete-btn'><i className='admin-font adminLib-cross'></i> </button>
                     }
                 </section>
             </article>

@@ -145,6 +145,8 @@ const FromViewer = (props) => {
     const formList = formFields.formfieldlist || [];
     const buttonSetting = formFields.butttonsetting || {}
     const [captchaToken, setCaptchaToken] = useState(null);
+    const [fileName, setFileName] = useState("");
+    const [file, setFile] = useState(null); 
 
     const handleCaptchaChange = (token) => {
         setCaptchaToken(token);
@@ -161,6 +163,17 @@ const FromViewer = (props) => {
         }));
     };
 
+    const handleFileChange = (name, event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFileName(selectedFile.name);
+            setFile(selectedFile);
+            setInputs((prevData) => ({
+                ...prevData,
+                [name]: selectedFile,
+            }));
+        }
+    }
     /**
      * Handle input submit
      * @param {*} e 
@@ -320,10 +333,16 @@ const FromViewer = (props) => {
                                                     />
                                                 </svg>
                                                 <p className="heading">
-                                                    <span>Click to upload</span> or drag and drop
+                                                    {fileName == '' ? (
+                                                        <>
+                                                            <span>Click to upload</span> or drag and drop
+                                                        </>
+                                                    ) : fileName}
                                                 </p>
                                             </div>
-                                            <input readOnly id="dropzone-file" type="file" className="hidden" />
+                                            <input readOnly id="dropzone-file" type="file" className="hidden" 
+                                             onChange={(e) => handleFileChange(field.name, e)} // Handle file input change
+                                             />
                                         </label>
                                     </div>
                                 </section>

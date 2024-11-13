@@ -1,56 +1,25 @@
 .form_customizer {
-    gap: 0;
-  
-    .settings-form-label {
-      max-width: 0;
-      overflow: hidden;
-      display: none;
-    }
-    .settings-input-content {
-      width: 100% !important;
-    }
-    .enquery-form-fields {
+  gap: 0;
+
+  .settings-form-label {
+    max-width: 0;
+    overflow: hidden;
+    display: none;
+  }
+  .settings-input-content {
+    width: 100% !important;
+
+    .fields-header{
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 1rem;
-      flex-direction: column;
-  
-      .fields-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        width: 100%;
-  
-        h3 {
-          font-size: 0.875rem;
-          flex-grow: 1;
-          flex-shrink: 0;
-          flex-basis: 0;
-          max-width: 100%;
-          min-width: 3.125rem;
-        }
+
+      .name{
+        width:30%;
       }
-  
-      .fields-body {
-        width: 100%;
-  
-        .fields-row {
-          margin-bottom: 1rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 2rem;
-  
-          & > div{
-              flex-grow: 1;
-              flex-shrink: 0;
-              flex-basis: 0;
-              max-width: 100%;
-              min-width: 3.125rem;
-          }
-        }
+    }
+    .button-visibility{
+      i{
+        font-size: 1.25rem;
       }
     }
   }
+}

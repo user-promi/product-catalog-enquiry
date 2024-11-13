@@ -1,8 +1,6 @@
 @import '/src/components/config.scss';
 
 .gridTable {
-
-    // dynamicForm.scss
     gap: 1rem;
     align-items: center;
     justify-content: center;
@@ -81,7 +79,7 @@
                         padding: 0 1rem;
 
                         &:first-child {
-                            max-width: 8.125rem;
+                            max-width: 9.5rem;
                         }
 
                         input[type=checkbox] {
@@ -94,6 +92,208 @@
 
                         .clear {
                             clear: both;
+                        }
+
+                        .checkBox {
+                            display: block;
+                            cursor: pointer;
+                            width: 15px;
+                            height: 15px;
+                            border: 3px solid rgba(255, 255, 255, 0);
+                            border-radius: 0.25rem;
+                            position: relative;
+                            overflow: hidden;
+                            box-shadow: 0px 0px 0px 2px #65438fae;
+                        }
+
+                        .checkBox div {
+                            width: 30px;
+                            height: 30px;
+                            background-color: $menu-btn-color;
+                            top: -52px;
+                            left: -52px;
+                            position: absolute;
+                            transform: rotateZ(45deg);
+                            z-index: 100;
+                        }
+
+                        .checkBox input[type=checkbox]:checked+div {
+                            left: -10px;
+                            top: -10px;
+                        }
+
+                        .checkBox input[type=checkbox] {
+                            position: absolute;
+                            left: 0px;
+                            visibility: hidden;
+                        }
+
+                        .transition {
+                            transition: 300ms linear;
+                        }
+
+
+                        .grid-table-main-container {
+                            position: relative;
+                            max-width: 250px;
+                            width: 100%;
+
+                            .main-container {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 0.5rem;
+
+                                .selected-container {
+                                    border: 0.115rem solid rgba(0, 0, 0, 0.125);
+                                    border-radius: 0;
+                                    height: 40px;
+                                    padding: 0.5rem 0.5rem;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    gap: 0.25rem;
+                                    background-color: $color-white;
+                                    position: relative;
+                                    width: 100%;
+
+
+                                    &:has(.container-items-controls .open-modal) {
+                                        .selected-items-container {
+                                            max-width: calc(100% - 40px);
+                                        }
+
+                                        .container-items-controls {
+                                            width: 40px;
+                                        }
+                                    }
+
+                                    .selected-items-container {
+                                        display: flex;
+                                        height: 100%;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        gap: 0.25rem;
+                                        max-width: calc(100% - 20px);
+                                        flex-wrap: wrap;
+                                        overflow: hidden;
+
+                                        .selected-items {
+                                            max-width: 80px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            gap: 0.25rem;
+                                            padding: 0.15rem 0.25rem;
+                                            border-radius: 0.25rem;
+                                            font-size: 0.75rem;
+                                            background: #f2eeee;
+                                            width: 100%;
+
+                                            span {
+                                                text-overflow: ellipsis;
+                                                overflow: hidden;
+                                                max-height: 20px;
+                                                height: 100%;
+                                                text-overflow: ellipsis;
+                                                overflow: hidden;
+
+                                            }
+
+                                            button {
+                                                background: transparent;
+                                                padding: $p-0;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                    }
+
+                                    .container-items-controls {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        width: 20px;
+                                        position: absolute;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        right: 5px;
+
+                                        .clear-all-data {
+                                            background: transparent;
+                                            border-radius: 50%;
+                                            transition: all 0.3s linear;
+                                            cursor: pointer;
+                                            width: 20px;
+                                            height: 20px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: $p-0;
+                                            font-size: 0.75rem;
+
+                                            &:hover {
+                                                background-color: $background-color;
+                                            }
+                                        }
+
+                                        .open-modal {
+                                            width: 20px;
+                                            height: 20px;
+                                            border-radius: 50%;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: $p-0;
+                                            font-size: 0.65rem;
+                                            color: $color-white;
+                                            background: #65438f;
+                                            cursor: pointer;
+                                        }
+                                    }
+
+
+                                }
+
+                                .selected-input {
+                                    position: relative;
+
+                                    input {
+                                        background: $color-white;
+                                        margin: 0;
+
+                                        &:focus {
+                                            outline: none;
+                                        }
+                                    }
+
+                                    span {
+                                        position: absolute;
+                                        top: 7px;
+                                        right: 5px;
+
+                                        i {
+                                            font-size: 1.15rem;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .option-container {
+                                position: absolute;
+                                top: 105%;
+                                z-index: 8;
+                                width: 100%;
+                                background: #fff;
+                                display: flex;
+                                padding: 0.5rem;
+                                border: 0.115rem solid rgba(0, 0, 0, 0.125);
+                                flex-direction: column;
+                                gap: 0.25rem;
+
+                                .options-item {
+                                    cursor: pointer;
+                                }
+
+                            }
                         }
                     }
                 }

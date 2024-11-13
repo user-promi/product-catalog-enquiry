@@ -7,9 +7,9 @@ import { getApiLink, getApiResponse } from "../../../../services/apiService";
 
 import { useSetting } from "../../../../contexts/SettingContext";
 
-import "./ConnectSelect.scss";
+import "./InputMailchimpList.scss";
 
-const ConnectSelect = (props) => {
+const InputMailchimpList = (props) => {
   const { mailchimpKey, optionKey, settingChanged } = props;
 
   // State varaible for list of options
@@ -90,4 +90,4 @@ const ConnectSelect = (props) => {
   );
 };
 
-export default ConnectSelect;
+export default InputMailchimpList;

@@ -217,7 +217,7 @@ const EnquiryDetails = (props) => {
                                         <header className='pin-message-section'>
                                             <p dangerouslySetInnerHTML={{ __html: pinMsg }} />
                                             <button onClick={() => handlePinMsgDelete(enquiry.id)}>
-                                                <i className='admin-font font-cross'></i>
+                                                <i className='admin-font adminLib-cross'></i>
                                             </button>
                                         </header>
                                     }
@@ -244,7 +244,7 @@ const EnquiryDetails = (props) => {
                                                                     <div className="content">
                                                                         <div dangerouslySetInnerHTML={{ __html: enquiryDetail.msg }} />
                                                                         <div className="status">
-                                                                            <i className="admin-font font-check" />
+                                                                            <i className="admin-font adminLib-check" />
                                                                         </div>
                                                                         {enquiryDetail.reaction !== null &&
                                                                             <button className='reaction-view'>
@@ -268,10 +268,10 @@ const EnquiryDetails = (props) => {
                                                                             </div>
                                                                         }
                                                                         <button onClick={(e) => handleReactionOpen(e, index)}>
-                                                                            <i className="admin-font font-smile-o" />
+                                                                            <i className="admin-font adminLib-smile-o" />
                                                                         </button>
                                                                         <button onClick={(e) => handleChatTextBtnOpen(e, index)}>
-                                                                            <i className="admin-font font-more-vertical" />
+                                                                            <i className="admin-font adminLib-more-vertical" />
                                                                         </button>
                                                                     </div>
                                                                 </div>
@@ -295,7 +295,7 @@ const EnquiryDetails = (props) => {
                                                                         }
                                                                         <div dangerouslySetInnerHTML={{ __html: enquiryDetail.msg }} />
                                                                         <div className="status">
-                                                                            <i className="admin-font font-check" />
+                                                                            <i className="admin-font adminLib-check" />
                                                                         </div>
                                                                         {enquiryDetail.reaction !== null && (
                                                                             <button className='reaction-view'>
@@ -319,10 +319,10 @@ const EnquiryDetails = (props) => {
                                                                             </div>
                                                                         }
                                                                         <button onClick={(e) => handleReactionOpen(e, index)}>
-                                                                            <i className="admin-font font-smile-o" />
+                                                                            <i className="admin-font adminLib-smile-o" />
                                                                         </button>
                                                                         <button onClick={(e) => handleChatTextBtnOpen(e, index)}>
-                                                                            <i className="admin-font font-more-vertical" />
+                                                                            <i className="admin-font adminLib-more-vertical" />
                                                                         </button>
                                                                     </div>
                                                                 </div>

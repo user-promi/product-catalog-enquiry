@@ -4,7 +4,7 @@ export default {
     priority: 20,
     name: __("Shopping Journey", "woocommerce-catalog-enquiry"),
     desc: __("Set up sales flow and catalog mode with integrated enquiry and quotation management.", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal: [
         {
@@ -43,7 +43,6 @@ export default {
             key: 'separator_content',
             type: 'section',
             desc: __("Enquiry", "woocommerce-catalog-enquiry"),
-            //hint: __("Enquiry", "woocommerce-catalog-enquiry"),
         },
         {
             key: 'enquiry_user_permission',
@@ -144,7 +143,6 @@ export default {
             key: 'separator_content',
             type: 'section',
             desc: __("Quotation", "woocommerce-catalog-enquiry"),
-            //hint: __("Quote", "woocommerce-catalog-enquiry"),
         },
         {
             key: 'quote_user_permission',
@@ -158,19 +156,6 @@ export default {
                 }
             ],
         },
-        // {
-        //     key: 'is_expiry_time_for_quote',
-        //     type: 'checkbox',
-        //     label: __( "Quote Expiry Time", 'woocommerce-catalog-enquiry' ),
-        //     desc: __( 'Set an expiry time for all sent quotes, ensuring timely responses and effective management of quote validity.', 'woocommerce-catalog-enquiry' ),
-        //     options: [
-        //         {
-        //             key: "is_expiry_time_for_quote",
-        //             label: __('', 'woocommerce-catalog-enquiry'),
-        //             value: "is_expiry_time_for_quote"
-        //         }
-        //     ],
-        // },
         {
             key: 'set_expiry_time',
             type: 'text',
@@ -183,13 +168,11 @@ export default {
             key: 'separator_content',
             type: 'section',
             desc: __("PDF Manager", "woocommerce-catalog-enquiry"),
-            //hint: __("Quote", "woocommerce-catalog-enquiry"),
         },
         {
             key: 'display_pdf',
             type: 'multi-checkbox-table',
             label: __("Attachment", "woocommerce-catalog-enquiry"),
-            // desc: __("Grid Table", "woocommerce-catalog-enquiry"),
             classes: 'gridTable',
             rows: [
                 {
@@ -213,33 +196,5 @@ export default {
             ],
             proSetting: true,
         },
-        // {
-        //     key: 'allow_download_pdf',
-        //     type: 'checkbox',
-        //     label: __( "Download Quotes as PDF", 'woocommerce-catalog-enquiry' ),
-        //     desc: __( "users can download their quotes as PDF files from 'My Account'.", 'woocommerce-catalog-enquiry' ),
-        //     options: [
-        //         {
-        //             key: "allow_download_pdf",
-        //             label: __("", 'woocommerce-catalog-enquiry'),
-        //             value: "allow_download_pdf"
-        //         }
-        //     ],
-        //     proSetting: true,
-        // },
-        // {
-        //     key: 'attach_pdf_to_email',
-        //     type: 'checkbox',
-        //     label:  __( 'Attach PDF to Quote Email', 'woocommerce-catalog-enquiry' ),
-        //     desc: __( 'Include a PDF version of quotes in the email for convenient access.', 'woocommerce-catalog-enquiry' ),
-        //     options: [
-        //         {
-        //             key: "attach_pdf_to_email",
-        //             label: __('', 'woocommerce-catalog-enquiry'),
-        //             value: "attach_pdf_to_email"
-        //         }
-        //     ],
-        //     proSetting: true,
-        // }
     ]
 };

@@ -136,7 +136,7 @@
           .active-current-tab {
             color: $color-active;
             background: $color-white;
-            border-left: $border-theme-medius;
+            border-left: 0.126rem solid $color-active;
 
             .menu-name {
               color: $color-active;

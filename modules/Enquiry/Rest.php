@@ -41,17 +41,20 @@ class Rest {
 
         $quantity   = $request->get_param( 'quantity' );
         $product_id = $request->get_param( 'productId' );
+        $post_params = $request->get_body_params();
+        $file_data   = $request->get_file_params();
 
         $user       = wp_get_current_user();
         $user_name  = $user->display_name;
         $user_email = $user->user_email;
-        
-        $post_params = $request->get_body_params();
-        $file_data   = $request->get_file_params();
+        $attachments = [];
 
         // Create attachment of files
         foreach ( $file_data as $file ) {
             $attachment_id = \CatalogEnquiry\Utill::create_attachment_from_files_array($file);
+            if (!empty($attachment_id)) {
+                $attachments[] = get_attached_file($attachment_id);
+            }
         }
         
         unset( $post_params[ 'quantity' ] );
@@ -105,7 +108,6 @@ class Rest {
         ];
 
         $product_variations = ( get_transient( 'variation_list' ) ) ? get_transient( 'variation_list' ) : [];
-
         $result = $wpdb->insert("{$wpdb->prefix}" . Utill::TABLES[ 'enquiry' ], $data );
 
         if ( $result ) {
@@ -121,7 +123,7 @@ class Rest {
                 }
             }
     
-            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread' ) );
+            $wpdb->query( $wpdb->prepare( "INSERT INTO {$wpdb->prefix}" . Utill::TABLES[ 'message' ] . " SET to_user_id=%d, from_user_id=%d, chat_message=%s, product_id=%s, enquiry_id=%d, status=%s, attachment=%d", $to_user_id, $user->ID, $chat_message, serialize( $product_info ), $enquiry_id, 'unread', $attachment_id ) );
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
                 'enquiry_id'            => $enquiry_id,
@@ -151,13 +153,15 @@ class Rest {
                     wp_die(__("PDF document could not be generated", 'mvx-pro'));
                 }
                 $attach_pdf = Catalog()->setting->get_setting( 'enquiry_pdf_permission' );
-                $attachments = ($attach_pdf === 'attach_pdf_to_email') ? [$file_path] : [];
+                if ($attach_pdf === 'attach_pdf_to_email') {
+                    $attachments[] = $file_path; // Add PDF to attachments
+                }
             }
                         
             $additional_email = Catalog()->setting->get_setting( 'additional_alert_email' );
             $send_email = WC()->mailer()->emails[ 'EnquiryEmail' ];
 
-			$send_email->trigger( $additional_email, $enquiry_data, $attachments ?? [] );
+			$send_email->trigger( $additional_email, $enquiry_data, $attachments );
 				
             $redirect_link = Catalog()->setting->get_setting( 'is_page_redirect' ) && Catalog()->setting->get_setting( 'redirect_page_id' ) ? get_permalink(Catalog()->setting->get_setting( 'redirect_page_id' )) : '';
             

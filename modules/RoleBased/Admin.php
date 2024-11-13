@@ -95,7 +95,7 @@ class Admin {
         $value  = $request->get_param( 'value' );
 
         $role_key = wp_roles()->role_key;
-        $roles    = get_option( $role_key );
+        $roles    = Catalog()->setting->get_option( $role_key );
         
         if ( isset( $roles[ $id ] ) ) {
             $roles[ $id ][ $key ] = $value;

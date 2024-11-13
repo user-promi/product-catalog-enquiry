@@ -27,7 +27,7 @@ const Datepicker = (props) => {
                 style={{ cursor: 'pointer' }}
             >
                 <div className="edit-form-wrapper">        
-                    <p>I am default simple label</p>
+                    <p>{formField.label}</p>
                     <div className="settings-form-group-radio">
                         <input type="date" readOnly />
                     </div>

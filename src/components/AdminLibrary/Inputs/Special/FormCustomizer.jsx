@@ -48,7 +48,7 @@ const FormCustomizer = (props) => {
                                         className='input-editor'
                                         onClick={(e) => setCurrentEditSection('text')}
                                     >
-                                        <p>Edit</p><span><i className='admin-font font-edit'></i></span>
+                                        <p>Edit</p><span><i className='admin-font adminLib-edit'></i></span>
                                     </div>
                                 </>
                             )}
@@ -66,7 +66,7 @@ const FormCustomizer = (props) => {
                                                 e.preventDefault();
                                                 setCurrentEditSection('');
                                                     
-                                            }} className="wrapper-close"><i class="admin-font font-cross"></i></button>
+                                            }} className="wrapper-close"><i class="admin-font adminLib-cross"></i></button>
                                             <div className="setting-section-dev">
                                                 <span class="label">Placeholder text</span>
                                                 <div class="property-section">

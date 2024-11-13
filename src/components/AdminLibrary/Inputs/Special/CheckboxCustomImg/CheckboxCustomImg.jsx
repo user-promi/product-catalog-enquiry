@@ -2,7 +2,7 @@ import React from "react";
 import './CheckboxCustomImg.scss';
 
 const CheckboxCustomImg = (props) => {
-  const { value = [], onChange, syncDirections, description, proSetting } = props;
+  const {value = [], onChange, syncDirections, description, proSetting} = props;
 
   const handleCheckboxChange = (directionValue, isChecked) => {
     let updatedValue = [...value];
@@ -27,7 +27,7 @@ const CheckboxCustomImg = (props) => {
             />
             <div className="sync-meta-wrapper">
               <img src={direction.img1} alt="" />
-              <i className="admin-font font-arrow-right"></i>
+              <i className="admin-font adminLib-arrow-right"></i>
               <img src={direction.img2} alt="" />
             </div>
             <p className="sync-label">{direction.label}</p>

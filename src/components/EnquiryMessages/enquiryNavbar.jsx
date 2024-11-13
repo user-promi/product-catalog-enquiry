@@ -33,7 +33,7 @@ const EnquiryNavbar = (props) => {
             <div className="header">
                 <div className="chat-meta">
                     <div className="back-btn">
-                        <i className="admin-font font-arrow-left" />
+                        <i className="admin-font adminLib-arrow-left" />
                     </div>
                     <button onClick={handleProfile} className="chat-meta-data">
                         <div className="chat-img">
@@ -50,23 +50,23 @@ const EnquiryNavbar = (props) => {
                         <li className="chat-more-option-item">
                             <div class="input-container">
                                 <input placeholder="Search..." class="input" type="text" onChange={(e) => { props.onChange?.(e) }} />
-                                <i className="admin-font icon font-search" />
+                                <i className="admin-font icon adminLib-search" />
                             </div>
                         </li>
                         <li className="chat-more-option-item">
                             <button onClick={handleProfile} className="chat-more-option-button">
-                                <i className="admin-font font-info" />
+                                <i className="admin-font adminLib-info" />
                             </button>
                         </li>
                         <li className="chat-more-option-item">
                             <button onClick={handleCart} className="chat-more-option-button">
-                                <i className="admin-font font-cart" />
+                                <i className="admin-font adminLib-cart" />
                             </button>
                             {showCart && <CartComponents showCart={showCart} handleCart={handleCart} enquiry={enquiry} />}
                         </li>
                         <li className="chat-more-option-item">
                             <button onClick={handleShowControlsBtn} className="chat-more-option-button">
-                                <i className="admin-font font-more-vertical" />
+                                <i className="admin-font adminLib-more-vertical" />
                             </button>
                             {showControlsBtn && <EnquiryControlsBtn enquiry={enquiry} />}
                         </li>

@@ -26,28 +26,28 @@ const Customizer = (props) => {
           className="btn-customizer-menu-items"
           onClick={(e) => setSelect("border")}
         >
-          <i className="admin-font font-crop-free"></i>
+          <i className="admin-font adminLib-crop-free"></i>
         </div>
         <div
           title="Text Style"
           className="btn-customizer-menu-items"
           onClick={(e) => setSelect("font")}
         >
-          <i className="admin-font font-text-fields"></i>
+          <i className="admin-font adminLib-text-fields"></i>
         </div>
         <div
           title="Change Size"
           className="btn-customizer-menu-items"
           onClick={(e) => setSelect("size")}
         >
-          <i className="admin-font font-resize"></i>
+          <i className="admin-font adminLib-resize"></i>
         </div>
         <div
           title="Add Url"
           className="btn-customizer-menu-items"
           onClick={(e) => setSelect("link")}
         >
-          <i className="admin-font font-link"></i>
+          <i className="admin-font adminLib-link"></i>
         </div>
       </div>
       {(select === "color" ||
@@ -58,7 +58,7 @@ const Customizer = (props) => {
           <div className="customizer-setting-wrapper">
             {/* Wrapper close btn */}
             <button onClick={(e) => setSelect("")} className="wrapper-close">
-              <i className="admin-font font-cross"></i>
+              <i className="admin-font adminLib-cross"></i>
             </button>
 
             {/* Render selcted setting */}
@@ -341,7 +341,7 @@ const Customizer = (props) => {
                         props.onChange('button_link', e.target.value);
                       }}
                     >
-                      <i className="admin-font font-send"></i>
+                      <i className="admin-font adminLib-send"></i>
                     </button>
                   </div>
                 </div>

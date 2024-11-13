@@ -24,7 +24,7 @@ const SelectedOptionDisplay = (props) => {
                                 className=""
                                 onClick={(event) => { removeSelectedValues(value) }}
                             >
-                                <i className='admin-font font-close'></i>
+                                <i className='admin-font adminLib-close'></i>
                             </div>
                         </div>
                     ))
@@ -50,7 +50,7 @@ const SelectedOptionDisplay = (props) => {
                         clearSelectedValues();
                     }}
                 >
-                    <i className='admin-font font-close'></i>
+                    <i className='admin-font adminLib-close'></i>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@ const SearchOptionDisplay = (props) => {
                 />
 
                 <span>
-                    <i className='admin-font font-keyboard_arrow_down'></i>
+                    <i className='admin-font adminLib-keyboard_arrow_down'></i>
                 </span>
             </div>
 
@@ -276,7 +276,7 @@ const Select = (props) => {
                                 className={'exclusion-modal'}
                             >
                                 <div className='modal-close-btn' onClick={closeModal}>
-                                    <i className='admin-font font-cross'></i>
+                                    <i className='admin-font adminLib-cross'></i>
                                 </div>
                                 <SelectedOptionDisplay
                                     popupOpend={popupOpend}

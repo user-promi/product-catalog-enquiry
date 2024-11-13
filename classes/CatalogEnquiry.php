@@ -227,7 +227,7 @@ final class CatalogEnquiry {
 	}
 
 	function catalog_register_form_strings() {
-		$form_settings =  get_option('catalog_enquiry_form_customization_settings');
+		$form_settings =  Catalog()->setting->get_option('catalog_enquiry_form_customization_settings');
 
 		if ( function_exists( 'icl_register_string' ) ) {
 			foreach ( $form_settings['formsettings']['formfieldlist'] as $field ) {

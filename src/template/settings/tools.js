@@ -5,7 +5,7 @@ export default {
     priority: 90,
     name: __("Tools", "woocommerce-catalog-enquiry"),
     desc: __("Review all system logs and errors", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal : [
         {

@@ -5,7 +5,7 @@ export default {
     priority: 50,
     name: __("Enquiry Email ", "woocommerce-catalog-enquiry"),
     desc: __("Select your preffered enquiry details email template", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal: [
         {

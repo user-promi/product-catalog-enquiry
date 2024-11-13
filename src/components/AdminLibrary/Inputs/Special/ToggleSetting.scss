@@ -3,7 +3,7 @@
 .toggle-setting-container{
     ul{
         position: relative;
-        padding: 0 .4rem;
+        padding: 0 .2rem;
         border: .063rem solid #d4d1d9;
         border-radius: .125rem;
         display: flex;
@@ -14,7 +14,7 @@
 
         li{
             list-style-type: none;
-            padding: 1rem .1rem 1.15rem;
+            padding: 0.6rem 0.2rem 0.8rem;
             margin: 0;
 
             input[type="radio"]{
@@ -29,10 +29,10 @@
 
             label{
                 color: #181718;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 line-height: 1;
                 text-align: center;
-                padding: .5rem 1rem;
+                padding: 0.4rem 0.7rem;
                 border-radius: .25rem;
                 border: .063rem solid #d4d1d9;
                 transition: .1s ease-in-out;

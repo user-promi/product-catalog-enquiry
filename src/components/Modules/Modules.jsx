@@ -67,7 +67,7 @@ const Modules = () => {
           aria-labelledby="form-dialog-title"
         >
           <span
-            className="admin-font font-cross"
+            className="admin-font adminLib-cross"
             onClick={() => setModelOpen(false) }
           ></span>
           <Popoup />
@@ -75,7 +75,7 @@ const Modules = () => {
 
         {successMsg && (
           <div className="admin-notice-display-title">
-            <i className="admin-font font-icon-yes"></i>
+            <i className="admin-font adminLib-icon-yes"></i>
             {successMsg}
           </div>
         )}

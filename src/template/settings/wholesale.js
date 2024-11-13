@@ -5,7 +5,7 @@ export default {
     priority: 60,
     name: __("Wholesale", "woocommerce-catalog-enquiry"),
     desc: __("Wholesale sign up and registration management.", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal : [
         {
@@ -80,6 +80,32 @@ export default {
             label: __("Discount rule", "woocommerce-catalog-enquiry"),
             desc: __('<b>Bulk Discount Configuration: </b> Set discount type (percentage/fixed), discount amount, and minimum quantity for wholesellers', 'woocommerce-catalog-enquiry'),
             proSetting: true,
+            fields: [
+                {
+                    name: 'wholesale_discount_type',
+                    type: 'select',
+                    options: [
+                        { 
+                            value: 'fixed_amount', 
+                            label: 'Fixed Amount' 
+                        },
+                        { 
+                            value: 'percentage_amount', 
+                            label: 'Percentage Amount' 
+                        }
+                    ]
+                },
+                {
+                    name: 'wholesale_amount',
+                    type: 'number',
+                    placeholder: 'Discount value'
+                },
+                {
+                    name: 'minimum_quantity',
+                    type: 'number',
+                    placeholder: 'Minimum quantity'
+                }
+            ],
         },
 
         // {

@@ -10,7 +10,7 @@ const WpEditor = (props) => {
                     height: 200,
                     plugins: 'media',
                 }}
-                onEditorChange={(e) => { props.ontinyChange(e) }}
+                onEditorChange={(e) => { props.onEditorChange(e) }}
             />
         </>
     );

@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './FormCustomizer.scss'
+import '../RegistrationForm/RegistrationForm.scss'
 import SubTabSection from '../SubTabSection/SubTabSection';
 import ProForm from '../RegistrationForm/RegistrationForm';
 
 const FormCustomizer = (props) => {
-    const { setting, proSetting, proSettingChange, onChange } = props;
+    const {setting, proSetting, proSettingChange, onChange} = props;
     const settingChange = useRef(false);
     const [formFieldsData, setFromFieldsData] = useState(setting['freefromsetting'] || []);
+    
     useEffect(() => {
         if (settingChange.current) {
             onChange('freefromsetting', formFieldsData);
             settingChange.current = false;
         }
     }, [formFieldsData]);
+    
     const getFields = (fieldKey) => {
         return formFieldsData.find(({ key }) => { return key === fieldKey });
     }
+    
     const activeDeactiveFields = (fieldKey, activeStatus) => {
         settingChange.current = true;
         if (getFields(fieldKey)) {
@@ -33,6 +37,7 @@ const FormCustomizer = (props) => {
             });
         }
     }
+    
     const updateFieldLabel = (fieldKey, labelValue) => {
         settingChange.current = true;
         if (getFields(fieldKey)) {
@@ -50,6 +55,7 @@ const FormCustomizer = (props) => {
             });
         }
     }
+    
     const formFields = [
         {
             key: 'name',
@@ -90,12 +96,13 @@ const FormCustomizer = (props) => {
     ]
 
     const [menu, setMenu] = useState([
-        { name: "Pro", link: "hi", id: 1, icon: 'font-store' },
-        { name: "Free", link: "hi", id: 2, icon: 'font-info' },
+        { name: "Pro", link: "hi", id: 1, icon: 'adminLib-cart' },
+        { name: "Free", link: "hi", id: 2, icon: 'adminLib-info' },
     ]);
 
-     // Set default current tab
+    // Set default current tab
     const [currentTab, setCurrentTab] = useState(menu[0]);
+    const [readonlyFields, setReadonlyFields] = useState(formFields.map((field, index) => formFieldsData[index]?.active==true ? false : true));
 
     return (
         <>
@@ -108,44 +115,46 @@ const FormCustomizer = (props) => {
                         onChange={(value) => onChange('formsettings', value)}
                     />
                     :
-                    <div className='enquery-form-fields'>
+                    <div>
                         <div className='fields-header'>
-                            <h3>Field Name</h3>
-                            <h3>Enable / Disable</h3>
-                            <h3>Set new field name</h3>
+                            <h3 class="name">Field Name</h3>
+                            <h3 class="set-name">Set new field name</h3>
                         </div>
-                        <div className='fields-body'>
-                            {
-                                formFields.map((fields, index) => {
-                                    return (
-                                        <div className='fields-row' key={index}>
-                                            <div className='fields-row-name'>{fields.desc}</div>
-                                            <div>
-                                                <div className='toggle-checkbox-content'>
+                        <div className='registrationFrom-main-wrapper-section'>
+                            <div className='form-field'>
+                                {
+                                    formFields.map((fields, index) => {
+                                        return (
+                                            <div className='edit-form-wrapper free-form' key={index}>
+                                                <div className='form-label' style={{ opacity: readonlyFields[index] ? "0.3" : "1" }} >{fields.desc}</div>
+                                                <div className='settings-form-group-radio' >
                                                     <input
-                                                        id={index}
-                                                        type='checkbox'
+                                                        type='text'
                                                         onChange={(e) => {
-                                                            activeDeactiveFields(fields.key, e.target.checked);
+                                                            updateFieldLabel(fields.key, e.target.value);
                                                         }}
-                                                        checked={getFields(fields.key) ? getFields(fields.key).active : false}
+                                                        value={getFields(fields.key) ? getFields(fields.key).label : ''}
+                                                        readOnly={readonlyFields[index]}
+                                                        style={{ opacity: readonlyFields[index] ? "0.3" : "1" }}
+                                                        
                                                     />
-                                                    <label htmlFor={index}></label>
+                                                </div>
+                                                <div
+                                                    class="button-visibility"
+                                                    onClick={() => {
+                                                        setReadonlyFields(prev =>
+                                                            prev.map((readonly, i) => i === index ? !readonly : readonly)                                                            
+                                                        );
+                                                        activeDeactiveFields(fields.key, readonlyFields[index]);
+                                                    }}
+                                                >
+                                                    <i class={`admin-font ${readonlyFields[index] ? 'adminLib-eye-blocked' : 'adminLib-eye'}`}></i>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <input
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        updateFieldLabel(fields.key, e.target.value);
-                                                    }}
-                                                    value={getFields(fields.key) ? getFields(fields.key).label : ''}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            }
+                                        );
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
 

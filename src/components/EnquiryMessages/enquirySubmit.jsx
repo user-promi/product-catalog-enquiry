@@ -195,14 +195,14 @@ const EnquirySubmit = (props) => {
                     {reply && (
                         <div className='reply-text-preview'>
                             <p dangerouslySetInnerHTML={{ __html: reply }}></p>
-                            <button onClick={replyClose}><i className='admin-font font-close'></i></button>
+                            <button onClick={replyClose}><i className='admin-font adminLib-close'></i></button>
                         </div>
                     )}
                     {file && (
                         <div className='attachment-details-section'>
                             <p>{file.name}</p>
                             <FileDisplay fileUrl={ file.link } fileType={file.type} />
-                            <button onClick={handleDeleteFile}><i className='admin-font font-close'></i></button>
+                            <button onClick={handleDeleteFile}><i className='admin-font adminLib-close'></i></button>
                         </div>
                     )}
                 </div>
@@ -217,11 +217,11 @@ const EnquirySubmit = (props) => {
                     }}
                 >
                     <label>
-                        <i className="admin-font font-attachment" />
+                        <i className="admin-font adminLib-attachment" />
                     </label>
                 </MediaUploader>
                 <button onClick={toggleEmojiPicker} className='option-btn controls-btn'>
-                    <i className="admin-font font-smile-o" />
+                    <i className="admin-font adminLib-smile-o" />
                 </button>
                 <button onClick={()=> setMessage(message + ' ' + "@")} className='option-btn controls-btn'>
                     <FaAt />
@@ -249,7 +249,7 @@ const EnquirySubmit = (props) => {
                             <>
                                 <div className='quotation-section-heading'>
                                     <h3>Products</h3>
-                                    <span onClick={handleCloseQuoteModal}><i className='admin-font font-cross'></i></span>
+                                    <span onClick={handleCloseQuoteModal}><i className='admin-font adminLib-cross'></i></span>
                                 </div>
                                 <div className="container-wrapper">
                                     {enquiry.product_info.map((items, index)=>{
@@ -281,7 +281,7 @@ const EnquirySubmit = (props) => {
                     { createOrderId && 
                         <section className='thankyou-section-wrapper'>
                                 <div className='section-icon'>
-                                    <i className='admin-font font-check'></i>
+                                    <i className='admin-font adminLib-check'></i>
                                 </div>
                                 <h3 className='section-tittle'>Thank you!</h3>
                                 <p className='section-message'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum incidunt eveniet corporis cum fugit? Magni asperiores cum doloribus</p>

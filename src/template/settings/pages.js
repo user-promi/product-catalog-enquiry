@@ -5,7 +5,7 @@ export default {
     priority: 80,
     name: __("Page Endpoint", "woocommerce-catalog-enquiry"),
     desc: __("Manage the endpoints for all pages on the site, ensuring proper routing and access.", "woocommerce-catalog-enquiry"),
-    icon: 'font-settings',
+    icon: 'adminLib-settings',
     submitUrl: 'save_enquiry',
     modal : [
         {

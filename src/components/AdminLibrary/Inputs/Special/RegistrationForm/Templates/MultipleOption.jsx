@@ -35,13 +35,6 @@ const MultipleOptions = (props) => {
         return [];
     });
 
-    // useEffect(() => {
-    //     if (settingHasChanged.current) {
-    //         settingHasChanged.current = false;
-    //         onChange('options', options);
-    //     }
-    // }, [options]);
-
     // Function to render inputs based on the formField type
     const renderInputFields = (type) => {
         switch (type) {
@@ -119,7 +112,7 @@ const MultipleOptions = (props) => {
                     style={{ cursor: 'pointer' }}
                 >
                     <div className="edit-form-wrapper">        
-                        <p>I am default simple label</p>
+                        <p>{formField.label}</p>
                         <div className="settings-form-group-radio">
                             {renderInputFields(type)}
                         </div>
@@ -207,7 +200,7 @@ const MultipleOptions = (props) => {
                         ))}
 
                         <div className="add-more-option-section" onClick={handleInsertOption}>
-                            Add new options <span><i className="admin-font font-support"></i></span>
+                            Add new options <span><i className="admin-font adminLib-support"></i></span>
                         </div>
                     </ReactSortable>
                 </div>

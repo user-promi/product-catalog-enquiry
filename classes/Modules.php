@@ -90,7 +90,7 @@ class Modules {
             return $this->active_modules;
         }
 
-        $this->active_modules = get_option( self::ACTIVE_MODULES_DB_KEY, [] );
+        $this->active_modules = Catalog()->setting->get_option( self::ACTIVE_MODULES_DB_KEY, [] );
 
         return $this->active_modules;
     }

@@ -107,7 +107,7 @@ const EnquiryMessages = (props) => {
                                 <span className="total-message">({enquiryLists.length})</span>
                             </div>
                             <span className='starter-message'>
-                                <i className='admin-font font-more-vertical' onClick={(e) => {
+                                <i className='admin-font adminLib-more-vertical' onClick={(e) => {
                                     e.stopPropagation();
                                     SetStarMsgOpen(true);
                                 }}></i>
@@ -128,7 +128,7 @@ const EnquiryMessages = (props) => {
                                                             </div>
                                                             <nav>
                                                                 <button>
-                                                                    <i className="admin-font font-more-vertical"></i>
+                                                                    <i className="admin-font adminLib-more-vertical"></i>
                                                                 </button>
                                                                 <div className="chat-text-control-wrapper">
                                                                     <button>Copy</button>
@@ -155,7 +155,7 @@ const EnquiryMessages = (props) => {
                                 onChange={(e) => handleSearch(e)}
                             />
                             <button className="search-btn">
-                                <i className="admin-font font-search" />
+                                <i className="admin-font adminLib-search" />
                             </button>
                         </div>
                     </div>
