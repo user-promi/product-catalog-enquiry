@@ -5,7 +5,7 @@ export default {
     priority: 40,
     name: __("Exclusion", "woocommerce-catalog-enquiry"),
     desc: __("Exclude catalog viewing, inquiries, and quotes by user roles and product attributes.", "woocommerce-catalog-enquiry"),
-    icon: 'adminLib-settings',
+    icon: 'adminLib-exclude-svgrepo-com',
     submitUrl: 'save_enquiry',
     modal: [
         {

@@ -3,7 +3,6 @@
 .settings-input-content {
   .btn-wrapper {
     position: relative;
-    text-align: right;
 
     .btn-customizer {
       position: absolute;
@@ -60,23 +59,19 @@
         border-radius: $border-radius-small;
 
 
-        // Important for overwrite all default css
-
         .wrapper-close {
-          color: #65438f !important;
-          padding: 0 !important;
-          position: absolute !important;
-          right: -0.756rem !important;
-          top: -0.945rem !important;
-          background: #fff !important;
-          box-shadow: 0 0.25rem 0.5rem rgba($color: #000000, $alpha: 0.125) !important;
-          border-radius: 50% !important;
-          width: 1.701rem !important;
-          height: 1.701rem !important;
-          display: flex;
-          justify-content: center !important;
-          align-items: center !important;
-          font-size: 1.25rem !important;
+          color: $color-active !important; // To overwrite catalogCustomizer.scss 
+          padding: 0 !important; // To overwrite catalogCustomizer.scss 
+          position: absolute;
+          right: -0.756rem;
+          top: -0.945rem;
+          background: $color-white !important; // To overwrite catalogCustomizer.scss 
+          box-shadow: 0 0.25rem 0.5rem rgba($color: #000000, $alpha: 0.125);
+          border-radius: 50% !important; // To overwrite catalogCustomizer.scss 
+          width: 1.688rem;
+          height: 1.688rem;
+          font-size: 1.25rem;
+          cursor: pointer !important; // To overwrite catalogCustomizer.scss 
         }
 
         .color,
@@ -111,6 +106,11 @@
                   input::-webkit-outer-spin-button,
                   input::-webkit-inner-spin-button {
                     opacity: 1;
+                    -webkit-appearance: none;
+                  }
+                  
+                  input[type=number] {
+                    -moz-appearance: textfield;
                   }
                 }
               }
@@ -161,8 +161,6 @@
 
               button {
                 background: transparent;
-                border: none;
-                outline: none;
               }
             }
           }

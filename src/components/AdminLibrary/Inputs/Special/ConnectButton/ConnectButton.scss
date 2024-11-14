@@ -7,8 +7,7 @@
     gap: 1rem;
 
     button {
-      display: inline-block;
-      text-align: center;
+      display: inline-block !important; // To overwrite common btn style
       position: relative;
       overflow: hidden;
 

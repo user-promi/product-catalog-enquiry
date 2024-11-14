@@ -13,7 +13,7 @@
     .card-item {
       padding: 1.5rem;
       flex: 1 0 12.5rem;
-      height: 10rem;
+      height: 13.71rem;
       border: $border-theme-small;
       border-radius: $border-radius-small;
       background: $color-white;
@@ -45,6 +45,7 @@
   
       p {
         text-align: center;
+        color: $color-black
       }
     }
   }

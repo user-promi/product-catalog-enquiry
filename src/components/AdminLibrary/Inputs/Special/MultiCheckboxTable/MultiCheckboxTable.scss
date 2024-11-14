@@ -2,8 +2,6 @@
 
 .gridTable {
     gap: 1rem;
-    align-items: center;
-    justify-content: center;
 
     &.no-label {
         flex-direction: column;
@@ -18,6 +16,11 @@
     }
 
     .settings-input-content {
+
+        .admin-pro-tag{
+            top: 10%;
+            right: 0.613rem;
+        }
 
         .settings-metabox-description {
             text-align: center;
@@ -109,7 +112,7 @@
                         .checkBox div {
                             width: 30px;
                             height: 30px;
-                            background-color: $menu-btn-color;
+                            background-color: $theme-color;
                             top: -52px;
                             left: -52px;
                             position: absolute;
@@ -202,7 +205,6 @@
                                             button {
                                                 background: transparent;
                                                 padding: $p-0;
-                                                cursor: pointer;
                                             }
                                         }
                                     }
@@ -217,17 +219,20 @@
                                         transform: translateY(-50%);
                                         right: 5px;
 
-                                        .clear-all-data {
-                                            background: transparent;
+                                        .items-controls{
                                             border-radius: 50%;
-                                            transition: all 0.3s linear;
-                                            cursor: pointer;
                                             width: 20px;
                                             height: 20px;
+                                            cursor: pointer;
                                             display: flex;
                                             align-items: center;
                                             justify-content: center;
                                             padding: $p-0;
+                                        }
+
+                                        .clear-all-data {
+                                            background: transparent;
+                                            transition: all 0.3s linear;
                                             font-size: 0.75rem;
 
                                             &:hover {
@@ -236,17 +241,9 @@
                                         }
 
                                         .open-modal {
-                                            width: 20px;
-                                            height: 20px;
-                                            border-radius: 50%;
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                            padding: $p-0;
                                             font-size: 0.65rem;
                                             color: $color-white;
-                                            background: #65438f;
-                                            cursor: pointer;
+                                            background: $color-active;
                                         }
                                     }
 

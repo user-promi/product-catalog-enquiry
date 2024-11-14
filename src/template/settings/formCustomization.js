@@ -5,7 +5,7 @@ export default {
     priority: 30,
     name: __("Enquiry Form Builder", "woocommerce-catalog-enquiry"),
     desc: __("Design a personalized enquiry form with built-in form builder. ", "woocommerce-catalog-enquiry"),
-    icon: 'adminLib-settings',
+    icon: 'adminLib-contact-form-svgrepo-com',
     submitUrl: 'save_enquiry',
     modal: [
         {

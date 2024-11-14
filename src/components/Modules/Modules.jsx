@@ -97,8 +97,8 @@ const Modules = () => {
               </div>
               <div className="card-footer">
                 <div className="card-support">
-                  <a href={module.doc_link} className="card-support-btn">Docs</a>
-                  <a href={module.settings_link} className="card-support-btn">Setting</a>
+                  <a href={module.doc_link} className="main-btn btn-purple card-support-btn">Docs</a>
+                  <a href={module.settings_link} className="main-btn btn-purple card-support-btn">Setting</a>
                 </div>
                 <div className="toggle-checkbox-content">
                   <input
