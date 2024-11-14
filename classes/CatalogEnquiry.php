@@ -202,6 +202,9 @@ final class CatalogEnquiry {
 		}
 	
 		wp_enqueue_style('quote-cart-block-style', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
+
+        wp_enqueue_style('mvx-catalog-style', Catalog()->plugin_url . '/build/index.css');
+
 	}
 	
 	/**

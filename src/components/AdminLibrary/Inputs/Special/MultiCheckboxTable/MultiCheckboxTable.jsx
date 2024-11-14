@@ -302,9 +302,10 @@ const Select = (props) => {
 }
 
 const MultiCheckboxTable = (props) => {
-    const { rows, columns, onChange, setting } = props;
+    const { rows, columns, onChange, setting, proSetting } = props;
     return (
         <>
+            {proSetting && <span className="admin-pro-tag">pro</span>}
             <table className='grid-table'>
                 <thead>
                     <tr>

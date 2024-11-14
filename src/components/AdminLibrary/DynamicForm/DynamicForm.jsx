@@ -35,8 +35,6 @@ import Log from "../Inputs/Special/Log/Log";
 //Checkbox with custom image 
 import CheckboxCustomImg from "../Inputs/Special/CheckboxCustomImg/CheckboxCustomImg";
 
-import IconList from "../Inputs/IconList";
-
 // Variable for controll coldown effect submit time
 const PENALTY  = 10;
 const COOLDOWN = 1;
@@ -892,6 +890,7 @@ const DynamicForm = (props) => {
               columns={inputField.columns} // columns array
               description={inputField.desc}
               setting={setting}
+              proSetting={isProSetting(inputField.proSetting)}
               onChange={(key, value) => {
                 if (!proSettingChanged(inputField.proSetting)) {
                   settingChanged.current = true;
@@ -1063,12 +1062,6 @@ const DynamicForm = (props) => {
           );
           break;
 
-        case "icon-list":
-          input = (
-            <IconList
-            />
-          );
-          break;
         }
 
         return inputField.type === "section" || inputField.label === "no_label" ? (

@@ -99,6 +99,40 @@ do_action( 'woocommerce_email_header', $email_heading ); ?>
 	<a target="_blank" href="mailto:<?php echo $enquiry_data['user_email']; ?>"><?php echo $enquiry_data['user_email']; ?></a>
 </p>
 
+<?php
+foreach ($enquiry_data['user_enquiry_fields'] as $field) {
+    if (isset($field['name']) && isset($field['value'])) {
+        if ($field['name'] === 'phone') { ?>
+            <p>
+                <strong><?php esc_html_e("User Phone : ", 'woocommerce-catalog-enquiry'); ?></strong>
+                <?php echo esc_html($field['value']); ?>
+            </p>
+        <?php }
+
+        if ($field['name'] === 'address') { ?>
+            <p>
+                <strong><?php esc_html_e("User Address : ", 'woocommerce-catalog-enquiry'); ?></strong>
+                <?php echo esc_html($field['value']); ?>
+            </p>
+        <?php }
+
+        if ($field['name'] === 'subject') { ?>
+            <p>
+                <strong><?php esc_html_e("User Subject : ", 'woocommerce-catalog-enquiry'); ?></strong>
+                <?php echo esc_html($field['value']); ?>
+            </p>
+        <?php }
+
+        if ($field['name'] === 'comment') { ?>
+            <p>
+                <strong><?php esc_html_e("User Comments : ", 'woocommerce-catalog-enquiry'); ?></strong>
+                <?php echo esc_html($field['value']); ?>
+            </p>
+        <?php }
+    }
+}
+?>
+
 <table cellspacing="0" cellpadding="10" border="0" width="100%">
 	<tbody>
 		<tr>

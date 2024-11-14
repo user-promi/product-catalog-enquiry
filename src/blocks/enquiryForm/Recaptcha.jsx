@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const Recaptcha = (props) => {
-    const {captchaValid } = props;
+    const { captchaValid } = props;
     const [securityCode, setSecurityCode] = useState('');
     const [userInput, setUserInput] = useState('');
+    const [isCaptchaValid, setIsCaptchaValid] = useState(true);
 
     useEffect(() => {
         // Generate a random 6-digit code
@@ -17,19 +18,31 @@ const Recaptcha = (props) => {
     const captchCheck = (e) => {
         e.preventDefault();
         let value = e.target.value;
-        captchaValid(value === securityCode);
+        setUserInput(value);
+
+        // Check if the input matches the generated security code
+        const isValid = value === securityCode;
+        setIsCaptchaValid(isValid); 
+        captchaValid(isValid);
     };
 
     return (
         <>
-       <input
-          type="text"
-          id="securityCode"
-          name="securityCode"
-          onChange={captchCheck}
-        />
-        <p>Your security code is: {securityCode}</p>
+            <input
+                type="text"
+                id="securityCode"
+                name="securityCode"
+                onChange={captchCheck}
+                value={userInput}
+                placeholder="Enter security code"
+            />
+            <p>Your security code is: {securityCode}</p>
+            
+            {!isCaptchaValid && (
+                <p style={{ color: 'red' }}>Invalid security code, please try again.</p>
+            )}
         </>
     );
 }
+
 export default Recaptcha;
