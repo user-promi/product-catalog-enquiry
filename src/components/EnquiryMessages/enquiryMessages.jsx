@@ -20,10 +20,12 @@ const EnquiryMessages = (props) => {
     const [filterValue, SetFilterValue] = useState('');
     const [starMsgOpen, SetStarMsgOpen] = useState(false);
     const [starMsgList, setStarMsgList] = useState([]);
+    const [textBtnOpen, settextBtnOpen] = useState(null);
 
     useEffect(() => {
         const closePopup = ()  => {
 			SetStarMsgOpen(false);
+            settextBtnOpen(null);
         } 
 		document.body.addEventListener("click", closePopup)
         return () => {
@@ -31,6 +33,18 @@ const EnquiryMessages = (props) => {
         }
 	}, []);
 
+    const fetchStarredMessages = () => {
+        axios({
+            method: "post",
+            url: `${appLocalizer.apiurl}/catalog/v1/get-star-msg-list`,
+        }).then((response) => {
+            setStarMsgList(response.data);
+        }).catch((error) => {
+            console.error("Error fetching starred messages:", error);
+        });
+    };
+
+    
     useEffect(() => {
         axios({
             method: "post",
@@ -40,15 +54,8 @@ const EnquiryMessages = (props) => {
         });
     }, []);
 
-    console.log(enquiryLists);
-
     useEffect(() => {
-        axios({
-            method: "post",
-            url: `${appLocalizer.apiurl}/catalog/v1/get-star-msg-list`,
-        }).then((response) => {
-            setStarMsgList(response.data);
-        });
+        fetchStarredMessages();
     }, []);
 
     const handleEnquiryClick = (enquiry) => {
@@ -59,6 +66,39 @@ const EnquiryMessages = (props) => {
         SetFilterValue(e.target.value)
 
     };
+
+    const handletextBtnOpen = (e, index) => {
+        e.stopPropagation();
+        if (textBtnOpen === index) {
+            settextBtnOpen(null);
+        }
+        else {
+            settextBtnOpen(index);
+        }
+    };
+
+    const handleCopyMsg = (msg) => {
+        const cleanedMsg = msg
+            .replace(/<\/?strong>/g, '') 
+            .replace(/<br\s*\/?>/gi, '\n');
+        
+        navigator.clipboard.writeText(cleanedMsg);
+    }
+
+    const handleStarMsg = (id) => {
+        console.log(id)
+        axios({
+            method: "post",
+            url: `${appLocalizer.apiurl}/catalog/v1/save-reaction`,
+            data: {
+                msgId: id,
+                action: 'remove'
+            },
+        }).then((response) => {
+            fetchStarredMessages();
+        });
+    }
+    
 
     const productContain = (productList, filter) => {
         return productList.find((product) => {
@@ -127,13 +167,16 @@ const EnquiryMessages = (props) => {
                                                                 <p dangerouslySetInnerHTML={{ __html: message.msg }} />
                                                             </div>
                                                             <nav>
-                                                                <button>
+                                                                <button onClick={(e) => handletextBtnOpen(e, index)}>
                                                                     <i className="admin-font adminLib-more-vertical"></i>
                                                                 </button>
-                                                                <div className="chat-text-control-wrapper">
-                                                                    <button>Copy</button>
-                                                                    <button>Remove star</button>
-                                                                </div>
+                                                                {textBtnOpen === index &&
+                                                                    <div className="chat-text-control-wrapper">
+                                                                        {console.log(message)}
+                                                                        <button onClick={() => handleCopyMsg(message.msg)} >Copy</button>
+                                                                        <button onClick={() => handleStarMsg(message.id)} >Remove star</button>
+                                                                    </div>
+                                                                }
                                                             </nav>
                                                         </section>
                                                         <footer>
