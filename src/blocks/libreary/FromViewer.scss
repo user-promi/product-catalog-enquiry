@@ -44,7 +44,7 @@
         width: 100%;
 
         label {
-            min-width: 150px;
+            min-width: 9.375rem;
             max-width: 35%;
             font-size: 0.875rem;
         }
@@ -55,7 +55,7 @@
         input[type='email'],
         textarea,
         .multiselect-container, .date-picker-wrapper {
-            flex: 1 0 200px;
+            flex: 1 0 12.5rem;
             width: 100%;
         }
 
@@ -101,7 +101,7 @@
                 justify-content: center;
                 align-items: center;
                 border-radius: 0.5rem;
-                border-width: 2px;
+                border-width: 0.125rem;
                 border-color: #D1D5DB;
                 border-style: dashed;
                 width: 100%;
