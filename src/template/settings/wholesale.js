@@ -5,7 +5,7 @@ export default {
     priority: 60,
     name: __("Wholesale", "woocommerce-catalog-enquiry"),
     desc: __("Wholesale sign up and registration management.", "woocommerce-catalog-enquiry"),
-    icon: 'adminLib-settings',
+    icon: 'adminLib-warehousing-icon',
     submitUrl: 'save_enquiry',
     modal : [
         {

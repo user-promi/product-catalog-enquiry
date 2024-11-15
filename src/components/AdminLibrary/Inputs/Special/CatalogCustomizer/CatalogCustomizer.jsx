@@ -97,7 +97,7 @@ const CatalogCustomizer = (props) => {
         <>
           <section className='catalog-add-to-cart-section'>
             <div className='catalog-add-to-cart-quantity'>1</div>
-            <div class="btn-purple catalog-add-to-cart-btn">Add to cart</div>
+            <div class="main-btn btn-purple catalog-add-to-cart-btn">Add to cart</div>
           </section>
         </>
       ),

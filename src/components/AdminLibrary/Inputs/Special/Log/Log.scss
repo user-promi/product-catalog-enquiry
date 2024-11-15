@@ -85,10 +85,7 @@
         }
   
         .button-clear {
-          display: flex;
-          align-items: center;
           background: $accent-color !important; // overwrite common btn color
-          justify-content: space-between;
           gap: 0.75rem;
   
           &:hover {
@@ -99,12 +96,6 @@
             display: flex;
             align-items: center;
             margin-top: 0.125rem;
-  
-            svg {
-              width: 0.688rem;
-              height: 0.688rem;
-              fill: $color-white;
-            }
           }
         }
       }
@@ -167,12 +158,15 @@
       }
   
       .copy-btn {
-        background: $color-white !important;  
-        .svgIcon {
-          svg{
-            fill: $color-black !important;
+        background: $color-white !important;
+          i{
+            color: $color-black !important;
           }
-        }
+          .tooltip{
+            i{
+              color: #fff;
+            }
+          }
       }
     }
 

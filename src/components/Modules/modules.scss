@@ -48,7 +48,7 @@
         i {
           width: 3.024rem;
           height: 3.024rem;
-          background: #f9f8fb;
+          background: $menu-color;
           color: $color-active;
           border-radius: 0.189rem;
           font-size: 2rem;
@@ -173,20 +173,8 @@
           gap: 0.5rem;
 
           .card-support-btn {
-            position: relative;
-            padding: 0.5rem 0.75rem;
-            transition: all 0.3s ease-in-out;
             box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.2);
-            background-color: $color-active;
-            cursor: pointer;
-            border-radius: $border-radius-small;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: $color-white;
-            outline: none;
             overflow: hidden;
-            font-size: 0.875rem;
 
             &::before {
               content: "";

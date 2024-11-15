@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'AdminLibrary';
-  src:  url('fonts/AdminLibrary.eot?ohbj0e');
-  src:  url('fonts/AdminLibrary.eot?ohbj0e#iefix') format('embedded-opentype'),
-    url('fonts/AdminLibrary.ttf?ohbj0e') format('truetype'),
-    url('fonts/AdminLibrary.woff?ohbj0e') format('woff'),
-    url('fonts/AdminLibrary.svg?ohbj0e#AdminLibrary') format('svg');
+  src:  url('fonts/AdminLibrary.eot?mr0e3c');
+  src:  url('fonts/AdminLibrary.eot?mr0e3c#iefix') format('embedded-opentype'),
+    url('fonts/AdminLibrary.ttf?mr0e3c') format('truetype'),
+    url('fonts/AdminLibrary.woff?mr0e3c') format('woff'),
+    url('fonts/AdminLibrary.svg?mr0e3c#AdminLibrary') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -37,20 +37,44 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.adminLib-captcha-automatic-code-svgrepo-com:before {
-  content: "\e93e";
+.adminLib-price:before {
+  content: "\e900";
 }
-.adminLib-multi-select:before {
-  content: "\e93d";
+.adminLib-cart:before {
+  content: "\8907";
 }
-.adminLib-dropdown-checklist:before {
-  content: "\e93c";
+.adminLib-person:before {
+  content: "\e520";
 }
-.adminLib-star_icon:before {
-  content: "\e938";
+.adminLib-user-circle:before {
+  content: "\e800";
+}
+.adminLib-error:before {
+  content: "\e802";
+}
+.adminLib-security:before {
+  content: "\e803";
+}
+.adminLib-storefront:before {
+  content: "\e804";
 }
 .adminLib-editor-list-ul:before {
   content: "\e805";
+}
+.adminLib-search:before {
+  content: "\e806";
+}
+.adminLib-info:before {
+  content: "\e807";
+}
+.adminLib-check:before {
+  content: "\e809";
+}
+.adminLib-smile-o:before {
+  content: "\e80a";
+}
+.adminLib-close:before {
+  content: "\e810";
 }
 .adminLib-captcha:before {
   content: "\e820";
@@ -73,227 +97,242 @@
 .adminLib-section:before {
   content: "\e898";
 }
+.adminLib-book:before {
+  content: "\e8f0";
+}
 .adminLib-plus-circle-o:before {
   content: "\e8f7";
 }
-.adminLib-calendar:before {
+.adminLib-catalog-svgrepo-com:before {
+  content: "\e901";
+}
+.adminLib-contact-form-svgrepo-com:before {
+  content: "\e902";
+}
+.adminLib-exclude-svgrepo-com:before {
+  content: "\e903";
+}
+.adminLib-inquiry-filled-svgrepo-com:before {
+  content: "\e904";
+}
+.adminLib-price-quote-icon:before {
+  content: "\e905";
+}
+.adminLib-warehousing-icon:before {
+  content: "\e906";
+}
+.adminLib-web-page-website-svgrepo-com:before {
+  content: "\e907";
+}
+.adminLib-wholesale-svgrepo-com:before {
   content: "\e908";
 }
-.adminLib-undo:before {
-  content: "\e93b";
+.adminLib-mailchimp:before {
+  content: "\e909";
 }
-.adminLib-paint-brush:before {
+.adminLib-mail:before {
+  content: "\e90a";
+}
+.adminLib-file-submission:before {
+  content: "\e90b";
+}
+.adminLib-submission-message:before {
+  content: "\e90c";
+}
+.adminLib-settings:before {
+  content: "\e90d";
+}
+.adminLib-cross:before {
+  content: "\e90e";
+}
+.adminLib-icon-yes:before {
+  content: "\e90f";
+}
+.adminLib-arrow-right:before {
+  content: "\e910";
+}
+.adminLib-calendar:before {
+  content: "\e911";
+}
+.adminLib-arrow-left:before {
+  content: "\e912";
+}
+.adminLib-arrow-up:before {
+  content: "\e913";
+}
+.adminLib-arrow-down:before {
+  content: "\e914";
+}
+.adminLib-menu:before {
+  content: "\e915";
+}
+.adminLib-send:before {
+  content: "\e916";
+}
+.adminLib-link:before {
+  content: "\e917";
+}
+.adminLib-resize:before {
+  content: "\e918";
+}
+.adminLib-crop-free:before {
+  content: "\e919";
+}
+.adminLib-text-fields:before {
+  content: "\e91a";
+}
+.adminLib-support:before {
+  content: "\e91b";
+}
+.adminLib-create:before {
+  content: "\e91c";
+}
+.adminLib-keyboard_arrow_down:before {
+  content: "\e91d";
+}
+.adminLib-button-appearance-tab:before {
+  content: "\e91e";
+}
+.adminLib-enquiry-form-tab:before {
+  content: "\e91f";
+}
+.adminLib-exclusion-tab:before {
+  content: "\e920";
+}
+.adminLib-general-tab:before {
+  content: "\e921";
+}
+.adminLib-live-preview-tab:before {
+  content: "\e922";
+}
+.adminLib-upgrade-to-pro-tab:before {
+  content: "\e923";
+}
+.adminLib-next:before {
+  content: "\e924";
+}
+.adminLib-previous:before {
+  content: "\e925";
+}
+.adminLib-select:before {
+  content: "\e926";
+}
+.adminLib-success-notification:before {
+  content: "\e927";
+}
+.adminLib-drop-down:before {
+  content: "\e928";
+}
+.adminLib-vendor-form-delete:before {
+  content: "\e929";
+}
+.adminLib-vendor-form-copy:before {
+  content: "\e92a";
+}
+.adminLib-vendor-form-add:before {
   content: "\e92b";
 }
-.adminLib-help:before {
+.adminLib-select-question-type:before {
+  content: "\e92c";
+}
+.adminLib-form-url:before {
+  content: "\e92d";
+}
+.adminLib-form-textbox:before {
+  content: "\e92e";
+}
+.adminLib-form-textarea:before {
+  content: "\e92f";
+}
+.adminLib-form-address01:before {
+  content: "\e930";
+}
+.adminLib-form-address02:before {
+  content: "\e931";
+}
+.adminLib-form-attachment:before {
+  content: "\e932";
+}
+.adminLib-form-checkboxes:before {
+  content: "\e933";
+}
+.adminLib-paint-brush:before {
+  content: "\e934";
+}
+.adminLib-form-city:before {
+  content: "\e935";
+}
+.adminLib-form-country:before {
+  content: "\e936";
+}
+.adminLib-form-dropdown:before {
+  content: "\e937";
+}
+.adminLib-form-email:before {
+  content: "\e938";
+}
+.adminLib-form-multi-select:before {
+  content: "\e939";
+}
+.adminLib-form-paypal-email:before {
+  content: "\e93a";
+}
+.adminLib-form-phone:before {
+  content: "\e93b";
+}
+.adminLib-form-postcode:before {
+  content: "\e93c";
+}
+.adminLib-form-radio:before {
+  content: "\e93d";
+}
+.adminLib-form-recaptcha:before {
+  content: "\e93e";
+}
+.adminLib-form-section:before {
+  content: "\e93f";
+}
+.adminLib-form-state:before {
+  content: "\e940";
+}
+.adminLib-star_icon:before {
   content: "\e941";
+}
+.adminLib-form-store-description:before {
+  content: "\e942";
+}
+.adminLib-folder-open:before {
+  content: "\e943";
+}
+.adminLib-undo:before {
+  content: "\e944";
+}
+.adminLib-dropdown-checklist:before {
+  content: "\e945";
+}
+.adminLib-multi-select:before {
+  content: "\e946";
+}
+.adminLib-captcha-automatic-code-svgrepo-com:before {
+  content: "\e947";
+}
+.adminLib-cloud-upload:before {
+  content: "\e948";
+}
+.adminLib-help:before {
+  content: "\e949";
 }
 .adminLib-t-letter-bold:before {
   content: "\e94e";
 }
+.adminLib-clock2:before {
+  content: "\e94f";
+}
+.adminLib-alarm:before {
+  content: "\e950";
+}
 .adminLib-unread:before {
   content: "\e9ba";
-}
-.adminLib-cart:before {
-  content: "\8907";
-}
-.adminLib-person:before {
-  content: "\e520";
-}
-.adminLib-user-circle:before {
-  content: "\e800";
-}
-.adminLib-error:before {
-  content: "\e802";
-}
-.adminLib-security:before {
-  content: "\e803";
-}
-.adminLib-storefront:before {
-  content: "\e804";
-}
-.adminLib-search:before {
-  content: "\e806";
-}
-.adminLib-info:before {
-  content: "\e807";
-}
-.adminLib-check:before {
-  content: "\e809";
-}
-.adminLib-smile-o:before {
-  content: "\e80a";
-}
-.adminLib-close:before {
-  content: "\e810";
-}
-.adminLib-book:before {
-  content: "\e8f0";
-}
-.adminLib-mailchimp:before {
-  content: "\e900";
-}
-.adminLib-mail:before {
-  content: "\e901";
-}
-.adminLib-file-submission:before {
-  content: "\e902";
-}
-.adminLib-submission-message:before {
-  content: "\e903";
-}
-.adminLib-settings:before {
-  content: "\e904";
-}
-.adminLib-cross:before {
-  content: "\e905";
-}
-.adminLib-icon-yes:before {
-  content: "\e906";
-}
-.adminLib-arrow-right:before {
-  content: "\e907";
-}
-.adminLib-arrow-left:before {
-  content: "\e909";
-}
-.adminLib-arrow-up:before {
-  content: "\e90a";
-}
-.adminLib-arrow-down:before {
-  content: "\e90b";
-}
-.adminLib-menu:before {
-  content: "\e90c";
-}
-.adminLib-send:before {
-  content: "\e90d";
-}
-.adminLib-link:before {
-  content: "\e90e";
-}
-.adminLib-resize:before {
-  content: "\e90f";
-}
-.adminLib-crop-free:before {
-  content: "\e910";
-}
-.adminLib-text-fields:before {
-  content: "\e911";
-}
-.adminLib-support:before {
-  content: "\e912";
-}
-.adminLib-create:before {
-  content: "\e913";
-}
-.adminLib-keyboard_arrow_down:before {
-  content: "\e914";
-}
-.adminLib-button-appearance-tab:before {
-  content: "\e915";
-}
-.adminLib-enquiry-form-tab:before {
-  content: "\e916";
-}
-.adminLib-exclusion-tab:before {
-  content: "\e917";
-}
-.adminLib-general-tab:before {
-  content: "\e918";
-}
-.adminLib-live-preview-tab:before {
-  content: "\e919";
-}
-.adminLib-upgrade-to-pro-tab:before {
-  content: "\e91a";
-}
-.adminLib-next:before {
-  content: "\e91b";
-}
-.adminLib-previous:before {
-  content: "\e91c";
-}
-.adminLib-select:before {
-  content: "\e91d";
-}
-.adminLib-success-notification:before {
-  content: "\e91e";
-}
-.adminLib-drop-down:before {
-  content: "\e91f";
-}
-.adminLib-vendor-form-delete:before {
-  content: "\e920";
-}
-.adminLib-vendor-form-copy:before {
-  content: "\e921";
-}
-.adminLib-vendor-form-add:before {
-  content: "\e922";
-}
-.adminLib-select-question-type:before {
-  content: "\e923";
-}
-.adminLib-form-url:before {
-  content: "\e924";
-}
-.adminLib-form-textbox:before {
-  content: "\e925";
-}
-.adminLib-form-textarea:before {
-  content: "\e926";
-}
-.adminLib-form-address01:before {
-  content: "\e927";
-}
-.adminLib-form-address02:before {
-  content: "\e928";
-}
-.adminLib-form-attachment:before {
-  content: "\e929";
-}
-.adminLib-form-checkboxes:before {
-  content: "\e92a";
-}
-.adminLib-form-city:before {
-  content: "\e92c";
-}
-.adminLib-form-country:before {
-  content: "\e92d";
-}
-.adminLib-form-dropdown:before {
-  content: "\e92e";
-}
-.adminLib-form-email:before {
-  content: "\e92f";
-}
-.adminLib-form-multi-select:before {
-  content: "\e930";
-}
-.adminLib-form-paypal-email:before {
-  content: "\e931";
-}
-.adminLib-form-phone:before {
-  content: "\e932";
-}
-.adminLib-form-postcode:before {
-  content: "\e933";
-}
-.adminLib-form-radio:before {
-  content: "\e934";
-}
-.adminLib-form-recaptcha:before {
-  content: "\e935";
-}
-.adminLib-form-section:before {
-  content: "\e936";
-}
-.adminLib-form-state:before {
-  content: "\e937";
-}
-.adminLib-form-store-description:before {
-  content: "\e939";
 }
 .adminLib-eye:before {
   content: "\e9ce";
@@ -322,34 +361,19 @@
 .adminLib-credit_card:before {
   content: "\e9502";
 }
-.adminLib-folder-open:before {
-  content: "\e93a";
-}
-.adminLib-clock2:before {
-  content: "\e94f";
-}
-.adminLib-alarm:before {
-  content: "\e950";
-}
-.adminLib-cloud-upload:before {
-  content: "\e93f";
-}
-
-
-
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.general-wrapper{
+#admin-plugin-elements,
+#admin-catalog{
   padding: 1.5rem 1rem 0 0;
 } 
 code {
   background: transparent;
 }
-
 p{
   font-size: 0.875rem;
   margin: 0;
@@ -362,22 +386,29 @@ a{
     outline: none;
   }
 }
-.btn-purple{
-  padding: 0.5rem 1rem;
-  border-radius: $border-radius-small;
-  background: $menu-btn-color;
-  width: fit-content;
-  color: $color-white;
-  cursor: pointer;    
-  transition: all 0.3s linear;  
-  font-size: 0.875rem;
-  border: none;  
-}
-
-button{
+button,
+.main-btn{
   outline: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-small;
+  font-size: 0.875rem;
+  transition: all 0.3s linear;
+}
+.btn-purple{ 
+  background: $theme-color;
+  width: fit-content;
+  color: $color-white;
+
+  &:hover{
+    color: $color-white;
+  }
 }
 
 input[type="radio"]{
@@ -390,17 +421,15 @@ input[type="radio"]{
 
 .form-group-radio-select{
 
-  input:checked{
-    &::before{
-      content: "\e90e";
-    }
-  }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+  // input:checked{
+  //   &::before{
+  //     content: "\e809";
+  //     color: #fdfdfe;
+  //     font-size: .625rem;
+  //     background-color: #65438f;
+  //     border-radius: .25rem;
+  //   }
+  // }
 }
 
 .admin-notice-display-title{
@@ -450,7 +479,7 @@ span.admin-pro-tag{
   margin-left: 0.25rem;
   border-radius: 2rem 0;
   right: 0.25rem;
-  top: 50%;
+  top: 0;
   transform: translateY(-50%);
 }
 

@@ -10,8 +10,6 @@
 
     .clear-btn{
         background: transparent;
-        outline: none;
-        border: none;
         position: absolute;
         top: 50%;
         right: 0.315rem;
@@ -37,13 +35,11 @@
   }
 
   button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
   }
   .generate-btn {
-    svg{
+    padding: 0.7rem 1rem !important; // To overwrite common btn style
+    i{
         width: 0.945rem;
     }
   }

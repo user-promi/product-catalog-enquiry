@@ -2,8 +2,6 @@
 
 .gridTable {
     gap: 1rem;
-    align-items: center;
-    justify-content: center;
 
     &.no-label {
         flex-direction: column;
@@ -18,6 +16,11 @@
     }
 
     .settings-input-content {
+
+        .admin-pro-tag{
+            top: 10%;
+            right: 0.613rem;
+        }
 
         .settings-metabox-description {
             text-align: center;
@@ -97,34 +100,34 @@
                         .checkBox {
                             display: block;
                             cursor: pointer;
-                            width: 15px;
-                            height: 15px;
-                            border: 3px solid rgba(255, 255, 255, 0);
-                            border-radius: 0.25rem;
+                            width: 0.938rem;
+                            height: 0.938rem;
+                            border: 0.188rem solid rgba(255, 255, 255, 0);
+                            border-radius: $border-radius-small;
                             position: relative;
                             overflow: hidden;
-                            box-shadow: 0px 0px 0px 2px #65438fae;
+                            box-shadow: 0 0 0 0.125rem #65438fae;
                         }
 
                         .checkBox div {
-                            width: 30px;
-                            height: 30px;
-                            background-color: $menu-btn-color;
-                            top: -52px;
-                            left: -52px;
+                            width: 1.875rem;
+                            height: 1.875rem;
+                            background-color: $theme-color;
+                            top: -3.25rem;
+                            left: -3.25rem;
                             position: absolute;
                             transform: rotateZ(45deg);
                             z-index: 100;
                         }
 
                         .checkBox input[type=checkbox]:checked+div {
-                            left: -10px;
-                            top: -10px;
+                            left: -0.625rem;
+                            top: -0.625rem;
                         }
 
                         .checkBox input[type=checkbox] {
                             position: absolute;
-                            left: 0px;
+                            left: 0;
                             visibility: hidden;
                         }
 
@@ -135,7 +138,7 @@
 
                         .grid-table-main-container {
                             position: relative;
-                            max-width: 250px;
+                            max-width: 15.625rem;
                             width: 100%;
 
                             .main-container {
@@ -146,7 +149,7 @@
                                 .selected-container {
                                     border: 0.115rem solid rgba(0, 0, 0, 0.125);
                                     border-radius: 0;
-                                    height: 40px;
+                                    height: 2.5rem;
                                     padding: 0.5rem 0.5rem;
                                     display: flex;
                                     align-items: center;
@@ -159,11 +162,11 @@
 
                                     &:has(.container-items-controls .open-modal) {
                                         .selected-items-container {
-                                            max-width: calc(100% - 40px);
+                                            max-width: calc(100% - 2.5rem);
                                         }
 
                                         .container-items-controls {
-                                            width: 40px;
+                                            width: 2.5rem;
                                         }
                                     }
 
@@ -173,18 +176,18 @@
                                         align-items: center;
                                         justify-content: flex-start;
                                         gap: 0.25rem;
-                                        max-width: calc(100% - 20px);
+                                        max-width: calc(100% - 1.25rem);
                                         flex-wrap: wrap;
                                         overflow: hidden;
 
                                         .selected-items {
-                                            max-width: 80px;
+                                            max-width: 5rem;
                                             display: flex;
                                             align-items: center;
                                             justify-content: space-between;
                                             gap: 0.25rem;
                                             padding: 0.15rem 0.25rem;
-                                            border-radius: 0.25rem;
+                                            border-radius: $border-radius-small;
                                             font-size: 0.75rem;
                                             background: #f2eeee;
                                             width: 100%;
@@ -192,7 +195,7 @@
                                             span {
                                                 text-overflow: ellipsis;
                                                 overflow: hidden;
-                                                max-height: 20px;
+                                                max-height: 1.25rem;
                                                 height: 100%;
                                                 text-overflow: ellipsis;
                                                 overflow: hidden;
@@ -202,7 +205,6 @@
                                             button {
                                                 background: transparent;
                                                 padding: $p-0;
-                                                cursor: pointer;
                                             }
                                         }
                                     }
@@ -211,23 +213,26 @@
                                         display: flex;
                                         align-items: center;
                                         justify-content: center;
-                                        width: 20px;
+                                        width: 1.2rem;
                                         position: absolute;
                                         top: 50%;
                                         transform: translateY(-50%);
-                                        right: 5px;
+                                        right: 0.313rem;
 
-                                        .clear-all-data {
-                                            background: transparent;
+                                        .items-controls{
                                             border-radius: 50%;
-                                            transition: all 0.3s linear;
+                                            width: 1.2rem;
+                                            height: 1.2rem;
                                             cursor: pointer;
-                                            width: 20px;
-                                            height: 20px;
                                             display: flex;
                                             align-items: center;
                                             justify-content: center;
                                             padding: $p-0;
+                                        }
+
+                                        .clear-all-data {
+                                            background: transparent;
+                                            transition: all 0.3s linear;
                                             font-size: 0.75rem;
 
                                             &:hover {
@@ -236,17 +241,9 @@
                                         }
 
                                         .open-modal {
-                                            width: 20px;
-                                            height: 20px;
-                                            border-radius: 50%;
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                            padding: $p-0;
                                             font-size: 0.65rem;
                                             color: $color-white;
-                                            background: #65438f;
-                                            cursor: pointer;
+                                            background: $color-active;
                                         }
                                     }
 
@@ -267,8 +264,8 @@
 
                                     span {
                                         position: absolute;
-                                        top: 7px;
-                                        right: 5px;
+                                        top: 0.438rem;
+                                        right: 0.313rem;
 
                                         i {
                                             font-size: 1.15rem;

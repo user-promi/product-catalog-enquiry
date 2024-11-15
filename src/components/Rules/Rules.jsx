@@ -609,8 +609,8 @@ const Rule = (props) => {
     // Function that handle table expand.
 
     const handleTableExpand = (e) => {
-        e.children[0].classList.toggle('font-arrow-down');
-        e.children[0].classList.toggle('font-arrow-right');
+        e.children[0].classList.toggle('adminLib-arrow-down');
+        e.children[0].classList.toggle('adminLib-arrow-right');
         const row = e.parentElement.parentElement;
         row.classList.toggle("active");
     }
@@ -648,7 +648,7 @@ const Rule = (props) => {
             </div>
             <div className="expand-btn">
                 <button onClick={(e) => handleTableExpand(e.currentTarget)}>
-                    <i class="admin-font font-arrow-right"></i>
+                    <i class="admin-font adminLib-arrow-right"></i>
                 </button>
             </div>
 

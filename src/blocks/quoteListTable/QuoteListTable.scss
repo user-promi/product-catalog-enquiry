@@ -5,7 +5,7 @@
 
     .table-container.selectable-table {
         padding: 0.5rem;
-        border: 1px dashed rgba(0, 0, 0, 0.5);
+        border: 0.063rem dashed rgba(0, 0, 0, 0.5);
         border-radius: 0.25rem;
         margin: 1rem 0;
     }
@@ -64,8 +64,8 @@
         background: rgba(0, 0, 0, 0.2);
 
         .loader {
-            width: 50px;
-            padding: 8px;
+            width: 3.125rem;
+            padding: 0.5rem;
             aspect-ratio: 1;
             border-radius: 50%;
             background: #65438f;
@@ -114,7 +114,7 @@
 
                     a{
                         &:first-child{
-                            width: 50px;
+                            width: 3.125rem;
                         }
                     }
                 }

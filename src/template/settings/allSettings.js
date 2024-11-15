@@ -4,7 +4,7 @@ export default {
     priority: 20,
     name: __("Shopping Journey", "woocommerce-catalog-enquiry"),
     desc: __("Set up sales flow and catalog mode with integrated enquiry and quotation management.", "woocommerce-catalog-enquiry"),
-    icon: 'adminLib-settings',
+    icon: 'adminLib-cart',
     submitUrl: 'save_enquiry',
     modal: [
         {
@@ -23,7 +23,7 @@ export default {
         {
             key: 'disable_cart_page_link',
             type: 'select',
-            label:  __( 'Cart/Checkout Redirect Page', 'woocommerce-catalog-enquiry' ),
+            label:  __( 'Cart / Checkout Redirect Page', 'woocommerce-catalog-enquiry' ),
             // desc: apply_filters('woocommerce_catalog_redirect_disabled_cart_page', __( 'Select page where user will be redirected for disable cart page. To use this feature kindly upgrade to <a href="https://multivendorx.com/woocommerce-request-a-quote-product-catalog/" target="_blank">WooCommerce Catalog Enquiry Pro</a>.', 'woocommerce-catalog-enquiry' )),
             options: [
                 {

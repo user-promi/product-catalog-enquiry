@@ -57,7 +57,7 @@ html {
       flex: 1 0 18.75rem;
 
       .pro-banner {
-        border: 0.063rem dashed $menu-btn-color;
+        border: 0.063rem dashed $theme-color;
         border-radius: $border-radius-small;
         display: flex;
         align-items: center;
@@ -73,7 +73,7 @@ html {
 
         a {
           display: block;
-          background: $menu-btn-color;
+          background: $theme-color;
           color: $color-white;
           padding: 0.5rem 0.75rem;
           border-radius: $border-radius-small;
@@ -109,7 +109,7 @@ html {
           gap: 0.5rem;
 
           .catalog-add-to-cart-quantity {
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             border-radius: $border-radius-small;
             border: $border-light-medium;
           }
@@ -204,7 +204,7 @@ html {
               button {
                 padding: 0.5rem 1rem;
                 border-radius: $border-radius-small;
-                background: $menu-btn-color;
+                background: $theme-color;
                 color: $color-white;
                 cursor: crosshair;
               }
@@ -259,7 +259,7 @@ html {
         font-weight: 500;
 
         &.active {
-          color: $menu-btn-color;
+          color: $theme-color;
         }
 
         span {
@@ -300,7 +300,7 @@ div:has(.hhh) {
 }
 
 .dragLine {
-  border-bottom: 0.125rem dashed $menu-btn-color !important; // To overwrite default library css
+  border-bottom: 0.125rem dashed $theme-color !important; // To overwrite default library css
 }
 
 .toggle-visibility {
@@ -324,6 +324,7 @@ div:has(.hhh) {
 
 .price-section {
   width: fit-content;
+  padding-right: 0.875rem;
 }
 
 

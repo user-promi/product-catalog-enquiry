@@ -315,7 +315,7 @@ export default function QuotesList() {
             <CSVLink
               data={filterForCSV(data || [])}
               filename={"Quotes.csv"}
-              className="admin-btn btn-purple"
+              className="admin-btn"
             >
               <div className="wp-menu-image dashicons-before dashicons-download"></div>
               {__("Download CSV", "woocommerce-catalog-enquiry")}
