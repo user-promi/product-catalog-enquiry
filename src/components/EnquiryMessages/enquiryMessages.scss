@@ -1,4 +1,4 @@
-@import '/src/components/config.scss';
+@import '../config.scss';
 
 
 .container {
@@ -801,6 +801,7 @@
                         padding: 0.75rem !important;
                         font-size: 0.875rem !important;
                         text-align: left;
+                        justify-content: start !important;
 
                         &.delete-message-btn{
                           padding-top: 0.563rem !important;
