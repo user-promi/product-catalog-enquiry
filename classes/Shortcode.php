@@ -20,7 +20,7 @@ class Shortcode {
     function frontend_scripts() {
         global $post;
 
-        if (has_shortcode($post->post_content, 'request_quote') || has_block('woocommerce-catalog-enquiry/quote-cart')) {
+        if (isset( $post->post_content ) && has_shortcode($post->post_content, 'request_quote') || has_block('woocommerce-catalog-enquiry/quote-cart')) {
             wp_enqueue_script('quote_list_js', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
             wp_localize_script(
                 'quote_list_js', 'appLocalizer', [
@@ -30,7 +30,7 @@ class Shortcode {
             wp_enqueue_style('quote_list_css', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
         }
 
-        if (has_shortcode($post->post_content, 'request_quote_thank_you')) {
+        if (isset( $post->post_content ) && has_shortcode($post->post_content, 'request_quote_thank_you')) {
             wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quoteThankyou/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
         }
     }

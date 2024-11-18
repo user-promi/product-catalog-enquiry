@@ -142,7 +142,7 @@ class Frontend{
     public function frontend_scripts() {
         global $post;
 
-        if (is_product() || has_shortcode($post->post_content, 'catalog_enquiry_cart') || has_block('woocommerce-catalog-enquiry-pro/enquiry-cart') || has_block('woocommerce-catalog-enquiry/enquiry-button')) {
+        if (is_product() || isset( $post->post_content ) && has_shortcode($post->post_content, 'catalog_enquiry_cart') || has_block('woocommerce-catalog-enquiry-pro/enquiry-cart') || has_block('woocommerce-catalog-enquiry/enquiry-button')) {
             $current_user = wp_get_current_user();
 
             wp_enqueue_style( 'mvx-catalog-product-style', Catalog()->plugin_url . '/build/blocks/enquiryForm/index.css' );

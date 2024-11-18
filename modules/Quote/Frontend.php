@@ -32,7 +32,7 @@ class Frontend {
     public function enqueue_scripts() {
         global $post;
         // wp_enqueue_script('quote-button-block');
-        if (is_shop() || is_product() || has_shortcode($post->post_content, 'catalog_quote_button')) {
+        if (is_shop() || is_product() || isset( $post->post_content ) && has_shortcode($post->post_content, 'catalog_quote_button')) {
              $frontend_script_path = Catalog()->plugin_url . 'modules/Quote/js/';
             $frontend_script_path = str_replace( [ 'http:', 'https:' ], '', $frontend_script_path );
 
