@@ -63,7 +63,7 @@ const Settings = () => {
                     tabData={ settingsArray }
                     currentTab={ location.get( 'subtab' ) }
                     getForm={getForm}
-                    BannerSection = { BannerSection }
+                    BannerSection = { ! appLocalizer.pro_active && BannerSection }
                     prepareUrl={(subTab) => `?page=catalog#&tab=settings&subtab=${subTab}` }
                 />
             </SettingProvider>
