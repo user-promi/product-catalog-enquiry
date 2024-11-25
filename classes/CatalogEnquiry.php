@@ -173,6 +173,7 @@ final class CatalogEnquiry {
 					'object_name' => 'appLocalizer',
 					'data' => [
 						'apiurl' => untrailingslashit(get_rest_url()),
+						'restUrl' => 'catalog/v1',
 						'nonce'  => wp_create_nonce('wp_rest'),
 					],
 				],

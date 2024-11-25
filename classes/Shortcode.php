@@ -26,6 +26,7 @@ class Shortcode {
                 'quote_list_js', 'appLocalizer', [
                 'apiurl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
+                'restUrl' => 'catalog/v1',
             ]);
             wp_enqueue_style('quote_list_css', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
         }
