@@ -18,6 +18,7 @@
       .settings-input-content {
         width: 70%;
         position: relative;
+        line-height: 1.5;
 
         .select-input-section {
           width: 100%;
@@ -26,6 +27,7 @@
 
         .toggle-checkbox-content {
           position: relative;
+          margin-right: 0.5rem;
 
           .admin-pro-tag {
             left: 4.25rem;
@@ -105,10 +107,11 @@
 
           .parameter {
             position: absolute;
-            top: .55rem;
-            right: 0.315rem;
-            border-left: $border-black-small;
+            top: .41rem;
+            right: 0.313rem;
+            border-left: $border-light-small;
             padding: 0 0.75rem;
+
           }
         }
 
@@ -117,7 +120,6 @@
           font-style: italic;
           color: #72727599;
           font-size: 0.813rem !important; // Overwrite common.scss
-          line-height: 1.5;
           width: 100%;
 
           p {
@@ -130,15 +132,15 @@
           font-style: italic;
           color: #72727599;
           font-size: 0.813rem;
-          line-height: 1.5;
         }
 
         input,
-        textarea {
+        textarea,
+        select {
           width: 100%;
           border: $border-light-medium;
           border-radius: $border-radius-small;
-          padding: 0.5rem;
+          padding: 0.313rem 0.5rem;
           background: transparent;
           font-size: 0.875rem;
           line-height: 1.5;
@@ -187,6 +189,10 @@
 
           .radio-input-label-wrap {
             margin-bottom: 0.5rem;
+
+            label{
+              margin-left:0.3rem;
+            }
           }
         }
 
@@ -254,18 +260,12 @@
               right: .813rem;
               border-radius: .125rem;
               opacity: 0;
+              width:1rem;
             }
 
             input:checked {
               opacity: 1;
-
-              &::before {
-                content: "\e93a";
-                color: $color-white;
-                font-size: .625rem;
-                background-color: $color-active;
-                border-radius: $border-radius-small;
-              }
+              border: none;
             }
 
             &:hover {
@@ -324,7 +324,7 @@
                   .mapboxgl-ctrl-geocoder--icon-search {
                     position: absolute;
                     left: 0.2rem;
-                    top: 0.613rem;
+                    top: 0.475rem;
                     width: 2rem;
                   }
 
@@ -335,7 +335,7 @@
                   .suggestions-wrapper {
                     .suggestions {
                       background-color: #fff;
-                      border-radius: 0.25rem;
+                      border-radius: $border-black-small;
                       left: 0;
                       list-style: none;
                       margin: 0;
@@ -380,7 +380,7 @@
                       position: absolute;
                       background: transparent;
                       right: 0;
-                      top: -0.4rem; // For center position
+                      top: -0.45rem; // For center position
                     }
 
                     .mapboxgl-ctrl-geocoder--icon-loading {
@@ -408,10 +408,10 @@
 
 
         .copy-btn {
-          width: 2.188rem;
-          height: 2.188rem;
+          width: 2rem;
+          height: 2rem;
           box-shadow: 0 0 1rem rgba(0, 0, 0, 0.164);
-          padding: $p-0;
+          padding: 0;
           border-radius: $border-radius-small;
           position: relative;
           background-color: $theme-color;
@@ -424,37 +424,25 @@
 
           .tool-clip {
             display: none; // Display block for hover
-            position: absolute;
-            top: -3.15rem;
-            color: $color-black;
-            width: 9rem;
+            width: 7rem;
             left: -50%;
             transform: translateX(-50%);
-            background: $color-white;
-            padding: 0.75rem;
-            border-radius: $border-radius-small;
-            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
 
-            &::after {
-              content: "";
-              position: absolute;
-              left: 70%;
-              width: 0.945rem;
-              background: $color-white;
-              height: 0.945rem;
-              top: 80%;
-              transform: rotate(45deg);
+            &.tooltip{
+              &::after {
+                left: 78%
+              }
             }
           }
 
-          .tooltip {
+          .tooltip{
             font-size: 0.625rem;
             position: absolute;
             background: $color-active;
             padding: 0.5rem 0.75rem;
             top: -2rem;
             border-radius: $border-radius-small;
-            color: #fff;
+            color: $color-white;
 
             i {
               padding-right: 0.313rem
@@ -569,11 +557,6 @@
   }
 }
 
-input[type="radio"] {
-  width: fit-content !important; // To overwrite default table css only for radio input
-  border-radius: 50% !important; // To overwrite default table css only for radio input
-}
-
 .select-deselect-trigger {
   margin-bottom: 1rem;
 }
@@ -588,11 +571,11 @@ input[type="radio"] {
   .wrapper {
     .toggle-checkbox-header {
       min-width: 32%;
-      // width: fit-content;
       display: inline-flex;
       margin-right: 0.945rem;
       position: relative;
       flex-wrap: wrap;
+      padding-bottom: 0.8rem;
 
       .settings-checkbox-description {
         margin-right: 0.5rem;
@@ -601,6 +584,11 @@ input[type="radio"] {
 
       .default-checkbox {
         margin-right: 0.5rem;
+
+      }
+      .admin-pro-tag{
+        position: relative; 
+        height: fit-content;
       }
     }
   }

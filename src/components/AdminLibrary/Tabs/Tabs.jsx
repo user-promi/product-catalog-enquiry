@@ -153,7 +153,7 @@ const Tabs = (props) => {
                     </div>
                   );
                 })}
-                <div className="menu-coll-btn" onClick={handleMenuShow}>
+                <div className="main-btn menu-coll-btn" onClick={handleMenuShow}>
                   <span>
                     <i className="admin-font adminLib-arrow-left"></i>
                   </span>

@@ -3,6 +3,8 @@
 .settings-input-content {
   .btn-wrapper {
     position: relative;
+    display: flex;
+    justify-content: end;
 
     .btn-customizer {
       position: absolute;

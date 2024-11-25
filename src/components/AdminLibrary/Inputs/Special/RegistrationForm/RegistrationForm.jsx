@@ -41,7 +41,7 @@ const selectOptions = [
         label: 'Email'
     },
     {
-        icon: 'adminLib-menu icon-form-textarea',
+        icon: 'adminLib-text icon-form-textarea',
         value: 'textarea',
         label: 'Textarea'
     },
@@ -193,10 +193,11 @@ const CustomFrom = (props) => {
 
     useEffect(() => {
         const closePopup = (event)  => {
-            if (event.target.closest('.meta-setting-modal, .react-draggable')) {
+            if (event.target.closest('.meta-menu, .meta-setting-modal, .react-draggable')) {
                 return;
             }
 			SetIsInputBoxClick({click : false});
+            setOpendInput(null);
         } 
 		document.body.addEventListener("click", closePopup)
         return () => {
@@ -316,6 +317,8 @@ const CustomFrom = (props) => {
         // Update the state variable
         settingHasChanged.current = true;
         setFormFieldList(newFormFieldList);
+
+
     }
 
     /**

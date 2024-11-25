@@ -27,13 +27,13 @@ const CatalogCustomizer = (props) => {
   // Create menu
   const [menu, setMenu] = useState([
     {
-      name: "Enquiry", id: 'enquiry', icon: 'adminLib-inquiry-filled-svgrepo-com',
+      name: "Enquiry", id: 'enquiry', icon: 'adminLib-info',
     },
     {
-      name: "Quote", id: 'quote', icon: 'adminLib-price-quote-icon',
+      name: "Quote", id: 'quote', icon: 'adminLib-credit_card',
     },
     {
-      name: "Catalog", id: 'catalog', icon: 'adminLib-catalog-svgrepo-com',
+      name: "Catalog", id: 'catalog', icon: 'adminLib-credit_card',
     },
   ]);
 
@@ -412,7 +412,7 @@ const CatalogCustomizer = (props) => {
             {!proSetting &&
               <article className='pro-banner'>
                 <p>Upgrade to pro for endless customization</p>
-                <a href="#" target='_blank'>Upgrade now</a>
+                <a href="#" className="main-btn btn-purple" target='_blank'>Upgrade now</a>
               </article>
             }
           </div>

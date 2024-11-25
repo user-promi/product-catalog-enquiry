@@ -4,9 +4,10 @@ const Textarea = (props) => {
     const { formField, onChange } = props;
     const [showTextBox, setShowTextBox] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    let hoverTimeout = null;
 
     useEffect(() => {
-        const closePopup = () => {
+        const closePopup = (event) => {
             if (event.target.closest('.meta-setting-modal, .react-draggable')) {
                 return;
             }
@@ -19,11 +20,23 @@ const Textarea = (props) => {
         };
     }, []);
 
+    const handleMouseEnter = () => {
+        hoverTimeout = setTimeout(() => setShowTextBox(true), 300);
+    };
+
+    const handleMouseLeave = () => {
+        clearTimeout(hoverTimeout); // Clear the timeout if mouse leaves early
+        if (!isClicked) {
+        setShowTextBox(false);
+        }
+    };
+
     return (
         <>
         {!showTextBox && (
             <div
-                onMouseEnter={() => setShowTextBox(true)} 
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 style={{ cursor: 'pointer' }}
             >
                 <div className="edit-form-wrapper">        
@@ -42,11 +55,8 @@ const Textarea = (props) => {
 
         {showTextBox && (
             <div className='main-input-wrapper'
-                onClick={() => {
-                    setShowTextBox(true); 
-                    setIsClicked(true);
-                }}
-                onMouseLeave={() => !isClicked && setShowTextBox(false)}
+                onClick={() => setIsClicked(true)}
+                onMouseLeave={handleMouseLeave}
             >
                 {/* Render label */}
                 <input

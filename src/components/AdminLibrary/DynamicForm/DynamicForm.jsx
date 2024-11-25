@@ -112,7 +112,6 @@ const DynamicForm = (props) => {
 
     if ( type === 'single' ) {
         if (fromType === 'simple') {
-
             updateSetting( key, event.target.value );
         } else if (fromType === 'calender') {
             let formattedDate;
@@ -845,7 +844,8 @@ const DynamicForm = (props) => {
               proSetting={isProSetting(inputField.proSetting)}
               onChange={(e, key) => {
                 if ( ! proSettingChanged( inputField.proSetting ) ) {
-                  handleChange(e, key);
+                  settingChanged.current = true;
+                  updateSetting( e, key );
                 }
               }}
             />
@@ -873,7 +873,7 @@ const DynamicForm = (props) => {
           input = (
             <CatalogCustomizer
               setting={setting}
-              proSetting={appLocalizer.pro_active || true}
+              proSetting={appLocalizer.pro_active}
               onChange={(key, value) => {
                   settingChanged.current = true;
                   updateSetting(key, value);

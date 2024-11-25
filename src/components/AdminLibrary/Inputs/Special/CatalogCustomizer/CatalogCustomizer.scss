@@ -1,34 +1,8 @@
 @import '/src/components/config.scss';
 
-
-html {
-  scroll-behavior: smooth;
-}
-
 .catelog-customizer-main-wrapper {
   transition: transform 0.3s linear;
-
-  &.enquiry {
-    transform-origin: 60% 0;
-  }
-
-  &.enquiry_cart {
-    transform-origin: 75% 0;
-  }
-
-  &.quote {
-    transform-origin: 90% 0;
-  }
-
-  &.catalog {
-    transform-origin: 100% 0;
-  }
-
-  &.change-tab {
-    transform: scale(0);
-  }
 }
-
 
 .catalog-customizer-wrapper {
   .settings-input-content {
@@ -64,22 +38,8 @@ html {
         justify-content: space-between;
         gap: 0.5rem;
         padding: 1rem;
-        background: $theme-color;
+        background: #522c812e;
         flex-wrap: wrap;
-
-        p {
-          max-width: 15.625rem;
-        }
-
-        a {
-          display: block;
-          background: $theme-color;
-          color: $color-white;
-          padding: 0.5rem 0.75rem;
-          border-radius: $border-radius-small;
-          font-size: 0.75rem;
-        }
-
       }
 
       .product-name {
@@ -101,7 +61,6 @@ html {
       }
 
       .drag-drop-component {
-
         .catalog-add-to-cart-section {
           display: flex;
           align-items: center;

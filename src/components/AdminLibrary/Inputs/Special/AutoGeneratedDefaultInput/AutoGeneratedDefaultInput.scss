@@ -14,11 +14,12 @@
         top: 50%;
         right: 0.315rem;
         transform: translateY(-50%);
+        padding-right: 0;
         
         &:focus{
             box-shadow: none;
         }
-        
+                
         i{
             font-size: 1.25rem;
             color:rgba(255, 0, 0, 0.522);
@@ -27,6 +28,8 @@
 
     input {
       margin: 0;
+      border-top-right-radius: 0!important; // To overwrite common input style
+      border-bottom-right-radius: 0!important; // To overwrite common input style
 
       @media screen and (max-width: 49.266rem) {
         min-height: 1.26rem;
@@ -36,9 +39,13 @@
 
   button{
     position: relative;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
   .generate-btn {
-    padding: 0.7rem 1rem !important; // To overwrite common btn style
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+
     i{
         width: 0.945rem;
     }

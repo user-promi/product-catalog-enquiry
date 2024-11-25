@@ -284,7 +284,7 @@ const EnquirySubmit = (props) => {
                                     <i className='admin-font adminLib-check'></i>
                                 </div>
                                 <h3 className='section-tittle'>Thank you!</h3>
-                                <p className='section-message'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum incidunt eveniet corporis cum fugit? Magni asperiores cum doloribus</p>
+                                <p className='section-message'>Your personalized quotation has been successfully created and is now ready for review. You can send it to the customer or make any further adjustments if needed.</p>
                                 <div className='section-button'>
                                     <a className="" href={`${appLocalizer.order_edit}&id=${createOrderId}`}>
                                         View Quote

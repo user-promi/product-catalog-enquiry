@@ -25,9 +25,12 @@ const Route = () => {
 
 const App = () => {
     const currentUrl = window.location.href;
+    const getBaseUrl = (url) => url.split('&subtab=')[0];
     document.querySelectorAll('#toplevel_page_catalog>ul>li>a').forEach((element) => {
+        console.log('element', element.href)
+        console.log('current', currentUrl)
         element.parentNode.classList.remove('current');
-        if (element.href === currentUrl) {
+        if (getBaseUrl(element.href) === getBaseUrl(currentUrl)) {
             element.parentNode.classList.add('current');
         }
     });

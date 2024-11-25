@@ -251,7 +251,6 @@ class Install {
             ];
 
             update_option( 'catalog_all_settings_settings', $all_settings );
-
             
             $email_settings = [
                 'additional_alert_email'  => $previous_general_settings[ 'other_emails' ] ?? get_option( 'admin_email' ),
@@ -274,9 +273,12 @@ class Install {
                 'set_request_quote_page' => intval( get_option( 'request_quote_page' ) ),
                 'set_wholesale_product_list_page' => intval( get_option( 'wholesale_product_list_page' ) )
             ];
-
-            // update_option( 'catalog_tools_settings', $tool_settings );
             update_option( 'catalog_pages_settings', $page_settings );
+            
+            $tool_settings = [
+                'custom_css_product_page'  => !empty($previous_button_settings[ 'custom_css_product_page' ]) ? $previous_button_settings[ 'custom_css_product_page' ] : '',
+            ];
+            update_option( 'catalog_tools_settings', $tool_settings );
             
             // Update form settings
             

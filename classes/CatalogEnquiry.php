@@ -30,6 +30,7 @@ final class CatalogEnquiry {
         $this->container[ 'plugin_path' ]    = trailingslashit( dirname( $file ) );
         $this->container[ 'version' ]        = WOOCOMMERCE_CATALOG_ENQUIRY_PLUGIN_VERSION;
         $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
+		$this->container[ 'text_domain' ]    = WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN;
 
 		// $exclusion_user_list = $array = array(
 		// 	array(
@@ -265,9 +266,10 @@ final class CatalogEnquiry {
 		$this->container['restapi']	 	= new Rest();
 		$this->container['util']     	= new Utill();
 		$this->container['modules']	 	= new Modules();
-		$this->container['shortcode'] = new Shortcode();
+		$this->container['shortcode']	= new Shortcode();
+		// $this->container['block'] 		= new Block();
 		$this->container['session'] 	= new Core\Session();
-        $this->container['quotecart'] = new Core\QuoteCart();
+        $this->container['quotecart']	= new Core\QuoteCart();
 
 		// Load all active modules
 		$this->container['modules']->load_active_modules();

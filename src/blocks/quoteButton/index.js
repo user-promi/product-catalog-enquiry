@@ -29,11 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (quoteButton) {
         quoteButton.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('second')
-
             const productElement = document.querySelector('[data-block-name="woocommerce/single-product"]');
             const productId = productElement ? productElement.dataset.productId : null;
-            console.log(productId)
 
             const quantityElement = document.querySelector('.quantity .qty');
             const quantity = quantityElement ? quantityElement.value : 1;

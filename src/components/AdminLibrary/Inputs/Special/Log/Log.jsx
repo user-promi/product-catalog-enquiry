@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getApiLink } from "../../../../../services/apiService";
-import "./Log.scss";
-
-const Log = (props) => {
-  const {fetchApiLink, downloadApiLink, downloadFileName} = props;
+import "./Log.scss"; const Log = (props) => {
+  const { fetchApiLink, downloadApiLink, downloadFileName } = props;
   const [logData, setLogData] = useState([]);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
+  const [copied, setCopied] = useState(false); useEffect(() => {
     axios({
       method: "post",
       url: getApiLink(fetchApiLink),
@@ -19,53 +15,38 @@ const Log = (props) => {
     }).then((response) => {
       setLogData(response.data);
     });
-  }, []);
-
-  const handleDownloadLog = (event) => {
+  }, []); const handleDownloadLog = (event) => {
     event.preventDefault();
     const fileName = downloadFileName;
     axios({
-        url: getApiLink(downloadApiLink),
-        method: "POST",
-        headers: {
-            'X-WP-Nonce': appLocalizer.nonce
-        },
-        data: {
-          file: fileName
-        },
-        responseType: "blob",
+      url: getApiLink(downloadApiLink),
+      method: "POST",
+      headers: {
+        'X-WP-Nonce': appLocalizer.nonce
+      },
+      data: {
+        file: fileName
+      },
+      responseType: "blob",
     })
-    .then((response) => {
+      .then((response) => {
         // Create a blob from the response
         const blob = new Blob([response.data], {
-            type: response.headers["content-type"],
-        });
-
-        // Create a URL for the blob
-        const url = window.URL.createObjectURL(blob);
-
-        // Create a link element
+          type: response.headers["content-type"],
+        });        // Create a URL for the blob
+        const url = window.URL.createObjectURL(blob);        // Create a link element
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", fileName); // Set the file name
-
-        // Trigger the download
+        link.setAttribute("download", fileName); // Set the file name        // Trigger the download
         document.body.appendChild(link);
-        link.click();
-
-        // Clean up
+        link.click();        // Clean up
         document.body.removeChild(link);
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.error("Error downloading file:", error);
-    });
-  };
-
-
-  const handleClearLog = (event) => {
-    event.preventDefault();
-
-    axios({
+      });
+  }; const handleClearLog = (event) => {
+    event.preventDefault(); axios({
       method: "post",
       url: getApiLink(fetchApiLink),
       headers: { "X-WP-Nonce": appLocalizer.nonce },
@@ -76,9 +57,7 @@ const Log = (props) => {
     }).then((response) => {
       setLogData([]);
     });
-  };
-
-  const handleCopyToClipboard = (event) => {
+  }; const handleCopyToClipboard = (event) => {
     event.preventDefault();
     const logText = logData.map((log) => {
       const regex = /^([^:]+:[^:]+:[^:]+):(.*)$/;
@@ -90,61 +69,54 @@ const Log = (props) => {
       } else {
         return log;
       }
-    }).join('\n');
-
-    navigator.clipboard.writeText(logText)
+    }).join('\n'); navigator.clipboard.writeText(logText)
       .then(() => {
-        setCopied( true );
+        setCopied(true);
       })
       .catch((error) => {
-        setCopied( false );
+        setCopied(false);
         console.error("Error copying logs to clipboard:", error);
       });
       setTimeout(() => {
         setCopied(false);
-      }, 2500);
-  };
-
-  return (
+      }, 10000);
+     
+  }; return (
     <div className="section-log-container">
       <div className="button-section">
         <button onClick={handleDownloadLog} class="btn-purple download-btn">
           Download
-        </button>
-
-        <button className="btn-purple button-clear" onClick={handleClearLog}>
+        </button>        <button className="btn-purple button-clear" onClick={handleClearLog}>
           <span class="text">Clear</span>
-            <i class="adminLib-close"></i>
-          </button>
+          <i class="adminLib-close"></i>
+        </button>
       </div>
       <div className="log-container-wrapper">
         <div className="wrapper-header">
           <p className="log-viewer-text">MooWoodle - log viewer</p>
           <div className="click-to-copy">
             <button class="copy-btn" onClick={handleCopyToClipboard}>
-            {copied && <span className="tooltip"><i class="adminLib-success-notification"></i>Copied</span>}
-              <span class="svgIcon">
-                <i class="adminLib-vendor-form-copy"></i>
-              </span>
-              <span className="tool-clip">Copy to clipboard</span>
-            </button>
+              {/* {copied && <span className="tooltip"><i class="adminLib-success-notification"></i>Copied</span>} */}
+              <i class="adminLib-vendor-form-copy"></i>
+              
+                <span className={!copied ? ( 'tooltip tool-clip' ) : ( 'tooltip'  )}> 
+                  {!copied ? ( '') : ( <i className="adminLib-success-notification"></i>  )}
+                  {!copied ? ( 'Copy to clipboard' ) : ( 'Copied'  )} 
+                </span>
+             
+              </button>
           </div>
         </div>
         <div className="wrapper-body">
           {logData.map((log, index) => {
             // Using regular expression to split at the first colon
             const regex = /^([^:]+:[^:]+:[^:]+):(.*)$/;
-            const match = log.match(regex);
-
-            if (match) {
+            const match = log.match(regex); if (match) {
               const dateSection = match[1].trim();
-              const content = match[2].trim();
-
-              return (
+              const content = match[2].trim(); return (
                 <div className="log-row" key={index}>
                   {/* Render date section in a span */}
-                  <span className="log-creation-date">{dateSection} :</span>
-
+                  <span className="log-creation-date">{dateSection} :</span>                  
                   {/* Render content in another span */}
                   <span className="log-details">{content}</span>
                 </div>
@@ -159,5 +131,4 @@ const Log = (props) => {
     </div>
   );
 };
-
 export default Log;

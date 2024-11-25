@@ -28,7 +28,7 @@ const FormCustomizer = (props) => {
                             ref={currentHoverOn === 'description' ? buttonRef : null}
                             className={currentHoverOn === 'description' && 'active'}
                             onClick={(e) => setCurrentHoverOn('description')}
-                            onChange={(e) => props.onChange(e, 'alert_text' ) }
+                            onChange={(e) => props.onChange('alert_text', e.target.value ) }
                             value={setting.alert_text}
                         />
                     </div>
@@ -73,7 +73,7 @@ const FormCustomizer = (props) => {
                                                     <input
                                                         type="text"
                                                         value={setting.email_placeholder_text}
-                                                        onChange={ (e)=> props.onChange(e, 'email_placeholder_text')} 
+                                                        onChange={ (e)=> props.onChange('email_placeholder_text', e.target.value)} 
                                                     />
                                                 </div>
                                             </div>
@@ -85,8 +85,9 @@ const FormCustomizer = (props) => {
                         </div>
                         <div className='button-section'>
                             <ButtonCustomizer
-                                buttonText={props.buttonText}
+                                text={props.buttonText}
                                 proSetting={props.proSetting}
+                                setting={setting}
                                 onChange={props.onChange}
                             />
                         </div>

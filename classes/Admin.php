@@ -215,7 +215,7 @@ class Admin {
 
         // Get all tab setting's database value
         $settings_value = [];
-        $tabs_names     = [ 'enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools', 'enquiry_email_temp', 'wholesale', 'wholesale_registration' ];
+        $tabs_names     = [ 'enquiry_catalog_customization', 'all_settings', 'enquiry_form_customization', 'enquiry_quote_exclusion', 'tools', 'enquiry_email_temp', 'wholesale', 'wholesale_registration', 'pages' ];
         foreach ( $tabs_names as $tab_name ) {
             $settings_value[ $tab_name ] = Catalog()->setting->get_option( 'catalog_' . $tab_name . '_settings' );
         }

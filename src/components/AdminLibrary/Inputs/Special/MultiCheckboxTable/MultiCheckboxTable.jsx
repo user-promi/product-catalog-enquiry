@@ -36,7 +36,7 @@ const SelectedOptionDisplay = (props) => {
 
                 {!popupOpend && selectedValues.length > 1 &&
                     <div
-                        className='items-controls open-modal'
+                        className='open-modal items-controls'
                         onClick={(event) => {
                             setPopupOpend(true);
                         }}
@@ -45,7 +45,7 @@ const SelectedOptionDisplay = (props) => {
 
                 {/* selected delete button */}
                 <div
-                    className="items-controls clear-all-data"
+                    className="clear-all-data items-controls"
                     onClick={(event) => {
                         clearSelectedValues();
                     }}

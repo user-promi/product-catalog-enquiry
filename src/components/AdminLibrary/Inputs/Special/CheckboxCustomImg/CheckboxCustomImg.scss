@@ -40,26 +40,26 @@
       }
     }
 
-    .sync-meta-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      margin: auto;
+  .sync-meta-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: auto;
 
-        img {
-          width: 1.89rem;
-        }
+      img {
+        width: 1.89rem;
+      }
 
-        i {
-          font-size: 1rem;
-        }
-
+      i {
+        font-size: 1rem;
+      }
     }
   }
 
   .admin-pro-tag{
     top: 0;
+    position:relative;
   }
 }
 

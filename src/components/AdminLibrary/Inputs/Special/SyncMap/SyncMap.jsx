@@ -157,9 +157,7 @@ const SyncMap = (props) => {
                             }}
                         >
                             <span className="text">Add</span>
-                            <span className="icon">
-                                <i class="adminLib-vendor-form-add"></i>
-                            </span>
+                            <i class="adminLib-vendor-form-add"></i>
                         </button>
                         {proSetting && <span className="admin-pro-tag">pro</span>}
                     </div>

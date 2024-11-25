@@ -3,6 +3,7 @@ import Select from 'react-select';
 const SelectInput = (props) => {
     const optionsData = [];
     let defaulValue = '';
+    console.log(props)
 
     props.options.forEach((option, index) => {
         optionsData[index] = {

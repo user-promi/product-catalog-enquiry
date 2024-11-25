@@ -7,27 +7,27 @@ const MultipleOptions = (props) => {
     const settingHasChanged = useRef(false);
     const firstTimeRender = useRef(true);
     const [openOption, setOpenOption] = useState(null);
-    const [showOptions, setShowOptions] = useState(false); // Show/Hide options state
-    const [isClicked, setIsClicked] = useState(false); // Track if the div was clicked
+    const [showOptions, setShowOptions] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    let hoverTimeout = null;
 
     useEffect(() => {
         const closePopup = (event) => {
             if (event.target.closest('.meta-setting-modal, .react-draggable')) {
                 return;
             }
-            // Close the popup if clicked elsewhere
             setIsClicked(false);
             setShowOptions(false);
             setOpenOption(null);
         };
-    
+
         document.body.addEventListener("click", closePopup);
-    
+
         return () => {
             document.body.removeEventListener("click", closePopup);
         };
     }, []);
-    
+
     const [options, setOptions] = useState(() => {
         if (Array.isArray(formField.options) && formField.options.length) {
             return formField.options;
@@ -35,37 +35,24 @@ const MultipleOptions = (props) => {
         return [];
     });
 
-    // Function to render inputs based on the formField type
     const renderInputFields = (type) => {
         switch (type) {
-            case 'radio':
-                return (
-                    options.map((option, idx) => (
-                        <div className="radio-input-label-wrap" key={idx}>
-                            <input 
-                                type="radio" 
-                                id={`radio-${idx}`} 
-                                value={option.value}
-                            />
-                            <label htmlFor={`radio-${idx}`}>{option.label}</label>
-                        </div>
-                    ))
-                );
-            case 'checkboxes':
-                return (
-                    options.map((option, idx) => (
-                        <div className="radio-input-label-wrap" key={idx}>
-                            <input 
-                                type="checkbox" 
-                                id={`checkbox-${idx}`} 
-                                value={option.value}
-                            />
-                            <label htmlFor={`checkbox-${idx}`}>{option.label}</label>
-                        </div>
-                    ))
-                );
-            case 'dropdown':
-            case 'multiselect':
+            case "radio":
+                return options.map((option, idx) => (
+                    <div className="radio-input-label-wrap" key={idx}>
+                        <input type="radio" id={`radio-${idx}`} value={option.value} />
+                        <label htmlFor={`radio-${idx}`}>{option.label}</label>
+                    </div>
+                ));
+            case "checkboxes":
+                return options.map((option, idx) => (
+                    <div className="radio-input-label-wrap" key={idx}>
+                        <input type="checkbox" id={`checkbox-${idx}`} value={option.value} />
+                        <label htmlFor={`checkbox-${idx}`}>{option.label}</label>
+                    </div>
+                ));
+            case "dropdown":
+            case "multiselect":
                 return (
                     <section className="select-input-section merge-components">
                         <select>
@@ -87,31 +74,42 @@ const MultipleOptions = (props) => {
         const newOptions = [...options];
         newOptions[index] = { ...newOptions[index], [key]: value };
         setOptions(newOptions);
-        onChange('options', newOptions);
+        onChange("options", newOptions);
     };
 
     const handleInsertOption = () => {
-        const newOptions = [...options, { label: 'I am label', value: 'value' }];
+        const newOptions = [...options, { label: "I am label", value: "value" }];
         setOptions(newOptions);
-        onChange('options', newOptions);
-
+        onChange("options", newOptions);
     };
 
     const handleDeleteOption = (index) => {
         if (options.length <= 1) return;
         const newOptions = options.filter((_, i) => i !== index);
         setOptions(newOptions);
-        onChange('options', newOptions);
+        onChange("options", newOptions);
+    };
+
+    const handleMouseEnter = () => {
+        hoverTimeout = setTimeout(() => setShowOptions(true), 300);
+    };
+
+    const handleMouseLeave = () => {
+        clearTimeout(hoverTimeout);
+        if (!isClicked) {
+            setShowOptions(false);
+        }
     };
 
     return (
         <>
             {!showOptions && (
                 <div
-                    onMouseEnter={() => setShowOptions(true)} 
-                    style={{ cursor: 'pointer' }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ cursor: "pointer" }}
                 >
-                    <div className="edit-form-wrapper">        
+                    <div className="edit-form-wrapper">
                         <p>{formField.label}</p>
                         <div className="settings-form-group-radio">
                             {renderInputFields(type)}
@@ -124,10 +122,10 @@ const MultipleOptions = (props) => {
                 <div
                     className="main-input-wrapper"
                     onClick={() => {
-                        setShowOptions(true); 
+                        setShowOptions(true);
                         setIsClicked(true);
                     }}
-                    onMouseLeave={() => !isClicked && setShowOptions(false)}
+                    onMouseLeave={handleMouseLeave}
                 >
                     <input
                         className="input-label multipleOption-label"
@@ -135,20 +133,20 @@ const MultipleOptions = (props) => {
                         value={formField.label}
                         placeholder={"I am label"}
                         onChange={(event) => {
-                            onChange('label', event.target.value);
+                            onChange("label", event.target.value);
                         }}
                     />
 
                     <ReactSortable
                         className="multiOption-wrapper"
                         list={options}
-                        setList={(newList) => { 
+                        setList={(newList) => {
                             if (firstTimeRender.current) {
                                 firstTimeRender.current = false;
                                 return;
                             }
                             setOptions(newList);
-                            onChange('options', newList);
+                            onChange("options", newList);
                         }}
                         handle=".drag-handle-option"
                     >
@@ -160,7 +158,7 @@ const MultipleOptions = (props) => {
                                         value={option.label}
                                         onChange={(event) => {
                                             settingHasChanged.current = true;
-                                            handleOptionFieldChange(index, 'label', event.target.value);
+                                            handleOptionFieldChange(index, "label", event.target.value);
                                         }}
                                         readOnly
                                         onClick={(event) => {
@@ -170,10 +168,12 @@ const MultipleOptions = (props) => {
                                     />
                                 </div>
                                 <div className="option-control-section">
-                                    <div onClick={() => {
-                                        settingHasChanged.current = true;
-                                        handleDeleteOption(index);
-                                    }}>
+                                    <div
+                                        onClick={() => {
+                                            settingHasChanged.current = true;
+                                            handleDeleteOption(index);
+                                        }}
+                                    >
                                         Delete
                                     </div>
                                     <OptionMetaBox
@@ -190,9 +190,9 @@ const MultipleOptions = (props) => {
                                             });
                                             if (defaultValueIndex !== null) {
                                                 settingHasChanged.current = true;
-                                                handleOptionFieldChange(defaultValueIndex, 'isdefault', false);
+                                                handleOptionFieldChange(defaultValueIndex, "isdefault", false);
                                             }
-                                            handleOptionFieldChange(index, 'isdefault', true);
+                                            handleOptionFieldChange(index, "isdefault", true);
                                         }}
                                     />
                                 </div>
@@ -200,7 +200,7 @@ const MultipleOptions = (props) => {
                         ))}
 
                         <div className="add-more-option-section" onClick={handleInsertOption}>
-                            Add new options <span><i className="admin-font adminLib-support"></i></span>
+                            Add new options <span><i className="admin-font adminLib-plus-circle-o"></i></span>
                         </div>
                     </ReactSortable>
                 </div>
