@@ -64,7 +64,7 @@ const FreeForm = (props) => {
             {
                 formFields.map((field) => {
                     if (!field.active) { return }
-            console.log('field', field)
+
                     switch (field.key) {
                         case "name":
                             return (
@@ -73,7 +73,7 @@ const FreeForm = (props) => {
                                     <input
                                         type="text"
                                         name={field.key}
-                                        value={inputs[field.key]}
+                                        value={enquiry_form_data.default_placeholder.name || inputs[field.key]}
                                         onChange={handleChange}
                                         required
                                     />
@@ -86,7 +86,7 @@ const FreeForm = (props) => {
                                     <input
                                         type="email"
                                         name={field.key}
-                                        value={inputs[field.key]}
+                                        value={enquiry_form_data.default_placeholder.email || inputs[field.key]}
                                         onChange={handleChange}
                                         required
                                     />

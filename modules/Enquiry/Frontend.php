@@ -37,13 +37,19 @@ class Frontend{
      * Add enquiry button
      * @return void
      */
-    public function add_enquiry_button() {
-        global $post, $product;
+    public function add_enquiry_button($productObj) {
+        global $product;
+        $productObj = is_int($productObj) ? wc_get_product($productObj) : ($productObj ?: $product);
+
+        if ( empty( $productObj ) )
+            return;
+
         if ( Catalog()->setting->get_setting( 'is_enable_multiple_product_enquiry' ) && Utill::is_pro_active() ) {
             return;
         }
-        $product        = wc_get_product($post->ID);
+
         $current_user   = wp_get_current_user();
+
         $settings_array = Catalog()->setting->get_setting( 'enquery_button' );
         $settings_array = is_array($settings_array) ? $settings_array : [];
 
@@ -92,7 +98,7 @@ class Frontend{
         <div id="woocommerce-catalog" name="woocommerce_catalog">
         <?php 
             if (Catalog()->setting->get_setting( 'is_enable_out_of_stock' ) ){
-                if ( !$product->managing_stock() && !$product->is_in_stock()) { ?>
+                if ( !$productObj->managing_stock() && !$productObj->is_in_stock()) { ?>
                 <div position = "<?php echo $position; ?>">
                     <button class="woocommerce-catalog-enquiry-btn button demo btn btn-primary btn-large" style="<?php echo $button_css; ?>" href="#catalog-modal"><?php echo esc_html( $settings_array[ 'button_text' ] ); ?></button>
                 </div>
@@ -105,11 +111,11 @@ class Frontend{
                 <?php
             }
              ?>
-            <input type="hidden" name="product_name_for_enquiry" id="product-name-for-enquiry" value="<?php echo get_post_field('post_title', $post->ID); ?>" />
-            <input type="hidden" name="product_url_for_enquiry" id="product-url-for-enquiry" value="<?php echo get_permalink($post->ID); ?>" />
-            <input type="hidden" name="product_id_for_enquiry" id="product-id-for-enquiry" value="<?php echo $post->ID; ?>" />
+            <input type="hidden" name="product_name_for_enquiry" id="product-name-for-enquiry" value="<?php echo $productObj->get_name(); ?>" />
+            <input type="hidden" name="product_url_for_enquiry" id="product-url-for-enquiry" value="<?php echo get_permalink( $productObj->get_id() ); ?>" />
+            <input type="hidden" name="product_id_for_enquiry" id="product-id-for-enquiry" value="<?php echo $productObj->get_id(); ?>" />
             <input type="hidden" name="enquiry_product_type" id="enquiry-product-type" value="<?php
-                if ($product && $product->is_type('variable')) {
+                if ($productObj && $productObj->is_type('variable')) {
                     echo 'variable';
                 }
                 ?>" />
@@ -131,7 +137,6 @@ class Frontend{
             remove_action( 'display_shop_page_button', [ $this, 'add_enquiry_button' ] );
         } else {
             add_action( 'display_shop_page_button', [ $this, 'add_enquiry_button' ] );
-
         }
     }
 
@@ -140,35 +145,37 @@ class Frontend{
      * @return void
      */
     public function frontend_scripts() {
-        global $post;
+        $current_user = wp_get_current_user();
 
-        if (is_product() || isset( $post->post_content ) && has_shortcode($post->post_content, 'catalog_enquiry_cart') || has_block('woocommerce-catalog-enquiry-pro/enquiry-cart') || has_block('woocommerce-catalog-enquiry/enquiry-button')) {
-            $current_user = wp_get_current_user();
+        wp_register_style( 'mvx-catalog-product-style', Catalog()->plugin_url . '/build/blocks/enquiryForm/index.css' );
+        wp_register_script( 'frontend_js', Catalog()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
+        wp_register_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], Catalog()->version, true );
+        wp_localize_script(
+            'enquiry_form_js', 'enquiry_form_data', [
+            'apiurl'        => untrailingslashit(get_rest_url()),
+            'nonce'         => wp_create_nonce( 'wp_rest' ),
+            'settings_free' => $this->catalog_free_form_settings(),
+            'settings_pro'  => $this->catalog_pro_form_settings(),
+            'pro_active'    => \CatalogEnquiry\Utill::is_pro_active(),
+            'product_data'  => (\CatalogEnquiry\Utill::is_pro_active() && !empty(Catalog_PRO()->cart->get_cart_data())) ? Catalog_PRO()->cart->get_cart_data() : '',
+            'default_placeholder'  => [
+                'name'  => $current_user->display_name,
+                'email' => $current_user->user_email
+            ],
+            'content_before_form' => apply_filters('catalog_add_content_before_form', ''),
+            'content_after_form'  => apply_filters('catalog_add_content_after_form', ''),
+        ]);
 
-            wp_enqueue_style( 'mvx-catalog-product-style', Catalog()->plugin_url . '/build/blocks/enquiryForm/index.css' );
+        if (is_product() || is_page()) {
+            wp_enqueue_style( 'mvx-catalog-product-style' );
             // additional css
             $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );
             if (isset($additional_css_settings) && !empty($additional_css_settings)) {
                 wp_add_inline_style('mvx-catalog-product-style', $additional_css_settings);
             }
             
-            wp_enqueue_script( 'frontend_js', Catalog()->plugin_url . 'modules/Enquiry/assets/js/frontend.js', [ 'jquery', 'jquery-blockui' ], Catalog()->version, true );
-            wp_enqueue_script('enquiry_form_js', Catalog()->plugin_url . 'build/blocks/enquiryForm/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks', 'wp-hooks' ], Catalog()->version, true );
-            wp_localize_script(
-                'enquiry_form_js', 'enquiry_form_data', [
-                'apiurl'        => untrailingslashit(get_rest_url()),
-                'nonce'         => wp_create_nonce( 'wp_rest' ),
-                'settings_free' => $this->catalog_free_form_settings(),
-                'settings_pro'  => $this->catalog_pro_form_settings(),
-                'pro_active'    => \CatalogEnquiry\Utill::is_pro_active(),
-                'product_data'  => (\CatalogEnquiry\Utill::is_pro_active() && !empty(Catalog_PRO()->cart->get_cart_data())) ? Catalog_PRO()->cart->get_cart_data() : '',
-                'default_placeholder'  => [
-                    'name'  => $current_user->display_name,
-                    'email' => $current_user->user_email
-                ],
-                'content_before_form' => apply_filters('catalog_add_content_before_form', ''),
-                'content_after_form'  => apply_filters('catalog_add_content_after_form', ''),
-            ]);
+            wp_enqueue_script( 'frontend_js' );
+            wp_enqueue_script( 'enquiry_form_js' );
         }
     }
 
@@ -212,10 +219,13 @@ class Frontend{
      * enquiry button shortcode
      * @return void
      */
-    public function wce_enquiry_button_shortcode() {
+    public function wce_enquiry_button_shortcode($attr) {
         ob_start();
+        $product_id = isset( $attr['product_id'] ) ? (int)$attr['product_id'] : 0;
+
         remove_action('display_shop_page_button', [ $this, 'add_enquiry_button' ]);
-        $this->add_enquiry_button();
+
+        $this->add_enquiry_button($product_id);
         return ob_get_clean();
     }
 

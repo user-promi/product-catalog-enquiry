@@ -32,51 +32,6 @@ final class CatalogEnquiry {
         $this->container[ 'rest_namespace' ] = WOOCOMMERCE_CATALOG_ENQUIRY_REST_NAMESPACE;
 		$this->container[ 'text_domain' ]    = WOOCOMMERCE_CATALOG_ENQUIRY_TEXT_DOMAIN;
 
-		// $exclusion_user_list = $array = array(
-		// 	array(
-		// 		"value" => 15,
-		// 		"label" => "lml test",
-		// 		"index" => 0
-		// 	),
-		// 	array(
-		// 		"value" => 4,
-		// 		"label" => "Joe Blogs",
-		// 		"index" => 2
-		// 	),
-		// 	array(
-		// 		"value" => 17,
-		// 		"label" => "mvx-admin",
-		// 		"index" => 5
-		// 	),
-		// 	array(
-		// 		"value" => 7,
-		// 		"label" => "Narayan Patil",
-		// 		"index" => 7
-		// 	),
-		// 	array(
-		// 		"value" => 8,
-		// 		"label" => "test_vendor",
-		// 		"index" => 10
-		// 	),
-		// 	array(
-		// 		"value" => 6,
-		// 		"label" => "ravi",
-		// 		"index" => 8
-		// 	)
-		// );
-
-		// $exclusion_user_list = array_map(function ($user_list) {
-		// 	return [
-		// 		'key'   => $user_list[ 'value' ],
-		// 		'label' => $user_list[ 'label' ],
-		// 		'value'	=> $user_list[ 'value' ],
-		// 	];
-		// }, $exclusion_user_list );
-
-		// echo ("<pre>");
-		// print_r($exclusion_user_list);
-		// die();
-
         register_activation_hook( $file, [ $this, 'activate' ] );
 		register_deactivation_hook( $file, [ $this, 'deactivate' ] );
 
@@ -113,99 +68,8 @@ final class CatalogEnquiry {
 		add_action( 'init', [ $this, 'catalog_register_form_strings' ] );
 		add_action( 'init', [ $this, 'catalog_setup_wizard' ] );
 		
-		add_action('enqueue_block_editor_assets', [$this, 'enqueue_block_assets']);
-		add_action('wp_enqueue_scripts', [$this, 'enqueue_block_assets']);
-
 		do_action( 'catalog_enquiry_loaded' );
 
-
-	}
-
-	// function enqueue_block_assets() {
-
-	// 	wp_enqueue_script(
-	// 		'quote-cart-block',
-	// 		Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
-	// 		[ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', ]
-	// 	);
-
-	// 	wp_localize_script(
-	// 		'quote-cart-block', 'appLocalizer', [
-	// 		'apiurl' => untrailingslashit(get_rest_url()),
-	// 		'nonce' => wp_create_nonce( 'wp_rest' ),
-	// 	]);
-	
-	// 	wp_enqueue_style(
-	// 		'quote-cart-block-style',
-	// 		Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css',
-	// 		[],
-	// 	);
-
-	// 	wp_enqueue_script(
-	// 		'enquiry-button-block',
-	// 		Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
-	// 		[ 'wp-blocks', 'wp-element', 'wp-editor' ],
-	// 		true
-	// 	);
-
-	// 	wp_enqueue_script(
-	// 		'quote-button-block',
-	// 		Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
-	// 		[ 'wp-blocks', 'wp-element', 'wp-editor' ],
-	// 		true
-	// 	);
-
-	// 	wp_localize_script(
-	// 		'quote-button-block', 'quote_button', [
-	// 		'ajaxurl' => admin_url('admin-ajax.php'),
-	// 	]);
-
-	// }
-
-	function enqueue_block_assets() {
-
-		$scripts = [
-			[
-				'handle' => 'quote-cart-block',
-				'src'    => Catalog()->plugin_url . 'build/blocks/quoteListTable/index.js',
-				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n' ],
-				'localize' => [
-					'object_name' => 'appLocalizer',
-					'data' => [
-						'apiurl' => untrailingslashit(get_rest_url()),
-						'restUrl' => 'catalog/v1',
-						'nonce'  => wp_create_nonce('wp_rest'),
-					],
-				],
-			],
-			[
-				'handle' => 'enquiry-button-block',
-				'src'    => Catalog()->plugin_url . 'build/blocks/enquiryButton/index.js',
-				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor' ],
-			],
-			[
-				'handle' => 'quote-button-block',
-				'src'    => Catalog()->plugin_url . 'build/blocks/quoteButton/index.js',
-				'deps'   => [ 'wp-blocks', 'wp-element', 'wp-editor' ],
-				'localize' => [
-					'object_name' => 'quote_button',
-					'data' => [
-						'ajaxurl' => admin_url('admin-ajax.php'),
-					],
-				],
-			]
-		];
-	
-		foreach ($scripts as $script) {
-			wp_enqueue_script($script['handle'], $script['src'], $script['deps']);
-			if (isset($script['localize'])) {
-				wp_localize_script($script['handle'], $script['localize']['object_name'], $script['localize']['data']);
-			}
-		}
-	
-		wp_enqueue_style('quote-cart-block-style', Catalog()->plugin_url . 'build/blocks/quoteListTable/index.css');
-
-        wp_enqueue_style('mvx-catalog-style', Catalog()->plugin_url . '/build/index.css');
 
 	}
 	
@@ -268,7 +132,7 @@ final class CatalogEnquiry {
 		$this->container['util']     	= new Utill();
 		$this->container['modules']	 	= new Modules();
 		$this->container['shortcode']	= new Shortcode();
-		// $this->container['block'] 		= new Block();
+		$this->container['block'] 		= new Block();
 		$this->container['session'] 	= new Core\Session();
         $this->container['quotecart']	= new Core\QuoteCart();
 

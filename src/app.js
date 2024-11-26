@@ -24,13 +24,14 @@ const Route = () => {
 }
 
 const App = () => {
-    const currentUrl = window.location.href;
-    const getBaseUrl = (url) => url.split('&subtab=')[0];
+    const location = new URLSearchParams(useLocation().hash);
+    
     document.querySelectorAll('#toplevel_page_catalog>ul>li>a').forEach((element) => {
-        console.log('element', element.href)
-        console.log('current', currentUrl)
+        const urlObject = new URL(element.href);
+        const hashParams = new URLSearchParams(urlObject.hash.substring(1));
+
         element.parentNode.classList.remove('current');
-        if (getBaseUrl(element.href) === getBaseUrl(currentUrl)) {
+        if ( hashParams.get('tab') === location.get('tab')) {
             element.parentNode.classList.add('current');
         }
     });

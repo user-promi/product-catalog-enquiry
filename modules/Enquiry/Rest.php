@@ -1,9 +1,8 @@
 <?php 
 
 namespace CatalogEnquiry\Enquiry;
-
 use CatalogEnquiry\Utill;
-use CatalogEnquiryPro\CatalogEnquiryPro;
+use CatalogEnquiry\Enquiry\Module;
 
 class Rest {
     /**
@@ -26,7 +25,7 @@ class Rest {
 
         register_rest_route( Catalog()->rest_namespace, '/render-enquiry-button', [
             'methods'               => \WP_REST_Server::ALLMETHODS,
-            'callback'              => [ $this, 'render_enquiry_button_shortcode_rest' ],
+            'callback'              => [ $this, 'render_enquiry_button' ],
             'permission_callback'   => [ Catalog()->restapi, 'catalog_permission' ],
         ]);
 	}
@@ -181,8 +180,16 @@ class Rest {
      * render enquiry button shortcode into block
      * @return \WP_Error|\WP_REST_Response
      */
-    public function render_enquiry_button_shortcode_rest() {
-        return rest_ensure_response(do_shortcode('[wce_enquiry_button]'));
+    public function render_enquiry_button($request) {
+        $product_id = $request->get_param('product_id');
+
+        // Start output buffering
+        ob_start();
+
+        Module::init()->frontend->add_enquiry_button(intval($product_id));
+
+        // Return the output
+        return rest_ensure_response(['html' => ob_get_clean()]);
     }
 
 }
