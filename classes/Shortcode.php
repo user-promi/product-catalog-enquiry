@@ -11,10 +11,6 @@ class Shortcode {
 		add_shortcode( 'request_quote', [ $this, 'display_request_quote' ] );
         //For quote thank you page
 		add_shortcode( 'request_quote_thank_you', [ $this, 'display_request_quote_thank_you' ] );
-        
-        //enqueue script
-        // add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts'] );
-
     }
 
     function frontend_scripts() {
@@ -31,25 +27,11 @@ class Shortcode {
     
             wp_enqueue_script('quote_thank_you_js', Catalog()->plugin_url . 'build/blocks/quote-thank-you/index.js', [ 'wp-blocks', 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n' ], Catalog()->version, true);
         }
-
-
-        // if (isset( $post->post_content ) && has_shortcode($post->post_content, 'request_quote') || has_block('woocommerce-catalog-enquiry/quote-cart')) {
-        //     wp_enqueue_script('quote_list_js');
-        //     wp_enqueue_style('quote_list_css');
-        // }
-
-        // if (isset( $post->post_content ) && has_shortcode($post->post_content, 'request_quote_thank_you')) {
-        //     wp_enqueue_script('quote_thank_you_js');
-        // }
     }
 
 	function display_request_quote() {
-		ob_start();
-        // $args = Catalog()->quotecart->get_cart_data();
-		// Catalog()->util->get_template( 'shortcode/request-quote.php', $args );
-        // wp_enqueue_script('quote_list_js');
-        // wp_enqueue_style('quote_list_css');
         $this->frontend_scripts();
+		ob_start();
         ?>
         <div id="request_quote_list">
         </div>
@@ -58,10 +40,8 @@ class Shortcode {
 	}
     
     function display_request_quote_thank_you() {
-        ob_start();
-        // wp_enqueue_script('quote_thank_you_js');
         $this->frontend_scripts();
-
+        ob_start();
         ?>
         <div id="quote_thank_you_page">
         </div>

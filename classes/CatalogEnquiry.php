@@ -6,10 +6,9 @@ use Automattic\Jetpack\Connection\Utils;
 /**
  * Catalog enquiry class main function
  *
- * @class 		Enquiry_Sent_Email
+ * @class 		Catalog enquiry class
  * @version		3.0.2
- * @author 		MultiVendorX
- * @extends 	\WC_Email
+ * @author 		CatalogX
  */
 
 final class CatalogEnquiry {
