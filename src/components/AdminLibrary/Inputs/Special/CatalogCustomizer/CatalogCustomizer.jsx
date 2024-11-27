@@ -27,13 +27,13 @@ const CatalogCustomizer = (props) => {
   // Create menu
   const [menu, setMenu] = useState([
     {
-      name: "Enquiry", id: 'enquiry', icon: 'adminLib-info',
+      name: "Enquiry", id: 'enquiry', icon: 'adminLib-inquiry-filled-svgrepo-com',
     },
     {
-      name: "Quote", id: 'quote', icon: 'adminLib-credit_card',
+      name: "Quote", id: 'quote', icon: 'adminLib-price-quote-icon',
     },
     {
-      name: "Catalog", id: 'catalog', icon: 'adminLib-credit_card',
+      name: "Catalog", id: 'catalog', icon: 'adminLib-catalog-svgrepo-com',
     },
   ]);
 

@@ -1,8 +1,12 @@
-$menu-btn-color: #522c81;
-$body-background: #f9f9f9;
-$color-white: #fff;
-$menu-color: #f9f8fb;
-$color-active: #65438f;
+@import '/src/components/config.scss';
+
+.wholesale-user-image{
+    background-image: url("../../assets/images/wholesale-user-desktop.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+    height: 100vh;
+}
 
 .admin-wholesale-list {
     .admin-page-title {
@@ -32,7 +36,7 @@ $color-active: #65438f;
             padding: 0.5rem 1rem;
             border-radius: 0.25rem;
             background: $color-active;
-            color: #fff;
+            color: $color-white;
             cursor: pointer;
             user-select: none;
         }
@@ -50,12 +54,12 @@ $color-active: #65438f;
             }
 
             .type-count-active {
-                color: #522c81;
+                color: $theme-color;
             }
         }
         .status-show-btn{
             background: #f0f0f0;
-            border-radius: .25rem;
+            border-radius: $border-radius-small;
             color: #1e1e1e;
             padding: .5rem 1rem;
             width: 6.875rem;
@@ -72,7 +76,7 @@ $color-active: #65438f;
                 visibility: hidden;
                 div{
                     background: transparent;
-                    color: #522c81;
+                    color: $theme-color;
                     cursor: pointer;
                     font-size: .75rem;
                     font-weight: 500;
@@ -80,7 +84,7 @@ $color-active: #65438f;
                     text-align: left;
         
                     &.reject{
-                        color: #e35047!important;
+                        color: $accent-color!important;
                     }
                 }
             }
@@ -99,9 +103,6 @@ $color-active: #65438f;
 }
 
 .admin-wholesale-popup{
-    *{
-        box-sizing: border-box;
-    }
     .MuiPaper-root{
         max-width: 18.75rem;
         width: 100%;
@@ -143,7 +144,6 @@ $color-active: #65438f;
                     padding: 0.15rem 0.5rem;
                     background-color: transparent;
                     width: 100%;
-                    outline: none;
                     height: 2.205rem !important;
                     border: 0.115rem solid rgba(0, 0, 0, 0.125);
                     border-radius: 0;
@@ -158,17 +158,11 @@ $color-active: #65438f;
                     justify-content: flex-end;
                 }
                 button{
-                    padding: 0.5rem 1rem;
                     font-size: 0.75rem;
-                    background-color: #522c81;
-                    color: #fff;
-                    border-radius: 0.25rem;
+                    background-color: $theme-color;
+                    color: $color-white;
                     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
-                    cursor: pointer;
                     user-select: none;
-                    outline: none;
-                    border: none;
-                    box-shadow: none;
 
                     &.modal-close{
                         background-color: #522c81a5;

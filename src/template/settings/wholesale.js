@@ -45,6 +45,7 @@ export default {
                 }
             ],
             proSetting: true,
+            look: "toggle"
         },
         {
             key: "show_wholesale_price",
@@ -59,6 +60,7 @@ export default {
                 }
             ],
             proSetting: true,
+            look: "toggle"
         },
         {
             key: "enable_order_form",
@@ -73,6 +75,7 @@ export default {
                 }
             ],
             proSetting: true,
+            look: "toggle"
         },
         {
             key: "wholesale_discount",

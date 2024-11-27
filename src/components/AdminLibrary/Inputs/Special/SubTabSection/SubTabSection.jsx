@@ -21,7 +21,7 @@ const SubTabSection = (props) => {
                             setCurrentTab(menu)
                         }}
                     >
-                        <span><i className={`admin-font ${menu.icon}`}></i></span>
+                        <i className={`admin-font ${menu.icon}`}></i>
                         {menu.name}
                     </div>
                 ))}

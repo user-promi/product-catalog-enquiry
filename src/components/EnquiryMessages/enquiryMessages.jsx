@@ -11,7 +11,7 @@ const EnquiryMessages = (props) => {
     const { modules } = useModules();
     if ( ! modules.includes( 'enquiry' ) || ! appLocalizer.pro_active ) {
         return (
-            <div> Pro required || Activate module </div>
+            <div class="enquiry-img"></div>
         ); 
     }
 

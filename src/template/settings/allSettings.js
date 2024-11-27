@@ -19,6 +19,7 @@ export default {
                 }
             ],
             proSetting: true,
+            look: "toggle"
         },
         {
             key: 'disable_cart_page_link',
@@ -55,6 +56,7 @@ export default {
                     value: "enquiry_logged_out"
                 }
             ],
+            look: "toggle"
         },
         {
             key: 'is_enable_out_of_stock',
@@ -66,7 +68,8 @@ export default {
                     key: "is_enable_out_of_stock",
                     value: "is_enable_out_of_stock"
                 }
-            ]
+            ],
+            look: "toggle"
         },
         {
             key: 'notify_me_button',
@@ -113,7 +116,8 @@ export default {
                     key: "is_page_redirect",
                     value: "is_page_redirect"
                 }
-            ]
+            ],
+            look: "toggle"
         },
         {
             key: 'redirect_page_id',
@@ -138,6 +142,7 @@ export default {
                 }
             ],
             proSetting: true,
+            look: "toggle"
         },
         {
             key: 'separator_content',
@@ -147,7 +152,7 @@ export default {
         {
             key: 'quote_user_permission',
             type: 'checkbox',
-            label: __( "Limit quotation requests to logged-in users only.", 'woocommerce-catalog-enquiry' ),
+            label: __( "Limit quotation requests to logged-in users only", 'woocommerce-catalog-enquiry' ),
             desc: __("If enabled, non-logged-in users cannot submit quotation requests.", 'woocommerce-catalog-enquiry'),
             options: [
                 {
@@ -155,6 +160,7 @@ export default {
                     value: "logged_out"
                 }
             ],
+            look: "toggle"
         },
         {
             key: 'set_expiry_time',

@@ -22,7 +22,7 @@ export default function QuotesList() {
 
   if (!modules.includes('quote') || !appLocalizer.pro_active) {
     return (
-      <div> Pro required || Activate module </div>
+      <div className="quote-img"></div>
     );
   }
 
