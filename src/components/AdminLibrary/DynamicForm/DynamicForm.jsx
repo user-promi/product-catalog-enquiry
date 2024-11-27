@@ -35,6 +35,8 @@ import Log from "../Inputs/Special/Log/Log";
 //Checkbox with custom image 
 import CheckboxCustomImg from "../Inputs/Special/CheckboxCustomImg/CheckboxCustomImg";
 
+import IconList from "../Inputs/IconList";
+
 // Variable for controll coldown effect submit time
 const PENALTY  = 10;
 const COOLDOWN = 1;
@@ -177,16 +179,17 @@ const DynamicForm = (props) => {
     updateSetting(key, mulipleOptions);
   };
 
-  const handlMultiSelectDeselectChange = ( key, options, type='' ) => {
+  const handlMultiSelectDeselectChange = (key, options, type='') => {
     settingChanged.current = true;
 
     if (Array.isArray(setting[key]) && setting[key].length > 0) {
       updateSetting(key, []);
     } else {
-      const newValue = type === 'multi-select' ? options : options.map(({ value }) => value);
-      updateSetting(key, newValue);
+        const newValue = options
+          .filter((option) => type === 'multi-select' || !isProSetting(option.proSetting))
+          .map(({ value }) => value);
+        updateSetting(key, newValue);
     }
-    
   };
 
   const runUploader = (key) => {
@@ -1062,6 +1065,12 @@ const DynamicForm = (props) => {
           );
           break;
 
+        case "icon-list":
+          input = (
+            <IconList
+            />
+          );
+          break;
         }
 
         return inputField.type === "section" || inputField.label === "no_label" ? (

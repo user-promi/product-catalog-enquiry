@@ -41,7 +41,7 @@ export default [
         id: 'rules',
         name: __("Dynamic Pricing Rules", "woocommerce-catalog-enquiry"),
         desc: __("You can set up various rules to modify the prices of different categories and products in bulk, targeting specific customers and user roles."),
-        icon: 'adminLib-price',
+        icon: 'adminLib-dynamic-pricing',
         doc_link: '',
         settings_link: appLocalizer.site_url,
         pro_module: true

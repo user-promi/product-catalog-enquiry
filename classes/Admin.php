@@ -105,7 +105,7 @@ class Admin {
      * @return void
      */
     public function menu_page_callback() {
-        echo '<div id="admin-catalog"></div>';
+        echo '<div id="admin-main-wrapper"></div>';
     }
 
     /**

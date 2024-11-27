@@ -38,7 +38,7 @@
             content: "";
             position: absolute;
             top: 50%;
-            left: 2rem;
+            right: 0.45rem;
             width: 0.25rem;
             height: 0.25rem;
             border: $border-theme-small;
@@ -576,6 +576,7 @@
       position: relative;
       flex-wrap: wrap;
       padding-bottom: 0.8rem;
+      z-index: 0;
 
       .settings-checkbox-description {
         margin-right: 0.5rem;
