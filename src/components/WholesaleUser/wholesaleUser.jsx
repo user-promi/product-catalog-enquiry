@@ -19,7 +19,7 @@ const WholesaleUser = () => {
     const { modules } = useModules();
     if ( ! modules.includes( 'wholesale' ) || ! appLocalizer.pro_active ) {
         return (
-            <div> Pro required || Activate module </div>
+            <div className='wholesale-user-image'></div>
         ); 
     }
 

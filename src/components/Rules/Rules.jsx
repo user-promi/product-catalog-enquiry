@@ -685,7 +685,7 @@ const Rules = () => {
     const { modules } = useModules();
     if ( ! modules.includes( 'rules' ) || ! appLocalizer.pro_active ) {
         return (
-            <div> Pro required || Activate module </div>
+            <div className="dynamic-rule-img"></div>
         ); 
     }
 
@@ -798,8 +798,8 @@ const Rules = () => {
             <main className="catalog-rules-main-container">
                 <section className="admin-page-title">
                     <p className="title">Rules</p>
-                    <div className="add-new-rule-btn">
-                        <div className="button-new-rule" onClick={(e) => setAddRuleOpend(true)}>Add New Rule</div>
+                    <div className="">
+                        <div className="main-btn btn-purple" onClick={(e) => setAddRuleOpend(true)}>Add New Rule</div>
                         {
                             addRuleOpend &&
                             <AddUpdateRuleSection

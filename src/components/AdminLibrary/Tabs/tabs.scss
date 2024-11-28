@@ -78,7 +78,10 @@
               line-height: 1.4615384615;
               font-weight: 500;
               color: #121116;
+            }
 
+            .admin-pro-tag{
+              top: 1rem;
             }
 
             .menu-desc {
@@ -142,6 +145,10 @@
             i {
               opacity: 1;
             }
+
+            .admin-pro-tag{
+              top:1rem;
+            }
           }
 
           .menu-close {
@@ -175,7 +182,6 @@
 
               a {
                 width: 100%;
-                box-sizing: border-box;
               }
 
               &.active {

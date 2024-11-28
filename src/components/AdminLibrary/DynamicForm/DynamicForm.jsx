@@ -177,16 +177,17 @@ const DynamicForm = (props) => {
     updateSetting(key, mulipleOptions);
   };
 
-  const handlMultiSelectDeselectChange = ( key, options, type='' ) => {
+  const handlMultiSelectDeselectChange = (key, options, type='') => {
     settingChanged.current = true;
 
     if (Array.isArray(setting[key]) && setting[key].length > 0) {
       updateSetting(key, []);
     } else {
-      const newValue = type === 'multi-select' ? options : options.map(({ value }) => value);
-      updateSetting(key, newValue);
+        const newValue = options
+          .filter((option) => type === 'multi-select' || !isProSetting(option.proSetting))
+          .map(({ value }) => value);
+        updateSetting(key, newValue);
     }
-    
   };
 
   const runUploader = (key) => {
@@ -245,7 +246,7 @@ const DynamicForm = (props) => {
 
   const renderForm = () => {
     return modal.map((inputField, index) => {
-      let value = setting[inputField.key] || "";
+      let value = setting[inputField.key] ?? "";
       let input = "";
 
       // Filter dependent 
@@ -647,72 +648,73 @@ const DynamicForm = (props) => {
 
         // For single or multiple checkbox 
         case "checkbox":
-          input = (
-            <CustomInput.MultiCheckBox
-              wrapperClass="checkbox-list-side-by-side"
-              descClass="settings-metabox-description"
-              description={inputField.desc}
-              selectDeselectClass="btn-purple select-deselect-trigger"
-              inputWrapperClass="toggle-checkbox-header"
-              inputInnerWrapperClass="toggle-checkbox-content" // this props for change classes default/ Toggle
-              inputClass={inputField.class}
-              hintOuterClass="dashicons dashicons-info"
-              hintInnerClass="hover-tooltip"
-              idPrefix="toggle-switch"
-              selectDeselect={inputField.select_deselect}
-              selectDeselectValue="Select / Deselect All"
-              rightContentClass="settings-metabox-description"
-              rightContent={inputField.right_content} // for place checkbox right
-              options={inputField.options}
-              value={value}
-              proSetting={isProSetting(inputField.proSetting)}
-              onChange={(e) => {
-                if ( ! proSettingChanged( inputField.proSetting ) ) {
-                  handleChange(e, inputField.key, "multiple");
-                }
-              }}
-              onMultiSelectDeselectChange={(e) =>
-                handlMultiSelectDeselectChange( inputField.key, inputField.options )
+        input = (
+          <CustomInput.MultiCheckBox
+            wrapperClass="checkbox-list-side-by-side"
+            descClass="settings-metabox-description"
+            description={inputField.desc}
+            selectDeselectClass="btn-purple select-deselect-trigger"
+            inputWrapperClass="toggle-checkbox-header"
+            inputInnerWrapperClass={inputField.look == 'toggle' ? "toggle-checkbox-content" : "default-checkbox"}// this props for change classes default/ Toggle
+            inputClass={inputField.class}
+            hintOuterClass="checkbox-description"
+            hintInnerClass="hover-tooltip"
+            idPrefix="toggle-switch"
+            selectDeselect={inputField.select_deselect}
+            selectDeselectValue="Select / Deselect All"
+            rightContentClass="settings-checkbox-description"
+            rightContent={inputField.right_content} // for place checkbox right
+            options={inputField.options}
+            value={value}
+            proSetting={isProSetting(inputField.proSetting)}
+            onChange={(e) => {
+              if ( ! proSettingChanged( inputField.proSetting ) ) {
+                handleChange(e, inputField.key, "multiple");
               }
-            />
-          );
-          break;
+            }}
+            onMultiSelectDeselectChange={(e) =>
+              handlMultiSelectDeselectChange( inputField.key, inputField.options )
+            }
+            proChanged={() => setModelOpen(true)}
+          />
+        );
+        break;
 
         // for multiple checkbox (free / pro or some free some pro)
-        case "checkbox-default":
-          input = (
-            <CustomInput.MultiCheckBox
-              wrapperClass="checkbox-list-side-by-side"
-              descClass="settings-metabox-description"
-              description={inputField.desc}
-              selectDeselectClass="btn-purple select-deselect-trigger"
-              inputWrapperClass="toggle-checkbox-header"
-              inputInnerWrapperClass="default-checkbox"
-              inputClass={inputField.class}
-              hintOuterClass="checkbox-description"
-              hintInnerClass="hover-tooltip"
-              idPrefix="toggle-switch"
-              selectDeselect={inputField.select_deselect}
-              selectDeselectValue="Select / Deselect All"
-              rightContentClass="settings-checkbox-description"
-              rightContent={inputField.right_content}
-              options={inputField.options}
-              value={value}
-              proSetting={isProSetting(inputField.proSetting)}
-              onChange={(e) => {
-                if (!proSettingChanged(inputField.proSetting)) {
-                  handleChange(e, inputField.key, "multiple");
-                }
-              }}
-              onMultiSelectDeselectChange={(e) => {
-                if (!proSettingChanged(inputField.proSetting)) {
-                  handlMultiSelectDeselectChange(inputField.key, inputField.options)
-                }
-              }}
-              proChanged={() => setModelOpen(true)}
-            />
-          );
-          break;
+        // case "checkbox-default":
+        //   input = (
+        //     <CustomInput.MultiCheckBox
+        //       wrapperClass="checkbox-list-side-by-side"
+        //       descClass="settings-metabox-description"
+        //       description={inputField.desc}
+        //       selectDeselectClass="btn-purple select-deselect-trigger"
+        //       inputWrapperClass="toggle-checkbox-header"
+        //       inputInnerWrapperClass="default-checkbox"
+        //       inputClass={inputField.class}
+        //       hintOuterClass="checkbox-description"
+        //       hintInnerClass="hover-tooltip"
+        //       idPrefix="toggle-switch"
+        //       selectDeselect={inputField.select_deselect}
+        //       selectDeselectValue="Select / Deselect All"
+        //       rightContentClass="settings-checkbox-description"
+        //       rightContent={inputField.right_content}
+        //       options={inputField.options}
+        //       value={value}
+        //       proSetting={isProSetting(inputField.proSetting)}
+        //       onChange={(e) => {
+        //         if (!proSettingChanged(inputField.proSetting)) {
+        //           handleChange(e, inputField.key, "multiple");
+        //         }
+        //       }}
+        //       onMultiSelectDeselectChange={(e) => {
+        //         if (!proSettingChanged(inputField.proSetting)) {
+        //           handlMultiSelectDeselectChange(inputField.key, inputField.options)
+        //         }
+        //       }}
+        //       proChanged={() => setModelOpen(true)}
+        //     />
+        //   );
+        //   break;
 
         // For particular plugin required checkbox ( like if stock-alert plugin not active the checkbox not open)
         case "stock-alert-checkbox":
@@ -1062,6 +1064,12 @@ const DynamicForm = (props) => {
           );
           break;
 
+        case "icon-list":
+          input = (
+            <IconList
+            />
+          );
+          break;
         }
 
         return inputField.type === "section" || inputField.label === "no_label" ? (

@@ -1,5 +1,12 @@
 @import '../config.scss';
 
+.enquiry-img {
+  background-image: url("../../assets/images/enquiry-page-desktop.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  height: 100vh;
+}
 
 .container {
   width: 100%;
@@ -42,7 +49,7 @@
             width: calc(100% + 3rem);
             padding: 1.5rem;
             z-index: 6;
-            background: #fff;
+            background: $color-white;
             box-shadow: 0 0 1.25rem rgba($color: #000000, $alpha: 0.125);
             max-height: 31.25rem;
             overflow-y: scroll;
@@ -126,6 +133,7 @@
                           .chat-text-control-wrapper{
                             display: flex;
                             flex-direction: column;
+                            align-items: start;
                             background: #ffffff;
                             position: absolute;
                             width: 10rem;
@@ -139,7 +147,6 @@
                             button{
                               padding: 0.75rem !important;
                               font-size: 0.875rem !important;
-                              text-align: left;
                               background: transparent;
                             }
                           }
@@ -163,7 +170,7 @@
 
           .header-heading {
             display: flex;
-            align-items: end;
+            align-items: center;
             justify-content: flex-start;
             gap: 0.5rem;
   
@@ -1296,109 +1303,6 @@
       justify-content: center;
       flex-direction: column;
       gap: 0.75rem;
-
-      .loader {
-        --uib-size: 2.205rem;
-        --uib-speed: 0.8s;
-        --uib-color: #65438f;
-        position: relative;
-        display: inline-block;
-        height: var(--uib-size);
-        width: var(--uib-size);
-        animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
-  
-        .three-body__dot {
-          position: absolute;
-          height: 100%;
-          width: 30%;
-  
-          &:after {
-            content: "";
-            position: absolute;
-            height: 0%;
-            width: 100%;
-            padding-bottom: 100%;
-            background-color: var(--uib-color);
-            border-radius: 50%;
-          }
-  
-          &:nth-child(1) {
-            bottom: 5%;
-            left: 0;
-            transform: rotate(60deg);
-            transform-origin: 50% 85%;
-  
-            &::after {
-              bottom: 0;
-              left: 0;
-              animation: wobble1 var(--uib-speed) infinite ease-in-out;
-              animation-delay: calc(var(--uib-speed) * -0.3);
-            }
-          }
-  
-          &:nth-child(2) {
-            bottom: 5%;
-            right: 0;
-            transform: rotate(-60deg);
-            transform-origin: 50% 85%;
-  
-            &::after {
-              bottom: 0;
-              left: 0;
-              animation: wobble1 var(--uib-speed) infinite
-                calc(var(--uib-speed) * -0.15) ease-in-out;
-            }
-          }
-  
-          &:nth-child(3) {
-            bottom: -5%;
-            left: 0;
-            transform: translateX(116.666%);
-  
-            &::after {
-              top: 0;
-              left: 0;
-              animation: wobble2 var(--uib-speed) infinite ease-in-out;
-            }
-          }
-        }
-  
-        @keyframes spin78236 {
-          0% {
-            transform: rotate(0deg);
-          }
-  
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-  
-        @keyframes wobble1 {
-          0%,
-          100% {
-            transform: translateY(0%) scale(1);
-            opacity: 1;
-          }
-  
-          50% {
-            transform: translateY(-66%) scale(0.65);
-            opacity: 0.8;
-          }
-        }
-  
-        @keyframes wobble2 {
-          0%,
-          100% {
-            transform: translateY(0%) scale(1);
-            opacity: 1;
-          }
-  
-          50% {
-            transform: translateY(66%) scale(0.65);
-            opacity: 0.8;
-          }
-        }
-      }
     }
 
     .thankyou-section-wrapper{
@@ -1514,6 +1418,7 @@
   padding: 0.5rem;
   background: #fff;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+  width: 10rem;
 
   .control-btn {
     width: 100% !important;

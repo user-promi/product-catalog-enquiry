@@ -101,10 +101,10 @@ export default function banner() {
                                 <ul className="carousel-list">
                                     <li className="carousel-item active">
                                         <div className="admin-pro-txt-items">
-                                            <h3>Double Opt-In {' '}</h3>
-                                            <p>Experience the power of Double Opt-In for our Stock Alert Form - Guaranteed precision in every notification!{' '}</p>
+                                            <h3>This is a sample banner</h3>
+                                            <p>Sample banner description</p>
                                             <a
-                                                href={appLocalizer.pro_url}
+                                                // href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
@@ -113,50 +113,11 @@ export default function banner() {
                                         </div>
                                     </li>
                                     <li class="carousel-item">
-                                        <div className="admin-pro-txt-items">
-                                            <h3>Your Subscription Hub{' '}</h3>
-                                            <p>Subscription Dashboard - Easily monitor and download lists of out-of-stock subscribers for seamless management.{' '}</p>
+                                    <div className="admin-pro-txt-items">
+                                            <h3>This is a example banner</h3>
+                                            <p>example banner description</p>
                                             <a
-                                                href={appLocalizer.pro_url}
-                                                target='_blank'
-                                                className="admin-btn btn-red"
-                                            >
-                                                View Pricing
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="carousel-item">
-                                        <div className="admin-pro-txt-items">
-                                            <h3>Mailchimp Bridge{' '}</h3>
-                                            <p>Seamlessly link WooCommerce out-of-stock subscriptions with Mailchimp for effective marketing.{' '}</p>
-                                            <a
-                                                href={appLocalizer.pro_url}
-                                                target='_blank'
-                                                className="admin-btn btn-red"
-                                            >
-                                                View Pricing
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="carousel-item">
-                                        <div className="admin-pro-txt-items">
-                                            <h3>Unsubscribe Notifications{' '}</h3>
-                                            <p>User-Initiated Unsubscribe from In-Stock Notifications.{' '}</p>
-                                            <a
-                                                href={appLocalizer.pro_url}
-                                                target='_blank'
-                                                className="admin-btn btn-red"
-                                            >
-                                                View Pricing
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="carousel-item">
-                                        <div className="admin-pro-txt-items">
-                                            <h3>Ban Spam Emails {' '}</h3>
-                                            <p>Email and Domain Blacklist for Spam Prevention.{' '}</p>
-                                            <a
-                                                href={appLocalizer.pro_url}
+                                                // href={appLocalizer.pro_url}
                                                 target='_blank'
                                                 className="admin-btn btn-red"
                                             >
