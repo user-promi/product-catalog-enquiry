@@ -166,7 +166,7 @@ class Frontend{
             'content_after_form'  => apply_filters('catalog_add_content_after_form', ''),
         ]);
 
-        if (is_product() || is_page()) {
+        if (is_product()) {
             wp_enqueue_style( 'mvx-catalog-product-style' );
             // additional css
             $additional_css_settings = Catalog()->setting->get_setting( 'custom_css_product_page' );

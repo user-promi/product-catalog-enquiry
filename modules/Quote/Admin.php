@@ -9,6 +9,7 @@ class Admin {
     public function __construct() {
         add_action( 'init', [$this, 'register_custom_order_status'] );
         add_filter( 'wc_order_statuses', [$this, 'add_custom_order_status_to_order_statuses'] );
+        add_filter( 'wc_order_is_editable', [ $this, 'order_is_editable' ], 10, 2 );
     }
 
     /**
@@ -96,5 +97,25 @@ class Admin {
 		}
 
 		return $new_status;
+    }
+
+    /**
+     * make the order is editable in order-edit page
+     * @return void
+     */
+    public function order_is_editable( $editable, $order ) {
+        $accepted_statuses = [
+                'quote-new',
+                'quote-accepted',
+                'quote-pending',
+                'quote-expired',
+                'quote-rejected',
+            ];
+
+        if ( in_array( $order->get_status(), $accepted_statuses, true ) ) {
+            return true;
+        }
+
+        return $editable;
     }
 }

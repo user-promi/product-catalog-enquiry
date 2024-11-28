@@ -15,6 +15,7 @@ class Block {
         add_action( 'enqueue_block_editor_assets', [ $this,'enqueue_block_assets'] );
         add_action( 'wp_enqueue_scripts', [ $this,'enqueue_block_assets'] );
 
+        $current_user = wp_get_current_user();
         $this->blocks = [
             [
                 'name' => 'enquiry-button', // block name
@@ -62,7 +63,9 @@ class Block {
 					'data' => [
                         'apiUrl' => '',
 						'restUrl' => 'catalog/v1',
-						'nonce'  => wp_create_nonce('wp_rest')
+						'nonce'  => wp_create_nonce('wp_rest'),
+                        'name'  => $current_user->display_name,
+                        'email' => $current_user->user_email
 					],
 				],
             ],

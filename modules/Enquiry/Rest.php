@@ -75,8 +75,7 @@ class Rest {
         if ( empty( $product_info ) ) {
             $product_info[ $product_id ] = $quantity;
         }
-        
-        // Get extra fields
+       // Get extra fields
         $other_fields = [];
         foreach ( $post_params as $key => $value ) {
             switch ( $key ) {
@@ -96,13 +95,12 @@ class Rest {
                     break;
             }
         }
-
         // Prepare data for insertion
         $data = [
             'product_info'           => serialize( $product_info ),
             'user_id'                => $user->ID,
-            'user_name'              => $customer_name, 
-            'user_email'             => $customer_email, 
+            'user_name'              => $customer_name ?? $user_name, 
+            'user_email'             => $customer_email ?? $user_email, 
             'user_additional_fields' => serialize( $other_fields ),
         ];
 

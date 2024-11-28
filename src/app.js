@@ -10,38 +10,37 @@ import WholesaleUser from './components/WholesaleUser/wholesaleUser.jsx';
 import Rules from './components/Rules/Rules.jsx';
 
 const Route = () => {
-    const location = new URLSearchParams(useLocation().hash);
+    const currentTab = new URLSearchParams(useLocation().hash);
     return (
         <>
-            { location.get('tab') === 'settings' && <Settings initialTab='general' id="settings" /> }
-            { location.get('tab') === 'modules' && <Modules/> }
-            { location.get('tab') === 'quote-requests' && <QuotesList />}
-            { location.get('tab') === 'wholesale-users' && <WholesaleUser />}
-            { location.get('tab') === 'enquiry-messages' && <EnquiryMessages />}
-            { location.get('tab') === 'rules' && <Rules />}
+            { currentTab.get('tab') === 'settings' && <Settings initialTab='general' id="settings" /> }
+            { currentTab.get('tab') === 'modules' && <Modules/> }
+            { currentTab.get('tab') === 'quote-requests' && <QuotesList />}
+            { currentTab.get('tab') === 'wholesale-users' && <WholesaleUser />}
+            { currentTab.get('tab') === 'enquiry-messages' && <EnquiryMessages />}
+            { currentTab.get('tab') === 'rules' && <Rules />}
         </>
     );
 }
 
 const App = () => {
-    const location = new URLSearchParams(useLocation().hash);
+    const currentTabParams = new URLSearchParams(useLocation().hash);
     
-    document.querySelectorAll('#toplevel_page_catalog>ul>li>a').forEach((element) => {
-        const urlObject = new URL(element.href);
-        const hashParams = new URLSearchParams(urlObject.hash.substring(1));
+    document.querySelectorAll('#toplevel_page_catalog>ul>li>a').forEach((menuItem) => {
+        const menuItemUrl = new URL(menuItem.href);
+        const menuItemHashParams = new URLSearchParams(menuItemUrl.hash.substring(1));
 
-        element.parentNode.classList.remove('current');
-        if ( hashParams.get('tab') === location.get('tab')) {
-            element.parentNode.classList.add('current');
+        menuItem.parentNode.classList.remove('current');
+        if ( menuItemHashParams.get('tab') === currentTabParams.get('tab')) {
+            menuItem.parentNode.classList.add('current');
         }
     });
-    
+   
     return (
         <>
             <ModuleProvider modules = {appLocalizer.active_modules}><Route/></ModuleProvider>
         </>
     )
-   
 }
 
 export default App;

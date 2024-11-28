@@ -135,26 +135,14 @@ const QuoteList = () => {
 	//columns for the data table
 	const columns = [
 		{
-			name: __("Remove", "woocommerce-catalog-enquiry"),
-			cell: (row) =>
-				<TableCell title="remove" >
-						<p onClick={(e) => handleRemoveCart(e, row.id, row.key)}>cross</p>
-				</TableCell>,
-		},
-		{
-			name: __("Image", "woocommerce-catalog-enquiry"),
+			name: __("Product", "woocommerce-catalog-enquiry"),
 			cell: (row) =>
 				<TableCell title="image" >
-						<p dangerouslySetInnerHTML={{ __html: row.image }}></p>
+					<p dangerouslySetInnerHTML={{ __html: row.image }}></p>
+					<p dangerouslySetInnerHTML={{ __html: row.name }}></p>
+					<p className='adminLib-cross' onClick={(e) => handleRemoveCart(e, row.id, row.key)}></p>
 				</TableCell>,
-		},
-		{
-			name: __("Name", "woocommerce-catalog-enquiry"),
-			cell: (row) => (
-				<TableCell title="name">
-                        <p dangerouslySetInnerHTML={{ __html: row.name }}></p>
-				</TableCell>
-			),
+				
 		},
         {
 			name: __("Quantity", "woocommerce-catalog-enquiry"),
@@ -177,6 +165,7 @@ const QuoteList = () => {
 
 	return (
 		<>
+		{console.log(formData)}
 			<div className="admin-enrollment-list QuoteListTable-main-wrapper">
 				<div className="admin-page-title">
 					<div className="add-to-quotation-button">
@@ -209,7 +198,7 @@ const QuoteList = () => {
 							type="text"
 							id="name"
 							name="name"
-							value={formData.name}
+							value={quote_cart.name || formData.name}
 							onChange={handleInputChange}
 						/>
 					</p>
@@ -219,7 +208,7 @@ const QuoteList = () => {
 							type="email"
 							id="email"
 							name="email"
-							value={formData.email}
+							value={quote_cart.email || formData.email}
 							onChange={handleInputChange}
 						/>
 					</p>

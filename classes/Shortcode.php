@@ -15,6 +15,7 @@ class Shortcode {
 
     function frontend_scripts() {
 
+        $current_user = wp_get_current_user();
         if (Catalog()->modules->is_active('quote')) {
             wp_enqueue_script('quote_list_js', Catalog()->plugin_url . 'build/blocks/quote-cart/index.js', [ 'jquery', 'jquery-blockui', 'wp-element', 'wp-i18n', 'wp-blocks' ], Catalog()->version, true);
             wp_localize_script(
@@ -22,6 +23,8 @@ class Shortcode {
                 'apiUrl' => untrailingslashit(get_rest_url()),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'restUrl' => 'catalog/v1',
+                'name'  => $current_user->display_name,
+                'email' => $current_user->user_email
             ]);
             wp_enqueue_style('quote_list_css', Catalog()->plugin_url . 'build/blocks/quote-cart/index.css');
     
