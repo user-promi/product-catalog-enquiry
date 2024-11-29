@@ -21,6 +21,9 @@ do_action( 'woocommerce_email_header', $email_heading  ); ?>
                     <th scope="col" style="text-align:center; border: 1px solid #eee;">
                         <?php esc_html_e( 'Qty', 'woocommerce-catalog-enquiry-pro'); ?>
                     </th>
+                    <th scope="col" style="text-align:center; border: 1px solid #eee;">
+                        <?php esc_html_e( 'Price', 'woocommerce-catalog-enquiry-pro'); ?>
+                    </th>
                 </tr>
             </thead>
 
@@ -35,6 +38,9 @@ do_action( 'woocommerce_email_header', $email_heading  ); ?>
                     </td>
                     <td class="product_quantity">
                         <?php echo esc_html( $item['quantity'] ); ?>
+                    </td>
+                    <td class="product_quantity">
+                        <?php echo wc_price( $_product->get_regular_price() ); ?>
                     </td>
                 </tr>
                 <?php 

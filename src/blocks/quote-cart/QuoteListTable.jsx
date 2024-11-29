@@ -12,8 +12,8 @@ const QuoteList = () => {
 	const [responseContent, setResponseContent] = useState(false);
 	const [responseStatus, setResponseStatus] = useState('');
 	const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+        name: quote_cart.name || '',
+        email: quote_cart.email || '',
         phone: '',
         message: '',
     });
@@ -198,7 +198,7 @@ const QuoteList = () => {
 							type="text"
 							id="name"
 							name="name"
-							value={quote_cart.name || formData.name}
+							value={formData.name}
 							onChange={handleInputChange}
 						/>
 					</p>
@@ -208,7 +208,7 @@ const QuoteList = () => {
 							type="email"
 							id="email"
 							name="email"
-							value={quote_cart.email || formData.email}
+							value={formData.email}
 							onChange={handleInputChange}
 						/>
 					</p>

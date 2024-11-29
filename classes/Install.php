@@ -112,7 +112,7 @@ class Install {
             ) $collate;"
         );
 
-        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             // Rebame the table
             $wpdb->query(
                 "ALTER TABLE `{$wpdb->prefix}catelog_cust_vendor_answers` RENAME TO `{$wpdb->prefix}" . Utill::TABLES[ 'message' ] . "`"
@@ -139,7 +139,7 @@ class Install {
      * @return void
      */
     public static function set_default_modules() {
-        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             
             // Enable enquiry module by default
             $active_module_list = [ 'catalog' ];
@@ -162,7 +162,7 @@ class Install {
     public function migrate_database_table() {
         global $wpdb;
 
-        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             try {
                 // Get enquiry post and post meta
                 $enquirys_datas = $wpdb->get_results(
@@ -213,7 +213,7 @@ class Install {
      */
     public function set_default_settings() {
         // Migration by version controll
-        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             
             $previous_general_settings = get_option( 'mvx_catalog_general_tab_settings', [] );
             $previous_button_settings = get_option( 'mvx_catalog_button_appearance_tab_settings', [] );
@@ -455,7 +455,7 @@ class Install {
     }
 
     public function migrate_vendor_settings() {
-        if ( version_compare( self::$previous_version, '5.0.8', '<=' ) ) {
+        if ( version_compare( self::$previous_version, '5.1.0', '<' ) ) {
             $vendors = get_users( array( 'role' => 'dc_vendor' ) );
 
             foreach ( $vendors as $vendor ) {

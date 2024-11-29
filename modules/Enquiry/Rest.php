@@ -124,8 +124,8 @@ class Rest {
 
             $enquiry_data = apply_filters( 'woocommerce_catalog_enquiry_form_data', [
                 'enquiry_id'            => $enquiry_id,
-				'user_name'             => $customer_name,
-				'user_email'            => $customer_email,
+				'user_name'             => $customer_name ?? $user_name,
+				'user_email'            => $customer_email ?? $user_email,
 				'product_id'            => $product_info,
                 'variations'            => $product_variations,
 				'user_enquiry_fields'   => $other_fields,

@@ -13,6 +13,7 @@ foreach ( $products as $item ) {
     $_product = wc_get_product( $item['product_id'] );
     echo sprintf( __( 'Product: %s', 'woocommerce-catalog-enquiry-pro' ), $_product->get_title() ) . "\n";
     echo sprintf( __( 'Qty: %s', 'woocommerce-catalog-enquiry-pro' ), $item['quantity'] ) . "\n\n";
+    echo sprintf( __( 'Price: %s', 'woocommerce-catalog-enquiry-pro' ), $_product->get_regular_price() ) . "\n\n";
 }
 
 echo "\n" . __( 'Customer Details:', 'woocommerce-catalog-enquiry-pro' ) . "\n";
