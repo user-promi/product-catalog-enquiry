@@ -282,7 +282,7 @@ const WholesaleUser = () => {
 			name: __("", "woocommerce-catalog-enquiry"),
 			cell: (row) => (
 				<TableCell title="view">
-					<button className='view-application' onClick={(e)=> handleView(row.id)}>
+					<button className='main-btn btn-purple' onClick={(e)=> handleView(row.id)}>
 						View Application
 					</button>
 					{
