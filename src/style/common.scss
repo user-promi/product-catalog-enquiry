@@ -715,6 +715,25 @@ span.admin-pro-tag{
   }
 }
 
+// Table filter common style
+.admin-table-wrapper-filter {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .875rem;
+  gap: .5rem;
+  justify-content: flex-start;
+  margin-bottom: .75rem;
+
+  &>div {
+      cursor: pointer;
+  }
+
+  .type-count-active {
+      color: $theme-color;
+  }
+}
+
 @media screen and (max-width: 49.266rem) {
   input[type=checkbox], input[type=radio]{
     height: 1rem;

@@ -32,31 +32,6 @@
     }
 
     .selectable-table {
-        .view-application{
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            background: $color-active;
-            color: $color-white;
-            cursor: pointer;
-            user-select: none;
-        }
-        .admin-table-wrapper-filter {
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            font-size: .875rem;
-            gap: .5rem;
-            justify-content: flex-start;
-            margin-bottom: .75rem;
-
-            &>div {
-                cursor: pointer;
-            }
-
-            .type-count-active {
-                color: $theme-color;
-            }
-        }
         .status-show-btn{
             background: #f0f0f0;
             border-radius: $border-radius-small;

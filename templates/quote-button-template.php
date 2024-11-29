@@ -25,14 +25,14 @@ $position = $position !== false ? $position : 0;
 	<div
 		class="quote_add_item_product-response-<?php echo esc_attr( $args['product_id'] ); ?>"
 		style="display:none" data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"></div>
-	<div
-		class="quote_add_item_response-<?php echo esc_attr( $args['product_id'] ); ?> quote_add_item_response_message <?php echo esc_attr( ( ! $args['exists'] ) ? 'hide' : 'show' ); ?> hide-when-removed"
-		data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"
-		style="display:<?php echo ( ! $args['exists'] ) ? 'none' : 'block'; ?>"><?php echo esc_html('Product already in your quote list' ); ?></div>
-	<div
+		<div
 		class="quote_add_item_browse-list-<?php echo esc_attr( $args['product_id'] ); ?> quote_add_item_browse_message  <?php echo esc_attr( ( ! $args['exists'] ) ? 'hide' : 'show' ); ?> hide-when-removed"
 		style="display:<?php echo esc_attr( ( ! $args['exists'] ) ? 'none' : 'block' ); ?>"
 		data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"><a
-			href="<?php echo esc_url( $args['rqa_url'] ); ?>" style = "<?php echo $args['btn_style'] ?>" class="button alt wp-element-button"><?php echo esc_html( $args['label_browse'] ); ?></a></div>
+		href="<?php echo esc_url( $args['rqa_url'] ); ?>" style = "<?php echo $args['btn_style'] ?>" class="button alt wp-element-button"><?php echo esc_html( $args['label_browse'] ); ?></a></div>
+		<div
+			class="quote_add_item_response-<?php echo esc_attr( $args['product_id'] ); ?> quote_add_item_response_message <?php echo esc_attr( ( ! $args['exists'] ) ? 'hide' : 'show' ); ?> hide-when-removed"
+			data-product_id="<?php echo esc_attr( $args['product_id'] ); ?>"
+			style="display:<?php echo ( ! $args['exists'] ) ? 'none' : 'block'; ?>"><?php echo esc_html('Product already in your quote list' ); ?></div>
 </div>
 <div class="clear"></div>
