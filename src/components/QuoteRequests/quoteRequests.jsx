@@ -4,6 +4,7 @@ import { __ } from "@wordpress/i18n";
 import Dialog from "@mui/material/Dialog";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Popoup from "../PopupContent/PopupContent";
+import Modulepopup from "../PopupContent/ModulePopup";
 import CustomTable, {
   TableCell,
 } from "../AdminLibrary/CustomTable/CustomTable";
@@ -17,16 +18,7 @@ import { useModules } from '../../contexts/ModuleContext.jsx';
 
 export default function QuotesList() {
 
-  // Check pro is active and module is active or not.
   const { modules } = useModules();
-
-  if (!modules.includes('quote') || !appLocalizer.pro_active) {
-    return (
-      <div className="quote-img"></div>
-    );
-  }
-
-
   const fetchQuotesDataUrl = `${appLocalizer.apiurl}/catalog/v1/get-quotes-list`;
   const fetchQuotesCount = `${appLocalizer.apiurl}/catalog/v1/get-table-segment`;
   const [postStatus, setPostStatus] = useState("");
@@ -125,52 +117,56 @@ export default function QuotesList() {
   // }
 
   useEffect(() => {
-    requestData();
+    if (appLocalizer.pro_active) {
+			requestData();
+		}
   }, [postStatus]);
 
   useEffect(() => {
-    axios({
-      method: "post",
-      url: fetchQuotesCount,
-      headers: { "X-WP-Nonce": appLocalizer.nonce },
-    }).then((response) => {
-      response = response.data;
+    if (appLocalizer.pro_active) {
+      axios({
+        method: "post",
+        url: fetchQuotesCount,
+        headers: { "X-WP-Nonce": appLocalizer.nonce },
+      }).then((response) => {
+        response = response.data;
 
-      setTotalRows(response["all"]);
+        setTotalRows(response["all"]);
 
-      setQuotesStatus([
-        {
-          key: "all",
-          name: __("All", "woocommerce-catalog-enquiry"),
-          count: response["all"],
-        },
-        {
-          key: "wc-quote-new",
-          name: __("New", "woocommerce-catalog-enquiry"),
-          count: response["wc-quote-new"],
-        },
-        {
-          key: "wc-quote-pending",
-          name: __("Pending", "woocommerce-catalog-enquiry"),
-          count: response["wc-quote-pending"],
-        },
-        {
-          key: "wc-quote-accepted",
-          name: __("Accepted", "woocommerce-catalog-enquiry"),
-          count: response["wc-quote-accepted"],
-        },
-        {
-          key: "wc-quote-expired",
-          name: __("Expired", "woocommerce-catalog-enquiry"),
-          count: response["wc-quote-expired"],
-        },
-        {
-          key: "wc-quote-rejected",
-          name: __("Rejected", "woocommerce-catalog-enquiry"),
-          count: response["wc-quote-rejected"],
-        },
-      ]);
-    });
+        setQuotesStatus([
+          {
+            key: "all",
+            name: __("All", "woocommerce-catalog-enquiry"),
+            count: response["all"],
+          },
+          {
+            key: "wc-quote-new",
+            name: __("New", "woocommerce-catalog-enquiry"),
+            count: response["wc-quote-new"],
+          },
+          {
+            key: "wc-quote-pending",
+            name: __("Pending", "woocommerce-catalog-enquiry"),
+            count: response["wc-quote-pending"],
+          },
+          {
+            key: "wc-quote-accepted",
+            name: __("Accepted", "woocommerce-catalog-enquiry"),
+            count: response["wc-quote-accepted"],
+          },
+          {
+            key: "wc-quote-expired",
+            name: __("Expired", "woocommerce-catalog-enquiry"),
+            count: response["wc-quote-expired"],
+          },
+          {
+            key: "wc-quote-rejected",
+            name: __("Rejected", "woocommerce-catalog-enquiry"),
+            count: response["wc-quote-rejected"],
+          },
+        ]);
+      });
+    }
   }, []);
 
   const dateRef = useRef();
@@ -302,43 +298,98 @@ export default function QuotesList() {
   ];
 
   return (
-    <div>
-      <div className="admin-subscriber-list">
-        <div className="admin-page-title">
-          <p>{__("Quotes List", "woocommerce-catalog-enquiry")}</p>
-          <div className="add-to-quotation-button">
-            <a className="" href="admin-ajax.php?action=add_quote_from_adminend">
-              Add Quote
-            </a>
-          </div>
-          <div className="download-btn-subscriber-list">
-            <CSVLink
-              data={filterForCSV(data || [])}
-              filename={"Quotes.csv"}
-              className="admin-btn"
-            >
-              <div className="wp-menu-image dashicons-before dashicons-download"></div>
-              {__("Download CSV", "woocommerce-catalog-enquiry")}
-            </CSVLink>
+    <>
+      {!appLocalizer.pro_active ? (
+				<>
+					<Dialog
+						className="admin-module-popup"
+						open={openDialog}
+						onClose={() => {
+							setOpenDialog(false);
+						}}
+						aria-labelledby="form-dialog-title"
+					>
+						<span
+							className="admin-font adminLib-cross stock-manager-popup-cross"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						></span>
+						<Popoup />
+					</Dialog>
+					<div
+						className="quote-img"
+						onClick={() => {
+							setOpenDialog(true);
+						}}>
+					</div>
+				</>
+			) : !modules.includes('quote') ? (
+        <>
+          <Dialog
+						className="admin-module-popup"
+						open={openDialog}
+						onClose={() => {
+							setOpenDialog(false);
+						}}
+						aria-labelledby="form-dialog-title"
+					>
+						<span
+							className="admin-font adminLib-cross stock-manager-popup-cross"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						></span>
+						<Modulepopup name='quote' />
+					</Dialog>
+					<div
+						className="quote-img"
+						onClick={() => {
+							setOpenDialog(true);
+						}}>
+					</div>
+        </>
+      ) : (
+        <div>
+          <div className="admin-subscriber-list">
+            <div className="admin-page-title">
+              <p>{__("Quotes List", "woocommerce-catalog-enquiry")}</p>
+              <div className="add-to-quotation-button">
+                <a className="" href="admin-ajax.php?action=add_quote_from_adminend">
+                  Add Quote
+                </a>
+              </div>
+              <div className="download-btn-subscriber-list">
+                <CSVLink
+                  data={filterForCSV(data || [])}
+                  filename={"Quotes.csv"}
+                  className="admin-btn"
+                >
+                  <div className="wp-menu-image dashicons-before dashicons-download"></div>
+                  {__("Download CSV", "woocommerce-catalog-enquiry")}
+                </CSVLink>
+              </div>
+            </div>
+            {
+              <CustomTable
+                data={data}
+                columns={columns}
+                selectable={true}
+                handleSelect={(selectRows) => {
+                  setSelectedRows(selectRows);
+                }}
+                handlePagination={requestApiForData}
+                defaultRowsParPage={10}
+                defaultTotalRows={totalRows}
+                perPageOption={[10, 25, 50]}
+                realtimeFilter={realtimeFilter}
+                typeCounts={quotesStatus}
+              />
+            }
           </div>
         </div>
-        {
-          <CustomTable
-            data={data}
-            columns={columns}
-            selectable={true}
-            handleSelect={(selectRows) => {
-              setSelectedRows(selectRows);
-            }}
-            handlePagination={requestApiForData}
-            defaultRowsParPage={10}
-            defaultTotalRows={totalRows}
-            perPageOption={[10, 25, 50]}
-            realtimeFilter={realtimeFilter}
-            typeCounts={quotesStatus}
-          />
-        }
-      </div>
-    </div>
+      )}
+    </>
+   
   );
 }

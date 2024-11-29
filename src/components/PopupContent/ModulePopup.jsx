@@ -4,7 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import './popupContent.scss';
 
-const Propopup = () => {
+const Modulepopup = (props) => {
     return (
         <>
             <DialogContent>
@@ -14,16 +14,10 @@ const Propopup = () => {
                             <div className="admin-overlay-content">
                                 <h1 className="banner-header">Unlock <span className="banner-pro-tag">Pro</span> </h1>
                                 <div className="admin-banner-content">
-                                    <strong>Unlock revenue-boosting features with CatalogX Pro today !</strong>
+                                    <strong>{props.name}</strong>
                                     <p>&nbsp;</p>
-                                    <p>1. Speed up sales by automating personalized quotes.</p>
-                                    <p>2. Boost bulk sales with exclusive pricing and wholesale order forms.</p>
-                                    <p>3. Enable multiple product inquiries at once to boost customer engagement.</p>
-                                    <p>4. Advanced inquiry messaging with file uploads, tagging etc..</p>
-                                    <p>5. Increase revenue with tailored pricing for different user roles.</p>
-                                    <p>6. Drive higher sales with customized pricing for product categories.</p>
+                                    <p>1. Double Opt-in.</p>
                                 </div>
-                                <a className="admin-go-pro-btn" target="_blank" href={appLocalizer.pro_url}>Upgrade to Pro</a>
                             </div>
                         </div>
                     </div>
@@ -33,4 +27,4 @@ const Propopup = () => {
     );
 }
 
-export default Propopup;
+export default Modulepopup;

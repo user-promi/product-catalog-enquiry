@@ -243,6 +243,7 @@ class Admin {
             'template6'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_5.png',
             'template7'                 => Catalog()->plugin_url . 'assets/images/email/templates/woocommerce_catalog_send_email_tpl_6.png',
             'pro_active'                => Utill::is_pro_active(),
+            'pro_url'                   => esc_url( WOOCOMMERCE_CATALOG_ENQUIRY_PRO_SHOP_URL ),
             'order_edit'                => admin_url( "admin.php?page=wc-orders&action=edit" ),
             'site_url'                  => admin_url( 'admin.php?page=catalog#&tab=settings&subtab=all_settings' ),
             'currency'                  => get_woocommerce_currency(),
