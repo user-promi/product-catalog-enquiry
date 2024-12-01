@@ -9,6 +9,8 @@ import { useModules } from "../../contexts/ModuleContext";
 import "./Rules.scss";
 import Dialog from "@mui/material/Dialog";
 import AddRole from "../Roles/addRole";
+import Popoup from "../PopupContent/PopupContent";
+import Modulepopup from "../PopupContent/ModulePopup";
 
 let productOptions = appLocalizer.all_products || [];
 productOptions = [
@@ -683,15 +685,16 @@ const Rules = () => {
 
     // Check pro is active and module is active or not.
     const { modules } = useModules();
-    if ( ! modules.includes( 'rules' ) || ! appLocalizer.pro_active ) {
-        return (
-            <div className="dynamic-rule-img"></div>
-        ); 
-    }
+    // if ( ! modules.includes( 'rules' ) || ! appLocalizer.pro_active ) {
+    //     return (
+    //         <div className="dynamic-rule-img"></div>
+    //     ); 
+    // }
 
     // State variable declearation
     const [rulesList, setRuleList] = useState(null);
     const [addRuleOpend, setAddRuleOpend] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
 
     // Load the rules
     const fetchRules = async () => {
@@ -706,7 +709,9 @@ const Rules = () => {
 
     // Set the rules in loading of page
     useEffect(() => {
-        fetchRules();
+        if (modules.includes('rules')) {
+            fetchRules();
+        }
     }, []);
 
     // Handle new rule submit
@@ -795,65 +800,117 @@ const Rules = () => {
 
     return (
         <>
-            <main className="catalog-rules-main-container">
-                <section className="admin-page-title">
-                    <p className="title">Rules</p>
-                    <div className="">
-                        <div className="main-btn btn-purple" onClick={(e) => setAddRuleOpend(true)}>Add New Rule</div>
+        {!appLocalizer.pro_active ? (
+				<>
+					<Dialog
+						className="admin-module-popup"
+						open={openDialog}
+						onClose={() => {
+							setOpenDialog(false);
+						}}
+						aria-labelledby="form-dialog-title"
+					>
+						<span
+							className="admin-font adminLib-cross"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						></span>
+						<Popoup />
+					</Dialog>
+					<div
+						className="dynamic-rule-img"
+						onClick={() => {
+							setOpenDialog(true);
+						}}>
+					</div>
+				</>
+			) : !modules.includes('rules') ? (
+				<>
+					<Dialog
+						className="admin-module-popup"
+						open={openDialog}
+						onClose={() => {
+							setOpenDialog(false);
+						}}
+						aria-labelledby="form-dialog-title"
+					>
+						<span
+							className="admin-font adminLib-cross stock-manager-popup-cross"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						></span>
+						<Modulepopup name='rules' />
+					</Dialog>
+					<div
+						className="dynamic-rule-img"
+						onClick={() => {
+							setOpenDialog(true);
+						}}>
+					</div>
+				</>
+			) : (
+                <main className="catalog-rules-main-container">
+                    <section className="admin-page-title">
+                        <p className="title">Rules</p>
+                        <div className="">
+                            <div className="main-btn btn-purple" onClick={(e) => setAddRuleOpend(true)}>Add New Rule</div>
+                            {
+                                addRuleOpend &&
+                                <AddUpdateRuleSection
+                                    onSubmit={(rule) => {
+                                        setAddRuleOpend(false);
+                                        handleAddRule(rule);
+                                    }}
+                                    onClose={() => setAddRuleOpend(false)}
+                                />
+                            }
+                        </div>
+                    </section>
+
+                    <div className="rule-section-main-wrapper">
+                        <FilterSection onChange={() => { }} />
+
+                        {/* Render drag and drop */}
                         {
-                            addRuleOpend &&
-                            <AddUpdateRuleSection
-                                onSubmit={(rule) => {
-                                    setAddRuleOpend(false);
-                                    handleAddRule(rule);
-                                }}
-                                onClose={() => setAddRuleOpend(false)}
-                            />
+                            rulesList &&
+                            <div className="draggable-rule-container">
+                                <section className="rules-table-heading-wrapper">
+                                    <div>Name</div>
+                                    <div>Applicable For</div>
+                                    <div>For Whom</div>
+                                    {/* <div>Rule</div> */}
+                                    <div>Rule</div>
+                                    <div>Status</div>
+                                    <div>Action</div>
+                                </section>
+                                <ReactDragListView
+                                    nodeSelector=".draggable-rule"
+                                    lineClassName="dragLine"
+                                    onDragEnd={(fromIndex, toIndex) => onDragEnd(fromIndex, toIndex)}
+                                >
+                                    {
+                                        rulesList.map((item, index) => (
+                                            <div className="draggable-rule">
+                                                <Rule
+                                                    item={item}
+                                                    onChange={(updatedRule) => { handleUpdateRule(item.id, updatedRule) }}
+                                                    onDelete={() => { handleDelete(item.id) }}
+                                                />
+                                            </div>
+                                        ))}
+                                </ReactDragListView>
+                            </div>
+                        }
+                        {
+                            !rulesList &&
+                            <div>Loading</div>
                         }
                     </div>
-                </section>
 
-                <div className="rule-section-main-wrapper">
-                    <FilterSection onChange={() => { }} />
-
-                    {/* Render drag and drop */}
-                    {
-                        rulesList &&
-                        <div className="draggable-rule-container">
-                            <section className="rules-table-heading-wrapper">
-                                <div>Name</div>
-                                <div>Applicable For</div>
-                                <div>For Whom</div>
-                                {/* <div>Rule</div> */}
-                                <div>Rule</div>
-                                <div>Status</div>
-                                <div>Action</div>
-                            </section>
-                            <ReactDragListView
-                                nodeSelector=".draggable-rule"
-                                lineClassName="dragLine"
-                                onDragEnd={(fromIndex, toIndex) => onDragEnd(fromIndex, toIndex)}
-                            >
-                                {
-                                    rulesList.map((item, index) => (
-                                        <div className="draggable-rule">
-                                            <Rule
-                                                item={item}
-                                                onChange={(updatedRule) => { handleUpdateRule(item.id, updatedRule) }}
-                                                onDelete={() => { handleDelete(item.id) }}
-                                            />
-                                        </div>
-                                    ))}
-                            </ReactDragListView>
-                        </div>
-                    }
-                    {
-                        !rulesList &&
-                        <div>Loading</div>
-                    }
-                </div>
-
-            </main>
+                </main>
+            )}      
         </>
     );
 }

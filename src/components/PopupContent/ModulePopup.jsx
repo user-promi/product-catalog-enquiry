@@ -16,7 +16,7 @@ const Modulepopup = (props) => {
                                 <div className="admin-banner-content">
                                     <strong>{props.name}</strong>
                                     <p>&nbsp;</p>
-                                    <p>1. Double Opt-in.</p>
+                                    <p>Module not active</p>
                                 </div>
                             </div>
                         </div>

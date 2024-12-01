@@ -111,7 +111,7 @@ const Log = (props) => {
       </div>
       <div className="log-container-wrapper">
         <div className="wrapper-header">
-          <p className="log-viewer-text">MooWoodle - log viewer</p>
+          <p className="log-viewer-text">{appLocalizer.tab_name} - log viewer</p>
           <div className="click-to-copy">
             <button class="copy-btn" onClick={handleCopyToClipboard}>
               <i class="adminLib-vendor-form-copy"></i>

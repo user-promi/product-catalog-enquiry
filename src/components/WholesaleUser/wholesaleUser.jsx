@@ -8,6 +8,7 @@ import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import Popoup from "../PopupContent/PopupContent.jsx";
+import Modulepopup from "../PopupContent/ModulePopup.jsx";
 import './wholesaleUser.scss';
 import defaultImage from '../../assets/images/default.png';
 import ViewPopup from './viewPopup.jsx';
@@ -17,11 +18,11 @@ import { useModules } from '../../contexts/ModuleContext.jsx';
 const WholesaleUser = () => {
 	// Check pro is active and module is active or not.
     const { modules } = useModules();
-    if ( ! modules.includes( 'wholesale' ) || ! appLocalizer.pro_active ) {
-        return (
-            <div className='wholesale-user-image'></div>
-        ); 
-    }
+    // if ( ! modules.includes( 'wholesale' ) ) {
+        // return (
+        //     <div className='wholesale-user-image'></div>
+        // ); 
+    // }
 
 	const fetchUsersCount = getApiLink('get-user-table-segment');
 	const [data, setData] = useState(null);
@@ -62,7 +63,7 @@ const WholesaleUser = () => {
 	}, []);
 
 	useEffect(() => {
-		// if (appLocalizer.pro_active) {
+		if (appLocalizer.pro_active) {
 		  axios({
 			method: "post",
 			url: fetchUsersCount,
@@ -95,7 +96,7 @@ const WholesaleUser = () => {
 			  }
 			]);
 		  });
-		// }
+		}
 	  }, []);
 
 	const handleDateOpen = () => {
@@ -312,8 +313,7 @@ const WholesaleUser = () => {
 
 	return (
 		<>
-			
-			{/* {!appLocalizer.pro_active ? (
+			{!appLocalizer.pro_active ? (
 				<>
 					<Dialog
 						className="admin-module-popup"
@@ -324,7 +324,7 @@ const WholesaleUser = () => {
 						aria-labelledby="form-dialog-title"
 					>
 						<span
-							className="admin-font font-cross stock-manager-popup-cross"
+							className="admin-font adminLib-cross"
 							onClick={() => {
 								setOpenDialog(false);
 							}}
@@ -332,13 +332,38 @@ const WholesaleUser = () => {
 						<Popoup />
 					</Dialog>
 					<div
-						className="enrollment-img"
+						className="wholesale-user-image"
 						onClick={() => {
 							setOpenDialog(true);
 						}}>
 					</div>
 				</>
-			) : ( */}
+			) : !modules.includes('wholesale') ? (
+				<>
+					<Dialog
+						className="admin-module-popup"
+						open={openDialog}
+						onClose={() => {
+							setOpenDialog(false);
+						}}
+						aria-labelledby="form-dialog-title"
+					>
+						<span
+							className="admin-font adminLib-cross stock-manager-popup-cross"
+							onClick={() => {
+								setOpenDialog(false);
+							}}
+						></span>
+						<Modulepopup name='wholesale' />
+					</Dialog>
+					<div
+						className="wholesale-user-image"
+						onClick={() => {
+							setOpenDialog(true);
+						}}>
+					</div>
+				</>
+			  ) : (
 				<div className="admin-wholesale-list">
 					<div className="admin-page-title">
 						<p className='title'>{__("All Wholesale Users", "woocommerce-catalog-enquiry")}</p>
@@ -362,7 +387,7 @@ const WholesaleUser = () => {
 						/>
 					}
 				</div>
-			{/* )} */}
+		 )}
 		</>
 
 	);

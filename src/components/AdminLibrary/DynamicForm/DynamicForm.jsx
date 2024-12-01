@@ -646,75 +646,39 @@ const DynamicForm = (props) => {
           );
           break;
 
-        // For single or multiple checkbox 
+        // For single or multiple checkbox (free / pro or some free some pro)
         case "checkbox":
-        input = (
-          <CustomInput.MultiCheckBox
-            wrapperClass="checkbox-list-side-by-side"
-            descClass="settings-metabox-description"
-            description={inputField.desc}
-            selectDeselectClass="btn-purple select-deselect-trigger"
-            inputWrapperClass="toggle-checkbox-header"
-            inputInnerWrapperClass={inputField.look == 'toggle' ? "toggle-checkbox-content" : "default-checkbox"}// this props for change classes default/ Toggle
-            inputClass={inputField.class}
-            hintOuterClass="checkbox-description"
-            hintInnerClass="hover-tooltip"
-            idPrefix="toggle-switch"
-            selectDeselect={inputField.select_deselect}
-            selectDeselectValue="Select / Deselect All"
-            rightContentClass="settings-checkbox-description"
-            rightContent={inputField.right_content} // for place checkbox right
-            options={inputField.options}
-            value={value}
-            proSetting={isProSetting(inputField.proSetting)}
-            onChange={(e) => {
-              if ( ! proSettingChanged( inputField.proSetting ) ) {
-                handleChange(e, inputField.key, "multiple");
+          input = (
+            <CustomInput.MultiCheckBox
+              wrapperClass="checkbox-list-side-by-side"
+              descClass="settings-metabox-description"
+              description={inputField.desc}
+              selectDeselectClass="btn-purple select-deselect-trigger"
+              inputWrapperClass="toggle-checkbox-header"
+              inputInnerWrapperClass={inputField.look == 'toggle' ? "toggle-checkbox" : "default-checkbox"}// this props for change classes default/ Toggle
+              inputClass={inputField.class}
+              hintOuterClass="checkbox-description"
+              hintInnerClass="hover-tooltip"
+              idPrefix="toggle-switch"
+              selectDeselect={inputField.select_deselect}
+              selectDeselectValue="Select / Deselect All"
+              rightContentClass="settings-checkbox-description"
+              rightContent={inputField.right_content} // for place checkbox right
+              options={inputField.options}
+              value={value}
+              proSetting={isProSetting(inputField.proSetting)}
+              onChange={(e) => {
+                if ( ! proSettingChanged( inputField.proSetting ) ) {
+                  handleChange(e, inputField.key, "multiple");
+                }
+              }}
+              onMultiSelectDeselectChange={(e) =>
+                handlMultiSelectDeselectChange( inputField.key, inputField.options )
               }
-            }}
-            onMultiSelectDeselectChange={(e) =>
-              handlMultiSelectDeselectChange( inputField.key, inputField.options )
-            }
-            proChanged={() => setModelOpen(true)}
-          />
-        );
-        break;
-
-        // for multiple checkbox (free / pro or some free some pro)
-        // case "checkbox-default":
-        //   input = (
-        //     <CustomInput.MultiCheckBox
-        //       wrapperClass="checkbox-list-side-by-side"
-        //       descClass="settings-metabox-description"
-        //       description={inputField.desc}
-        //       selectDeselectClass="btn-purple select-deselect-trigger"
-        //       inputWrapperClass="toggle-checkbox-header"
-        //       inputInnerWrapperClass="default-checkbox"
-        //       inputClass={inputField.class}
-        //       hintOuterClass="checkbox-description"
-        //       hintInnerClass="hover-tooltip"
-        //       idPrefix="toggle-switch"
-        //       selectDeselect={inputField.select_deselect}
-        //       selectDeselectValue="Select / Deselect All"
-        //       rightContentClass="settings-checkbox-description"
-        //       rightContent={inputField.right_content}
-        //       options={inputField.options}
-        //       value={value}
-        //       proSetting={isProSetting(inputField.proSetting)}
-        //       onChange={(e) => {
-        //         if (!proSettingChanged(inputField.proSetting)) {
-        //           handleChange(e, inputField.key, "multiple");
-        //         }
-        //       }}
-        //       onMultiSelectDeselectChange={(e) => {
-        //         if (!proSettingChanged(inputField.proSetting)) {
-        //           handlMultiSelectDeselectChange(inputField.key, inputField.options)
-        //         }
-        //       }}
-        //       proChanged={() => setModelOpen(true)}
-        //     />
-        //   );
-        //   break;
+              proChanged={() => setModelOpen(true)}
+            />
+          );
+          break;
 
         // For particular plugin required checkbox ( like if stock-alert plugin not active the checkbox not open)
         case "stock-alert-checkbox":
@@ -725,7 +689,7 @@ const DynamicForm = (props) => {
               description={inputField.desc}
               selectDeselectClass="btn-purple select-deselect-trigger"
               inputWrapperClass="toggle-checkbox-header"
-              inputInnerWrapperClass="toggle-checkbox-content"
+              inputInnerWrapperClass="toggle-checkbox"
               inputClass={inputField.class}
               hintOuterClass="dashicons dashicons-info"
               hintInnerClass="hover-tooltip"
@@ -738,11 +702,11 @@ const DynamicForm = (props) => {
               value={value}
               proSetting={isProSetting(inputField.proSetting)}
               onChange={(e) => {
-                if (!appLocalizer.stock_alert_open) {
+                if (!inputField.dependentPlugin) {
                   setModelPluginOpen(true)
                 }
                 if (!proSettingChanged(inputField.proSetting)) {
-                  if (appLocalizer.stock_alert_open) {
+                  if (inputField.dependentPlugin) {
                     handleChange(e, inputField.key, "multiple");
                   }
                 }
@@ -828,10 +792,14 @@ const DynamicForm = (props) => {
               text={(setting[inputField.key]?.button_text) || 'Button Text'}
               proSetting={isProSetting(inputField.proSetting)}
               setting={setting[inputField.key]}
-              onChange={(key, value) => {
-                if ( ! proSettingChanged( inputField.proSetting ) ) {
+              onChange={(key, value, isRestoreDefaults=false) => {
+                if (!proSettingChanged(inputField.proSetting)) {
                   settingChanged.current = true;
-                  updateSetting(inputField.key, { ...setting[inputField.key], [key]: value });
+                  if (isRestoreDefaults) {
+                      updateSetting(inputField.key, value);
+                  } else {
+                    updateSetting(inputField.key, { ...setting[inputField.key], [key]: value });
+                  }
                 }
               }}
             />
@@ -1060,13 +1028,6 @@ const DynamicForm = (props) => {
               // proSettingChanged={
               //   () => proSettingChanged(inputField.proSetting)
               // }
-            />
-          );
-          break;
-
-        case "icon-list":
-          input = (
-            <IconList
             />
           );
           break;

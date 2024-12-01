@@ -439,9 +439,11 @@ button,
   border-radius: $border-radius-small;
   font-size: 0.875rem;
   transition: all 0.3s linear;
-}
 
-// button purple style
+  &.btn-preview{
+    padding: 0;
+  }
+}
 .btn-purple{ 
   background: $theme-color;
   width: fit-content;
@@ -712,25 +714,6 @@ span.admin-pro-tag{
   &.success{
     color: green;
     background-color: #00800036;
-  }
-}
-
-// Table filter common style
-.admin-table-wrapper-filter {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: .875rem;
-  gap: .5rem;
-  justify-content: flex-start;
-  margin-bottom: .75rem;
-
-  &>div {
-      cursor: pointer;
-  }
-
-  .type-count-active {
-      color: $theme-color;
   }
 }
 

@@ -85,7 +85,7 @@ const FormCustomizer = (props) => {
                         </div>
                         <div className='button-section'>
                             <ButtonCustomizer
-                                text={props.buttonText}
+                                text={props.buttonText || 'Submit'}
                                 proSetting={props.proSetting}
                                 setting={setting}
                                 onChange={props.onChange}
